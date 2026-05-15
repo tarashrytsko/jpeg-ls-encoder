@@ -9,7 +9,20 @@
       "Read(//d//**)",
       "Read(//e//**)",
       "Bash(cmd /c \"dir C:\\\\Xilinx /b 2>nul\")",
-      "Bash(cmd /c \"dir D:\\\\Xilinx /b 2>nul\")"
+      "Bash(cmd /c \"dir D:\\\\Xilinx /b 2>nul\")",
+      "Bash(cmd *)",
+      "Bash(export PATH=\"/c/Xilinx/Vivado/2024.2/bin:$PATH\")",
+      "Bash(xvlog --incr --relax -prj tb_top_jls_vertical_vlog.prj -log xvlog.log)",
+      "Bash(xelab --incr --debug typical --relax --mt 2 -L xil_defaultlib -L fifo_generator_v13_2_11 -L blk_mem_gen_v8_4_9 -L unisims_ver -L unimacro_ver -L secureip -L xpm --snapshot tb_top_jls_vertical_behav xil_defaultlib.tb_top_jls_vertical xil_defaultlib.glbl -log elaborate.log)",
+      "Bash(xsim tb_top_jls_vertical_behav -key '{Behavioral:sim_1:Functional:tb_top_jls_vertical}' -tclbatch tb_top_jls_vertical.tcl -log simulate.log)",
+      "Bash(python3 *)",
+      "Bash($PYTHON *)",
+      "Bash(where charls *)",
+      "Bash(where jpegls *)",
+      "Read(//c/Program Files/**)",
+      "Bash(/c/Xilinx/Vivado/2024.2/tps/win64/python-3.8.3/python.exe -)",
+      "Bash(/c/Xilinx/Vivado/2024.2/tps/win64/python-3.8.3/python.exe -m pip install imagecodecs)",
+      "Bash(/c/Xilinx/Vivado/2024.2/tps/win64/python-3.8.3/python.exe -m pip install numpy==1.24)"
     ]
   }
 }

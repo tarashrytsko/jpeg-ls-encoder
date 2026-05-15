@@ -21,7 +21,7 @@
 `define BUBBLE_CONTROL  (-1)
 
 // the input and output file names' format
-`define FILE_NAME_FORMAT  "test%01d"
+`define FILE_NAME_FORMAT  "processed_Roads_detection_PAN"
 
 // input file (uncompressed .pgm file) directory
 //`define INPUT_PGM_DIR     "C:/Users/admin/Downloads/Shared with VM/FPGA-JPEG-LS-encoder/SIM/images"

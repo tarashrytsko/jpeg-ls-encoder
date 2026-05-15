@@ -4,7 +4,7 @@ module encoder_wrapper #(
     parameter integer nr  = 0,   // NEAR parameter for JPEG-LS
     parameter integer L   = 64   // Slice height per encoder
 )(
-    input  wire              rd_clk,       // 10MHz
+    input  wire              rd_clk,       // 50MHz
     input  wire              sys_rdy,      // ready signal
     input  wire [13:0]       i_w,          // bytes per line
     input  wire [13:0]       i_h,          // total lines

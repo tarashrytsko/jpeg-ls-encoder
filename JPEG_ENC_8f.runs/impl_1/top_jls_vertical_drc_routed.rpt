@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2024.2 (win64) Build 5239630 Fri Nov 08 22:35:27 MST 2024
-| Date         : Fri May 15 16:34:44 2026
+| Date         : Fri May 15 22:15:29 2026
 | Host         : DESKTOP-PHB4K70 running 64-bit major release  (build 9200)
 | Command      : report_drc -file top_jls_vertical_drc_routed.rpt -pb top_jls_vertical_drc_routed.pb -rpx top_jls_vertical_drc_routed.rpx
 | Design       : top_jls_vertical
@@ -755,19 +755,19 @@ Related violations: <none>
 
 RTSTAT-10#1 Warning
 No routable loads  
-42 net(s) have no routable loads. The problem bus(es) and/or net(s) are u_fifo_wrapper_input/GEN_FIFO[0].u_fifo_inst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/gwas.wsts/ram_full_i,
-u_fifo_wrapper_input/GEN_FIFO[0].u_fifo_inst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.rd_rst_reg[2:0],
+42 net(s) have no routable loads. The problem bus(es) and/or net(s) are u_fifo_wrapper_input/GEN_FIFO[0].u_fifo_inst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.rd_rst_reg[2:0],
 u_fifo_wrapper_input/GEN_FIFO[0].u_fifo_inst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.wr_rst_reg[2:0],
 u_fifo_wrapper_input/GEN_FIFO[1].u_fifo_inst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.rd_rst_reg[2:0],
 u_fifo_wrapper_input/GEN_FIFO[1].u_fifo_inst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.wr_rst_reg[2:0],
-u_fifo_wrapper_input/GEN_FIFO[2].u_fifo_inst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/gwas.wsts/ram_full_i,
 u_fifo_wrapper_input/GEN_FIFO[2].u_fifo_inst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.rd_rst_reg[2:0],
 u_fifo_wrapper_input/GEN_FIFO[2].u_fifo_inst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.wr_rst_reg[2:0],
+u_fifo_wrapper_output/GEN_FIFO[0].u_fifo/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/gwas.wsts/ram_full_i,
 u_fifo_wrapper_output/GEN_FIFO[0].u_fifo/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.rd_rst_reg[2:0],
 u_fifo_wrapper_output/GEN_FIFO[0].u_fifo/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.wr_rst_reg[2:0],
 u_fifo_wrapper_output/GEN_FIFO[1].u_fifo/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/gwas.wsts/ram_full_i,
 u_fifo_wrapper_output/GEN_FIFO[1].u_fifo/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.rd_rst_reg[2:0],
 u_fifo_wrapper_output/GEN_FIFO[1].u_fifo/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.wr_rst_reg[2:0],
+u_fifo_wrapper_output/GEN_FIFO[2].u_fifo/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/gwas.wsts/ram_full_i,
 u_fifo_wrapper_output/GEN_FIFO[2].u_fifo/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.rd_rst_reg[2:0],
 u_fifo_wrapper_output/GEN_FIFO[2].u_fifo/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.wr_rst_reg[2:0]
  (the first 15 of 18 listed nets/buses).

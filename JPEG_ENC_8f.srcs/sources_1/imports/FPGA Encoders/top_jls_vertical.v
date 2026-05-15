@@ -54,8 +54,8 @@ wire  [N_E-1:0]  o_sof_st;
     // =================================================================
     wire locked;
     clk_wiz_0 clk_wiz_0 (
-        .clk_out1(clk),       // 33.33 MHz (unused)
-        .clk_out2(rd_clk), // 10 MHz
+        .clk_out1(clk),       // 150 MHz
+        .clk_out2(rd_clk), // 50 MHz
         .reset(~rstn),
         .locked(locked),
         .clk_in1_p(clk_in1_p),
@@ -204,7 +204,7 @@ wire [32*N_E-1:0] read_count_flat;
 fifo_read_control #(
     .NUM_ENCODERS(N_E)
 ) u_fifo_read_control (
-    .rd_clk(rd_clk),             // 10 MHz read clock
+    .rd_clk(rd_clk),             // 50 MHz read clock
     .sys_rdy(sys_rdy),           // system ready
     .i_w_r(s_w),                   // image width
     .i_h_r(s_h),                   // image height
@@ -226,7 +226,7 @@ fifo_read_control #(
     .nr(nr),
     .L(L)
 ) u_encoder_wrapper (
-    .rd_clk(rd_clk),           // 10 MHz read clock
+    .rd_clk(rd_clk),           // 50 MHz read clock
     .sys_rdy(sys_rdy),         // system ready
     .i_w(s_w),                 // image width
     .i_h(s_h),                 // image height

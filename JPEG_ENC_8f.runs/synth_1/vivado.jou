@@ -3,8 +3,8 @@
 # SW Build 5239630 on Fri Nov 08 22:35:27 MST 2024
 # IP Build 5239520 on Sun Nov 10 16:12:51 MST 2024
 # SharedData Build 5239561 on Fri Nov 08 14:39:27 MST 2024
-# Start of session at: Fri May 15 16:20:05 2026
-# Process ID         : 1776
+# Start of session at: Fri May 15 22:06:13 2026
+# Process ID         : 3464
 # Current directory  : D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.runs/synth_1
 # Command line       : vivado.exe -log top_jls_vertical.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source top_jls_vertical.tcl
 # Log file           : D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.runs/synth_1/top_jls_vertical.vds
@@ -19,6 +19,6 @@
 # Host memory        : 16840 MB
 # Swap memory        : 8757 MB
 # Total Virtual      : 25597 MB
-# Available Virtual  : 13339 MB
+# Available Virtual  : 12974 MB
 #-----------------------------------------------------------
 source top_jls_vertical.tcl -notrace

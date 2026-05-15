@@ -75,8 +75,8 @@ OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
 add_files D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/sources_1/imports/coefile/test2.coe
 add_files D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/sources_1/imports/JPEG_Encoder_Project/JPEG_ENC_v8d/JPEG_ENC_v8d.sim/coefile/test6new.coe
-add_files D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/sources_1/imports/JPEG_Encoder_Project/JPEG_ENC_v8d/JPEG_ENC_v8d.sim/coefile/test2new.coe
-add_files D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.sim/coefile/test2new.coe
+add_files D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/sources_1/imports/JPEG_Encoder_Project/JPEG_ENC_v8d/JPEG_ENC_v8d.sim/coefile/processed_Roads_detection_PAN.coe
+add_files D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.sim/coefile/processed_Roads_detection_PAN.coe
 read_verilog -library xil_defaultlib {
   D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/sources_1/new/block_split.v
   D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/sources_1/new/encoder_wrapper.v

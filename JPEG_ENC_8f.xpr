@@ -59,7 +59,7 @@
     <Option Name="IPStaticSourceDir" Val="$PIPUSERFILESDIR/ipstatic"/>
     <Option Name="EnableBDX" Val="FALSE"/>
     <Option Name="DSABoardId" Val="ac701"/>
-    <Option Name="WTXSimLaunchSim" Val="2055"/>
+    <Option Name="WTXSimLaunchSim" Val="2061"/>
     <Option Name="WTModelSimLaunchSim" Val="0"/>
     <Option Name="WTQuestaLaunchSim" Val="0"/>
     <Option Name="WTIesLaunchSim" Val="0"/>
@@ -237,15 +237,15 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sources_1/imports/JPEG_Encoder_Project/JPEG_ENC_v8d/JPEG_ENC_v8d.sim/coefile/test2new.coe">
+      <File Path="$PSRCDIR/sources_1/imports/JPEG_Encoder_Project/JPEG_ENC_v8d/JPEG_ENC_v8d.sim/coefile/processed_Roads_detection_PAN.coe">
         <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../JPEG_ENC_v8d/JPEG_ENC_v8d.sim/coefile/test2new.coe"/>
+          <Attr Name="ImportPath" Val="$PPRDIR/../JPEG_ENC_v8d/JPEG_ENC_v8d.sim/coefile/processed_Roads_detection_PAN.coe"/>
           <Attr Name="ImportTime" Val="1767904686"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSIMDIR/coefile/test2new.coe">
+      <File Path="$PSIMDIR/coefile/processed_Roads_detection_PAN.coe">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
