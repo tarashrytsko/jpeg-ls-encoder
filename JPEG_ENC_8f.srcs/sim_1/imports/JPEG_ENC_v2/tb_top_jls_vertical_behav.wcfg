@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="tb_top_jls_vertical_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="glbl" />
+            <top_module name="tb_top_jls_vertical" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="3,704.767500 us"></ZoomStartTime>
+      <ZoomEndTime time="4,118.767501 us"></ZoomEndTime>
+      <Cursor1Time time="4,049.767500 us"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="342"></NameColumnWidth>
+      <ValueColumnWidth column_width="72"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="25" />
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /a_w" type="array">
+      <obj_property name="ElementShortName">a_w[13:0]</obj_property>
+      <obj_property name="ObjectShortName">a_w[13:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /a_wl" type="array">
+      <obj_property name="ElementShortName">a_wl[13:0]</obj_property>
+      <obj_property name="ObjectShortName">a_wl[13:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /a_ww" type="array">
+      <obj_property name="ElementShortName">a_ww[13:0]</obj_property>
+      <obj_property name="ObjectShortName">a_ww[13:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /o_e" type="logic">
+      <obj_property name="ElementShortName">o_e</obj_property>
+      <obj_property name="ObjectShortName">o_e</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /o_last" type="logic">
+      <obj_property name="ElementShortName">o_last</obj_property>
+      <obj_property name="ObjectShortName">o_last</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /o_data" type="array">
+      <obj_property name="ElementShortName">o_data[15:0]</obj_property>
+      <obj_property name="ObjectShortName">o_data[15:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /o_e" type="logic">
+      <obj_property name="ElementShortName">o_e</obj_property>
+      <obj_property name="ObjectShortName">o_e</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /o_last" type="logic">
+      <obj_property name="ElementShortName">o_last</obj_property>
+      <obj_property name="ObjectShortName">o_last</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /o_data" type="array">
+      <obj_property name="ElementShortName">o_data[15:0]</obj_property>
+      <obj_property name="ObjectShortName">o_data[15:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /o_e" type="logic">
+      <obj_property name="ElementShortName">o_e</obj_property>
+      <obj_property name="ObjectShortName">o_e</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /o_last" type="logic">
+      <obj_property name="ElementShortName">o_last</obj_property>
+      <obj_property name="ObjectShortName">o_last</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /o_data" type="array">
+      <obj_property name="ElementShortName">o_data[15:0]</obj_property>
+      <obj_property name="ObjectShortName">o_data[15:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /a_w" type="array">
+      <obj_property name="ElementShortName">a_w[13:0]</obj_property>
+      <obj_property name="ObjectShortName">a_w[13:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /a_wl" type="array">
+      <obj_property name="ElementShortName">a_wl[13:0]</obj_property>
+      <obj_property name="ObjectShortName">a_wl[13:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /a_ww" type="array">
+      <obj_property name="ElementShortName">a_ww[13:0]</obj_property>
+      <obj_property name="ObjectShortName">a_ww[13:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /a_w" type="array">
+      <obj_property name="ElementShortName">a_w[13:0]</obj_property>
+      <obj_property name="ObjectShortName">a_w[13:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /a_wl" type="array">
+      <obj_property name="ElementShortName">a_wl[13:0]</obj_property>
+      <obj_property name="ObjectShortName">a_wl[13:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /a_ww" type="array">
+      <obj_property name="ElementShortName">a_ww[13:0]</obj_property>
+      <obj_property name="ObjectShortName">a_ww[13:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /a_ii" type="array">
+      <obj_property name="ElementShortName">a_ii[13:0]</obj_property>
+      <obj_property name="ObjectShortName">a_ii[13:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /a_jj" type="array">
+      <obj_property name="ElementShortName">a_jj[14:0]</obj_property>
+      <obj_property name="ObjectShortName">a_jj[14:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /a_ii" type="array">
+      <obj_property name="ElementShortName">a_ii[13:0]</obj_property>
+      <obj_property name="ObjectShortName">a_ii[13:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /a_jj" type="array">
+      <obj_property name="ElementShortName">a_jj[14:0]</obj_property>
+      <obj_property name="ObjectShortName">a_jj[14:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /a_ii" type="array">
+      <obj_property name="ElementShortName">a_ii[13:0]</obj_property>
+      <obj_property name="ObjectShortName">a_ii[13:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /a_jj" type="array">
+      <obj_property name="ElementShortName">a_jj[14:0]</obj_property>
+      <obj_property name="ObjectShortName">a_jj[14:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /a_hl" type="array">
+      <obj_property name="ElementShortName">a_hl[13:0]</obj_property>
+      <obj_property name="ObjectShortName">a_hl[13:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+</wave_config>

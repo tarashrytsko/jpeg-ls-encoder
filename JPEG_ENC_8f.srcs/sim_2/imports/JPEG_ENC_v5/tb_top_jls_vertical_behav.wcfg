@@ -1,0 +1,2231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="tb_top_jls_vertical_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="glbl" />
+            <top_module name="tb_top_jls_vertical" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="62,127,087.500 ns"></ZoomStartTime>
+      <ZoomEndTime time="62,127,873.501 ns"></ZoomEndTime>
+      <Cursor1Time time="62,127,707.500 ns"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="340"></NameColumnWidth>
+      <ValueColumnWidth column_width="95"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="552" />
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /rstn" type="logic">
+      <obj_property name="ElementShortName">rstn</obj_property>
+      <obj_property name="ObjectShortName">rstn</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /clk" type="logic">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /is_last_encoder" type="array">
+      <obj_property name="ElementShortName">is_last_encoder[2:0]</obj_property>
+      <obj_property name="ObjectShortName">is_last_encoder[2:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /cur_enc" type="array">
+      <obj_property name="ElementShortName">cur_enc[1:0]</obj_property>
+      <obj_property name="ObjectShortName">cur_enc[1:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /i_sof" type="logic">
+      <obj_property name="ElementShortName">i_sof</obj_property>
+      <obj_property name="ObjectShortName">i_sof</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /i_w" type="array">
+      <obj_property name="ElementShortName">i_w[13:0]</obj_property>
+      <obj_property name="ObjectShortName">i_w[13:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /i_h" type="array">
+      <obj_property name="ElementShortName">i_h[13:0]</obj_property>
+      <obj_property name="ObjectShortName">i_h[13:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /i_e" type="logic">
+      <obj_property name="ElementShortName">i_e</obj_property>
+      <obj_property name="ObjectShortName">i_e</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /i_x" type="array">
+      <obj_property name="ElementShortName">i_x[7:0]</obj_property>
+      <obj_property name="ObjectShortName">i_x[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /o_e" type="logic">
+      <obj_property name="ElementShortName">o_e</obj_property>
+      <obj_property name="ObjectShortName">o_e</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /o_last" type="logic">
+      <obj_property name="ElementShortName">o_last</obj_property>
+      <obj_property name="ObjectShortName">o_last</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /o_data" type="array">
+      <obj_property name="ElementShortName">o_data[15:0]</obj_property>
+      <obj_property name="ObjectShortName">o_data[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /my_last" type="logic">
+      <obj_property name="ElementShortName">my_last</obj_property>
+      <obj_property name="ObjectShortName">my_last</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /P_QBPPS" type="array">
+      <obj_property name="ElementShortName">P_QBPPS[0:7][3:0]</obj_property>
+      <obj_property name="ObjectShortName">P_QBPPS[0:7][3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /P_QBPP" type="array">
+      <obj_property name="ElementShortName">P_QBPP[3:0]</obj_property>
+      <obj_property name="ObjectShortName">P_QBPP[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /P_LIMIT" type="array">
+      <obj_property name="ElementShortName">P_LIMIT[4:0]</obj_property>
+      <obj_property name="ObjectShortName">P_LIMIT[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /J" type="array">
+      <obj_property name="ElementShortName">J[0:31][3:0]</obj_property>
+      <obj_property name="ObjectShortName">J[0:31][3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /Nram" type="array">
+      <obj_property name="ElementShortName">Nram[0:365][5:0]</obj_property>
+      <obj_property name="ObjectShortName">Nram[0:365][5:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /Aram" type="array">
+      <obj_property name="ElementShortName">Aram[0:365][12:0]</obj_property>
+      <obj_property name="ObjectShortName">Aram[0:365][12:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /Bram" type="array">
+      <obj_property name="ElementShortName">Bram[0:365][6:0]</obj_property>
+      <obj_property name="ObjectShortName">Bram[0:365][6:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /Cram" type="array">
+      <obj_property name="ElementShortName">Cram[1:364][7:0]</obj_property>
+      <obj_property name="ObjectShortName">Cram[1:364][7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /a_sof" type="logic">
+      <obj_property name="ElementShortName">a_sof</obj_property>
+      <obj_property name="ObjectShortName">a_sof</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /a_e" type="logic">
+      <obj_property name="ElementShortName">a_e</obj_property>
+      <obj_property name="ObjectShortName">a_e</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /a_x" type="array">
+      <obj_property name="ElementShortName">a_x[7:0]</obj_property>
+      <obj_property name="ObjectShortName">a_x[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /a_w" type="array">
+      <obj_property name="ElementShortName">a_w[13:0]</obj_property>
+      <obj_property name="ObjectShortName">a_w[13:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /a_h" type="array">
+      <obj_property name="ElementShortName">a_h[13:0]</obj_property>
+      <obj_property name="ObjectShortName">a_h[13:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /a_wl" type="array">
+      <obj_property name="ElementShortName">a_wl[13:0]</obj_property>
+      <obj_property name="ObjectShortName">a_wl[13:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /a_hl" type="array">
+      <obj_property name="ElementShortName">a_hl[13:0]</obj_property>
+      <obj_property name="ObjectShortName">a_hl[13:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /a_ii" type="array">
+      <obj_property name="ElementShortName">a_ii[13:0]</obj_property>
+      <obj_property name="ObjectShortName">a_ii[13:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /a_jj" type="array">
+      <obj_property name="ElementShortName">a_jj[14:0]</obj_property>
+      <obj_property name="ObjectShortName">a_jj[14:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /a_jj_last" type="array">
+      <obj_property name="ElementShortName">a_jj_last[14:0]</obj_property>
+      <obj_property name="ObjectShortName">a_jj_last[14:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /my_lastx" type="logic">
+      <obj_property name="ElementShortName">my_lastx</obj_property>
+      <obj_property name="ObjectShortName">my_lastx</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /my_last_pipe" type="array">
+      <obj_property name="ElementShortName">my_last_pipe[458:0]</obj_property>
+      <obj_property name="ObjectShortName">my_last_pipe[458:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /b_sof" type="logic">
+      <obj_property name="ElementShortName">b_sof</obj_property>
+      <obj_property name="ObjectShortName">b_sof</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /b_e" type="logic">
+      <obj_property name="ElementShortName">b_e</obj_property>
+      <obj_property name="ObjectShortName">b_e</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /b_fc" type="logic">
+      <obj_property name="ElementShortName">b_fc</obj_property>
+      <obj_property name="ObjectShortName">b_fc</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /b_lc" type="logic">
+      <obj_property name="ElementShortName">b_lc</obj_property>
+      <obj_property name="ObjectShortName">b_lc</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /b_fr" type="logic">
+      <obj_property name="ElementShortName">b_fr</obj_property>
+      <obj_property name="ObjectShortName">b_fr</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /b_eof" type="logic">
+      <obj_property name="ElementShortName">b_eof</obj_property>
+      <obj_property name="ObjectShortName">b_eof</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /b_ii" type="array">
+      <obj_property name="ElementShortName">b_ii[13:0]</obj_property>
+      <obj_property name="ObjectShortName">b_ii[13:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /b_x" type="array">
+      <obj_property name="ElementShortName">b_x[7:0]</obj_property>
+      <obj_property name="ObjectShortName">b_x[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /c_sof" type="logic">
+      <obj_property name="ElementShortName">c_sof</obj_property>
+      <obj_property name="ObjectShortName">c_sof</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /c_e" type="logic">
+      <obj_property name="ElementShortName">c_e</obj_property>
+      <obj_property name="ObjectShortName">c_e</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /c_fc" type="logic">
+      <obj_property name="ElementShortName">c_fc</obj_property>
+      <obj_property name="ObjectShortName">c_fc</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /c_lc" type="logic">
+      <obj_property name="ElementShortName">c_lc</obj_property>
+      <obj_property name="ObjectShortName">c_lc</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /c_fr" type="logic">
+      <obj_property name="ElementShortName">c_fr</obj_property>
+      <obj_property name="ObjectShortName">c_fr</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /c_eof" type="logic">
+      <obj_property name="ElementShortName">c_eof</obj_property>
+      <obj_property name="ObjectShortName">c_eof</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /c_ii" type="array">
+      <obj_property name="ElementShortName">c_ii[13:0]</obj_property>
+      <obj_property name="ObjectShortName">c_ii[13:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /c_x" type="array">
+      <obj_property name="ElementShortName">c_x[7:0]</obj_property>
+      <obj_property name="ObjectShortName">c_x[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /c_b" type="array">
+      <obj_property name="ElementShortName">c_b[7:0]</obj_property>
+      <obj_property name="ObjectShortName">c_b[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /c_bt" type="array">
+      <obj_property name="ElementShortName">c_bt[7:0]</obj_property>
+      <obj_property name="ObjectShortName">c_bt[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /c_c" type="array">
+      <obj_property name="ElementShortName">c_c[7:0]</obj_property>
+      <obj_property name="ObjectShortName">c_c[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /c_d" type="array">
+      <obj_property name="ElementShortName">c_d[7:0]</obj_property>
+      <obj_property name="ObjectShortName">c_d[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /d_sof" type="logic">
+      <obj_property name="ElementShortName">d_sof</obj_property>
+      <obj_property name="ObjectShortName">d_sof</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /d_e" type="logic">
+      <obj_property name="ElementShortName">d_e</obj_property>
+      <obj_property name="ObjectShortName">d_e</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /d_fc" type="logic">
+      <obj_property name="ElementShortName">d_fc</obj_property>
+      <obj_property name="ObjectShortName">d_fc</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /d_lc" type="logic">
+      <obj_property name="ElementShortName">d_lc</obj_property>
+      <obj_property name="ObjectShortName">d_lc</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /d_eof" type="logic">
+      <obj_property name="ElementShortName">d_eof</obj_property>
+      <obj_property name="ObjectShortName">d_eof</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /d_ii" type="array">
+      <obj_property name="ElementShortName">d_ii[13:0]</obj_property>
+      <obj_property name="ObjectShortName">d_ii[13:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /d_x" type="array">
+      <obj_property name="ElementShortName">d_x[7:0]</obj_property>
+      <obj_property name="ObjectShortName">d_x[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /d_b" type="array">
+      <obj_property name="ElementShortName">d_b[7:0]</obj_property>
+      <obj_property name="ObjectShortName">d_b[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /d_c" type="array">
+      <obj_property name="ElementShortName">d_c[7:0]</obj_property>
+      <obj_property name="ObjectShortName">d_c[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /d_qp1" type="array">
+      <obj_property name="ElementShortName">d_qp1[9:0]</obj_property>
+      <obj_property name="ObjectShortName">d_qp1[9:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /c_w_d" type="array">
+      <obj_property name="ElementShortName">c_w_d[7:0]</obj_property>
+      <obj_property name="ObjectShortName">c_w_d[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /e_sof" type="logic">
+      <obj_property name="ElementShortName">e_sof</obj_property>
+      <obj_property name="ObjectShortName">e_sof</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /e_e" type="logic">
+      <obj_property name="ElementShortName">e_e</obj_property>
+      <obj_property name="ObjectShortName">e_e</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /e_fc" type="logic">
+      <obj_property name="ElementShortName">e_fc</obj_property>
+      <obj_property name="ObjectShortName">e_fc</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /e_lc" type="logic">
+      <obj_property name="ElementShortName">e_lc</obj_property>
+      <obj_property name="ObjectShortName">e_lc</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /e_eof" type="logic">
+      <obj_property name="ElementShortName">e_eof</obj_property>
+      <obj_property name="ObjectShortName">e_eof</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /e_ii" type="array">
+      <obj_property name="ElementShortName">e_ii[13:0]</obj_property>
+      <obj_property name="ObjectShortName">e_ii[13:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /e_runi" type="logic">
+      <obj_property name="ElementShortName">e_runi</obj_property>
+      <obj_property name="ObjectShortName">e_runi</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /e_rune" type="logic">
+      <obj_property name="ElementShortName">e_rune</obj_property>
+      <obj_property name="ObjectShortName">e_rune</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /e_2BleN" type="logic">
+      <obj_property name="ElementShortName">e_2BleN</obj_property>
+      <obj_property name="ObjectShortName">e_2BleN</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /e_x" type="array">
+      <obj_property name="ElementShortName">e_x[7:0]</obj_property>
+      <obj_property name="ObjectShortName">e_x[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /e_q" type="array">
+      <obj_property name="ElementShortName">e_q[8:0]</obj_property>
+      <obj_property name="ObjectShortName">e_q[8:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /e_rt" type="logic">
+      <obj_property name="ElementShortName">e_rt</obj_property>
+      <obj_property name="ObjectShortName">e_rt</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /e_err" type="array">
+      <obj_property name="ElementShortName">e_err[9:0]</obj_property>
+      <obj_property name="ObjectShortName">e_err[9:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /e_No" type="array">
+      <obj_property name="ElementShortName">e_No[6:0]</obj_property>
+      <obj_property name="ObjectShortName">e_No[6:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /e_write_C" type="logic">
+      <obj_property name="ElementShortName">e_write_C</obj_property>
+      <obj_property name="ObjectShortName">e_write_C</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /e_write_en" type="logic">
+      <obj_property name="ElementShortName">e_write_en</obj_property>
+      <obj_property name="ObjectShortName">e_write_en</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /e_Nn" type="array">
+      <obj_property name="ElementShortName">e_Nn[5:0]</obj_property>
+      <obj_property name="ObjectShortName">e_Nn[5:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /e_Cn" type="array">
+      <obj_property name="ElementShortName">e_Cn[7:0]</obj_property>
+      <obj_property name="ObjectShortName">e_Cn[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /e_Bn" type="array">
+      <obj_property name="ElementShortName">e_Bn[6:0]</obj_property>
+      <obj_property name="ObjectShortName">e_Bn[6:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /d_w_a" type="array">
+      <obj_property name="ElementShortName">d_w_a[7:0]</obj_property>
+      <obj_property name="ObjectShortName">d_w_a[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /s" type="logic">
+      <obj_property name="ElementShortName">s</obj_property>
+      <obj_property name="ObjectShortName">s</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /q" type="array">
+      <obj_property name="ElementShortName">q[8:0]</obj_property>
+      <obj_property name="ObjectShortName">q[8:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /rt" type="logic">
+      <obj_property name="ElementShortName">rt</obj_property>
+      <obj_property name="ObjectShortName">rt</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /runi" type="logic">
+      <obj_property name="ElementShortName">runi</obj_property>
+      <obj_property name="ObjectShortName">runi</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /rune" type="logic">
+      <obj_property name="ElementShortName">rune</obj_property>
+      <obj_property name="ObjectShortName">rune</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /Co" type="array">
+      <obj_property name="ElementShortName">Co[7:0]</obj_property>
+      <obj_property name="ObjectShortName">Co[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /No" type="array">
+      <obj_property name="ElementShortName">No[6:0]</obj_property>
+      <obj_property name="ObjectShortName">No[6:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /Nn" type="array">
+      <obj_property name="ElementShortName">Nn[6:0]</obj_property>
+      <obj_property name="ObjectShortName">Nn[6:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /Bo" type="array">
+      <obj_property name="ElementShortName">Bo[6:0]</obj_property>
+      <obj_property name="ObjectShortName">Bo[6:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /px" type="array">
+      <obj_property name="ElementShortName">px[9:0]</obj_property>
+      <obj_property name="ObjectShortName">px[9:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /err" type="array">
+      <obj_property name="ElementShortName">err[9:0]</obj_property>
+      <obj_property name="ObjectShortName">err[9:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /NBC_init_addr" type="array">
+      <obj_property name="ElementShortName">NBC_init_addr[8:0]</obj_property>
+      <obj_property name="ObjectShortName">NBC_init_addr[8:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /ef_sof" type="logic">
+      <obj_property name="ElementShortName">ef_sof</obj_property>
+      <obj_property name="ObjectShortName">ef_sof</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /ef_e" type="logic">
+      <obj_property name="ElementShortName">ef_e</obj_property>
+      <obj_property name="ObjectShortName">ef_e</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /ef_fc" type="logic">
+      <obj_property name="ElementShortName">ef_fc</obj_property>
+      <obj_property name="ObjectShortName">ef_fc</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /ef_lc" type="logic">
+      <obj_property name="ElementShortName">ef_lc</obj_property>
+      <obj_property name="ObjectShortName">ef_lc</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /ef_eof" type="logic">
+      <obj_property name="ElementShortName">ef_eof</obj_property>
+      <obj_property name="ObjectShortName">ef_eof</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /ef_runi" type="logic">
+      <obj_property name="ElementShortName">ef_runi</obj_property>
+      <obj_property name="ObjectShortName">ef_runi</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /ef_rune" type="logic">
+      <obj_property name="ElementShortName">ef_rune</obj_property>
+      <obj_property name="ObjectShortName">ef_rune</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /ef_2BleN" type="logic">
+      <obj_property name="ElementShortName">ef_2BleN</obj_property>
+      <obj_property name="ObjectShortName">ef_2BleN</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /ef_q" type="array">
+      <obj_property name="ElementShortName">ef_q[8:0]</obj_property>
+      <obj_property name="ObjectShortName">ef_q[8:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /ef_rt" type="logic">
+      <obj_property name="ElementShortName">ef_rt</obj_property>
+      <obj_property name="ObjectShortName">ef_rt</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /ef_err" type="array">
+      <obj_property name="ElementShortName">ef_err[9:0]</obj_property>
+      <obj_property name="ObjectShortName">ef_err[9:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /ef_No" type="array">
+      <obj_property name="ElementShortName">ef_No[6:0]</obj_property>
+      <obj_property name="ObjectShortName">ef_No[6:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /ef_Ao" type="array">
+      <obj_property name="ElementShortName">ef_Ao[12:0]</obj_property>
+      <obj_property name="ObjectShortName">ef_Ao[12:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /ef_write_en" type="logic">
+      <obj_property name="ElementShortName">ef_write_en</obj_property>
+      <obj_property name="ObjectShortName">ef_write_en</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /f_sof" type="logic">
+      <obj_property name="ElementShortName">f_sof</obj_property>
+      <obj_property name="ObjectShortName">f_sof</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /f_e" type="logic">
+      <obj_property name="ElementShortName">f_e</obj_property>
+      <obj_property name="ObjectShortName">f_e</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /f_eof" type="logic">
+      <obj_property name="ElementShortName">f_eof</obj_property>
+      <obj_property name="ObjectShortName">f_eof</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /f_runi" type="logic">
+      <obj_property name="ElementShortName">f_runi</obj_property>
+      <obj_property name="ObjectShortName">f_runi</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /f_rune" type="logic">
+      <obj_property name="ElementShortName">f_rune</obj_property>
+      <obj_property name="ObjectShortName">f_rune</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /f_merr" type="array">
+      <obj_property name="ElementShortName">f_merr[9:0]</obj_property>
+      <obj_property name="ObjectShortName">f_merr[9:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /f_k" type="array">
+      <obj_property name="ElementShortName">f_k[3:0]</obj_property>
+      <obj_property name="ObjectShortName">f_k[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /f_rc" type="array">
+      <obj_property name="ElementShortName">f_rc[15:0]</obj_property>
+      <obj_property name="ObjectShortName">f_rc[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /f_ri" type="array">
+      <obj_property name="ElementShortName">f_ri[4:0]</obj_property>
+      <obj_property name="ObjectShortName">f_ri[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /f_on" type="array">
+      <obj_property name="ElementShortName">f_on[1:0]</obj_property>
+      <obj_property name="ObjectShortName">f_on[1:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /f_cb" type="array">
+      <obj_property name="ElementShortName">f_cb[15:0]</obj_property>
+      <obj_property name="ObjectShortName">f_cb[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /f_cn" type="array">
+      <obj_property name="ElementShortName">f_cn[4:0]</obj_property>
+      <obj_property name="ObjectShortName">f_cn[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /f_limit" type="array">
+      <obj_property name="ElementShortName">f_limit[4:0]</obj_property>
+      <obj_property name="ObjectShortName">f_limit[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /f_q" type="array">
+      <obj_property name="ElementShortName">f_q[8:0]</obj_property>
+      <obj_property name="ObjectShortName">f_q[8:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /f_write_en" type="logic">
+      <obj_property name="ElementShortName">f_write_en</obj_property>
+      <obj_property name="ObjectShortName">f_write_en</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /f_An" type="array">
+      <obj_property name="ElementShortName">f_An[12:0]</obj_property>
+      <obj_property name="ObjectShortName">f_An[12:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /g_q" type="array">
+      <obj_property name="ElementShortName">g_q[8:0]</obj_property>
+      <obj_property name="ObjectShortName">g_q[8:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /g_write_en" type="logic">
+      <obj_property name="ElementShortName">g_write_en</obj_property>
+      <obj_property name="ObjectShortName">g_write_en</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /g_An" type="array">
+      <obj_property name="ElementShortName">g_An[12:0]</obj_property>
+      <obj_property name="ObjectShortName">g_An[12:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /on" type="array">
+      <obj_property name="ElementShortName">on[1:0]</obj_property>
+      <obj_property name="ObjectShortName">on[1:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /rc" type="array">
+      <obj_property name="ElementShortName">rc[15:0]</obj_property>
+      <obj_property name="ObjectShortName">rc[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /ri" type="array">
+      <obj_property name="ElementShortName">ri[4:0]</obj_property>
+      <obj_property name="ObjectShortName">ri[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /Ao" type="array">
+      <obj_property name="ElementShortName">Ao[12:0]</obj_property>
+      <obj_property name="ObjectShortName">Ao[12:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /k" type="array">
+      <obj_property name="ElementShortName">k[3:0]</obj_property>
+      <obj_property name="ObjectShortName">k[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /abserr" type="array">
+      <obj_property name="ElementShortName">abserr[9:0]</obj_property>
+      <obj_property name="ObjectShortName">abserr[9:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /merr" type="array">
+      <obj_property name="ElementShortName">merr[9:0]</obj_property>
+      <obj_property name="ObjectShortName">merr[9:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /Ainc" type="array">
+      <obj_property name="ElementShortName">Ainc[9:0]</obj_property>
+      <obj_property name="ObjectShortName">Ainc[9:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /map" type="logic">
+      <obj_property name="ElementShortName">map</obj_property>
+      <obj_property name="ObjectShortName">map</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /A_init_addr" type="array">
+      <obj_property name="ElementShortName">A_init_addr[8:0]</obj_property>
+      <obj_property name="ObjectShortName">A_init_addr[8:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /g_sof" type="logic">
+      <obj_property name="ElementShortName">g_sof</obj_property>
+      <obj_property name="ObjectShortName">g_sof</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /g_e" type="logic">
+      <obj_property name="ElementShortName">g_e</obj_property>
+      <obj_property name="ObjectShortName">g_e</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /g_eof" type="logic">
+      <obj_property name="ElementShortName">g_eof</obj_property>
+      <obj_property name="ObjectShortName">g_eof</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /g_runi" type="logic">
+      <obj_property name="ElementShortName">g_runi</obj_property>
+      <obj_property name="ObjectShortName">g_runi</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /g_on" type="array">
+      <obj_property name="ElementShortName">g_on[1:0]</obj_property>
+      <obj_property name="ObjectShortName">g_on[1:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /g_cb" type="array">
+      <obj_property name="ElementShortName">g_cb[15:0]</obj_property>
+      <obj_property name="ObjectShortName">g_cb[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /g_cn" type="array">
+      <obj_property name="ElementShortName">g_cn[4:0]</obj_property>
+      <obj_property name="ObjectShortName">g_cn[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /g_zn" type="array">
+      <obj_property name="ElementShortName">g_zn[4:0]</obj_property>
+      <obj_property name="ObjectShortName">g_zn[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /g_db" type="array">
+      <obj_property name="ElementShortName">g_db[9:0]</obj_property>
+      <obj_property name="ObjectShortName">g_db[9:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /g_dn" type="array">
+      <obj_property name="ElementShortName">g_dn[3:0]</obj_property>
+      <obj_property name="ObjectShortName">g_dn[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /f_w_merr_sk" type="array">
+      <obj_property name="ElementShortName">f_w_merr_sk[9:0]</obj_property>
+      <obj_property name="ObjectShortName">f_w_merr_sk[9:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /h_sof" type="logic">
+      <obj_property name="ElementShortName">h_sof</obj_property>
+      <obj_property name="ObjectShortName">h_sof</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /h_eof" type="logic">
+      <obj_property name="ElementShortName">h_eof</obj_property>
+      <obj_property name="ObjectShortName">h_eof</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /h_bb" type="array">
+      <obj_property name="ElementShortName">h_bb[56:0]</obj_property>
+      <obj_property name="ObjectShortName">h_bb[56:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /h_bn" type="array">
+      <obj_property name="ElementShortName">h_bn[5:0]</obj_property>
+      <obj_property name="ObjectShortName">h_bn[5:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /j_sof" type="logic">
+      <obj_property name="ElementShortName">j_sof</obj_property>
+      <obj_property name="ObjectShortName">j_sof</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /j_e" type="logic">
+      <obj_property name="ElementShortName">j_e</obj_property>
+      <obj_property name="ObjectShortName">j_e</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /j_last" type="logic">
+      <obj_property name="ElementShortName">j_last</obj_property>
+      <obj_property name="ObjectShortName">j_last</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /j_data" type="array">
+      <obj_property name="ElementShortName">j_data[15:0]</obj_property>
+      <obj_property name="ObjectShortName">j_data[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /j_bbuf" type="array">
+      <obj_property name="ElementShortName">j_bbuf[247:0]</obj_property>
+      <obj_property name="ObjectShortName">j_bbuf[247:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /j_bcnt" type="array">
+      <obj_property name="ElementShortName">j_bcnt[7:0]</obj_property>
+      <obj_property name="ObjectShortName">j_bcnt[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /state_footer" type="array">
+      <obj_property name="ElementShortName">state_footer[1:0]</obj_property>
+      <obj_property name="ObjectShortName">state_footer[1:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /jls_footer" type="array">
+      <obj_property name="ElementShortName">jls_footer[15:0]</obj_property>
+      <obj_property name="ObjectShortName">jls_footer[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /bbuf" type="array">
+      <obj_property name="ElementShortName">bbuf[247:0]</obj_property>
+      <obj_property name="ObjectShortName">bbuf[247:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /bcnt" type="array">
+      <obj_property name="ElementShortName">bcnt[7:0]</obj_property>
+      <obj_property name="ObjectShortName">bcnt[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /jls_wl" type="array">
+      <obj_property name="ElementShortName">jls_wl[15:0]</obj_property>
+      <obj_property name="ObjectShortName">jls_wl[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /jls_hl" type="array">
+      <obj_property name="ElementShortName">jls_hl[15:0]</obj_property>
+      <obj_property name="ObjectShortName">jls_hl[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /jls_header" type="array">
+      <obj_property name="ElementShortName">jls_header[0:11][15:0]</obj_property>
+      <obj_property name="ObjectShortName">jls_header[0:11][15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /k_header_i" type="array">
+      <obj_property name="ElementShortName">k_header_i[3:0]</obj_property>
+      <obj_property name="ObjectShortName">k_header_i[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /k_e" type="logic">
+      <obj_property name="ElementShortName">k_e</obj_property>
+      <obj_property name="ObjectShortName">k_e</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /k_last" type="logic">
+      <obj_property name="ElementShortName">k_last</obj_property>
+      <obj_property name="ObjectShortName">k_last</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /k_data" type="array">
+      <obj_property name="ElementShortName">k_data[15:0]</obj_property>
+      <obj_property name="ObjectShortName">k_data[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /NEAR" type="array">
+      <obj_property name="ElementShortName">NEAR[2:0]</obj_property>
+      <obj_property name="ObjectShortName">NEAR[2:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /N_E" type="array">
+      <obj_property name="ElementShortName">N_E[31:0]</obj_property>
+      <obj_property name="ObjectShortName">N_E[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /L" type="array">
+      <obj_property name="ElementShortName">L[31:0]</obj_property>
+      <obj_property name="ObjectShortName">L[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /P_LOSSY" type="logic">
+      <obj_property name="ElementShortName">P_LOSSY</obj_property>
+      <obj_property name="ObjectShortName">P_LOSSY</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /P_NEAR" type="array">
+      <obj_property name="ElementShortName">P_NEAR[8:0]</obj_property>
+      <obj_property name="ObjectShortName">P_NEAR[8:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /P_T1" type="array">
+      <obj_property name="ElementShortName">P_T1[8:0]</obj_property>
+      <obj_property name="ObjectShortName">P_T1[8:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /P_T2" type="array">
+      <obj_property name="ElementShortName">P_T2[8:0]</obj_property>
+      <obj_property name="ObjectShortName">P_T2[8:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /P_T3" type="array">
+      <obj_property name="ElementShortName">P_T3[8:0]</obj_property>
+      <obj_property name="ObjectShortName">P_T3[8:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /P_QUANT" type="array">
+      <obj_property name="ElementShortName">P_QUANT[9:0]</obj_property>
+      <obj_property name="ObjectShortName">P_QUANT[9:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /P_QBETA" type="array">
+      <obj_property name="ElementShortName">P_QBETA[9:0]</obj_property>
+      <obj_property name="ObjectShortName">P_QBETA[9:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /P_QBETAHALF" type="array">
+      <obj_property name="ElementShortName">P_QBETAHALF[9:0]</obj_property>
+      <obj_property name="ObjectShortName">P_QBETAHALF[9:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /P_AINIT" type="array">
+      <obj_property name="ElementShortName">P_AINIT[12:0]</obj_property>
+      <obj_property name="ObjectShortName">P_AINIT[12:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /PIPELINE_DEPTH" type="array">
+      <obj_property name="ElementShortName">PIPELINE_DEPTH[31:0]</obj_property>
+      <obj_property name="ObjectShortName">PIPELINE_DEPTH[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /rstn" type="logic">
+      <obj_property name="ElementShortName">rstn</obj_property>
+      <obj_property name="ObjectShortName">rstn</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /clk" type="logic">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /is_last_encoder" type="array">
+      <obj_property name="ElementShortName">is_last_encoder[2:0]</obj_property>
+      <obj_property name="ObjectShortName">is_last_encoder[2:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /cur_enc" type="array">
+      <obj_property name="ElementShortName">cur_enc[1:0]</obj_property>
+      <obj_property name="ObjectShortName">cur_enc[1:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /i_sof" type="logic">
+      <obj_property name="ElementShortName">i_sof</obj_property>
+      <obj_property name="ObjectShortName">i_sof</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /i_w" type="array">
+      <obj_property name="ElementShortName">i_w[13:0]</obj_property>
+      <obj_property name="ObjectShortName">i_w[13:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /i_h" type="array">
+      <obj_property name="ElementShortName">i_h[13:0]</obj_property>
+      <obj_property name="ObjectShortName">i_h[13:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /i_e" type="logic">
+      <obj_property name="ElementShortName">i_e</obj_property>
+      <obj_property name="ObjectShortName">i_e</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /i_x" type="array">
+      <obj_property name="ElementShortName">i_x[7:0]</obj_property>
+      <obj_property name="ObjectShortName">i_x[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /o_e" type="logic">
+      <obj_property name="ElementShortName">o_e</obj_property>
+      <obj_property name="ObjectShortName">o_e</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /o_last" type="logic">
+      <obj_property name="ElementShortName">o_last</obj_property>
+      <obj_property name="ObjectShortName">o_last</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /o_data" type="array">
+      <obj_property name="ElementShortName">o_data[15:0]</obj_property>
+      <obj_property name="ObjectShortName">o_data[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /my_last" type="logic">
+      <obj_property name="ElementShortName">my_last</obj_property>
+      <obj_property name="ObjectShortName">my_last</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /P_QBPPS" type="array">
+      <obj_property name="ElementShortName">P_QBPPS[0:7][3:0]</obj_property>
+      <obj_property name="ObjectShortName">P_QBPPS[0:7][3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /P_QBPP" type="array">
+      <obj_property name="ElementShortName">P_QBPP[3:0]</obj_property>
+      <obj_property name="ObjectShortName">P_QBPP[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /P_LIMIT" type="array">
+      <obj_property name="ElementShortName">P_LIMIT[4:0]</obj_property>
+      <obj_property name="ObjectShortName">P_LIMIT[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /J" type="array">
+      <obj_property name="ElementShortName">J[0:31][3:0]</obj_property>
+      <obj_property name="ObjectShortName">J[0:31][3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /Nram" type="array">
+      <obj_property name="ElementShortName">Nram[0:365][5:0]</obj_property>
+      <obj_property name="ObjectShortName">Nram[0:365][5:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /Aram" type="array">
+      <obj_property name="ElementShortName">Aram[0:365][12:0]</obj_property>
+      <obj_property name="ObjectShortName">Aram[0:365][12:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /Bram" type="array">
+      <obj_property name="ElementShortName">Bram[0:365][6:0]</obj_property>
+      <obj_property name="ObjectShortName">Bram[0:365][6:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /Cram" type="array">
+      <obj_property name="ElementShortName">Cram[1:364][7:0]</obj_property>
+      <obj_property name="ObjectShortName">Cram[1:364][7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /a_sof" type="logic">
+      <obj_property name="ElementShortName">a_sof</obj_property>
+      <obj_property name="ObjectShortName">a_sof</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /a_e" type="logic">
+      <obj_property name="ElementShortName">a_e</obj_property>
+      <obj_property name="ObjectShortName">a_e</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /a_x" type="array">
+      <obj_property name="ElementShortName">a_x[7:0]</obj_property>
+      <obj_property name="ObjectShortName">a_x[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /a_w" type="array">
+      <obj_property name="ElementShortName">a_w[13:0]</obj_property>
+      <obj_property name="ObjectShortName">a_w[13:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /a_h" type="array">
+      <obj_property name="ElementShortName">a_h[13:0]</obj_property>
+      <obj_property name="ObjectShortName">a_h[13:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /a_wl" type="array">
+      <obj_property name="ElementShortName">a_wl[13:0]</obj_property>
+      <obj_property name="ObjectShortName">a_wl[13:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /a_hl" type="array">
+      <obj_property name="ElementShortName">a_hl[13:0]</obj_property>
+      <obj_property name="ObjectShortName">a_hl[13:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /a_ii" type="array">
+      <obj_property name="ElementShortName">a_ii[13:0]</obj_property>
+      <obj_property name="ObjectShortName">a_ii[13:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /a_jj" type="array">
+      <obj_property name="ElementShortName">a_jj[14:0]</obj_property>
+      <obj_property name="ObjectShortName">a_jj[14:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /a_jj_last" type="array">
+      <obj_property name="ElementShortName">a_jj_last[14:0]</obj_property>
+      <obj_property name="ObjectShortName">a_jj_last[14:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /my_lastx" type="logic">
+      <obj_property name="ElementShortName">my_lastx</obj_property>
+      <obj_property name="ObjectShortName">my_lastx</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /my_last_pipe" type="array">
+      <obj_property name="ElementShortName">my_last_pipe[458:0]</obj_property>
+      <obj_property name="ObjectShortName">my_last_pipe[458:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /b_sof" type="logic">
+      <obj_property name="ElementShortName">b_sof</obj_property>
+      <obj_property name="ObjectShortName">b_sof</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /b_e" type="logic">
+      <obj_property name="ElementShortName">b_e</obj_property>
+      <obj_property name="ObjectShortName">b_e</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /b_fc" type="logic">
+      <obj_property name="ElementShortName">b_fc</obj_property>
+      <obj_property name="ObjectShortName">b_fc</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /b_lc" type="logic">
+      <obj_property name="ElementShortName">b_lc</obj_property>
+      <obj_property name="ObjectShortName">b_lc</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /b_fr" type="logic">
+      <obj_property name="ElementShortName">b_fr</obj_property>
+      <obj_property name="ObjectShortName">b_fr</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /b_eof" type="logic">
+      <obj_property name="ElementShortName">b_eof</obj_property>
+      <obj_property name="ObjectShortName">b_eof</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /b_ii" type="array">
+      <obj_property name="ElementShortName">b_ii[13:0]</obj_property>
+      <obj_property name="ObjectShortName">b_ii[13:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /b_x" type="array">
+      <obj_property name="ElementShortName">b_x[7:0]</obj_property>
+      <obj_property name="ObjectShortName">b_x[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /c_sof" type="logic">
+      <obj_property name="ElementShortName">c_sof</obj_property>
+      <obj_property name="ObjectShortName">c_sof</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /c_e" type="logic">
+      <obj_property name="ElementShortName">c_e</obj_property>
+      <obj_property name="ObjectShortName">c_e</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /c_fc" type="logic">
+      <obj_property name="ElementShortName">c_fc</obj_property>
+      <obj_property name="ObjectShortName">c_fc</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /c_lc" type="logic">
+      <obj_property name="ElementShortName">c_lc</obj_property>
+      <obj_property name="ObjectShortName">c_lc</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /c_fr" type="logic">
+      <obj_property name="ElementShortName">c_fr</obj_property>
+      <obj_property name="ObjectShortName">c_fr</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /c_eof" type="logic">
+      <obj_property name="ElementShortName">c_eof</obj_property>
+      <obj_property name="ObjectShortName">c_eof</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /c_ii" type="array">
+      <obj_property name="ElementShortName">c_ii[13:0]</obj_property>
+      <obj_property name="ObjectShortName">c_ii[13:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /c_x" type="array">
+      <obj_property name="ElementShortName">c_x[7:0]</obj_property>
+      <obj_property name="ObjectShortName">c_x[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /c_b" type="array">
+      <obj_property name="ElementShortName">c_b[7:0]</obj_property>
+      <obj_property name="ObjectShortName">c_b[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /c_bt" type="array">
+      <obj_property name="ElementShortName">c_bt[7:0]</obj_property>
+      <obj_property name="ObjectShortName">c_bt[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /c_c" type="array">
+      <obj_property name="ElementShortName">c_c[7:0]</obj_property>
+      <obj_property name="ObjectShortName">c_c[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /c_d" type="array">
+      <obj_property name="ElementShortName">c_d[7:0]</obj_property>
+      <obj_property name="ObjectShortName">c_d[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /d_sof" type="logic">
+      <obj_property name="ElementShortName">d_sof</obj_property>
+      <obj_property name="ObjectShortName">d_sof</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /d_e" type="logic">
+      <obj_property name="ElementShortName">d_e</obj_property>
+      <obj_property name="ObjectShortName">d_e</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /d_fc" type="logic">
+      <obj_property name="ElementShortName">d_fc</obj_property>
+      <obj_property name="ObjectShortName">d_fc</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /d_lc" type="logic">
+      <obj_property name="ElementShortName">d_lc</obj_property>
+      <obj_property name="ObjectShortName">d_lc</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /d_eof" type="logic">
+      <obj_property name="ElementShortName">d_eof</obj_property>
+      <obj_property name="ObjectShortName">d_eof</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /d_ii" type="array">
+      <obj_property name="ElementShortName">d_ii[13:0]</obj_property>
+      <obj_property name="ObjectShortName">d_ii[13:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /d_x" type="array">
+      <obj_property name="ElementShortName">d_x[7:0]</obj_property>
+      <obj_property name="ObjectShortName">d_x[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /d_b" type="array">
+      <obj_property name="ElementShortName">d_b[7:0]</obj_property>
+      <obj_property name="ObjectShortName">d_b[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /d_c" type="array">
+      <obj_property name="ElementShortName">d_c[7:0]</obj_property>
+      <obj_property name="ObjectShortName">d_c[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /d_qp1" type="array">
+      <obj_property name="ElementShortName">d_qp1[9:0]</obj_property>
+      <obj_property name="ObjectShortName">d_qp1[9:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /c_w_d" type="array">
+      <obj_property name="ElementShortName">c_w_d[7:0]</obj_property>
+      <obj_property name="ObjectShortName">c_w_d[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /e_sof" type="logic">
+      <obj_property name="ElementShortName">e_sof</obj_property>
+      <obj_property name="ObjectShortName">e_sof</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /e_e" type="logic">
+      <obj_property name="ElementShortName">e_e</obj_property>
+      <obj_property name="ObjectShortName">e_e</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /e_fc" type="logic">
+      <obj_property name="ElementShortName">e_fc</obj_property>
+      <obj_property name="ObjectShortName">e_fc</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /e_lc" type="logic">
+      <obj_property name="ElementShortName">e_lc</obj_property>
+      <obj_property name="ObjectShortName">e_lc</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /e_eof" type="logic">
+      <obj_property name="ElementShortName">e_eof</obj_property>
+      <obj_property name="ObjectShortName">e_eof</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /e_ii" type="array">
+      <obj_property name="ElementShortName">e_ii[13:0]</obj_property>
+      <obj_property name="ObjectShortName">e_ii[13:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /e_runi" type="logic">
+      <obj_property name="ElementShortName">e_runi</obj_property>
+      <obj_property name="ObjectShortName">e_runi</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /e_rune" type="logic">
+      <obj_property name="ElementShortName">e_rune</obj_property>
+      <obj_property name="ObjectShortName">e_rune</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /e_2BleN" type="logic">
+      <obj_property name="ElementShortName">e_2BleN</obj_property>
+      <obj_property name="ObjectShortName">e_2BleN</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /e_x" type="array">
+      <obj_property name="ElementShortName">e_x[7:0]</obj_property>
+      <obj_property name="ObjectShortName">e_x[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /e_q" type="array">
+      <obj_property name="ElementShortName">e_q[8:0]</obj_property>
+      <obj_property name="ObjectShortName">e_q[8:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /e_rt" type="logic">
+      <obj_property name="ElementShortName">e_rt</obj_property>
+      <obj_property name="ObjectShortName">e_rt</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /e_err" type="array">
+      <obj_property name="ElementShortName">e_err[9:0]</obj_property>
+      <obj_property name="ObjectShortName">e_err[9:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /e_No" type="array">
+      <obj_property name="ElementShortName">e_No[6:0]</obj_property>
+      <obj_property name="ObjectShortName">e_No[6:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /e_write_C" type="logic">
+      <obj_property name="ElementShortName">e_write_C</obj_property>
+      <obj_property name="ObjectShortName">e_write_C</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /e_write_en" type="logic">
+      <obj_property name="ElementShortName">e_write_en</obj_property>
+      <obj_property name="ObjectShortName">e_write_en</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /e_Nn" type="array">
+      <obj_property name="ElementShortName">e_Nn[5:0]</obj_property>
+      <obj_property name="ObjectShortName">e_Nn[5:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /e_Cn" type="array">
+      <obj_property name="ElementShortName">e_Cn[7:0]</obj_property>
+      <obj_property name="ObjectShortName">e_Cn[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /e_Bn" type="array">
+      <obj_property name="ElementShortName">e_Bn[6:0]</obj_property>
+      <obj_property name="ObjectShortName">e_Bn[6:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /d_w_a" type="array">
+      <obj_property name="ElementShortName">d_w_a[7:0]</obj_property>
+      <obj_property name="ObjectShortName">d_w_a[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /s" type="logic">
+      <obj_property name="ElementShortName">s</obj_property>
+      <obj_property name="ObjectShortName">s</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /q" type="array">
+      <obj_property name="ElementShortName">q[8:0]</obj_property>
+      <obj_property name="ObjectShortName">q[8:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /rt" type="logic">
+      <obj_property name="ElementShortName">rt</obj_property>
+      <obj_property name="ObjectShortName">rt</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /runi" type="logic">
+      <obj_property name="ElementShortName">runi</obj_property>
+      <obj_property name="ObjectShortName">runi</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /rune" type="logic">
+      <obj_property name="ElementShortName">rune</obj_property>
+      <obj_property name="ObjectShortName">rune</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /Co" type="array">
+      <obj_property name="ElementShortName">Co[7:0]</obj_property>
+      <obj_property name="ObjectShortName">Co[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /No" type="array">
+      <obj_property name="ElementShortName">No[6:0]</obj_property>
+      <obj_property name="ObjectShortName">No[6:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /Nn" type="array">
+      <obj_property name="ElementShortName">Nn[6:0]</obj_property>
+      <obj_property name="ObjectShortName">Nn[6:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /Bo" type="array">
+      <obj_property name="ElementShortName">Bo[6:0]</obj_property>
+      <obj_property name="ObjectShortName">Bo[6:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /px" type="array">
+      <obj_property name="ElementShortName">px[9:0]</obj_property>
+      <obj_property name="ObjectShortName">px[9:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /err" type="array">
+      <obj_property name="ElementShortName">err[9:0]</obj_property>
+      <obj_property name="ObjectShortName">err[9:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /NBC_init_addr" type="array">
+      <obj_property name="ElementShortName">NBC_init_addr[8:0]</obj_property>
+      <obj_property name="ObjectShortName">NBC_init_addr[8:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /ef_sof" type="logic">
+      <obj_property name="ElementShortName">ef_sof</obj_property>
+      <obj_property name="ObjectShortName">ef_sof</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /ef_e" type="logic">
+      <obj_property name="ElementShortName">ef_e</obj_property>
+      <obj_property name="ObjectShortName">ef_e</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /ef_fc" type="logic">
+      <obj_property name="ElementShortName">ef_fc</obj_property>
+      <obj_property name="ObjectShortName">ef_fc</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /ef_lc" type="logic">
+      <obj_property name="ElementShortName">ef_lc</obj_property>
+      <obj_property name="ObjectShortName">ef_lc</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /ef_eof" type="logic">
+      <obj_property name="ElementShortName">ef_eof</obj_property>
+      <obj_property name="ObjectShortName">ef_eof</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /ef_runi" type="logic">
+      <obj_property name="ElementShortName">ef_runi</obj_property>
+      <obj_property name="ObjectShortName">ef_runi</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /ef_rune" type="logic">
+      <obj_property name="ElementShortName">ef_rune</obj_property>
+      <obj_property name="ObjectShortName">ef_rune</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /ef_2BleN" type="logic">
+      <obj_property name="ElementShortName">ef_2BleN</obj_property>
+      <obj_property name="ObjectShortName">ef_2BleN</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /ef_q" type="array">
+      <obj_property name="ElementShortName">ef_q[8:0]</obj_property>
+      <obj_property name="ObjectShortName">ef_q[8:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /ef_rt" type="logic">
+      <obj_property name="ElementShortName">ef_rt</obj_property>
+      <obj_property name="ObjectShortName">ef_rt</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /ef_err" type="array">
+      <obj_property name="ElementShortName">ef_err[9:0]</obj_property>
+      <obj_property name="ObjectShortName">ef_err[9:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /ef_No" type="array">
+      <obj_property name="ElementShortName">ef_No[6:0]</obj_property>
+      <obj_property name="ObjectShortName">ef_No[6:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /ef_Ao" type="array">
+      <obj_property name="ElementShortName">ef_Ao[12:0]</obj_property>
+      <obj_property name="ObjectShortName">ef_Ao[12:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /ef_write_en" type="logic">
+      <obj_property name="ElementShortName">ef_write_en</obj_property>
+      <obj_property name="ObjectShortName">ef_write_en</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /f_sof" type="logic">
+      <obj_property name="ElementShortName">f_sof</obj_property>
+      <obj_property name="ObjectShortName">f_sof</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /f_e" type="logic">
+      <obj_property name="ElementShortName">f_e</obj_property>
+      <obj_property name="ObjectShortName">f_e</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /f_eof" type="logic">
+      <obj_property name="ElementShortName">f_eof</obj_property>
+      <obj_property name="ObjectShortName">f_eof</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /f_runi" type="logic">
+      <obj_property name="ElementShortName">f_runi</obj_property>
+      <obj_property name="ObjectShortName">f_runi</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /f_rune" type="logic">
+      <obj_property name="ElementShortName">f_rune</obj_property>
+      <obj_property name="ObjectShortName">f_rune</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /f_merr" type="array">
+      <obj_property name="ElementShortName">f_merr[9:0]</obj_property>
+      <obj_property name="ObjectShortName">f_merr[9:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /f_k" type="array">
+      <obj_property name="ElementShortName">f_k[3:0]</obj_property>
+      <obj_property name="ObjectShortName">f_k[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /f_rc" type="array">
+      <obj_property name="ElementShortName">f_rc[15:0]</obj_property>
+      <obj_property name="ObjectShortName">f_rc[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /f_ri" type="array">
+      <obj_property name="ElementShortName">f_ri[4:0]</obj_property>
+      <obj_property name="ObjectShortName">f_ri[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /f_on" type="array">
+      <obj_property name="ElementShortName">f_on[1:0]</obj_property>
+      <obj_property name="ObjectShortName">f_on[1:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /f_cb" type="array">
+      <obj_property name="ElementShortName">f_cb[15:0]</obj_property>
+      <obj_property name="ObjectShortName">f_cb[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /f_cn" type="array">
+      <obj_property name="ElementShortName">f_cn[4:0]</obj_property>
+      <obj_property name="ObjectShortName">f_cn[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /f_limit" type="array">
+      <obj_property name="ElementShortName">f_limit[4:0]</obj_property>
+      <obj_property name="ObjectShortName">f_limit[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /f_q" type="array">
+      <obj_property name="ElementShortName">f_q[8:0]</obj_property>
+      <obj_property name="ObjectShortName">f_q[8:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /f_write_en" type="logic">
+      <obj_property name="ElementShortName">f_write_en</obj_property>
+      <obj_property name="ObjectShortName">f_write_en</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /f_An" type="array">
+      <obj_property name="ElementShortName">f_An[12:0]</obj_property>
+      <obj_property name="ObjectShortName">f_An[12:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /g_q" type="array">
+      <obj_property name="ElementShortName">g_q[8:0]</obj_property>
+      <obj_property name="ObjectShortName">g_q[8:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /g_write_en" type="logic">
+      <obj_property name="ElementShortName">g_write_en</obj_property>
+      <obj_property name="ObjectShortName">g_write_en</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /g_An" type="array">
+      <obj_property name="ElementShortName">g_An[12:0]</obj_property>
+      <obj_property name="ObjectShortName">g_An[12:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /on" type="array">
+      <obj_property name="ElementShortName">on[1:0]</obj_property>
+      <obj_property name="ObjectShortName">on[1:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /rc" type="array">
+      <obj_property name="ElementShortName">rc[15:0]</obj_property>
+      <obj_property name="ObjectShortName">rc[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /ri" type="array">
+      <obj_property name="ElementShortName">ri[4:0]</obj_property>
+      <obj_property name="ObjectShortName">ri[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /Ao" type="array">
+      <obj_property name="ElementShortName">Ao[12:0]</obj_property>
+      <obj_property name="ObjectShortName">Ao[12:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /k" type="array">
+      <obj_property name="ElementShortName">k[3:0]</obj_property>
+      <obj_property name="ObjectShortName">k[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /abserr" type="array">
+      <obj_property name="ElementShortName">abserr[9:0]</obj_property>
+      <obj_property name="ObjectShortName">abserr[9:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /merr" type="array">
+      <obj_property name="ElementShortName">merr[9:0]</obj_property>
+      <obj_property name="ObjectShortName">merr[9:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /Ainc" type="array">
+      <obj_property name="ElementShortName">Ainc[9:0]</obj_property>
+      <obj_property name="ObjectShortName">Ainc[9:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /map" type="logic">
+      <obj_property name="ElementShortName">map</obj_property>
+      <obj_property name="ObjectShortName">map</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /A_init_addr" type="array">
+      <obj_property name="ElementShortName">A_init_addr[8:0]</obj_property>
+      <obj_property name="ObjectShortName">A_init_addr[8:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /g_sof" type="logic">
+      <obj_property name="ElementShortName">g_sof</obj_property>
+      <obj_property name="ObjectShortName">g_sof</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /g_e" type="logic">
+      <obj_property name="ElementShortName">g_e</obj_property>
+      <obj_property name="ObjectShortName">g_e</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /g_eof" type="logic">
+      <obj_property name="ElementShortName">g_eof</obj_property>
+      <obj_property name="ObjectShortName">g_eof</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /g_runi" type="logic">
+      <obj_property name="ElementShortName">g_runi</obj_property>
+      <obj_property name="ObjectShortName">g_runi</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /g_on" type="array">
+      <obj_property name="ElementShortName">g_on[1:0]</obj_property>
+      <obj_property name="ObjectShortName">g_on[1:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /g_cb" type="array">
+      <obj_property name="ElementShortName">g_cb[15:0]</obj_property>
+      <obj_property name="ObjectShortName">g_cb[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /g_cn" type="array">
+      <obj_property name="ElementShortName">g_cn[4:0]</obj_property>
+      <obj_property name="ObjectShortName">g_cn[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /g_zn" type="array">
+      <obj_property name="ElementShortName">g_zn[4:0]</obj_property>
+      <obj_property name="ObjectShortName">g_zn[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /g_db" type="array">
+      <obj_property name="ElementShortName">g_db[9:0]</obj_property>
+      <obj_property name="ObjectShortName">g_db[9:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /g_dn" type="array">
+      <obj_property name="ElementShortName">g_dn[3:0]</obj_property>
+      <obj_property name="ObjectShortName">g_dn[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /f_w_merr_sk" type="array">
+      <obj_property name="ElementShortName">f_w_merr_sk[9:0]</obj_property>
+      <obj_property name="ObjectShortName">f_w_merr_sk[9:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /h_sof" type="logic">
+      <obj_property name="ElementShortName">h_sof</obj_property>
+      <obj_property name="ObjectShortName">h_sof</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /h_eof" type="logic">
+      <obj_property name="ElementShortName">h_eof</obj_property>
+      <obj_property name="ObjectShortName">h_eof</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /h_bb" type="array">
+      <obj_property name="ElementShortName">h_bb[56:0]</obj_property>
+      <obj_property name="ObjectShortName">h_bb[56:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /h_bn" type="array">
+      <obj_property name="ElementShortName">h_bn[5:0]</obj_property>
+      <obj_property name="ObjectShortName">h_bn[5:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /j_sof" type="logic">
+      <obj_property name="ElementShortName">j_sof</obj_property>
+      <obj_property name="ObjectShortName">j_sof</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /j_e" type="logic">
+      <obj_property name="ElementShortName">j_e</obj_property>
+      <obj_property name="ObjectShortName">j_e</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /j_last" type="logic">
+      <obj_property name="ElementShortName">j_last</obj_property>
+      <obj_property name="ObjectShortName">j_last</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /j_data" type="array">
+      <obj_property name="ElementShortName">j_data[15:0]</obj_property>
+      <obj_property name="ObjectShortName">j_data[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /j_bbuf" type="array">
+      <obj_property name="ElementShortName">j_bbuf[247:0]</obj_property>
+      <obj_property name="ObjectShortName">j_bbuf[247:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /j_bcnt" type="array">
+      <obj_property name="ElementShortName">j_bcnt[7:0]</obj_property>
+      <obj_property name="ObjectShortName">j_bcnt[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /state_footer" type="array">
+      <obj_property name="ElementShortName">state_footer[1:0]</obj_property>
+      <obj_property name="ObjectShortName">state_footer[1:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /jls_footer" type="array">
+      <obj_property name="ElementShortName">jls_footer[15:0]</obj_property>
+      <obj_property name="ObjectShortName">jls_footer[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /bbuf" type="array">
+      <obj_property name="ElementShortName">bbuf[247:0]</obj_property>
+      <obj_property name="ObjectShortName">bbuf[247:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /bcnt" type="array">
+      <obj_property name="ElementShortName">bcnt[7:0]</obj_property>
+      <obj_property name="ObjectShortName">bcnt[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /jls_wl" type="array">
+      <obj_property name="ElementShortName">jls_wl[15:0]</obj_property>
+      <obj_property name="ObjectShortName">jls_wl[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /jls_hl" type="array">
+      <obj_property name="ElementShortName">jls_hl[15:0]</obj_property>
+      <obj_property name="ObjectShortName">jls_hl[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /jls_header" type="array">
+      <obj_property name="ElementShortName">jls_header[0:11][15:0]</obj_property>
+      <obj_property name="ObjectShortName">jls_header[0:11][15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /k_header_i" type="array">
+      <obj_property name="ElementShortName">k_header_i[3:0]</obj_property>
+      <obj_property name="ObjectShortName">k_header_i[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /k_e" type="logic">
+      <obj_property name="ElementShortName">k_e</obj_property>
+      <obj_property name="ObjectShortName">k_e</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /k_last" type="logic">
+      <obj_property name="ElementShortName">k_last</obj_property>
+      <obj_property name="ObjectShortName">k_last</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /k_data" type="array">
+      <obj_property name="ElementShortName">k_data[15:0]</obj_property>
+      <obj_property name="ObjectShortName">k_data[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /NEAR" type="array">
+      <obj_property name="ElementShortName">NEAR[2:0]</obj_property>
+      <obj_property name="ObjectShortName">NEAR[2:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /N_E" type="array">
+      <obj_property name="ElementShortName">N_E[31:0]</obj_property>
+      <obj_property name="ObjectShortName">N_E[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /L" type="array">
+      <obj_property name="ElementShortName">L[31:0]</obj_property>
+      <obj_property name="ObjectShortName">L[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /P_LOSSY" type="logic">
+      <obj_property name="ElementShortName">P_LOSSY</obj_property>
+      <obj_property name="ObjectShortName">P_LOSSY</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /P_NEAR" type="array">
+      <obj_property name="ElementShortName">P_NEAR[8:0]</obj_property>
+      <obj_property name="ObjectShortName">P_NEAR[8:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /P_T1" type="array">
+      <obj_property name="ElementShortName">P_T1[8:0]</obj_property>
+      <obj_property name="ObjectShortName">P_T1[8:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /P_T2" type="array">
+      <obj_property name="ElementShortName">P_T2[8:0]</obj_property>
+      <obj_property name="ObjectShortName">P_T2[8:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /P_T3" type="array">
+      <obj_property name="ElementShortName">P_T3[8:0]</obj_property>
+      <obj_property name="ObjectShortName">P_T3[8:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /P_QUANT" type="array">
+      <obj_property name="ElementShortName">P_QUANT[9:0]</obj_property>
+      <obj_property name="ObjectShortName">P_QUANT[9:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /P_QBETA" type="array">
+      <obj_property name="ElementShortName">P_QBETA[9:0]</obj_property>
+      <obj_property name="ObjectShortName">P_QBETA[9:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /P_QBETAHALF" type="array">
+      <obj_property name="ElementShortName">P_QBETAHALF[9:0]</obj_property>
+      <obj_property name="ObjectShortName">P_QBETAHALF[9:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /P_AINIT" type="array">
+      <obj_property name="ElementShortName">P_AINIT[12:0]</obj_property>
+      <obj_property name="ObjectShortName">P_AINIT[12:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /PIPELINE_DEPTH" type="array">
+      <obj_property name="ElementShortName">PIPELINE_DEPTH[31:0]</obj_property>
+      <obj_property name="ObjectShortName">PIPELINE_DEPTH[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /rstn" type="logic">
+      <obj_property name="ElementShortName">rstn</obj_property>
+      <obj_property name="ObjectShortName">rstn</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /clk" type="logic">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /is_last_encoder" type="array">
+      <obj_property name="ElementShortName">is_last_encoder[2:0]</obj_property>
+      <obj_property name="ObjectShortName">is_last_encoder[2:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /cur_enc" type="array">
+      <obj_property name="ElementShortName">cur_enc[1:0]</obj_property>
+      <obj_property name="ObjectShortName">cur_enc[1:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /i_sof" type="logic">
+      <obj_property name="ElementShortName">i_sof</obj_property>
+      <obj_property name="ObjectShortName">i_sof</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /i_w" type="array">
+      <obj_property name="ElementShortName">i_w[13:0]</obj_property>
+      <obj_property name="ObjectShortName">i_w[13:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /i_h" type="array">
+      <obj_property name="ElementShortName">i_h[13:0]</obj_property>
+      <obj_property name="ObjectShortName">i_h[13:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /i_e" type="logic">
+      <obj_property name="ElementShortName">i_e</obj_property>
+      <obj_property name="ObjectShortName">i_e</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /i_x" type="array">
+      <obj_property name="ElementShortName">i_x[7:0]</obj_property>
+      <obj_property name="ObjectShortName">i_x[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /o_e" type="logic">
+      <obj_property name="ElementShortName">o_e</obj_property>
+      <obj_property name="ObjectShortName">o_e</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /o_last" type="logic">
+      <obj_property name="ElementShortName">o_last</obj_property>
+      <obj_property name="ObjectShortName">o_last</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /o_data" type="array">
+      <obj_property name="ElementShortName">o_data[15:0]</obj_property>
+      <obj_property name="ObjectShortName">o_data[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /my_last" type="logic">
+      <obj_property name="ElementShortName">my_last</obj_property>
+      <obj_property name="ObjectShortName">my_last</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /P_QBPPS" type="array">
+      <obj_property name="ElementShortName">P_QBPPS[0:7][3:0]</obj_property>
+      <obj_property name="ObjectShortName">P_QBPPS[0:7][3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /P_QBPP" type="array">
+      <obj_property name="ElementShortName">P_QBPP[3:0]</obj_property>
+      <obj_property name="ObjectShortName">P_QBPP[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /P_LIMIT" type="array">
+      <obj_property name="ElementShortName">P_LIMIT[4:0]</obj_property>
+      <obj_property name="ObjectShortName">P_LIMIT[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /J" type="array">
+      <obj_property name="ElementShortName">J[0:31][3:0]</obj_property>
+      <obj_property name="ObjectShortName">J[0:31][3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /Nram" type="array">
+      <obj_property name="ElementShortName">Nram[0:365][5:0]</obj_property>
+      <obj_property name="ObjectShortName">Nram[0:365][5:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /Aram" type="array">
+      <obj_property name="ElementShortName">Aram[0:365][12:0]</obj_property>
+      <obj_property name="ObjectShortName">Aram[0:365][12:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /Bram" type="array">
+      <obj_property name="ElementShortName">Bram[0:365][6:0]</obj_property>
+      <obj_property name="ObjectShortName">Bram[0:365][6:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /Cram" type="array">
+      <obj_property name="ElementShortName">Cram[1:364][7:0]</obj_property>
+      <obj_property name="ObjectShortName">Cram[1:364][7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /a_sof" type="logic">
+      <obj_property name="ElementShortName">a_sof</obj_property>
+      <obj_property name="ObjectShortName">a_sof</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /a_e" type="logic">
+      <obj_property name="ElementShortName">a_e</obj_property>
+      <obj_property name="ObjectShortName">a_e</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /a_x" type="array">
+      <obj_property name="ElementShortName">a_x[7:0]</obj_property>
+      <obj_property name="ObjectShortName">a_x[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /a_w" type="array">
+      <obj_property name="ElementShortName">a_w[13:0]</obj_property>
+      <obj_property name="ObjectShortName">a_w[13:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /a_h" type="array">
+      <obj_property name="ElementShortName">a_h[13:0]</obj_property>
+      <obj_property name="ObjectShortName">a_h[13:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /a_wl" type="array">
+      <obj_property name="ElementShortName">a_wl[13:0]</obj_property>
+      <obj_property name="ObjectShortName">a_wl[13:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /a_hl" type="array">
+      <obj_property name="ElementShortName">a_hl[13:0]</obj_property>
+      <obj_property name="ObjectShortName">a_hl[13:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /a_ii" type="array">
+      <obj_property name="ElementShortName">a_ii[13:0]</obj_property>
+      <obj_property name="ObjectShortName">a_ii[13:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /a_jj" type="array">
+      <obj_property name="ElementShortName">a_jj[14:0]</obj_property>
+      <obj_property name="ObjectShortName">a_jj[14:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /a_jj_last" type="array">
+      <obj_property name="ElementShortName">a_jj_last[14:0]</obj_property>
+      <obj_property name="ObjectShortName">a_jj_last[14:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /my_lastx" type="logic">
+      <obj_property name="ElementShortName">my_lastx</obj_property>
+      <obj_property name="ObjectShortName">my_lastx</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /my_last_pipe" type="array">
+      <obj_property name="ElementShortName">my_last_pipe[458:0]</obj_property>
+      <obj_property name="ObjectShortName">my_last_pipe[458:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /b_sof" type="logic">
+      <obj_property name="ElementShortName">b_sof</obj_property>
+      <obj_property name="ObjectShortName">b_sof</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /b_e" type="logic">
+      <obj_property name="ElementShortName">b_e</obj_property>
+      <obj_property name="ObjectShortName">b_e</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /b_fc" type="logic">
+      <obj_property name="ElementShortName">b_fc</obj_property>
+      <obj_property name="ObjectShortName">b_fc</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /b_lc" type="logic">
+      <obj_property name="ElementShortName">b_lc</obj_property>
+      <obj_property name="ObjectShortName">b_lc</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /b_fr" type="logic">
+      <obj_property name="ElementShortName">b_fr</obj_property>
+      <obj_property name="ObjectShortName">b_fr</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /b_eof" type="logic">
+      <obj_property name="ElementShortName">b_eof</obj_property>
+      <obj_property name="ObjectShortName">b_eof</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /b_ii" type="array">
+      <obj_property name="ElementShortName">b_ii[13:0]</obj_property>
+      <obj_property name="ObjectShortName">b_ii[13:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /b_x" type="array">
+      <obj_property name="ElementShortName">b_x[7:0]</obj_property>
+      <obj_property name="ObjectShortName">b_x[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /c_sof" type="logic">
+      <obj_property name="ElementShortName">c_sof</obj_property>
+      <obj_property name="ObjectShortName">c_sof</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /c_e" type="logic">
+      <obj_property name="ElementShortName">c_e</obj_property>
+      <obj_property name="ObjectShortName">c_e</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /c_fc" type="logic">
+      <obj_property name="ElementShortName">c_fc</obj_property>
+      <obj_property name="ObjectShortName">c_fc</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /c_lc" type="logic">
+      <obj_property name="ElementShortName">c_lc</obj_property>
+      <obj_property name="ObjectShortName">c_lc</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /c_fr" type="logic">
+      <obj_property name="ElementShortName">c_fr</obj_property>
+      <obj_property name="ObjectShortName">c_fr</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /c_eof" type="logic">
+      <obj_property name="ElementShortName">c_eof</obj_property>
+      <obj_property name="ObjectShortName">c_eof</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /c_ii" type="array">
+      <obj_property name="ElementShortName">c_ii[13:0]</obj_property>
+      <obj_property name="ObjectShortName">c_ii[13:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /c_x" type="array">
+      <obj_property name="ElementShortName">c_x[7:0]</obj_property>
+      <obj_property name="ObjectShortName">c_x[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /c_b" type="array">
+      <obj_property name="ElementShortName">c_b[7:0]</obj_property>
+      <obj_property name="ObjectShortName">c_b[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /c_bt" type="array">
+      <obj_property name="ElementShortName">c_bt[7:0]</obj_property>
+      <obj_property name="ObjectShortName">c_bt[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /c_c" type="array">
+      <obj_property name="ElementShortName">c_c[7:0]</obj_property>
+      <obj_property name="ObjectShortName">c_c[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /c_d" type="array">
+      <obj_property name="ElementShortName">c_d[7:0]</obj_property>
+      <obj_property name="ObjectShortName">c_d[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /d_sof" type="logic">
+      <obj_property name="ElementShortName">d_sof</obj_property>
+      <obj_property name="ObjectShortName">d_sof</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /d_e" type="logic">
+      <obj_property name="ElementShortName">d_e</obj_property>
+      <obj_property name="ObjectShortName">d_e</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /d_fc" type="logic">
+      <obj_property name="ElementShortName">d_fc</obj_property>
+      <obj_property name="ObjectShortName">d_fc</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /d_lc" type="logic">
+      <obj_property name="ElementShortName">d_lc</obj_property>
+      <obj_property name="ObjectShortName">d_lc</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /d_eof" type="logic">
+      <obj_property name="ElementShortName">d_eof</obj_property>
+      <obj_property name="ObjectShortName">d_eof</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /d_ii" type="array">
+      <obj_property name="ElementShortName">d_ii[13:0]</obj_property>
+      <obj_property name="ObjectShortName">d_ii[13:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /d_x" type="array">
+      <obj_property name="ElementShortName">d_x[7:0]</obj_property>
+      <obj_property name="ObjectShortName">d_x[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /d_b" type="array">
+      <obj_property name="ElementShortName">d_b[7:0]</obj_property>
+      <obj_property name="ObjectShortName">d_b[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /d_c" type="array">
+      <obj_property name="ElementShortName">d_c[7:0]</obj_property>
+      <obj_property name="ObjectShortName">d_c[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /d_qp1" type="array">
+      <obj_property name="ElementShortName">d_qp1[9:0]</obj_property>
+      <obj_property name="ObjectShortName">d_qp1[9:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /c_w_d" type="array">
+      <obj_property name="ElementShortName">c_w_d[7:0]</obj_property>
+      <obj_property name="ObjectShortName">c_w_d[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /e_sof" type="logic">
+      <obj_property name="ElementShortName">e_sof</obj_property>
+      <obj_property name="ObjectShortName">e_sof</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /e_e" type="logic">
+      <obj_property name="ElementShortName">e_e</obj_property>
+      <obj_property name="ObjectShortName">e_e</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /e_fc" type="logic">
+      <obj_property name="ElementShortName">e_fc</obj_property>
+      <obj_property name="ObjectShortName">e_fc</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /e_lc" type="logic">
+      <obj_property name="ElementShortName">e_lc</obj_property>
+      <obj_property name="ObjectShortName">e_lc</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /e_eof" type="logic">
+      <obj_property name="ElementShortName">e_eof</obj_property>
+      <obj_property name="ObjectShortName">e_eof</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /e_ii" type="array">
+      <obj_property name="ElementShortName">e_ii[13:0]</obj_property>
+      <obj_property name="ObjectShortName">e_ii[13:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /e_runi" type="logic">
+      <obj_property name="ElementShortName">e_runi</obj_property>
+      <obj_property name="ObjectShortName">e_runi</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /e_rune" type="logic">
+      <obj_property name="ElementShortName">e_rune</obj_property>
+      <obj_property name="ObjectShortName">e_rune</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /e_2BleN" type="logic">
+      <obj_property name="ElementShortName">e_2BleN</obj_property>
+      <obj_property name="ObjectShortName">e_2BleN</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /e_x" type="array">
+      <obj_property name="ElementShortName">e_x[7:0]</obj_property>
+      <obj_property name="ObjectShortName">e_x[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /e_q" type="array">
+      <obj_property name="ElementShortName">e_q[8:0]</obj_property>
+      <obj_property name="ObjectShortName">e_q[8:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /e_rt" type="logic">
+      <obj_property name="ElementShortName">e_rt</obj_property>
+      <obj_property name="ObjectShortName">e_rt</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /e_err" type="array">
+      <obj_property name="ElementShortName">e_err[9:0]</obj_property>
+      <obj_property name="ObjectShortName">e_err[9:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /e_No" type="array">
+      <obj_property name="ElementShortName">e_No[6:0]</obj_property>
+      <obj_property name="ObjectShortName">e_No[6:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /e_write_C" type="logic">
+      <obj_property name="ElementShortName">e_write_C</obj_property>
+      <obj_property name="ObjectShortName">e_write_C</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /e_write_en" type="logic">
+      <obj_property name="ElementShortName">e_write_en</obj_property>
+      <obj_property name="ObjectShortName">e_write_en</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /e_Nn" type="array">
+      <obj_property name="ElementShortName">e_Nn[5:0]</obj_property>
+      <obj_property name="ObjectShortName">e_Nn[5:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /e_Cn" type="array">
+      <obj_property name="ElementShortName">e_Cn[7:0]</obj_property>
+      <obj_property name="ObjectShortName">e_Cn[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /e_Bn" type="array">
+      <obj_property name="ElementShortName">e_Bn[6:0]</obj_property>
+      <obj_property name="ObjectShortName">e_Bn[6:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /d_w_a" type="array">
+      <obj_property name="ElementShortName">d_w_a[7:0]</obj_property>
+      <obj_property name="ObjectShortName">d_w_a[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /s" type="logic">
+      <obj_property name="ElementShortName">s</obj_property>
+      <obj_property name="ObjectShortName">s</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /q" type="array">
+      <obj_property name="ElementShortName">q[8:0]</obj_property>
+      <obj_property name="ObjectShortName">q[8:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /rt" type="logic">
+      <obj_property name="ElementShortName">rt</obj_property>
+      <obj_property name="ObjectShortName">rt</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /runi" type="logic">
+      <obj_property name="ElementShortName">runi</obj_property>
+      <obj_property name="ObjectShortName">runi</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /rune" type="logic">
+      <obj_property name="ElementShortName">rune</obj_property>
+      <obj_property name="ObjectShortName">rune</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /Co" type="array">
+      <obj_property name="ElementShortName">Co[7:0]</obj_property>
+      <obj_property name="ObjectShortName">Co[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /No" type="array">
+      <obj_property name="ElementShortName">No[6:0]</obj_property>
+      <obj_property name="ObjectShortName">No[6:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /Nn" type="array">
+      <obj_property name="ElementShortName">Nn[6:0]</obj_property>
+      <obj_property name="ObjectShortName">Nn[6:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /Bo" type="array">
+      <obj_property name="ElementShortName">Bo[6:0]</obj_property>
+      <obj_property name="ObjectShortName">Bo[6:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /px" type="array">
+      <obj_property name="ElementShortName">px[9:0]</obj_property>
+      <obj_property name="ObjectShortName">px[9:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /err" type="array">
+      <obj_property name="ElementShortName">err[9:0]</obj_property>
+      <obj_property name="ObjectShortName">err[9:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /NBC_init_addr" type="array">
+      <obj_property name="ElementShortName">NBC_init_addr[8:0]</obj_property>
+      <obj_property name="ObjectShortName">NBC_init_addr[8:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /ef_sof" type="logic">
+      <obj_property name="ElementShortName">ef_sof</obj_property>
+      <obj_property name="ObjectShortName">ef_sof</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /ef_e" type="logic">
+      <obj_property name="ElementShortName">ef_e</obj_property>
+      <obj_property name="ObjectShortName">ef_e</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /ef_fc" type="logic">
+      <obj_property name="ElementShortName">ef_fc</obj_property>
+      <obj_property name="ObjectShortName">ef_fc</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /ef_lc" type="logic">
+      <obj_property name="ElementShortName">ef_lc</obj_property>
+      <obj_property name="ObjectShortName">ef_lc</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /ef_eof" type="logic">
+      <obj_property name="ElementShortName">ef_eof</obj_property>
+      <obj_property name="ObjectShortName">ef_eof</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /ef_runi" type="logic">
+      <obj_property name="ElementShortName">ef_runi</obj_property>
+      <obj_property name="ObjectShortName">ef_runi</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /ef_rune" type="logic">
+      <obj_property name="ElementShortName">ef_rune</obj_property>
+      <obj_property name="ObjectShortName">ef_rune</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /ef_2BleN" type="logic">
+      <obj_property name="ElementShortName">ef_2BleN</obj_property>
+      <obj_property name="ObjectShortName">ef_2BleN</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /ef_q" type="array">
+      <obj_property name="ElementShortName">ef_q[8:0]</obj_property>
+      <obj_property name="ObjectShortName">ef_q[8:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /ef_rt" type="logic">
+      <obj_property name="ElementShortName">ef_rt</obj_property>
+      <obj_property name="ObjectShortName">ef_rt</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /ef_err" type="array">
+      <obj_property name="ElementShortName">ef_err[9:0]</obj_property>
+      <obj_property name="ObjectShortName">ef_err[9:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /ef_No" type="array">
+      <obj_property name="ElementShortName">ef_No[6:0]</obj_property>
+      <obj_property name="ObjectShortName">ef_No[6:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /ef_Ao" type="array">
+      <obj_property name="ElementShortName">ef_Ao[12:0]</obj_property>
+      <obj_property name="ObjectShortName">ef_Ao[12:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /ef_write_en" type="logic">
+      <obj_property name="ElementShortName">ef_write_en</obj_property>
+      <obj_property name="ObjectShortName">ef_write_en</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /f_sof" type="logic">
+      <obj_property name="ElementShortName">f_sof</obj_property>
+      <obj_property name="ObjectShortName">f_sof</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /f_e" type="logic">
+      <obj_property name="ElementShortName">f_e</obj_property>
+      <obj_property name="ObjectShortName">f_e</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /f_eof" type="logic">
+      <obj_property name="ElementShortName">f_eof</obj_property>
+      <obj_property name="ObjectShortName">f_eof</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /f_runi" type="logic">
+      <obj_property name="ElementShortName">f_runi</obj_property>
+      <obj_property name="ObjectShortName">f_runi</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /f_rune" type="logic">
+      <obj_property name="ElementShortName">f_rune</obj_property>
+      <obj_property name="ObjectShortName">f_rune</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /f_merr" type="array">
+      <obj_property name="ElementShortName">f_merr[9:0]</obj_property>
+      <obj_property name="ObjectShortName">f_merr[9:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /f_k" type="array">
+      <obj_property name="ElementShortName">f_k[3:0]</obj_property>
+      <obj_property name="ObjectShortName">f_k[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /f_rc" type="array">
+      <obj_property name="ElementShortName">f_rc[15:0]</obj_property>
+      <obj_property name="ObjectShortName">f_rc[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /f_ri" type="array">
+      <obj_property name="ElementShortName">f_ri[4:0]</obj_property>
+      <obj_property name="ObjectShortName">f_ri[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /f_on" type="array">
+      <obj_property name="ElementShortName">f_on[1:0]</obj_property>
+      <obj_property name="ObjectShortName">f_on[1:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /f_cb" type="array">
+      <obj_property name="ElementShortName">f_cb[15:0]</obj_property>
+      <obj_property name="ObjectShortName">f_cb[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /f_cn" type="array">
+      <obj_property name="ElementShortName">f_cn[4:0]</obj_property>
+      <obj_property name="ObjectShortName">f_cn[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /f_limit" type="array">
+      <obj_property name="ElementShortName">f_limit[4:0]</obj_property>
+      <obj_property name="ObjectShortName">f_limit[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /f_q" type="array">
+      <obj_property name="ElementShortName">f_q[8:0]</obj_property>
+      <obj_property name="ObjectShortName">f_q[8:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /f_write_en" type="logic">
+      <obj_property name="ElementShortName">f_write_en</obj_property>
+      <obj_property name="ObjectShortName">f_write_en</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /f_An" type="array">
+      <obj_property name="ElementShortName">f_An[12:0]</obj_property>
+      <obj_property name="ObjectShortName">f_An[12:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /g_q" type="array">
+      <obj_property name="ElementShortName">g_q[8:0]</obj_property>
+      <obj_property name="ObjectShortName">g_q[8:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /g_write_en" type="logic">
+      <obj_property name="ElementShortName">g_write_en</obj_property>
+      <obj_property name="ObjectShortName">g_write_en</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /g_An" type="array">
+      <obj_property name="ElementShortName">g_An[12:0]</obj_property>
+      <obj_property name="ObjectShortName">g_An[12:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /on" type="array">
+      <obj_property name="ElementShortName">on[1:0]</obj_property>
+      <obj_property name="ObjectShortName">on[1:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /rc" type="array">
+      <obj_property name="ElementShortName">rc[15:0]</obj_property>
+      <obj_property name="ObjectShortName">rc[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /ri" type="array">
+      <obj_property name="ElementShortName">ri[4:0]</obj_property>
+      <obj_property name="ObjectShortName">ri[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /Ao" type="array">
+      <obj_property name="ElementShortName">Ao[12:0]</obj_property>
+      <obj_property name="ObjectShortName">Ao[12:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /k" type="array">
+      <obj_property name="ElementShortName">k[3:0]</obj_property>
+      <obj_property name="ObjectShortName">k[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /abserr" type="array">
+      <obj_property name="ElementShortName">abserr[9:0]</obj_property>
+      <obj_property name="ObjectShortName">abserr[9:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /merr" type="array">
+      <obj_property name="ElementShortName">merr[9:0]</obj_property>
+      <obj_property name="ObjectShortName">merr[9:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /Ainc" type="array">
+      <obj_property name="ElementShortName">Ainc[9:0]</obj_property>
+      <obj_property name="ObjectShortName">Ainc[9:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /map" type="logic">
+      <obj_property name="ElementShortName">map</obj_property>
+      <obj_property name="ObjectShortName">map</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /A_init_addr" type="array">
+      <obj_property name="ElementShortName">A_init_addr[8:0]</obj_property>
+      <obj_property name="ObjectShortName">A_init_addr[8:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /g_sof" type="logic">
+      <obj_property name="ElementShortName">g_sof</obj_property>
+      <obj_property name="ObjectShortName">g_sof</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /g_e" type="logic">
+      <obj_property name="ElementShortName">g_e</obj_property>
+      <obj_property name="ObjectShortName">g_e</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /g_eof" type="logic">
+      <obj_property name="ElementShortName">g_eof</obj_property>
+      <obj_property name="ObjectShortName">g_eof</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /g_runi" type="logic">
+      <obj_property name="ElementShortName">g_runi</obj_property>
+      <obj_property name="ObjectShortName">g_runi</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /g_on" type="array">
+      <obj_property name="ElementShortName">g_on[1:0]</obj_property>
+      <obj_property name="ObjectShortName">g_on[1:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /g_cb" type="array">
+      <obj_property name="ElementShortName">g_cb[15:0]</obj_property>
+      <obj_property name="ObjectShortName">g_cb[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /g_cn" type="array">
+      <obj_property name="ElementShortName">g_cn[4:0]</obj_property>
+      <obj_property name="ObjectShortName">g_cn[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /g_zn" type="array">
+      <obj_property name="ElementShortName">g_zn[4:0]</obj_property>
+      <obj_property name="ObjectShortName">g_zn[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /g_db" type="array">
+      <obj_property name="ElementShortName">g_db[9:0]</obj_property>
+      <obj_property name="ObjectShortName">g_db[9:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /g_dn" type="array">
+      <obj_property name="ElementShortName">g_dn[3:0]</obj_property>
+      <obj_property name="ObjectShortName">g_dn[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /f_w_merr_sk" type="array">
+      <obj_property name="ElementShortName">f_w_merr_sk[9:0]</obj_property>
+      <obj_property name="ObjectShortName">f_w_merr_sk[9:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /h_sof" type="logic">
+      <obj_property name="ElementShortName">h_sof</obj_property>
+      <obj_property name="ObjectShortName">h_sof</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /h_eof" type="logic">
+      <obj_property name="ElementShortName">h_eof</obj_property>
+      <obj_property name="ObjectShortName">h_eof</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /h_bb" type="array">
+      <obj_property name="ElementShortName">h_bb[56:0]</obj_property>
+      <obj_property name="ObjectShortName">h_bb[56:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /h_bn" type="array">
+      <obj_property name="ElementShortName">h_bn[5:0]</obj_property>
+      <obj_property name="ObjectShortName">h_bn[5:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /j_sof" type="logic">
+      <obj_property name="ElementShortName">j_sof</obj_property>
+      <obj_property name="ObjectShortName">j_sof</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /j_e" type="logic">
+      <obj_property name="ElementShortName">j_e</obj_property>
+      <obj_property name="ObjectShortName">j_e</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /j_last" type="logic">
+      <obj_property name="ElementShortName">j_last</obj_property>
+      <obj_property name="ObjectShortName">j_last</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /j_data" type="array">
+      <obj_property name="ElementShortName">j_data[15:0]</obj_property>
+      <obj_property name="ObjectShortName">j_data[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /j_bbuf" type="array">
+      <obj_property name="ElementShortName">j_bbuf[247:0]</obj_property>
+      <obj_property name="ObjectShortName">j_bbuf[247:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /j_bcnt" type="array">
+      <obj_property name="ElementShortName">j_bcnt[7:0]</obj_property>
+      <obj_property name="ObjectShortName">j_bcnt[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /state_footer" type="array">
+      <obj_property name="ElementShortName">state_footer[1:0]</obj_property>
+      <obj_property name="ObjectShortName">state_footer[1:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /jls_footer" type="array">
+      <obj_property name="ElementShortName">jls_footer[15:0]</obj_property>
+      <obj_property name="ObjectShortName">jls_footer[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /bbuf" type="array">
+      <obj_property name="ElementShortName">bbuf[247:0]</obj_property>
+      <obj_property name="ObjectShortName">bbuf[247:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /bcnt" type="array">
+      <obj_property name="ElementShortName">bcnt[7:0]</obj_property>
+      <obj_property name="ObjectShortName">bcnt[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /jls_wl" type="array">
+      <obj_property name="ElementShortName">jls_wl[15:0]</obj_property>
+      <obj_property name="ObjectShortName">jls_wl[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /jls_hl" type="array">
+      <obj_property name="ElementShortName">jls_hl[15:0]</obj_property>
+      <obj_property name="ObjectShortName">jls_hl[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /jls_header" type="array">
+      <obj_property name="ElementShortName">jls_header[0:11][15:0]</obj_property>
+      <obj_property name="ObjectShortName">jls_header[0:11][15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /k_header_i" type="array">
+      <obj_property name="ElementShortName">k_header_i[3:0]</obj_property>
+      <obj_property name="ObjectShortName">k_header_i[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /k_e" type="logic">
+      <obj_property name="ElementShortName">k_e</obj_property>
+      <obj_property name="ObjectShortName">k_e</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /k_last" type="logic">
+      <obj_property name="ElementShortName">k_last</obj_property>
+      <obj_property name="ObjectShortName">k_last</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /k_data" type="array">
+      <obj_property name="ElementShortName">k_data[15:0]</obj_property>
+      <obj_property name="ObjectShortName">k_data[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /NEAR" type="array">
+      <obj_property name="ElementShortName">NEAR[2:0]</obj_property>
+      <obj_property name="ObjectShortName">NEAR[2:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /N_E" type="array">
+      <obj_property name="ElementShortName">N_E[31:0]</obj_property>
+      <obj_property name="ObjectShortName">N_E[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /L" type="array">
+      <obj_property name="ElementShortName">L[31:0]</obj_property>
+      <obj_property name="ObjectShortName">L[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /P_LOSSY" type="logic">
+      <obj_property name="ElementShortName">P_LOSSY</obj_property>
+      <obj_property name="ObjectShortName">P_LOSSY</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /P_NEAR" type="array">
+      <obj_property name="ElementShortName">P_NEAR[8:0]</obj_property>
+      <obj_property name="ObjectShortName">P_NEAR[8:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /P_T1" type="array">
+      <obj_property name="ElementShortName">P_T1[8:0]</obj_property>
+      <obj_property name="ObjectShortName">P_T1[8:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /P_T2" type="array">
+      <obj_property name="ElementShortName">P_T2[8:0]</obj_property>
+      <obj_property name="ObjectShortName">P_T2[8:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /P_T3" type="array">
+      <obj_property name="ElementShortName">P_T3[8:0]</obj_property>
+      <obj_property name="ObjectShortName">P_T3[8:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /P_QUANT" type="array">
+      <obj_property name="ElementShortName">P_QUANT[9:0]</obj_property>
+      <obj_property name="ObjectShortName">P_QUANT[9:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /P_QBETA" type="array">
+      <obj_property name="ElementShortName">P_QBETA[9:0]</obj_property>
+      <obj_property name="ObjectShortName">P_QBETA[9:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /P_QBETAHALF" type="array">
+      <obj_property name="ElementShortName">P_QBETAHALF[9:0]</obj_property>
+      <obj_property name="ObjectShortName">P_QBETAHALF[9:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /P_AINIT" type="array">
+      <obj_property name="ElementShortName">P_AINIT[12:0]</obj_property>
+      <obj_property name="ObjectShortName">P_AINIT[12:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /PIPELINE_DEPTH" type="array">
+      <obj_property name="ElementShortName">PIPELINE_DEPTH[31:0]</obj_property>
+      <obj_property name="ObjectShortName">PIPELINE_DEPTH[31:0]</obj_property>
+   </wvobject>
+</wave_config>

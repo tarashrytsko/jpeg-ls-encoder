@@ -1,0 +1,166 @@
+Time resolution is 1 ps
+ Block Memory Generator module loading initial data...
+ Block Memory Generator data initialization complete.
+Block Memory Generator module tb_top_jls_vertical.dut.u_image_generator.u_bram.inst.native_mem_module.blk_mem_gen_v8_4_9_inst is using a behavioral model for simulation which will not precisely model memory collision behavior.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+[0] Opened: enc0a.jls
+[0] Opened: enc1a.jls
+[0] Opened: enc2a.jls
+ Block Memory Generator module loading initial data...
+ Block Memory Generator data initialization complete.
+Block Memory Generator module tb_top_jls_vertical.dut.u_image_generator.u_bram.inst.native_mem_module.blk_mem_gen_v8_4_9_inst is using a behavioral model for simulation which will not precisely model memory collision behavior.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+[0] Opened: enc0a.jls
+[0] Opened: enc1a.jls
+[0] Opened: enc2a.jls
+[1610737500] CLOSE enc2a.jls  words=3506  bytes=7012  first4=ff d8 ff f7  SOI=1(at 0)  EOI=1(at 7010)
+[1610737500] OPEN  enc2b.jls
+[1611517500] CLOSE enc0a.jls  words=3792  bytes=7584  first4=ff d8 ff f7  SOI=1(at 0)  EOI=1(at 7581)
+[1611517500] OPEN  enc0b.jls
+[1623127500] CLOSE enc1a.jls  words=4179  bytes=8358  first4=ff d8 ff f7  SOI=1(at 0)  EOI=1(at 8356)
+[1623127500] OPEN  enc1b.jls
+[3097747500] CLOSE enc2b.jls  words=3024  bytes=6048  first4=ff d8 ff f7  SOI=1(at 0)  EOI=1(at 6046)
+[3097747500] OPEN  enc2c.jls
+[3112597500] CLOSE enc0b.jls  words=3779  bytes=7558  first4=ff d8 ff f7  SOI=1(at 0)  EOI=1(at 7555)
+[3112597500] OPEN  enc0c.jls
+[3121627500] CLOSE enc1b.jls  words=4080  bytes=8160  first4=ff d8 ff f7  SOI=1(at 0)  EOI=1(at 8158)
+[3121627500] OPEN  enc1c.jls
+[4614757500] CLOSE enc2c.jls  words=2518  bytes=5036  first4=ff d8 ff f7  SOI=1(at 0)  EOI=1(at 5034)
+[4614757500] DONE  enc2 total_words=9048 total_bytes=18096
+[4629667500] CLOSE enc1c.jls  words=3278  bytes=6556  first4=ff d8 ff f7  SOI=1(at 0)  EOI=1(at 6554)
+[4629667500] DONE  enc1 total_words=11537 total_bytes=23074
+[4633297500] CLOSE enc0c.jls  words=3399  bytes=6798  first4=ff d8 ff f7  SOI=1(at 0)  EOI=1(at 6796)
+[4633297500] DONE  enc0 total_words=10970 total_bytes=21940
+=== All encoder slices complete (9 files total) ===
+$finish called at time : 4634797500 ps : File "D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_v8b/JPEG_ENC_v8b.srcs/sim_2/imports/JPEG_ENC_v5/JPEG_ENC_v5.srcs/sim_1/imports/FPGA Encoders/tb_top_jls_vertical.v" Line 280
+ Block Memory Generator module loading initial data...
+ Block Memory Generator data initialization complete.
+Block Memory Generator module tb_top_jls_vertical.dut.u_image_generator.u_bram.inst.native_mem_module.blk_mem_gen_v8_4_9_inst is using a behavioral model for simulation which will not precisely model memory collision behavior.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+[0] Opened: enc0a.jls
+[0] Opened: enc1a.jls
+[0] Opened: enc2a.jls
+[1610737500] CLOSE enc2a.jls  words=3506  bytes=7012  first4=ff d8 ff f7  SOI=1(at 0)  EOI=1(at 7010)
+[1610737500] OPEN  enc2b.jls
+[1611517500] CLOSE enc0a.jls  words=3792  bytes=7584  first4=ff d8 ff f7  SOI=1(at 0)  EOI=1(at 7581)
+[1611517500] OPEN  enc0b.jls
+[1623127500] CLOSE enc1a.jls  words=4179  bytes=8358  first4=ff d8 ff f7  SOI=1(at 0)  EOI=1(at 8356)
+[1623127500] OPEN  enc1b.jls
+[3097747500] CLOSE enc2b.jls  words=3024  bytes=6048  first4=ff d8 ff f7  SOI=1(at 0)  EOI=1(at 6046)
+[3097747500] OPEN  enc2c.jls
+[3112597500] CLOSE enc0b.jls  words=3779  bytes=7558  first4=ff d8 ff f7  SOI=1(at 0)  EOI=1(at 7555)
+[3112597500] OPEN  enc0c.jls
+[3121627500] CLOSE enc1b.jls  words=4080  bytes=8160  first4=ff d8 ff f7  SOI=1(at 0)  EOI=1(at 8158)
+[3121627500] OPEN  enc1c.jls
+[4614757500] CLOSE enc2c.jls  words=2518  bytes=5036  first4=ff d8 ff f7  SOI=1(at 0)  EOI=1(at 5034)
+[4614757500] DONE  enc2 total_words=9048 total_bytes=18096
+[4629667500] CLOSE enc1c.jls  words=3278  bytes=6556  first4=ff d8 ff f7  SOI=1(at 0)  EOI=1(at 6554)
+[4629667500] DONE  enc1 total_words=11537 total_bytes=23074
+[4633297500] CLOSE enc0c.jls  words=3399  bytes=6798  first4=ff d8 ff f7  SOI=1(at 0)  EOI=1(at 6796)
+[4633297500] DONE  enc0 total_words=10970 total_bytes=21940
+=== All encoder slices complete (9 files total) ===
+$finish called at time : 4634797500 ps : File "D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_v8b/JPEG_ENC_v8b.srcs/sim_2/imports/JPEG_ENC_v5/JPEG_ENC_v5.srcs/sim_1/imports/FPGA Encoders/tb_top_jls_vertical.v" Line 280
+ Block Memory Generator module loading initial data...
+ Block Memory Generator data initialization complete.
+Block Memory Generator module tb_top_jls_vertical.dut.u_image_generator.u_bram.inst.native_mem_module.blk_mem_gen_v8_4_9_inst is using a behavioral model for simulation which will not precisely model memory collision behavior.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+[0] Opened: enc0a.jls
+[0] Opened: enc1a.jls
+[0] Opened: enc2a.jls
+[1610737500] CLOSE enc2a.jls  words=3506  bytes=7012  first4=ff d8 ff f7  SOI=1(at 0)  EOI=1(at 7010)
+[1610737500] OPEN  enc2b.jls
+[1611517500] CLOSE enc0a.jls  words=3792  bytes=7584  first4=ff d8 ff f7  SOI=1(at 0)  EOI=1(at 7581)
+[1611517500] OPEN  enc0b.jls
+[1623127500] CLOSE enc1a.jls  words=4179  bytes=8358  first4=ff d8 ff f7  SOI=1(at 0)  EOI=1(at 8356)
+[1623127500] OPEN  enc1b.jls
+[3097747500] CLOSE enc2b.jls  words=3024  bytes=6048  first4=ff d8 ff f7  SOI=1(at 0)  EOI=1(at 6046)
+[3097747500] OPEN  enc2c.jls
+[3112597500] CLOSE enc0b.jls  words=3779  bytes=7558  first4=ff d8 ff f7  SOI=1(at 0)  EOI=1(at 7555)
+[3112597500] OPEN  enc0c.jls
+[3121627500] CLOSE enc1b.jls  words=4080  bytes=8160  first4=ff d8 ff f7  SOI=1(at 0)  EOI=1(at 8158)
+[3121627500] OPEN  enc1c.jls
+[4614757500] CLOSE enc2c.jls  words=2518  bytes=5036  first4=ff d8 ff f7  SOI=1(at 0)  EOI=1(at 5034)
+[4614757500] DONE  enc2 total_words=9048 total_bytes=18096
+[4629667500] CLOSE enc1c.jls  words=3278  bytes=6556  first4=ff d8 ff f7  SOI=1(at 0)  EOI=1(at 6554)
+[4629667500] DONE  enc1 total_words=11537 total_bytes=23074
+[4633297500] CLOSE enc0c.jls  words=3399  bytes=6798  first4=ff d8 ff f7  SOI=1(at 0)  EOI=1(at 6796)
+[4633297500] DONE  enc0 total_words=10970 total_bytes=21940
+=== All encoder slices complete (9 files total) ===
+$finish called at time : 4634797500 ps : File "D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_v8b/JPEG_ENC_v8b.srcs/sim_2/imports/JPEG_ENC_v5/JPEG_ENC_v5.srcs/sim_1/imports/FPGA Encoders/tb_top_jls_vertical.v" Line 280
+ Block Memory Generator module loading initial data...
+ Block Memory Generator data initialization complete.
+Block Memory Generator module tb_top_jls_vertical.dut.u_image_generator.u_bram.inst.native_mem_module.blk_mem_gen_v8_4_9_inst is using a behavioral model for simulation which will not precisely model memory collision behavior.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+[0] Opened: enc0a.jls
+[0] Opened: enc1a.jls
+[0] Opened: enc2a.jls
+[1610737500] CLOSE enc2a.jls  words=3506  bytes=7012  first4=ff d8 ff f7  SOI=1(at 0)  EOI=1(at 7010)
+[1610737500] OPEN  enc2b.jls
+[1611517500] CLOSE enc0a.jls  words=3792  bytes=7584  first4=ff d8 ff f7  SOI=1(at 0)  EOI=1(at 7581)
+[1611517500] OPEN  enc0b.jls
+[1623127500] CLOSE enc1a.jls  words=4179  bytes=8358  first4=ff d8 ff f7  SOI=1(at 0)  EOI=1(at 8356)
+[1623127500] OPEN  enc1b.jls
+[3097747500] CLOSE enc2b.jls  words=3024  bytes=6048  first4=ff d8 ff f7  SOI=1(at 0)  EOI=1(at 6046)
+[3097747500] OPEN  enc2c.jls
+[3112597500] CLOSE enc0b.jls  words=3779  bytes=7558  first4=ff d8 ff f7  SOI=1(at 0)  EOI=1(at 7555)
+[3112597500] OPEN  enc0c.jls
+[3121627500] CLOSE enc1b.jls  words=4080  bytes=8160  first4=ff d8 ff f7  SOI=1(at 0)  EOI=1(at 8158)
+[3121627500] OPEN  enc1c.jls
+[4614757500] CLOSE enc2c.jls  words=2518  bytes=5036  first4=ff d8 ff f7  SOI=1(at 0)  EOI=1(at 5034)
+[4614757500] DONE  enc2 total_words=9048 total_bytes=18096
+[4629667500] CLOSE enc1c.jls  words=3278  bytes=6556  first4=ff d8 ff f7  SOI=1(at 0)  EOI=1(at 6554)
+[4629667500] DONE  enc1 total_words=11537 total_bytes=23074
+[4633297500] CLOSE enc0c.jls  words=3399  bytes=6798  first4=ff d8 ff f7  SOI=1(at 0)  EOI=1(at 6796)
+[4633297500] DONE  enc0 total_words=10970 total_bytes=21940
+=== All encoder slices complete (9 files total) ===
+$finish called at time : 4634797500 ps : File "D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_v8b/JPEG_ENC_v8b.srcs/sim_2/imports/JPEG_ENC_v5/JPEG_ENC_v5.srcs/sim_1/imports/FPGA Encoders/tb_top_jls_vertical.v" Line 280
+ Block Memory Generator module loading initial data...
+ Block Memory Generator data initialization complete.
+Block Memory Generator module tb_top_jls_vertical.dut.u_image_generator.u_bram.inst.native_mem_module.blk_mem_gen_v8_4_9_inst is using a behavioral model for simulation which will not precisely model memory collision behavior.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+[0] Opened: enc0a.jls
+[0] Opened: enc1a.jls
+[0] Opened: enc2a.jls
+[1610737500] CLOSE enc2a.jls  words=3506  bytes=7012  first4=ff d8 ff f7  SOI=1(at 0)  EOI=1(at 7010)
+[1610737500] OPEN  enc2b.jls
+[1611517500] CLOSE enc0a.jls  words=3792  bytes=7584  first4=ff d8 ff f7  SOI=1(at 0)  EOI=1(at 7581)
+[1611517500] OPEN  enc0b.jls
+[1623127500] CLOSE enc1a.jls  words=4179  bytes=8358  first4=ff d8 ff f7  SOI=1(at 0)  EOI=1(at 8356)
+[1623127500] OPEN  enc1b.jls
+[3097747500] CLOSE enc2b.jls  words=3024  bytes=6048  first4=ff d8 ff f7  SOI=1(at 0)  EOI=1(at 6046)
+[3097747500] OPEN  enc2c.jls
+[3112597500] CLOSE enc0b.jls  words=3779  bytes=7558  first4=ff d8 ff f7  SOI=1(at 0)  EOI=1(at 7555)
+[3112597500] OPEN  enc0c.jls
+[3121627500] CLOSE enc1b.jls  words=4080  bytes=8160  first4=ff d8 ff f7  SOI=1(at 0)  EOI=1(at 8158)
+[3121627500] OPEN  enc1c.jls
+INFO: xsimkernel Simulation Memory Usage: 46676 KB (Peak: 46676 KB), Simulation CPU Usage: 127453 ms
