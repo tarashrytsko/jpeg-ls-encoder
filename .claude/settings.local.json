@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(where vivado *)",
+      "Bash(where xsim *)",
+      "Bash(where xelab *)",
+      "Bash(where xvlog *)",
+      "Read(//c/Xilinx/**)",
+      "Read(//d//**)",
+      "Read(//e//**)",
+      "Bash(cmd /c \"dir C:\\\\Xilinx /b 2>nul\")",
+      "Bash(cmd /c \"dir D:\\\\Xilinx /b 2>nul\")"
+    ]
+  }
+}

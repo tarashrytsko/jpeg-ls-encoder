@@ -159,7 +159,7 @@ module tb_top_jls_vertical;
     // Open initial files
     // ------------------------------------------------------------
     initial begin
-        basepath = "D:/techbistro/upwork/JPEG Encoder Project/JPEG_ENC_v8c/JPEG_ENC_v8c.sim/output_block/";
+        basepath = "D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_v8c/JPEG_ENC_v8c.sim/output_block/";
 
         for (i = 0; i < 3; i = i + 1) begin
             slice_idx[i] = 0;

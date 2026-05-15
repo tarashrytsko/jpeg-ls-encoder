@@ -28,5 +28,5 @@ WARNING: Behavioral models for independent clock FIFO configurations do not mode
 [4654387500] CLOSE enc0c.jls words=3303 bytes=6606 first4=ff d8 ff f7 SOI=1@0 EOI=1@6603
 [4654387500] DONE enc0 total_words=11044 total_bytes=22088
 === All encoder slices complete (9 files total) ===
-$finish called at time : 4655887500 ps : File "D:/techbistro/upwork/JPEG Encoder Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/sim_1/imports/FPGA Encoders/tb_top_jls_vertical.v" Line 346
-INFO: xsimkernel Simulation Memory Usage: 38384 KB (Peak: 38384 KB), Simulation CPU Usage: 2044217 ms
+$finish called at time : 4655887500 ps : File "D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/sim_1/imports/FPGA Encoders/tb_top_jls_vertical.v" Line 346
+INFO: xsimkernel Simulation Memory Usage: 38336 KB (Peak: 38336 KB), Simulation CPU Usage: 23796 ms

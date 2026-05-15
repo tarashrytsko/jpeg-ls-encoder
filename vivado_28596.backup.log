@@ -1,0 +1,320 @@
+#-----------------------------------------------------------
+# Vivado v2024.2 (64-bit)
+# SW Build 5239630 on Fri Nov 08 22:35:27 MST 2024
+# IP Build 5239520 on Sun Nov 10 16:12:51 MST 2024
+# SharedData Build 5239561 on Fri Nov 08 14:39:27 MST 2024
+# Start of session at: Fri May 15 13:16:24 2026
+# Process ID         : 28596
+# Current directory  : D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f
+# Command line       : vivado.exe -gui_launcher_event rodinguilauncherevent18888 D:\techbistro\upwork\JPEG_Encoder_Project\JPEG_ENC_8f\JPEG_ENC_8f.xpr
+# Log file           : D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/vivado.log
+# Journal file       : D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f\vivado.jou
+# Running On         : DESKTOP-PHB4K70
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 26200
+# Processor Detail   : 11th Gen Intel(R) Core(TM) i5-11400H @ 2.70GHz
+# CPU Frequency      : 2688 MHz
+# CPU Physical cores : 6
+# CPU Logical cores  : 12
+# Host memory        : 16840 MB
+# Swap memory        : 8757 MB
+# Total Virtual      : 25597 MB
+# Available Virtual  : 14644 MB
+#-----------------------------------------------------------
+start_gui
+open_project D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.xpr
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vek280_es:part0:1.0 available at C:/Xilinx/Vivado/2024.2/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vek280/es/rev_a/1.0/board.xml as part xcve2802-vsvh1760-2lp-e-s-es1 specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vek280_es:part0:1.1 available at C:/Xilinx/Vivado/2024.2/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vek280/es/rev_a/1.1/board.xml as part xcve2802-vsvh1760-2lp-e-s-es1 specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vek280_es_revb:part0:1.0 available at C:/Xilinx/Vivado/2024.2/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vek280/es/rev_b/1.0/board.xml as part xcve2802-vsvh1760-2mp-e-s-es1 specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vek280_es_revb:part0:1.1 available at C:/Xilinx/Vivado/2024.2/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vek280/es/rev_b/1.1/board.xml as part xcve2802-vsvh1760-2mp-e-s-es1 specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:zcu208ld:part0:2.0 available at C:/Xilinx/Vivado/2024.2/data/xhub/boards/XilinxBoardStore/boards/Xilinx/zcu208ld/production/2.0/board.xml as part xczu58dr-fsvg1517-2-i specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:zcu216ld:part0:2.0 available at C:/Xilinx/Vivado/2024.2/data/xhub/boards/XilinxBoardStore/boards/Xilinx/zcu216ld/production/2.0/board.xml as part xczu59dr-ffvf1760-2-i specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:zcu670ld:part0:1.0 available at C:/Xilinx/Vivado/2024.2/data/xhub/boards/XilinxBoardStore/boards/Xilinx/zcu670ld/1.0/board.xml as part xczu57dr-fsve1156-2-i specified in board_part file is either invalid or not available
+INFO: [Project 1-313] Project file moved from 'D:/techbistro/upwork/JPEG Encoder Project/JPEG_ENC_8f' since last save.
+Scanning sources...
+Finished scanning sources
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2024.2/data/ip'.
+open_project: Time (s): cpu = 00:00:45 ; elapsed = 00:00:25 . Memory (MB): peak = 1666.457 ; gain = 436.621
+update_compile_order -fileset sources_1
+launch_simulation
+Command: launch_simulation 
+INFO: [Vivado 12-12493] Simulation top is 'tb_top_jls_vertical'
+WARNING: [Vivado 12-13340] Unable to auto find GCC executables from simulator install path! (path not set)
+INFO: [Vivado 12-5698] Checking validity of IPs in the design for the 'XSim' simulator...
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.sim/sim_1/behav/xsim'
+INFO: [Vivado 12-13660] Precompiled IP simulation library mode is enabled (default). The design IP libraries will be referenced from the compiled library path. Please note that if the precompiled version of the library is not found from the path or the IP is in locked state, then the library source files for these IPs will be compiled locally as part of the compile order.
+INFO: [Vivado 12-4795] Using compiled simulation libraries for IPs
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [SIM-utils-72] Using boost library from 'C:/Xilinx/Vivado/2024.2/tps/boost_1_72_0'
+INFO: [USF-XSim-7] Finding pre-compiled libraries...
+INFO: [USF-XSim-11] File 'C:/Xilinx/Vivado/2024.2/data/xsim/xsim.ini' copied to run dir:'D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-54] Inspecting design source files for 'tb_top_jls_vertical' in fileset 'sim_1'...
+INFO: [SIM-utils-43] Exported 'D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.sim/sim_1/behav/xsim/blk_mem_gen_0.mif'
+INFO: [SIM-utils-43] Exported 'D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.sim/sim_1/behav/xsim/test2new.coe'
+INFO: [SIM-utils-43] Exported 'D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.sim/sim_1/behav/xsim/test2.coe'
+INFO: [SIM-utils-43] Exported 'D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.sim/sim_1/behav/xsim/test6new.coe'
+INFO: [SIM-utils-43] Exported 'D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.sim/sim_1/behav/xsim/test2new.coe'
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in 'D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.sim/sim_1/behav/xsim'
+"xvlog --incr --relax -prj tb_top_jls_vertical_vlog.prj"
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.gen/sources_1/ip/fifo_output/sim/fifo_output.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module fifo_output
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.gen/sources_1/ip/fifo_generator_0/sim/fifo_generator_0.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module fifo_generator_0
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.gen/sources_1/ip/blk_mem_gen_0_1/sim/blk_mem_gen_0.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module blk_mem_gen_0
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.gen/sources_1/ip/clk_wiz_0/clk_wiz_0_clk_wiz.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module clk_wiz_0_clk_wiz
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.gen/sources_1/ip/clk_wiz_0/clk_wiz_0.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module clk_wiz_0
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/sources_1/new/block_split.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module splitter_block
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/sources_1/new/encoder_wrapper.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module encoder_wrapper
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/sources_1/new/fifo_read_control.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module fifo_read_control
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/sources_1/new/fifo_reset_bram_async.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module fifo_reset_bram_async
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/sources_1/new/fifo_wrapper_input.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module fifo_wrapper_input
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/sources_1/new/fifo_wrapper_output.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module fifo_wrapper_output
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/sources_1/new/fifo_write_control.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module fifo_write_control
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/sources_1/new/image_generator.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module image_generator
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/sources_1/imports/FPGA Encoders/jls_encoder.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module jls_encoder
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/sources_1/imports/FPGA Encoders/top_jls_vertical.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module top_jls_vertical
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/sim_1/imports/FPGA Encoders/tb_top_jls_vertical.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module tb_top_jls_vertical
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.sim/sim_1/behav/xsim/glbl.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module glbl
+"xvhdl --incr --relax -prj tb_top_jls_vertical_vhdl.prj"
+INFO: [USF-XSim-69] 'compile' step finished in '5' seconds
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.sim/sim_1/behav/xsim'
+"xelab --incr --debug typical --relax --mt 2 -L xil_defaultlib -L fifo_generator_v13_2_11 -L blk_mem_gen_v8_4_9 -L unisims_ver -L unimacro_ver -L secureip -L xpm --snapshot tb_top_jls_vertical_behav xil_defaultlib.tb_top_jls_vertical xil_defaultlib.glbl -log elaborate.log"
+Vivado Simulator v2024.2.0
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
+Running: C:/Xilinx/Vivado/2024.2/bin/unwrapped/win64.o/xelab.exe --incr --debug typical --relax --mt 2 -L xil_defaultlib -L fifo_generator_v13_2_11 -L blk_mem_gen_v8_4_9 -L unisims_ver -L unimacro_ver -L secureip -L xpm --snapshot tb_top_jls_vertical_behav xil_defaultlib.tb_top_jls_vertical xil_defaultlib.glbl -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Pass Through NonSizing Optimizer
+WARNING: [VRFC 10-3091] actual bit length 1 differs from formal bit length 17 for port 'rd_data_count' [D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/sources_1/new/fifo_wrapper_input.v:67]
+WARNING: [VRFC 10-3091] actual bit length 1 differs from formal bit length 17 for port 'wr_data_count' [D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/sources_1/new/fifo_wrapper_input.v:68]
+WARNING: [VRFC 10-3091] actual bit length 42 differs from formal bit length 14 for port 'total_lines' [D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/sources_1/imports/FPGA Encoders/top_jls_vertical.v:187]
+WARNING: [VRFC 10-3091] actual bit length 42 differs from formal bit length 14 for port 'image_width' [D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/sources_1/imports/FPGA Encoders/top_jls_vertical.v:188]
+WARNING: [VRFC 10-3091] actual bit length 42 differs from formal bit length 14 for port 'i_w_r' [D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/sources_1/imports/FPGA Encoders/top_jls_vertical.v:209]
+WARNING: [VRFC 10-3091] actual bit length 42 differs from formal bit length 14 for port 'i_h_r' [D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/sources_1/imports/FPGA Encoders/top_jls_vertical.v:210]
+WARNING: [VRFC 10-3091] actual bit length 3 differs from formal bit length 1 for port 'i_sof_st_enc' [D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/sources_1/imports/FPGA Encoders/top_jls_vertical.v:215]
+WARNING: [VRFC 10-3091] actual bit length 42 differs from formal bit length 14 for port 'i_w' [D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/sources_1/imports/FPGA Encoders/top_jls_vertical.v:231]
+WARNING: [VRFC 10-3091] actual bit length 42 differs from formal bit length 14 for port 'i_h' [D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/sources_1/imports/FPGA Encoders/top_jls_vertical.v:232]
+WARNING: [VRFC 10-3091] actual bit length 3 differs from formal bit length 1 for port 'enc_i_sofx' [D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/sources_1/imports/FPGA Encoders/top_jls_vertical.v:234]
+WARNING: [VRFC 10-3091] actual bit length 4 differs from formal bit length 32 for port 'last_enc_id' [D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/sources_1/imports/FPGA Encoders/top_jls_vertical.v:240]
+WARNING: [VRFC 10-3091] actual bit length 1 differs from formal bit length 3 for port 'is_last_encoder' [D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/sources_1/new/encoder_wrapper.v:112]
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling module unisims_ver.IBUFDS
+Compiling module unisims_ver.MMCME2_ADV(CLKFBOUT_MULT_F=3.0,C...
+Compiling module unisims_ver.BUFG
+Compiling module xil_defaultlib.clk_wiz_0_clk_wiz
+Compiling module xil_defaultlib.clk_wiz_0
+Compiling module xil_defaultlib.fifo_reset_bram_async
+Compiling module blk_mem_gen_v8_4_9.blk_mem_gen_v8_4_9_output_stage(...
+Compiling module blk_mem_gen_v8_4_9.blk_mem_gen_v8_4_9_output_stage(...
+Compiling module blk_mem_gen_v8_4_9.blk_mem_gen_v8_4_9_softecc_outpu...
+Compiling module blk_mem_gen_v8_4_9.blk_mem_gen_v8_4_9_mem_module(C_...
+Compiling module blk_mem_gen_v8_4_9.blk_mem_gen_v8_4_9(C_FAMILY="art...
+Compiling module xil_defaultlib.blk_mem_gen_0
+Compiling module xil_defaultlib.image_generator_default
+Compiling module xil_defaultlib.splitter_block
+Compiling module fifo_generator_v13_2_11.fifo_generator_v13_2_11_sync_sta...
+Compiling module fifo_generator_v13_2_11.fifo_generator_v13_2_11_bhv_ver_...
+Compiling module fifo_generator_v13_2_11.fifo_generator_v13_2_11_CONV_VER...
+Compiling module fifo_generator_v13_2_11.fifo_generator_vlog_beh(C_DATA_C...
+Compiling module xil_defaultlib.fifo_generator_0
+Compiling module xil_defaultlib.fifo_wrapper_input_default
+Compiling module xil_defaultlib.fifo_write_control
+Compiling module xil_defaultlib.fifo_read_control
+Compiling module xil_defaultlib.jls_encoder_default
+Compiling module xil_defaultlib.encoder_wrapper_default
+Compiling module fifo_generator_v13_2_11.fifo_generator_v13_2_11_sync_sta...
+Compiling module fifo_generator_v13_2_11.fifo_generator_v13_2_11_bhv_ver_...
+Compiling module fifo_generator_v13_2_11.fifo_generator_v13_2_11_CONV_VER...
+Compiling module fifo_generator_v13_2_11.fifo_generator_vlog_beh(C_DATA_C...
+Compiling module xil_defaultlib.fifo_output
+Compiling module xil_defaultlib.fifo_wrapper_output_default
+Compiling module xil_defaultlib.top_jls_vertical
+Compiling module xil_defaultlib.tb_top_jls_vertical
+Compiling module xil_defaultlib.glbl
+Built simulation snapshot tb_top_jls_vertical_behav
+run_program: Time (s): cpu = 00:00:00 ; elapsed = 00:00:11 . Memory (MB): peak = 1695.891 ; gain = 0.000
+INFO: [USF-XSim-69] 'elaborate' step finished in '10' seconds
+INFO: [USF-XSim-4] XSim::Simulate design
+INFO: [USF-XSim-61] Executing 'SIMULATE' step in 'D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.sim/sim_1/behav/xsim'
+INFO: [USF-XSim-98] *** Running xsim
+   with args "tb_top_jls_vertical_behav -key {Behavioral:sim_1:Functional:tb_top_jls_vertical} -tclbatch {tb_top_jls_vertical.tcl} -view {D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/sim_1/imports/JPEG_ENC_v2/tb_top_jls_vertical_behav.wcfg} -log {simulate.log}"
+INFO: [USF-XSim-8] Loading simulator feature
+Time resolution is 1 ps
+open_wave_config D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/sim_1/imports/JPEG_ENC_v2/tb_top_jls_vertical_behav.wcfg
+WARNING: Simulation object /tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /a_w was not found in the design.
+WARNING: Simulation object /tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /a_wl was not found in the design.
+WARNING: Simulation object /tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /a_ww was not found in the design.
+WARNING: Simulation object /tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /o_e was not found in the design.
+WARNING: Simulation object /tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /o_last was not found in the design.
+WARNING: Simulation object /tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /o_data was not found in the design.
+WARNING: Simulation object /tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /o_e was not found in the design.
+WARNING: Simulation object /tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /o_last was not found in the design.
+WARNING: Simulation object /tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /o_data was not found in the design.
+WARNING: Simulation object /tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /o_e was not found in the design.
+WARNING: Simulation object /tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /o_last was not found in the design.
+WARNING: Simulation object /tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /o_data was not found in the design.
+WARNING: Simulation object /tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /a_w was not found in the design.
+WARNING: Simulation object /tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /a_wl was not found in the design.
+WARNING: Simulation object /tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /a_ww was not found in the design.
+WARNING: Simulation object /tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /a_w was not found in the design.
+WARNING: Simulation object /tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /a_wl was not found in the design.
+WARNING: Simulation object /tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /a_ww was not found in the design.
+WARNING: Simulation object /tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /a_ii was not found in the design.
+WARNING: Simulation object /tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /a_jj was not found in the design.
+WARNING: Simulation object /tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /a_ii was not found in the design.
+WARNING: Simulation object /tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[1].u_encoder /a_jj was not found in the design.
+WARNING: Simulation object /tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /a_ii was not found in the design.
+WARNING: Simulation object /tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[2].u_encoder /a_jj was not found in the design.
+WARNING: Simulation object /tb_top_jls_vertical/u_top_jls_vertical/u_encoder_wrapper/\ENC_INST[0].u_encoder /a_hl was not found in the design.
+source tb_top_jls_vertical.tcl
+# set curr_wave [current_wave_config]
+# if { [string length $curr_wave] == 0 } {
+#   if { [llength [get_objects]] > 0} {
+#     add_wave /
+#     set_property needs_save false [current_wave_config]
+#   } else {
+#      send_msg_id Add_Wave-1 WARNING "No top level signals found. Simulator will start without a wave window. If you want to open a wave window go to 'File->New Waveform Configuration' or type 'create_wave_config' in the TCL console."
+#   }
+# }
+# run 1000ns
+ Block Memory Generator module loading initial data...
+ Block Memory Generator data initialization complete.
+Block Memory Generator module tb_top_jls_vertical.dut.u_image_generator.u_bram.inst.native_mem_module.blk_mem_gen_v8_4_9_inst is using a behavioral model for simulation which will not precisely model memory collision behavior.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: file D:/techbistro/upwork/JPEG Encoder Project/JPEG_ENC_8f/JPEG_ENC_8f.sim/output_block/enc0a.jls could not be opened
+WARNING: file D:/techbistro/upwork/JPEG Encoder Project/JPEG_ENC_8f/JPEG_ENC_8f.sim/output_block/enc1a.jls could not be opened
+WARNING: file D:/techbistro/upwork/JPEG Encoder Project/JPEG_ENC_8f/JPEG_ENC_8f.sim/output_block/enc2a.jls could not be opened
+*** ERROR: Cannot open one or more output files
+$finish called at time : 0 fs : File "D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/sim_1/imports/FPGA Encoders/tb_top_jls_vertical.v" Line 215
+INFO: [USF-XSim-96] XSim completed. Design snapshot 'tb_top_jls_vertical_behav' loaded.
+INFO: [USF-XSim-97] XSim simulation ran for 1000ns
+launch_simulation: Time (s): cpu = 00:00:07 ; elapsed = 00:00:20 . Memory (MB): peak = 1729.355 ; gain = 48.766
+run all
+[0] OPEN enc0a, enc1a, enc2a
+[1625737500] CLOSE enc2a.jls words=3493 bytes=6986 first4=ff d8 ff f7 SOI=1@0 EOI=1@6983
+WARNING: file D:/techbistro/upwork/JPEG Encoder Project/JPEG_ENC_8f/JPEG_ENC_8f.sim/output_block/enc2b.jls could not be opened
+*** ERROR: cannot open next enc2 file
+$finish called at time : 1625737500 ps : File "D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/sim_1/imports/FPGA Encoders/tb_top_jls_vertical.v" Line 323
+run: Time (s): cpu = 00:00:01 ; elapsed = 00:00:09 . Memory (MB): peak = 1739.906 ; gain = 0.000
+reset_run impl_1
+reset_run synth_1
+INFO: [Project 1-1161] Replacing file D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/utils_1/imports/synth_1/top_jls_vertical.dcp with file D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.runs/synth_1/top_jls_vertical.dcp
+WARNING: [Vivado 12-1017] Problems encountered:
+1. Failed to delete one or more files in run directory D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.runs/synth_1
+
+launch_runs synth_1 -jobs 8
+[Fri May 15 15:46:29 2026] Launched synth_1...
+Run output will be captured here: D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.runs/synth_1/runme.log
+launch_runs impl_1 -jobs 8
+[Fri May 15 16:06:22 2026] Launched impl_1...
+Run output will be captured here: D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.runs/impl_1/runme.log
+launch_runs impl_1 -to_step write_bitstream -jobs 8
+[Fri May 15 16:10:52 2026] Launched impl_1...
+Run output will be captured here: D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.runs/impl_1/runme.log
+run all
+[1625737500] OPEN enc2b.jls
+[1637077500] CLOSE enc0a.jls words=3871 bytes=7742 first4=ff d8 ff f7 SOI=1@0 EOI=1@7739
+WARNING: file D:/techbistro/upwork/JPEG Encoder Project/JPEG_ENC_8f/JPEG_ENC_8f.sim/output_block/enc0b.jls could not be opened
+*** ERROR: cannot open next enc0 file
+$finish called at time : 1637077500 ps : File "D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/sim_1/imports/FPGA Encoders/tb_top_jls_vertical.v" Line 255
+WARNING: [filemgmt 56-199] Attempt to get parsing info during refresh. "On-the-fly" syntax checking information may be incorrect. [D:\techbistro\upwork\JPEG_Encoder_Project\JPEG_ENC_8f\JPEG_ENC_8f.srcs\sim_1\imports\FPGA Encoders\tb_top_jls_vertical.v:]
+WARNING: [filemgmt 56-199] Attempt to get parsing info during refresh. "On-the-fly" syntax checking information may be incorrect. [D:\techbistro\upwork\JPEG_Encoder_Project\JPEG_ENC_8f\JPEG_ENC_8f.srcs\sources_1\imports\FPGA Encoders\top_jls_vertical.v:]
+WARNING: [filemgmt 56-199] Attempt to get parsing info during refresh. "On-the-fly" syntax checking information may be incorrect. [D:\techbistro\upwork\JPEG_Encoder_Project\JPEG_ENC_8f\JPEG_ENC_8f.srcs\sim_2\imports\JPEG_ENC_v5\JPEG_ENC_v5.srcs\sim_1\imports\FPGA Encoders\tb_top_jls_vertical.v:]
+WARNING: [filemgmt 56-199] Attempt to get parsing info during refresh. "On-the-fly" syntax checking information may be incorrect. [D:\techbistro\upwork\JPEG_Encoder_Project\JPEG_ENC_8f\JPEG_ENC_8f.srcs\sources_1\imports\FPGA Encoders\top_jls_vertical.v:]
+WARNING: [filemgmt 56-199] Attempt to get parsing info during refresh. "On-the-fly" syntax checking information may be incorrect. [D:\techbistro\upwork\JPEG_Encoder_Project\JPEG_ENC_8f\JPEG_ENC_8f.srcs\sources_1\imports\FPGA Encoders\top_jls_vertical.v:]
+WARNING: [filemgmt 56-199] Attempt to get parsing info during refresh. "On-the-fly" syntax checking information may be incorrect. [D:\techbistro\upwork\JPEG_Encoder_Project\JPEG_ENC_8f\JPEG_ENC_8f.srcs\sim_1\imports\FPGA Encoders\tb_top_jls_vertical.v:]
+WARNING: [filemgmt 56-199] Attempt to get parsing info during refresh. "On-the-fly" syntax checking information may be incorrect. [D:\techbistro\upwork\JPEG_Encoder_Project\JPEG_ENC_8f\JPEG_ENC_8f.srcs\sources_1\imports\FPGA Encoders\top_jls_vertical.v:]
+WARNING: [filemgmt 56-199] Attempt to get parsing info during refresh. "On-the-fly" syntax checking information may be incorrect. [D:\techbistro\upwork\JPEG_Encoder_Project\JPEG_ENC_8f\JPEG_ENC_8f.srcs\sim_2\imports\JPEG_ENC_v5\JPEG_ENC_v5.srcs\sim_1\imports\FPGA Encoders\tb_top_jls_vertical.v:]
+WARNING: [filemgmt 56-199] Attempt to get parsing info during refresh. "On-the-fly" syntax checking information may be incorrect. [D:\techbistro\upwork\JPEG_Encoder_Project\JPEG_ENC_8f\JPEG_ENC_8f.srcs\sim_1\imports\FPGA Encoders\tb_top_jls_vertical.v:]
+WARNING: [filemgmt 56-199] Attempt to get parsing info during refresh. "On-the-fly" syntax checking information may be incorrect. [D:\techbistro\upwork\JPEG_Encoder_Project\JPEG_ENC_8f\JPEG_ENC_8f.srcs\sim_1\imports\FPGA Encoders\tb_top_jls_vertical.v:]
+ERROR: [Common 17-180] Spawn failed: No error
+WARNING: [filemgmt 56-199] Attempt to get parsing info during refresh. "On-the-fly" syntax checking information may be incorrect. [D:\techbistro\upwork\JPEG_Encoder_Project\JPEG_ENC_8f\JPEG_ENC_8f.srcs\sim_1\imports\FPGA Encoders\tb_top_jls_vertical.v:]
+WARNING: [filemgmt 56-199] Attempt to get parsing info during refresh. "On-the-fly" syntax checking information may be incorrect. [D:\techbistro\upwork\JPEG_Encoder_Project\JPEG_ENC_8f\JPEG_ENC_8f.srcs\sources_1\imports\FPGA Encoders\top_jls_vertical.v:]
+WARNING: [filemgmt 56-199] Attempt to get parsing info during refresh. "On-the-fly" syntax checking information may be incorrect. [D:\techbistro\upwork\JPEG_Encoder_Project\JPEG_ENC_8f\JPEG_ENC_8f.srcs\sim_2\imports\JPEG_ENC_v5\JPEG_ENC_v5.srcs\sim_1\imports\FPGA Encoders\tb_top_jls_vertical.v:]
+WARNING: [filemgmt 56-199] Attempt to get parsing info during refresh. "On-the-fly" syntax checking information may be incorrect. [D:\techbistro\upwork\JPEG_Encoder_Project\JPEG_ENC_8f\JPEG_ENC_8f.srcs\sources_1\imports\FPGA Encoders\top_jls_vertical.v:]
+WARNING: [filemgmt 56-199] Attempt to get parsing info during refresh. "On-the-fly" syntax checking information may be incorrect. [D:\techbistro\upwork\JPEG_Encoder_Project\JPEG_ENC_8f\JPEG_ENC_8f.srcs\sources_1\imports\FPGA Encoders\top_jls_vertical.v:]
+run all
+[1637077500] OPEN enc0b.jls
+[1648507500] CLOSE enc1a.jls words=4252 bytes=8504 first4=ff d8 ff f7 SOI=1@0 EOI=1@8502
+WARNING: file D:/techbistro/upwork/JPEG Encoder Project/JPEG_ENC_8f/JPEG_ENC_8f.sim/output_block/enc1b.jls could not be opened
+*** ERROR: cannot open next enc1 file
+$finish called at time : 1648507500 ps : File "D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/sim_1/imports/FPGA Encoders/tb_top_jls_vertical.v" Line 289
+run all
+[1648507500] OPEN enc1b.jls
+[3127867500] CLOSE enc2b.jls words=2992 bytes=5984 first4=ff d8 ff f7 SOI=1@0 EOI=1@5981
+WARNING: file D:/techbistro/upwork/JPEG Encoder Project/JPEG_ENC_8f/JPEG_ENC_8f.sim/output_block/enc2c.jls could not be opened
+*** ERROR: cannot open next enc2 file
+$finish called at time : 3127867500 ps : File "D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/sim_1/imports/FPGA Encoders/tb_top_jls_vertical.v" Line 323
+run: Time (s): cpu = 00:00:01 ; elapsed = 00:00:08 . Memory (MB): peak = 1852.109 ; gain = 0.000
+reset_run synth_1
+INFO: [Project 1-1161] Replacing file D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/utils_1/imports/synth_1/top_jls_vertical.dcp with file D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.runs/synth_1/top_jls_vertical.dcp
+WARNING: [Vivado 12-1017] Problems encountered:
+1. Failed to delete one or more files in run directory D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.runs/synth_1
+
+WARNING: [filemgmt 56-199] Attempt to get parsing info during refresh. "On-the-fly" syntax checking information may be incorrect. [D:\techbistro\upwork\JPEG_Encoder_Project\JPEG_ENC_8f\JPEG_ENC_8f.srcs\sim_1\imports\FPGA Encoders\tb_top_jls_vertical.v:]
+WARNING: [filemgmt 56-199] Attempt to get parsing info during refresh. "On-the-fly" syntax checking information may be incorrect. [D:\techbistro\upwork\JPEG_Encoder_Project\JPEG_ENC_8f\JPEG_ENC_8f.srcs\sim_2\imports\JPEG_ENC_v5\JPEG_ENC_v5.srcs\sim_1\imports\FPGA Encoders\tb_top_jls_vertical.v:]
+WARNING: [filemgmt 56-199] Attempt to get parsing info during refresh. "On-the-fly" syntax checking information may be incorrect. [D:\techbistro\upwork\JPEG_Encoder_Project\JPEG_ENC_8f\JPEG_ENC_8f.srcs\sim_1\imports\FPGA Encoders\tb_top_jls_vertical.v:]
+WARNING: [filemgmt 56-199] Attempt to get parsing info during refresh. "On-the-fly" syntax checking information may be incorrect. [D:\techbistro\upwork\JPEG_Encoder_Project\JPEG_ENC_8f\JPEG_ENC_8f.srcs\sim_1\imports\FPGA Encoders\tb_top_jls_vertical.v:]
+launch_runs synth_1 -jobs 8
+[Fri May 15 16:16:40 2026] Launched synth_1...
+Run output will be captured here: D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.runs/synth_1/runme.log
+ERROR: [Common 17-180] Spawn failed: No error
+reset_run synth_1
+WARNING: [Vivado 12-1017] Problems encountered:
+1. Failed to delete one or more files in run directory D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.runs/synth_1
+
+WARNING: [filemgmt 56-199] Attempt to get parsing info during refresh. "On-the-fly" syntax checking information may be incorrect. [D:\techbistro\upwork\JPEG_Encoder_Project\JPEG_ENC_8f\JPEG_ENC_8f.srcs\sim_1\imports\FPGA Encoders\tb_top_jls_vertical.v:]
+WARNING: [filemgmt 56-199] Attempt to get parsing info during refresh. "On-the-fly" syntax checking information may be incorrect. [D:\techbistro\upwork\JPEG_Encoder_Project\JPEG_ENC_8f\JPEG_ENC_8f.srcs\sim_2\imports\JPEG_ENC_v5\JPEG_ENC_v5.srcs\sim_1\imports\FPGA Encoders\tb_top_jls_vertical.v:]
+WARNING: [filemgmt 56-199] Attempt to get parsing info during refresh. "On-the-fly" syntax checking information may be incorrect. [D:\techbistro\upwork\JPEG_Encoder_Project\JPEG_ENC_8f\JPEG_ENC_8f.srcs\sim_1\imports\FPGA Encoders\tb_top_jls_vertical.v:]
+WARNING: [filemgmt 56-199] Attempt to get parsing info during refresh. "On-the-fly" syntax checking information may be incorrect. [D:\techbistro\upwork\JPEG_Encoder_Project\JPEG_ENC_8f\JPEG_ENC_8f.srcs\sim_1\imports\FPGA Encoders\tb_top_jls_vertical.v:]
+ERROR: [Common 17-180] Spawn failed: No error
+WARNING: [filemgmt 56-199] Attempt to get parsing info during refresh. "On-the-fly" syntax checking information may be incorrect. [D:\techbistro\upwork\JPEG_Encoder_Project\JPEG_ENC_8f\JPEG_ENC_8f.srcs\sim_1\imports\FPGA Encoders\tb_top_jls_vertical.v:]
+WARNING: [filemgmt 56-199] Attempt to get parsing info during refresh. "On-the-fly" syntax checking information may be incorrect. [D:\techbistro\upwork\JPEG_Encoder_Project\JPEG_ENC_8f\JPEG_ENC_8f.srcs\sim_2\imports\JPEG_ENC_v5\JPEG_ENC_v5.srcs\sim_1\imports\FPGA Encoders\tb_top_jls_vertical.v:]
+WARNING: [filemgmt 56-199] Attempt to get parsing info during refresh. "On-the-fly" syntax checking information may be incorrect. [D:\techbistro\upwork\JPEG_Encoder_Project\JPEG_ENC_8f\JPEG_ENC_8f.srcs\sim_1\imports\FPGA Encoders\tb_top_jls_vertical.v:]
+WARNING: [filemgmt 56-199] Attempt to get parsing info during refresh. "On-the-fly" syntax checking information may be incorrect. [D:\techbistro\upwork\JPEG_Encoder_Project\JPEG_ENC_8f\JPEG_ENC_8f.srcs\sim_1\imports\FPGA Encoders\tb_top_jls_vertical.v:]
+ERROR: [Common 17-180] Spawn failed: No error
+WARNING: [filemgmt 56-199] Attempt to get parsing info during refresh. "On-the-fly" syntax checking information may be incorrect. [D:\techbistro\upwork\JPEG_Encoder_Project\JPEG_ENC_8f\JPEG_ENC_8f.srcs\sim_1\imports\FPGA Encoders\tb_top_jls_vertical.v:]
+WARNING: [filemgmt 56-199] Attempt to get parsing info during refresh. "On-the-fly" syntax checking information may be incorrect. [D:\techbistro\upwork\JPEG_Encoder_Project\JPEG_ENC_8f\JPEG_ENC_8f.srcs\sim_2\imports\JPEG_ENC_v5\JPEG_ENC_v5.srcs\sim_1\imports\FPGA Encoders\tb_top_jls_vertical.v:]
+WARNING: [filemgmt 56-199] Attempt to get parsing info during refresh. "On-the-fly" syntax checking information may be incorrect. [D:\techbistro\upwork\JPEG_Encoder_Project\JPEG_ENC_8f\JPEG_ENC_8f.srcs\sim_1\imports\FPGA Encoders\tb_top_jls_vertical.v:]
+WARNING: [filemgmt 56-199] Attempt to get parsing info during refresh. "On-the-fly" syntax checking information may be incorrect. [D:\techbistro\upwork\JPEG_Encoder_Project\JPEG_ENC_8f\JPEG_ENC_8f.srcs\sim_1\imports\FPGA Encoders\tb_top_jls_vertical.v:]
+ERROR: [Common 17-180] Spawn failed: No error
+WARNING: [filemgmt 56-199] Attempt to get parsing info during refresh. "On-the-fly" syntax checking information may be incorrect. [D:\techbistro\upwork\JPEG_Encoder_Project\JPEG_ENC_8f\JPEG_ENC_8f.srcs\sim_1\imports\FPGA Encoders\tb_top_jls_vertical.v:]
+WARNING: [filemgmt 56-199] Attempt to get parsing info during refresh. "On-the-fly" syntax checking information may be incorrect. [D:\techbistro\upwork\JPEG_Encoder_Project\JPEG_ENC_8f\JPEG_ENC_8f.srcs\sim_2\imports\JPEG_ENC_v5\JPEG_ENC_v5.srcs\sim_1\imports\FPGA Encoders\tb_top_jls_vertical.v:]
+WARNING: [filemgmt 56-199] Attempt to get parsing info during refresh. "On-the-fly" syntax checking information may be incorrect. [D:\techbistro\upwork\JPEG_Encoder_Project\JPEG_ENC_8f\JPEG_ENC_8f.srcs\sim_1\imports\FPGA Encoders\tb_top_jls_vertical.v:]
+WARNING: [filemgmt 56-199] Attempt to get parsing info during refresh. "On-the-fly" syntax checking information may be incorrect. [D:\techbistro\upwork\JPEG_Encoder_Project\JPEG_ENC_8f\JPEG_ENC_8f.srcs\sim_1\imports\FPGA Encoders\tb_top_jls_vertical.v:]
+ERROR: [Common 17-180] Spawn failed: No error
+close_sim
+INFO: xsimkernel Simulation Memory Usage: 39384 KB (Peak: 39384 KB), Simulation CPU Usage: 17718 ms
+INFO: [Simtcl 6-16] Simulation closed
+exit
+INFO: [Common 17-206] Exiting Vivado at Fri May 15 16:19:05 2026...

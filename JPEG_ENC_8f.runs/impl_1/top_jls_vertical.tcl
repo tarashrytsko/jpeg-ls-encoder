@@ -1,5 +1,5 @@
 namespace eval ::optrace {
-  variable script "D:/techbistro/upwork/JPEG Encoder Project/JPEG_ENC_8f/JPEG_ENC_8f.runs/impl_1/top_jls_vertical.tcl"
+  variable script "D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.runs/impl_1/top_jls_vertical.tcl"
   variable category "vivado_impl"
 }
 
@@ -97,7 +97,6 @@ proc step_failed { step } {
 OPTRACE "impl_1" END { }
 }
 
-set_msg_config -id {Common 17-41} -limit 10000000
 
 OPTRACE "impl_1" START { ROLLUP_1 }
 OPTRACE "Phase: Write Bitstream" START { ROLLUP_AUTO }
@@ -109,7 +108,7 @@ set rc [catch {
   set_param chipscope.maxJobs 3
   set_param runs.launchOptions { -jobs 8  }
   open_checkpoint top_jls_vertical_routed.dcp
-  set_property webtalk.parent_dir {D:/techbistro/upwork/JPEG Encoder Project/JPEG_ENC_8f/JPEG_ENC_8f.cache/wt} [current_project]
+  set_property webtalk.parent_dir D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.cache/wt [current_project]
 set_property TOP top_jls_vertical [current_fileset]
 OPTRACE "read constraints: write_bitstream" START { }
 OPTRACE "read constraints: write_bitstream" END { }

@@ -6,4 +6,4 @@
 # IP: ip/blk_mem_gen_0_1/blk_mem_gen_0.xci
 set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==blk_mem_gen_0 || ORIG_REF_NAME==blk_mem_gen_0} -quiet] -quiet
 
-# XDC: d:/techbistro/upwork/JPEG Encoder Project/JPEG_ENC_8f/JPEG_ENC_8f.gen/sources_1/ip/blk_mem_gen_0_1/blk_mem_gen_0_ooc.xdc
+# XDC: d:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.gen/sources_1/ip/blk_mem_gen_0_1/blk_mem_gen_0_ooc.xdc
