@@ -162,7 +162,8 @@
       "Bash(taskkill /F /PID 4032 /PID 4464 /PID 26784 /PID 21052 /PID 18460 /PID 9076 /PID 24948 /PID 22256 /PID 25668 /PID 26680 /PID 23096 /PID 12872 /PID 20956 /PID 24660 /PID 27380 /PID 2560)",
       "Bash(\"/c/Users/admin/Downloads/Shared with *)",
       "Bash(rm -f \"D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.sim/output_block/enc\"*.pgm)",
-      "Bash(taskkill /F /PID 4464 /PID 21052 /PID 9076 /PID 22256 /PID 26680 /PID 12872 /PID 24660 /PID 21968)"
+      "Bash(taskkill /F /PID 4464 /PID 21052 /PID 9076 /PID 22256 /PID 26680 /PID 12872 /PID 24660 /PID 21968)",
+      "Bash('/c/Users/admin/Downloads/Shared with *)"
     ]
   }
 }

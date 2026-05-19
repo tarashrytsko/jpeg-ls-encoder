@@ -1,40 +1,27 @@
 `timescale 1ps/1ps
-//--------------------------------------------------------------------------------------------------------
-// Module  : top_jls_vertical
-// Type    : synthesizable top
-// Function: JPEG-LS Parallel Image Stream Compressor using vertical Splitting 
-//--------------------------------------------------------------------------------------------------------
 module top_jls_vertical #(
-    parameter integer N_E = 3,   // Number of encoders
+    parameter integer N_E = 6,
     parameter integer L   = 64,
     parameter [2:0]   nr  = 3'd0
 )(
     input  wire        rstn,
-    output  wire        clk,
+    output wire        clk,
     input  wire        clk_in1_p,
     input  wire        clk_in1_n,
 
-    // AXI-Stream Input
     input  wire        i_sof,
-    output  wire        i_e,
-    output  wire [7:0]  i_x,
-    output  wire [13:0] i_w,
-    output  wire [13:0] i_h,
+    output wire        i_e,
+    output wire [7:0]  i_x,
+    output wire [13:0] i_w,
+    output wire [13:0] i_h,
     output wire sys_rdy,
 
-    // AXI-Stream Output (Separate per encoder)
-    output wire        o_e0,
-    output wire        o_e1,
-    output wire        o_e2,
-    output wire        o_last0,
-    output wire        o_last1,
-    output wire        o_last2,
-    output wire [15:0] o_data0,
-    output wire [15:0] o_data1,
-    output wire [15:0] o_data2
+    output wire [N_E-1:0]    o_e,
+    output wire [N_E-1:0]    o_last,
+    output wire [N_E*16-1:0] o_data
 );
-wire  [N_E-1:0]  o_sof_st;
-    // Internal signals
+
+wire [N_E-1:0] o_sof_st;
     wire [N_E-1:0]     s_e;
     wire [N_E*8-1:0]   s_x;
     wire [N_E*14-1:0]  s_w;
@@ -42,7 +29,6 @@ wire  [N_E-1:0]  o_sof_st;
     wire [N_E-1:0]     o_last_enc;
     wire [$clog2(N_E)-1:0] encoder_sel;
     wire [N_E-1:0]     e_e;
-    wire [N_E-1:0]     e_last;
     wire [N_E*16-1:0]  e_data;
     wire [13:0]        x_cnt, y_cnt;
     wire               rd_clk;
@@ -53,14 +39,14 @@ wire  [N_E-1:0]  o_sof_st;
     wire locked;
     clk_wiz_0 clk_wiz_0 (
         .clk_out1(clk),       // 100 MHz
-        .clk_out2(rd_clk), // 33.33 MHz
+        .clk_out2(rd_clk),    // 33.33 MHz
         .reset(~rstn),
         .locked(locked),
         .clk_in1_p(clk_in1_p),
         .clk_in1_n(clk_in1_n)
     );
 
- // ---------------------------------------------------------
+    // ---------------------------------------------------------
     // Synchronize i_sof pulse
     // ---------------------------------------------------------
     reg sof_sync0, sof_sync1;
@@ -75,11 +61,12 @@ wire  [N_E-1:0]  o_sof_st;
         end else begin
             sof_sync0 <= i_sof;
             sof_sync1 <= sof_sync0;
-            i_sof_r <= sof_sync1;  // latch 1 clock
+            i_sof_r <= sof_sync1;
         end
     end
 
     assign i_sof_in = i_sof_r;
+
     // =================================================================
     // FIFO reset logic
     // =================================================================
@@ -88,7 +75,6 @@ wire  [N_E-1:0]  o_sof_st;
     wire [N_E-1:0] wr_rst_busy_output, rd_rst_busy_output;
     wire wr_busy = |(wr_rst_busy_input | wr_rst_busy_output);
     wire rd_busy = |(rd_rst_busy_input | rd_rst_busy_output);
-//    wire sys_rdy;
 
     fifo_reset_bram_async u_fifo_reset (
         .clk_rd(rd_clk),
@@ -100,10 +86,12 @@ wire  [N_E-1:0]  o_sof_st;
         .sys_rdy(sys_rdy)
     );
 
-      // Image Generator
-    // ---------------------------------------------------------
+    // =================================================================
+    // Image Generator
+    // =================================================================
     image_generator #(
-        .DATA_WIDTH(8)
+        .DATA_WIDTH(8),
+        .NUM_ENCODERS(N_E)
     ) u_image_generator (
         .clk           (clk),
         .rstn          (sys_rdy),
@@ -114,36 +102,32 @@ wire  [N_E-1:0]  o_sof_st;
         .i_w           (i_w),
         .i_h           (i_h),
         .i_sof_st      (o_sof_st)
-    ); 
-    //---------------------------------------------
-// Splitter Vertical Instantiation
-//---------------------------------------------
-splitter_block #(
-    .N_H(3),    // Number of encoders
-    .N_V(3),
-    .N_E(3)      // Slice height per encoder (optional)
-) u_splitter_block (
-    .sys_rdy     (rstn),       // System ready signal
-    .clk         (clk),           // System clock
-    .i_sof       (i_sof),         // Start-of-frame pulse
-    .i_e         (i_e),           // Pixel enable
-    .i_x         (i_x),           // Pixel data [7:0]
-    .i_w         (i_w),           // Image width (1146 for example)
-    .i_h         (i_h),           // Image height (609 for example)
+    );
 
-    // Outputs to encoder modules
- //   .o_sof       (o_sof),         // Start-of-frame pulse per encoder
-    .i_sof_st    (o_sof_st),      // 3000-cycle stretched strobe per encoder
-    .o_e         (s_e),           // Pixel enable per encoder
-    .o_x         (s_x),           // Pixel data per encoder
-    .o_w         (s_w),           // Width per encoder
-    .o_h         (s_h),           // Height per encoder
-
-    // Status / control outputs
-    .encoder_sel_d (encoder_sel),   // Current encoder index
-    .x_cnt_d       (x_cnt),         // Horizontal pixel counter
-    .y_cnt_d       (y_cnt)          // Vertical line counter
-);
+    // =================================================================
+    // Splitter (3 columns x 2 rows = 6 blocks)
+    // =================================================================
+    splitter_block #(
+        .N_H(3),
+        .N_V(4),
+        .N_E(N_E)
+    ) u_splitter_block (
+        .sys_rdy     (rstn),
+        .clk         (clk),
+        .i_sof       (i_sof),
+        .i_e         (i_e),
+        .i_x         (i_x),
+        .i_w         (i_w),
+        .i_h         (i_h),
+        .i_sof_st    (o_sof_st),
+        .o_e         (s_e),
+        .o_x         (s_x),
+        .o_w         (s_w),
+        .o_h         (s_h),
+        .encoder_sel_d (encoder_sel),
+        .x_cnt_d       (x_cnt),
+        .y_cnt_d       (y_cnt)
+    );
 
     // =================================================================
     // Input FIFO wrapper
@@ -196,72 +180,65 @@ splitter_block #(
     // =================================================================
     // FIFO read control
     // =================================================================
-   // wire [N_E*18-1:0] read_count_flat;
+    wire [N_E-1:0] i_sof_st_enc;
+    wire [32*N_E-1:0] read_count_flat;
 
-
-wire [N_E-1:0] i_sof_st_enc;
-wire [32*N_E-1:0] read_count_flat;
-
-fifo_read_control #(
-    .NUM_ENCODERS(N_E)
-) u_fifo_read_control (
-    .rd_clk(rd_clk),             // 50 MHz read clock
-    .sys_rdy(sys_rdy),           // system ready
-    .i_w_r(s_w),                   // image width
-    .i_h_r(s_h),                   // image height
-    .fifo_empty(empty),     // from FIFO wrapper
-    .fifo_valid(valid),     // from FIFO wrapper
-    .rd_en(fifo_rd_en),          // output to encoder read enable
-    .read_count_flat(read_count_flat), 
-    .i_sof_st_enc(i_sof_st_enc)  // block-level SOF for encoder
-);
+    fifo_read_control #(
+        .NUM_ENCODERS(N_E)
+    ) u_fifo_read_control (
+        .rd_clk(rd_clk),
+        .sys_rdy(sys_rdy),
+        .i_w_r(s_w),
+        .i_h_r(s_h),
+        .fifo_empty(empty),
+        .fifo_valid(valid),
+        .rd_en(fifo_rd_en),
+        .read_count_flat(read_count_flat),
+        .i_sof_st_enc(i_sof_st_enc)
+    );
 
     // =================================================================
     // Encoder wrapper
     // =================================================================
     wire [N_E-1:0] my_last;
-    wire [3:0]     last_enc_id;
+    wire [31:0]    last_enc_id;
 
-   encoder_wrapper #(
-    .N_E(N_E),
-    .nr(nr),
-    .L(L)
-) u_encoder_wrapper (
-    .rd_clk(rd_clk),           // 50 MHz read clock
-    .sys_rdy(sys_rdy),         // system ready
-    .i_w(s_w),                 // image width
-    .i_h(s_h),                 // image height
-    .rd_en_gated(valid),  // FIFO read enable (per encoder)
-    .enc_i_sofx(i_sof_st_enc),    // block-level SOF pulse
-    .dout(dout_flat),          // pixel data from FIFO
-    .o_last(o_last_enc),       // end of encoder signal
-    .my_last(my_last),         // ?
-    .e_e(e_e),                 // output valid
-    .e_data(e_data),           // encoded data
-    .last_enc_id(last_enc_id)  // which encoder finished
-);
-
+    encoder_wrapper #(
+        .N_E(N_E),
+        .nr(nr),
+        .L(L)
+    ) u_encoder_wrapper (
+        .rd_clk(rd_clk),
+        .sys_rdy(sys_rdy),
+        .i_w(s_w),
+        .i_h(s_h),
+        .rd_en_gated(valid),
+        .enc_i_sofx(i_sof_st_enc),
+        .dout(dout_flat),
+        .o_last(o_last_enc),
+        .my_last(my_last),
+        .e_e(e_e),
+        .e_data(e_data),
+        .last_enc_id(last_enc_id)
+    );
 
     // =================================================================
-    // Output FIFO wrapper (Separate outputs)
+    // Output FIFO wrapper
     // =================================================================
     fifo_wrapper_output #(
         .N_E(N_E)
-      //  .L(L)
     ) u_fifo_wrapper_output (
         .rst         (fifo_rst),
         .wr_clk      (rd_clk),
         .rd_clk      (clk),
         .din_flat    (e_data),
         .wr_en       (e_e),
-    //    .my_last     (my_last),
         .o_last_enc  (o_last_enc),
-        .fifo_dout_flat   ({o_data2, o_data1, o_data0}),
-        .dout_valid  ({o_e2, o_e1, o_e0}),
-        .dout_last   ({o_last2, o_last1, o_last0}),
+        .fifo_dout_flat (o_data),
+        .dout_valid  (o_e),
+        .dout_last   (o_last),
         .wr_rst_busy (wr_rst_busy_output),
         .rd_rst_busy (rd_rst_busy_output)
     );
-
 
 endmodule

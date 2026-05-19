@@ -43,8 +43,8 @@ assign P_QBPPS[5] = 4'd5;
 assign P_QBPPS[6] = 4'd5;
 assign P_QBPPS[7] = 4'd5;
 
-localparam N_H = 3; // horizontal blocks
-localparam N_V = 3; // vertical blocks
+localparam N_H = 1; // horizontal blocks per encoder
+localparam N_V = 1; // vertical blocks per encoder
 
 localparam                     P_LOSSY     = (NEAR != 3'd0);
 localparam        signed [8:0] P_NEAR      = $signed({6'd0, NEAR});

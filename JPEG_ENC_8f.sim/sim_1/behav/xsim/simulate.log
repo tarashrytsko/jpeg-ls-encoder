@@ -3,8 +3,8 @@
 # SW Build 5239630 on Fri Nov 08 22:35:27 MST 2024
 # IP Build 5239520 on Sun Nov 10 16:12:51 MST 2024
 # SharedData Build 5239561 on Fri Nov 08 14:39:27 MST 2024
-# Start of session at: Tue May 19 11:53:32 2026
-# Process ID         : 23428
+# Start of session at: Tue May 19 15:18:56 2026
+# Process ID         : 20660
 # Current directory  : D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.sim/sim_1/behav/xsim
 # Command line       : xsim.exe -log simulate.log -mode tcl -source {xsim.dir/tb_top_jls_vertical_behav/xsim_script.tcl}
 # Log file           : D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.sim/sim_1/behav/xsim/simulate.log
@@ -19,43 +19,55 @@
 # Host memory        : 16840 MB
 # Swap memory        : 9126 MB
 # Total Virtual      : 25967 MB
-# Available Virtual  : 14486 MB
+# Available Virtual  : 14973 MB
 #-----------------------------------------------------------
 source xsim.dir/tb_top_jls_vertical_behav/xsim_script.tcl
 # xsim {tb_top_jls_vertical_behav} -autoloadwcfg -tclbatch {tb_top_jls_vertical.tcl}
 Time resolution is 1 ps
 source tb_top_jls_vertical.tcl
 ## run all
-image_generator: opened D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.sim/images/world_gray_3000x3000.pgm  3000x3000 depth=255  streaming 3000x3000
+image_generator: opened D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.sim/images/processed_Roads_detection_PAN.pgm  1500x1500 depth=255  streaming 1500x1500
 WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
 WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
 WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
 WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
 WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
 WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
-[0] OPEN enc0a, enc1a, enc2a
-[30091557500] CLOSE enc0a.jls words=88091 bytes=176182 first4=ff d8 ff f7 SOI=1@0 EOI=1@176179
-[30091557500] OPEN enc0b.jls
-[30091557500] CLOSE enc1a.jls words=70035 bytes=140070 first4=ff d8 ff f7 SOI=1@0 EOI=1@140067
-[30091557500] OPEN enc1b.jls
-[30091557500] CLOSE enc2a.jls words=42943 bytes=85886 first4=ff d8 ff f7 SOI=1@0 EOI=1@85884
-[30091557500] OPEN enc2b.jls
-[60181737500] CLOSE enc0b.jls words=126543 bytes=253086 first4=ff d8 ff f7 SOI=1@0 EOI=1@253083
-[60181737500] OPEN enc0c.jls
-[60181737500] CLOSE enc1b.jls words=246478 bytes=492956 first4=ff d8 ff f7 SOI=1@0 EOI=1@492954
-[60181737500] OPEN enc1c.jls
-[60181737500] CLOSE enc2b.jls words=249955 bytes=499910 first4=ff d8 ff f7 SOI=1@0 EOI=1@499907
-[60181737500] OPEN enc2c.jls
-image_generator: done streaming 9000000 pixels
-[90271917500] CLOSE enc0c.jls words=32221 bytes=64442 first4=ff d8 ff f7 SOI=1@0 EOI=1@64439
-[90271917500] DONE enc0 total_words=246855 total_bytes=493710
-[90271917500] CLOSE enc1c.jls words=31819 bytes=63638 first4=ff d8 ff f7 SOI=1@0 EOI=1@63635
-[90271917500] DONE enc1 total_words=348332 total_bytes=696664
-[90271917500] CLOSE enc2c.jls words=54809 bytes=109618 first4=ff d8 ff f7 SOI=1@0 EOI=1@109615
-[90271917500] DONE enc2 total_words=347707 total_bytes=695414
-=== All encoder slices complete (9 files total) ===
-$finish called at time : 90272417500 ps : File "D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/sim_1/imports/FPGA Encoders/tb_top_jls_vertical.v" Line 346
-run: Time (s): cpu = 00:00:05 ; elapsed = 01:11:48 . Memory (MB): peak = 202.621 ; gain = 0.000
-xsim: Time (s): cpu = 00:00:06 ; elapsed = 01:11:49 . Memory (MB): peak = 202.621 ; gain = 32.574
-xsim% INFO: xsimkernel Simulation Memory Usage: 353480 KB (Peak: 353480 KB), Simulation CPU Usage: 4297093 ms
-INFO: [Common 17-206] Exiting xsim at Tue May 19 13:05:22 2026...
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+[0] OPEN all encoder files (enc0a..enc5a)
+[5716557500] CLOSE enc0a.jls words=9755 bytes=19510
+[5716557500] OPEN enc0b.jls
+[5716557500] CLOSE enc1a.jls words=14669 bytes=29338
+[5716557500] OPEN enc1b.jls
+[5716557500] CLOSE enc2a.jls words=20714 bytes=41428
+[5716557500] OPEN enc2b.jls
+[11431707500] CLOSE enc5a.jls words=16390 bytes=32780
+[11431707500] OPEN enc5b.jls
+[11431737500] CLOSE enc3a.jls words=4105 bytes=8210
+[11431737500] OPEN enc3b.jls
+[11431737500] CLOSE enc4a.jls words=11295 bytes=22590
+[11431737500] OPEN enc4b.jls
+[17146917500] CLOSE enc0b.jls words=6967 bytes=13934
+[17146917500] DONE enc0 total_bytes=33444
+[17146917500] CLOSE enc1b.jls words=15250 bytes=30500
+[17146917500] DONE enc1 total_bytes=59838
+[17146917500] CLOSE enc2b.jls words=17371 bytes=34742
+[17146917500] DONE enc2 total_bytes=76170
+image_generator: done streaming 2250000 pixels
+[22862067500] CLOSE enc4b.jls words=15425 bytes=30850
+[22862067500] DONE enc4 total_bytes=53440
+[22862067500] CLOSE enc5b.jls words=18285 bytes=36570
+[22862067500] DONE enc5 total_bytes=69350
+[22862097500] CLOSE enc3b.jls words=13946 bytes=27892
+[22862097500] DONE enc3 total_bytes=36102
+=== All 6 encoder slices complete (12 files total) ===
+$finish called at time : 22862597500 ps : File "D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/sim_1/imports/FPGA Encoders/tb_top_jls_vertical.v" Line 178
+run: Time (s): cpu = 00:00:02 ; elapsed = 00:18:37 . Memory (MB): peak = 203.332 ; gain = 0.000
+xsim: Time (s): cpu = 00:00:02 ; elapsed = 00:18:38 . Memory (MB): peak = 203.332 ; gain = 32.973
+xsim% INFO: xsimkernel Simulation Memory Usage: 160064 KB (Peak: 160064 KB), Simulation CPU Usage: 1112702 ms
+INFO: [Common 17-206] Exiting xsim at Tue May 19 15:37:35 2026...
