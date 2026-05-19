@@ -3,8 +3,8 @@
 # SW Build 5239630 on Fri Nov 08 22:35:27 MST 2024
 # IP Build 5239520 on Sun Nov 10 16:12:51 MST 2024
 # SharedData Build 5239561 on Fri Nov 08 14:39:27 MST 2024
-# Start of session at: Fri May 15 23:25:12 2026
-# Process ID         : 4504
+# Start of session at: Tue May 19 10:34:15 2026
+# Process ID         : 13828
 # Current directory  : D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.sim/sim_1/behav/xsim
 # Command line       : xsim.exe -log simulate.log -mode tcl -source {xsim.dir/tb_top_jls_vertical_behav/xsim_script.tcl}
 # Log file           : D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.sim/sim_1/behav/xsim/simulate.log
@@ -17,27 +17,16 @@
 # CPU Physical cores : 6
 # CPU Logical cores  : 12
 # Host memory        : 16840 MB
-# Swap memory        : 8757 MB
-# Total Virtual      : 25597 MB
-# Available Virtual  : 14399 MB
+# Swap memory        : 9126 MB
+# Total Virtual      : 25967 MB
+# Available Virtual  : 14687 MB
 #-----------------------------------------------------------
 source xsim.dir/tb_top_jls_vertical_behav/xsim_script.tcl
-# xsim {tb_top_jls_vertical_behav} -autoloadwcfg -tclbatch {tb_top_jls_vertical.tcl} -key {Behavioral:sim_1:Functional:tb_top_jls_vertical}
+# xsim {tb_top_jls_vertical_behav} -autoloadwcfg -tclbatch {tb_top_jls_vertical.tcl}
 Time resolution is 1 ps
 source tb_top_jls_vertical.tcl
-## set curr_wave [current_wave_config]
-## if { [string length $curr_wave] == 0 } {
-##   if { [llength [get_objects]] > 0} {
-##     add_wave /
-##     set_property needs_save false [current_wave_config]
-##   } else {
-##      send_msg_id Add_Wave-1 WARNING "No top level signals found. Simulator will start without a wave window. If you want to open a wave window go to 'File->New Waveform Configuration' or type 'create_wave_config' in the TCL console."
-##   }
-## }
 ## run all
- Block Memory Generator module loading initial data...
- Block Memory Generator data initialization complete.
-Block Memory Generator module tb_top_jls_vertical.dut.u_image_generator.u_bram.inst.native_mem_module.blk_mem_gen_v8_4_9_inst is using a behavioral model for simulation which will not precisely model memory collision behavior.
+image_generator: opened D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.sim/images/world_gray_2100x2100.pgm  2100x2100 depth=255  streaming 2100x2100
 WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
 WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
 WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
@@ -45,27 +34,28 @@ WARNING: Behavioral models for independent clock FIFO configurations do not mode
 WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
 WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
 [0] OPEN enc0a, enc1a, enc2a
-[310607500] CLOSE enc0a.jls words=936 bytes=1872 first4=ff d8 ff f7 SOI=1@0 EOI=1@1870
-[310607500] OPEN enc0b.jls
-[312387500] CLOSE enc1a.jls words=1200 bytes=2400 first4=ff d8 ff f7 SOI=1@0 EOI=1@2398
-[312387500] OPEN enc1b.jls
-[313720833] CLOSE enc2a.jls words=1400 bytes=2800 first4=ff d8 ff f7 SOI=1@0 EOI=1@2797
-[313720833] OPEN enc2b.jls
-[613447500] CLOSE enc1b.jls words=845 bytes=1690 first4=ff d8 ff f7 SOI=1@0 EOI=1@1687
-[613447500] OPEN enc1c.jls
-[615660833] CLOSE enc0b.jls words=1177 bytes=2354 first4=ff d8 ff f7 SOI=1@0 EOI=1@2351
-[615660833] OPEN enc0c.jls
-[616587500] CLOSE enc2b.jls words=1316 bytes=2632 first4=ff d8 ff f7 SOI=1@0 EOI=1@2630
-[616587500] OPEN enc2c.jls
-[918294166] CLOSE enc0c.jls words=1056 bytes=2112 first4=ff d8 ff f7 SOI=1@0 EOI=1@2110
-[918294166] DONE enc0 total_words=3169 total_bytes=6338
-[919054166] CLOSE enc1c.jls words=1170 bytes=2340 first4=ff d8 ff f7 SOI=1@0 EOI=1@2337
-[919054166] DONE enc1 total_words=3215 total_bytes=6430
-[919367500] CLOSE enc2c.jls words=1217 bytes=2434 first4=ff d8 ff f7 SOI=1@0 EOI=1@2432
-[919367500] DONE enc2 total_words=3933 total_bytes=7866
+[14791527500] CLOSE enc2a.jls words=29401 bytes=58802 first4=ff d8 ff f7 SOI=1@0 EOI=1@58800
+[14791527500] OPEN enc2b.jls
+[14791557500] CLOSE enc0a.jls words=36840 bytes=73680 first4=ff d8 ff f7 SOI=1@0 EOI=1@73677
+[14791557500] OPEN enc0b.jls
+[14791557500] CLOSE enc1a.jls words=32216 bytes=64432 first4=ff d8 ff f7 SOI=1@0 EOI=1@64429
+[14791557500] OPEN enc1b.jls
+[29581707500] CLOSE enc0b.jls words=69166 bytes=138332 first4=ff d8 ff f7 SOI=1@0 EOI=1@138330
+[29581707500] OPEN enc0c.jls
+[29581737500] CLOSE enc1b.jls words=78664 bytes=157328 first4=ff d8 ff f7 SOI=1@0 EOI=1@157325
+[29581737500] OPEN enc1c.jls
+[29581737500] CLOSE enc2b.jls words=66727 bytes=133454 first4=ff d8 ff f7 SOI=1@0 EOI=1@133452
+[29581737500] OPEN enc2c.jls
+image_generator: done streaming 4410000 pixels
+[44371887500] CLOSE enc2c.jls words=124832 bytes=249664 first4=ff d8 ff f7 SOI=1@0 EOI=1@249662
+[44371887500] DONE enc2 total_words=220960 total_bytes=441920
+[44371917500] CLOSE enc0c.jls words=46806 bytes=93612 first4=ff d8 ff f7 SOI=1@0 EOI=1@93610
+[44371917500] DONE enc0 total_words=152812 total_bytes=305624
+[44371917500] CLOSE enc1c.jls words=91875 bytes=183750 first4=ff d8 ff f7 SOI=1@0 EOI=1@183748
+[44371917500] DONE enc1 total_words=202755 total_bytes=405510
 === All encoder slices complete (9 files total) ===
-$finish called at time : 919700833 ps : File "D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/sim_1/imports/FPGA Encoders/tb_top_jls_vertical.v" Line 346
-run: Time (s): cpu = 00:00:01 ; elapsed = 00:00:10 . Memory (MB): peak = 202.879 ; gain = 0.000
-xsim: Time (s): cpu = 00:00:01 ; elapsed = 00:00:11 . Memory (MB): peak = 202.879 ; gain = 32.660
-xsim% INFO: xsimkernel Simulation Memory Usage: 46688 KB (Peak: 46688 KB), Simulation CPU Usage: 10796 ms
-INFO: [Common 17-206] Exiting xsim at Fri May 15 23:25:24 2026...
+$finish called at time : 44372417500 ps : File "D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/sim_1/imports/FPGA Encoders/tb_top_jls_vertical.v" Line 346
+run: Time (s): cpu = 00:00:02 ; elapsed = 00:33:55 . Memory (MB): peak = 203.062 ; gain = 0.000
+xsim: Time (s): cpu = 00:00:03 ; elapsed = 00:33:56 . Memory (MB): peak = 203.062 ; gain = 32.234
+xsim% INFO: xsimkernel Simulation Memory Usage: 250804 KB (Peak: 250804 KB), Simulation CPU Usage: 2031078 ms
+INFO: [Common 17-206] Exiting xsim at Tue May 19 11:08:12 2026...

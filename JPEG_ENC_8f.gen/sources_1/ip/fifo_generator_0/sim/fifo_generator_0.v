@@ -106,8 +106,8 @@ output wire empty;
 output wire almost_empty;
 output wire valid;
 output wire underflow;
-output wire [16 : 0] rd_data_count;
-output wire [16 : 0] wr_data_count;
+output wire [21 : 0] rd_data_count;
+output wire [21 : 0] wr_data_count;
 output wire wr_rst_busy;
 output wire rd_rst_busy;
 
@@ -115,7 +115,7 @@ output wire rd_rst_busy;
     .C_COMMON_CLOCK(0),
     .C_SELECT_XPM(0),
     .C_COUNT_TYPE(0),
-    .C_DATA_COUNT_WIDTH(17),
+    .C_DATA_COUNT_WIDTH(22),
     .C_DEFAULT_VALUE("BlankString"),
     .C_DIN_WIDTH(8),
     .C_DOUT_RST_VAL("0"),
@@ -151,13 +151,13 @@ output wire rd_rst_busy;
     .C_PROG_EMPTY_THRESH_ASSERT_VAL(2),
     .C_PROG_EMPTY_THRESH_NEGATE_VAL(3),
     .C_PROG_EMPTY_TYPE(0),
-    .C_PROG_FULL_THRESH_ASSERT_VAL(131069),
-    .C_PROG_FULL_THRESH_NEGATE_VAL(131068),
+    .C_PROG_FULL_THRESH_ASSERT_VAL(4194301),
+    .C_PROG_FULL_THRESH_NEGATE_VAL(4194300),
     .C_PROG_FULL_TYPE(0),
-    .C_RD_DATA_COUNT_WIDTH(17),
-    .C_RD_DEPTH(131072),
+    .C_RD_DATA_COUNT_WIDTH(22),
+    .C_RD_DEPTH(4194304),
     .C_RD_FREQ(1),
-    .C_RD_PNTR_WIDTH(17),
+    .C_RD_PNTR_WIDTH(22),
     .C_UNDERFLOW_LOW(0),
     .C_USE_DOUT_RST(1),
     .C_USE_ECC(0),
@@ -168,10 +168,10 @@ output wire rd_rst_busy;
     .C_USE_FWFT_DATA_COUNT(0),
     .C_VALID_LOW(0),
     .C_WR_ACK_LOW(0),
-    .C_WR_DATA_COUNT_WIDTH(17),
-    .C_WR_DEPTH(131072),
+    .C_WR_DATA_COUNT_WIDTH(22),
+    .C_WR_DEPTH(4194304),
     .C_WR_FREQ(1),
-    .C_WR_PNTR_WIDTH(17),
+    .C_WR_PNTR_WIDTH(22),
     .C_WR_RESPONSE_LATENCY(1),
     .C_MSGON_VAL(1),
     .C_ENABLE_RST_SYNC(1),

@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2024.2 (win64) Build 5239630 Fri Nov 08 22:35:27 MST 2024
-| Date             : Fri May 15 22:15:45 2026
+| Date             : Sun May 17 13:10:24 2026
 | Host             : DESKTOP-PHB4K70 running 64-bit major release  (build 9200)
 | Command          : report_power -file top_jls_vertical_power_routed.rpt -pb top_jls_vertical_power_summary_routed.pb -rpx top_jls_vertical_power_routed.rpx
 | Design           : top_jls_vertical
@@ -30,11 +30,11 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 0.277        |
+| Total On-Chip Power (W)  | 0.276        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
 | Dynamic (W)              | 0.132        |
-| Device Static (W)        | 0.145        |
+| Device Static (W)        | 0.144        |
 | Effective TJA (C/W)      | 1.9          |
 | Max Ambient (C)          | 84.5         |
 | Junction Temperature (C) | 25.5         |
@@ -52,22 +52,22 @@ Table of Contents
 +--------------------------+-----------+----------+-----------+-----------------+
 | On-Chip                  | Power (W) | Used     | Available | Utilization (%) |
 +--------------------------+-----------+----------+-----------+-----------------+
-| Clocks                   |     0.011 |        6 |       --- |             --- |
-| Slice Logic              |    <0.001 |    18424 |       --- |             --- |
-|   LUT as Logic           |    <0.001 |     8192 |    133800 |            6.12 |
-|   CARRY4                 |    <0.001 |     1036 |     33450 |            3.10 |
-|   Register               |    <0.001 |     5472 |    267600 |            2.04 |
+| Clocks                   |     0.009 |        6 |       --- |             --- |
+| Slice Logic              |     0.001 |    15885 |       --- |             --- |
+|   LUT as Logic           |    <0.001 |     7005 |    133800 |            5.24 |
+|   CARRY4                 |    <0.001 |      639 |     33450 |            1.91 |
+|   Register               |    <0.001 |     5039 |    267600 |            1.88 |
 |   LUT as Distributed RAM |    <0.001 |      540 |     46200 |            1.17 |
-|   F7/F8 Muxes            |    <0.001 |      105 |    133800 |            0.08 |
-|   Others                 |     0.000 |      745 |       --- |             --- |
+|   F7/F8 Muxes            |    <0.001 |       81 |    133800 |            0.06 |
+|   Others                 |     0.000 |      687 |       --- |             --- |
 |   LUT as Shift Register  |     0.000 |       12 |     46200 |            0.03 |
-| Signals                  |     0.001 |    14878 |       --- |             --- |
-| Block RAM                |     0.025 |    226.5 |       365 |           62.05 |
+| Signals                  |     0.002 |    12337 |       --- |             --- |
+| Block RAM                |     0.025 |    199.5 |       365 |           54.66 |
 | MMCM                     |     0.086 |        1 |        10 |           10.00 |
-| DSPs                     |     0.000 |       12 |       740 |            1.62 |
-| I/O                      |     0.008 |       97 |       400 |           24.25 |
-| Static Power             |     0.145 |          |           |                 |
-| Total                    |     0.277 |          |           |                 |
+| DSPs                     |     0.000 |        2 |       740 |            0.27 |
+| I/O                      |     0.009 |       96 |       400 |           24.00 |
+| Static Power             |     0.144 |          |           |                 |
+| Total                    |     0.276 |          |           |                 |
 +--------------------------+-----------+----------+-----------+-----------------+
 
 
@@ -77,7 +77,7 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
-| Vccint    |       1.000 |     0.073 |       0.037 |      0.036 |       NA    | Unspecified | NA         |
+| Vccint    |       1.000 |     0.071 |       0.036 |      0.035 |       NA    | Unspecified | NA         |
 | Vccaux    |       1.800 |     0.079 |       0.049 |      0.031 |       NA    | Unspecified | NA         |
 | Vcco33    |       3.300 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco25    |       2.500 |     0.007 |       0.002 |      0.005 |       NA    | Unspecified | NA         |
@@ -86,7 +86,7 @@ Table of Contents
 | Vcco135   |       1.350 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco12    |       1.200 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vccaux_io |       1.800 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
-| Vccbram   |       1.000 |     0.008 |       0.002 |      0.006 |       NA    | Unspecified | NA         |
+| Vccbram   |       1.000 |     0.008 |       0.002 |      0.005 |       NA    | Unspecified | NA         |
 | MGTAVcc   |       1.000 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | MGTAVtt   |       1.200 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vccadc    |       1.800 |     0.020 |       0.000 |      0.020 |       NA    | Unspecified | NA         |
@@ -156,7 +156,7 @@ Table of Contents
 |     ENC_INST[0].u_encoder   |     0.002 |
 |     ENC_INST[1].u_encoder   |     0.002 |
 |     ENC_INST[2].u_encoder   |     0.002 |
-|   u_fifo_wrapper_input      |     0.009 |
+|   u_fifo_wrapper_input      |     0.008 |
 |     GEN_FIFO[0].u_fifo_inst |     0.003 |
 |       U0                    |     0.003 |
 |     GEN_FIFO[1].u_fifo_inst |     0.003 |

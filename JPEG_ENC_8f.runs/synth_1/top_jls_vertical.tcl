@@ -89,9 +89,6 @@ read_verilog -library xil_defaultlib {
   {D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/sources_1/imports/FPGA Encoders/jls_encoder.v}
   {D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/sources_1/imports/FPGA Encoders/top_jls_vertical.v}
 }
-read_ip -quiet D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/sources_1/ip/blk_mem_gen_0_1/blk_mem_gen_0.xci
-set_property used_in_implementation false [get_files -all d:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.gen/sources_1/ip/blk_mem_gen_0_1/blk_mem_gen_0_ooc.xdc]
-
 read_ip -quiet D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/sources_1/ip/fifo_output/fifo_output.xci
 set_property used_in_implementation false [get_files -all d:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.gen/sources_1/ip/fifo_output/fifo_output.xdc]
 set_property used_in_implementation false [get_files -all d:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.gen/sources_1/ip/fifo_output/fifo_output_clocks.xdc]
@@ -119,8 +116,6 @@ foreach dcp [get_files -quiet -all -filter file_type=="Design\ Checkpoint"] {
 read_xdc D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/constrs_1/imports/new/top_jls_vertical.xdc
 set_property used_in_implementation false [get_files D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/constrs_1/imports/new/top_jls_vertical.xdc]
 
-read_xdc dont_touch.xdc
-set_property used_in_implementation false [get_files dont_touch.xdc]
 set_param ips.enableIPCacheLiteLoad 1
 
 read_checkpoint -auto_incremental -incremental D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/utils_1/imports/synth_1/top_jls_vertical.dcp

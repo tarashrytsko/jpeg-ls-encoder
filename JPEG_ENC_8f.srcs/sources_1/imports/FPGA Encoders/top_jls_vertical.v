@@ -26,12 +26,12 @@ module top_jls_vertical #(
     output wire        o_e0,
     output wire        o_e1,
     output wire        o_e2,
-    output reg        o_last0,
-    output reg        o_last1,
-    output reg        o_last2,
-    output reg [15:0] o_data0,
-    output reg [15:0] o_data1,
-    output reg [15:0] o_data2
+    output wire        o_last0,
+    output wire        o_last1,
+    output wire        o_last2,
+    output wire [15:0] o_data0,
+    output wire [15:0] o_data1,
+    output wire [15:0] o_data2
 );
 wire  [N_E-1:0]  o_sof_st;
     // Internal signals
@@ -41,8 +41,6 @@ wire  [N_E-1:0]  o_sof_st;
     wire [N_E*14-1:0]  s_h;
     wire [N_E-1:0]     o_last_enc;
     wire [$clog2(N_E)-1:0] encoder_sel;
-    wire [15:0] o_data0x, o_data1x,o_data2x;
-    wire o_last0x,o_last1x, o_last2x;
     wire [N_E-1:0]     e_e;
     wire [N_E-1:0]     e_last;
     wire [N_E*16-1:0]  e_data;
@@ -54,8 +52,8 @@ wire  [N_E-1:0]  o_sof_st;
     // =================================================================
     wire locked;
     clk_wiz_0 clk_wiz_0 (
-        .clk_out1(clk),       // 150 MHz
-        .clk_out2(rd_clk), // 50 MHz
+        .clk_out1(clk),       // 100 MHz
+        .clk_out2(rd_clk), // 33.33 MHz
         .reset(~rstn),
         .locked(locked),
         .clk_in1_p(clk_in1_p),
@@ -105,17 +103,17 @@ wire  [N_E-1:0]  o_sof_st;
       // Image Generator
     // ---------------------------------------------------------
     image_generator #(
-        .ADDR_WIDTH(17),
         .DATA_WIDTH(8)
     ) u_image_generator (
-        .clk         (clk),
-        .rstn        (sys_rdy),
-        .i_sof_st    (o_sof_st),
-        .i_sof       (i_sof_in),
-        .pixel_out   (i_x),
-        .pixel_valid (i_e),
-        .i_w         (i_w),
-        .i_h         (i_h)
+        .clk           (clk),
+        .rstn          (sys_rdy),
+        .i_sof         (i_sof_in),
+        .fifo_overflow (fifo_full),
+        .pixel_out     (i_x),
+        .pixel_valid   (i_e),
+        .i_w           (i_w),
+        .i_h           (i_h),
+        .i_sof_st      (o_sof_st)
     ); 
     //---------------------------------------------
 // Splitter Vertical Instantiation
@@ -153,6 +151,7 @@ splitter_block #(
     wire [8*N_E-1:0]  din_flat = s_x;
     wire [8*N_E-1:0]  dout_flat;
     wire [N_E-1:0]    valid, fifo_rd_en, empty, overflow, fifo_wr_en, almost_empty;
+    wire [N_E-1:0]    fifo_full;
     wire [N_E*18-1:0] fifo_count_flat;
 
     fifo_wrapper_input #(.N_E(N_E)) u_fifo_wrapper_input (
@@ -163,6 +162,7 @@ splitter_block #(
         .wr_en(fifo_wr_en),
         .rd_en(fifo_rd_en),
         .dout_flat(dout_flat),
+        .full(fifo_full),
         .overflow(overflow),
         .empty(empty),
         .almost_empty(almost_empty),
@@ -181,6 +181,7 @@ splitter_block #(
         .wr_clk(clk),
         .rstn(~fifo_rst),
         .s_e(s_e),
+        .fifo_full(fifo_full),
         .fifo_overflow(overflow),
         .x_cnt(x_cnt),
         .y_cnt(y_cnt),
@@ -255,31 +256,12 @@ fifo_read_control #(
         .wr_en       (e_e),
     //    .my_last     (my_last),
         .o_last_enc  (o_last_enc),
-        .fifo_dout_flat   ({o_data2x, o_data1x, o_data0x}),
+        .fifo_dout_flat   ({o_data2, o_data1, o_data0}),
         .dout_valid  ({o_e2, o_e1, o_e0}),
-        .dout_last   ({o_last2x, o_last1x, o_last0x}),
+        .dout_last   ({o_last2, o_last1, o_last0}),
         .wr_rst_busy (wr_rst_busy_output),
         .rd_rst_busy (rd_rst_busy_output)
     );
 
-always @(posedge clk)
-begin
-if(fifo_rst) begin
-o_data0 <=0;
-o_data1 <=0;
-o_data2 <=0;
-o_last0 <=0;
-o_last1<=0;
-o_last2 <=0;
-end
-else begin
-o_data0 <=o_data0x;
-o_data1 <=o_data1x;
-o_data2 <=o_data2x;
-o_last0 <=o_last0x;
-o_last1<=o_last1x;
-o_last2 <=o_last2x;
-end
-end
 
 endmodule

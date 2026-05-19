@@ -21,15 +21,13 @@
 `define BUBBLE_CONTROL  (-1)
 
 // the input and output file names' format
-`define FILE_NAME_FORMAT  "processed_Roads_detection_PAN"
+`define FILE_NAME_FORMAT  "world_gray_1000x1000"
 
 // input file (uncompressed .pgm file) directory
-//`define INPUT_PGM_DIR     "C:/Users/admin/Downloads/Shared with VM/FPGA-JPEG-LS-encoder/SIM/images"
-`define INPUT_PGM_DIR     "C:/FPGA Encoders/images"
+`define INPUT_PGM_DIR     "D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.sim/images"
 
 // output file (compressed .jls file) directory
-//`define OUTPUT_JLS_DIR    "C:/Users/admin/Downloads/Shared with VM/FPGA-JPEG-LS-encoder/SIM"
-`define OUTPUT_JLS_DIR    "C:/FPGA Encoders/output Jls_Encoder_Data"
+`define OUTPUT_JLS_DIR    "D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.sim/output"
 
 module tb_jls_encoder ();
 
@@ -54,7 +52,7 @@ wire       o_e;
 wire       o_last;
 wire [15:0] o_data;
 
-reg [7:0] img [8192*8192-1:0]; // new: [0:8192*8192-1];
+reg [7:0] img [16000*10800-1:0];
 integer w = 0, h = 0;
 
 task load_img;

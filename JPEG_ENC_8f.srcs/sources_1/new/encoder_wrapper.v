@@ -4,7 +4,7 @@ module encoder_wrapper #(
     parameter integer nr  = 0,   // NEAR parameter for JPEG-LS
     parameter integer L   = 64   // Slice height per encoder
 )(
-    input  wire              rd_clk,       // 50MHz
+    input  wire              rd_clk,       // 10MHz
     input  wire              sys_rdy,      // ready signal
     input  wire [13:0]       i_w,          // bytes per line
     input  wire [13:0]       i_h,          // total lines
@@ -37,6 +37,15 @@ module encoder_wrapper #(
             rd_en_gatedx <= 0;
         else
             rd_en_gatedx <= rd_en_gated;
+    end
+
+    // Per-encoder block width
+    reg [13:0] blk_w [0:N_E-1];
+    integer bw_i;
+    always @(*) begin
+        for (bw_i = 0; bw_i < N_E-1; bw_i = bw_i + 1)
+            blk_w[bw_i] = s_w / N_E;
+        blk_w[N_E-1] = s_w - (s_w / N_E) * (N_E - 1);
     end
 
     wire [31:0] total_slices = s_h / N_E;

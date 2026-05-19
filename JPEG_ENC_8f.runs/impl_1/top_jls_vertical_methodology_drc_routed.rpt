@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2024.2 (win64) Build 5239630 Fri Nov 08 22:35:27 MST 2024
-| Date         : Fri May 15 22:15:38 2026
+| Date         : Sun May 17 13:10:07 2026
 | Host         : DESKTOP-PHB4K70 running 64-bit major release  (build 9200)
 | Command      : report_methodology -file top_jls_vertical_methodology_drc_routed.rpt -pb top_jls_vertical_methodology_drc_routed.pb -rpx top_jls_vertical_methodology_drc_routed.rpx
 | Design       : top_jls_vertical
@@ -35,32 +35,32 @@ Table of Contents
 -----------------
 PDRC-190#1 Warning
 Suboptimally placed synchronized register chain  
-The FDRE cell u_fifo_wrapper_input/GEN_FIFO[0].u_fifo_inst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d2_reg in site SLICE_X4Y140 is part of a synchronized register chain that is suboptimally placed as the load FDSE cell u_fifo_wrapper_input/GEN_FIFO[0].u_fifo_inst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d3_reg is not placed in the same (SLICE) site.
+The FDRE cell u_fifo_wrapper_input/GEN_FIFO[0].u_fifo_inst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d2_reg in site SLICE_X123Y4 is part of a synchronized register chain that is suboptimally placed as the load FDSE cell u_fifo_wrapper_input/GEN_FIFO[0].u_fifo_inst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d3_reg is not placed in the same (SLICE) site.
 Related violations: <none>
 
 PDRC-190#2 Warning
 Suboptimally placed synchronized register chain  
-The FDRE cell u_fifo_wrapper_input/GEN_FIFO[1].u_fifo_inst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d2_reg in site SLICE_X9Y136 is part of a synchronized register chain that is suboptimally placed as the load FDSE cell u_fifo_wrapper_input/GEN_FIFO[1].u_fifo_inst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d3_reg is not placed in the same (SLICE) site.
+The FDRE cell u_fifo_wrapper_input/GEN_FIFO[1].u_fifo_inst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d2_reg in site SLICE_X47Y13 is part of a synchronized register chain that is suboptimally placed as the load FDSE cell u_fifo_wrapper_input/GEN_FIFO[1].u_fifo_inst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d3_reg is not placed in the same (SLICE) site.
 Related violations: <none>
 
 PDRC-190#3 Warning
 Suboptimally placed synchronized register chain  
-The FDRE cell u_fifo_wrapper_input/GEN_FIFO[2].u_fifo_inst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d2_reg in site SLICE_X39Y143 is part of a synchronized register chain that is suboptimally placed as the load FDSE cell u_fifo_wrapper_input/GEN_FIFO[2].u_fifo_inst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d3_reg is not placed in the same (SLICE) site.
+The FDRE cell u_fifo_wrapper_input/GEN_FIFO[2].u_fifo_inst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d2_reg in site SLICE_X115Y11 is part of a synchronized register chain that is suboptimally placed as the load FDSE cell u_fifo_wrapper_input/GEN_FIFO[2].u_fifo_inst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d3_reg is not placed in the same (SLICE) site.
 Related violations: <none>
 
 PDRC-190#4 Warning
 Suboptimally placed synchronized register chain  
-The FDRE cell u_fifo_wrapper_output/GEN_FIFO[0].u_fifo/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d2_reg in site SLICE_X46Y128 is part of a synchronized register chain that is suboptimally placed as the load FDSE cell u_fifo_wrapper_output/GEN_FIFO[0].u_fifo/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d3_reg is not placed in the same (SLICE) site.
+The FDRE cell u_fifo_wrapper_output/GEN_FIFO[0].u_fifo/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d2_reg in site SLICE_X16Y54 is part of a synchronized register chain that is suboptimally placed as the load FDSE cell u_fifo_wrapper_output/GEN_FIFO[0].u_fifo/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d3_reg is not placed in the same (SLICE) site.
 Related violations: <none>
 
 PDRC-190#5 Warning
 Suboptimally placed synchronized register chain  
-The FDRE cell u_fifo_wrapper_output/GEN_FIFO[1].u_fifo/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d2_reg in site SLICE_X71Y144 is part of a synchronized register chain that is suboptimally placed as the load FDSE cell u_fifo_wrapper_output/GEN_FIFO[1].u_fifo/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d3_reg is not placed in the same (SLICE) site.
+The FDRE cell u_fifo_wrapper_output/GEN_FIFO[1].u_fifo/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d2_reg in site SLICE_X24Y6 is part of a synchronized register chain that is suboptimally placed as the load FDSE cell u_fifo_wrapper_output/GEN_FIFO[1].u_fifo/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d3_reg is not placed in the same (SLICE) site.
 Related violations: <none>
 
 PDRC-190#6 Warning
 Suboptimally placed synchronized register chain  
-The FDRE cell u_fifo_wrapper_output/GEN_FIFO[2].u_fifo/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d2_reg in site SLICE_X17Y135 is part of a synchronized register chain that is suboptimally placed as the load FDSE cell u_fifo_wrapper_output/GEN_FIFO[2].u_fifo/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d3_reg is not placed in the same (SLICE) site.
+The FDRE cell u_fifo_wrapper_output/GEN_FIFO[2].u_fifo/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d2_reg in site SLICE_X72Y72 is part of a synchronized register chain that is suboptimally placed as the load FDSE cell u_fifo_wrapper_output/GEN_FIFO[2].u_fifo/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d3_reg is not placed in the same (SLICE) site.
 Related violations: <none>
 
 SYNTH-6#1 Warning

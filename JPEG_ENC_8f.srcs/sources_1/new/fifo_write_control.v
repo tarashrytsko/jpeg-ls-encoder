@@ -6,7 +6,8 @@ module fifo_write_control #(
     input  wire                         wr_clk,          // Write clock (synchronous domain for FIFO writes)
     input  wire                         rstn,            // Active low reset
     input  wire [NUM_ENCODERS-1:0]      s_e,             // Encoder pixel valid signals from splitter (1 = valid)
-    input  wire [NUM_ENCODERS-1:0]      fifo_overflow,   // Overflow signal for each encoder FIFO
+    input  wire [NUM_ENCODERS-1:0]      fifo_full,       // FIFO full signal for each encoder FIFO
+    input  wire [NUM_ENCODERS-1:0]      fifo_overflow,   // Overflow signal (unused, kept for compatibility)
     input  wire [13:0]                  x_cnt,           // Current pixel X-coordinate
     input  wire [13:0]                  y_cnt,           // Current pixel Y-coordinate
     input  wire [13:0]                  total_lines,     // Image height (236)
@@ -93,7 +94,7 @@ module fifo_write_control #(
     always @(*) begin
         write_req = {NUM_ENCODERS{1'b0}}; // default: no write
         for (i=0; i<NUM_ENCODERS; i=i+1) begin
-            if (!fifo_overflow[i] &&          // FIFO not full
+            if (!fifo_full[i] &&              // FIFO not full
                 s_e[i] &&                     // Pixel valid for this encoder
                 (x_cnt >= blk_x_start[i]) && (x_cnt <= blk_x_end[i]) && // x in block
                 (y_cnt < total_lines) &&      // y in image

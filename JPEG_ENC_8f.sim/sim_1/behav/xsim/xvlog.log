@@ -1,0 +1,31 @@
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.gen/sources_1/ip/fifo_output/sim/fifo_output.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module fifo_output
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.gen/sources_1/ip/fifo_generator_0/sim/fifo_generator_0.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module fifo_generator_0
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.gen/sources_1/ip/clk_wiz_0/clk_wiz_0_clk_wiz.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module clk_wiz_0_clk_wiz
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.gen/sources_1/ip/clk_wiz_0/clk_wiz_0.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module clk_wiz_0
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/sources_1/new/block_split.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module splitter_block
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/sources_1/new/encoder_wrapper.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module encoder_wrapper
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/sources_1/new/fifo_read_control.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module fifo_read_control
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/sources_1/new/fifo_reset_bram_async.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module fifo_reset_bram_async
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/sources_1/new/fifo_wrapper_input.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module fifo_wrapper_input
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/sources_1/new/fifo_wrapper_output.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module fifo_wrapper_output
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/sources_1/new/fifo_write_control.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module fifo_write_control
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/sources_1/new/image_generator.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module image_generator
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/sources_1/imports/FPGA Encoders/jls_encoder.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module jls_encoder
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/sources_1/imports/FPGA Encoders/top_jls_vertical.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module top_jls_vertical
+WARNING: [VRFC 10-2938] 'fifo_full' is already implicitly declared on line 111 [D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/sources_1/imports/FPGA Encoders/top_jls_vertical.v:154]
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/sim_1/imports/FPGA Encoders/tb_top_jls_vertical.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module tb_top_jls_vertical
