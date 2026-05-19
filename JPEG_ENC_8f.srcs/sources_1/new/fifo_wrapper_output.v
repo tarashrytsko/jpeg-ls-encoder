@@ -147,14 +147,6 @@ module fifo_wrapper_output #(
 
                 if (fifo_valid[ri]) begin
                     dout_valid[ri] <= 1'b1;
-
-                    // Check if this word is the last of a slice
-                    if (rd_ptr[ri] != wr_ptr_rd[ri] &&
-                        rd_cnt[ri] == end_pos[ri][rd_ptr[ri][1:0]]) begin
-                        dout_last[ri] <= 1'b1;
-                        rd_ptr[ri] <= rd_ptr[ri] + 1'b1;
-                    end
-
                     rd_cnt[ri] <= rd_cnt[ri] + 1'b1;
                 end
             end

@@ -47,10 +47,30 @@ module encoder_wrapper #(
 
     assign last_enc_id = N_E - 1;
 
+    // Track which group gets SOF (alternating: group A=enc0-2, group B=enc3-5)
+    reg [2:0] sof_count;
+    reg enc_i_sof_prev;
+    wire sof_rising = enc_i_sofx && !enc_i_sof_prev;
+    always @(posedge rd_clk) begin
+        if (!sys_rdy) begin
+            sof_count <= 0;
+            enc_i_sof_prev <= 0;
+        end else begin
+            enc_i_sof_prev <= enc_i_sofx;
+            if (sof_rising)
+                sof_count <= sof_count + 1;
+        end
+    end
+    // sof_count: 1=swath0(groupA), 2=swath1(groupB), 3=swath2(groupA), 4=swath3(groupB)
+    wire group_a_active = (sof_count == 1) || (sof_count == 3);
+    wire group_b_active = (sof_count == 2) || (sof_count == 4);
+
     genvar g_enc;
     generate
         for (g_enc = 0; g_enc < N_E; g_enc = g_enc + 1) begin : ENC_INST
             wire [ENC_ID_WIDTH-1:0] curr_enc_sig = 0;
+            wire enc_in_group_a = (g_enc < NUM_COLS);
+            wire enc_sof = enc_i_sofx && (enc_in_group_a ? group_a_active : group_b_active);
 
             jls_encoder #(
                 .NEAR(nr),
@@ -58,7 +78,7 @@ module encoder_wrapper #(
             ) u_encoder (
                 .rstn     (sys_rdy),
                 .clk      (rd_clk),
-                .i_sof    (enc_i_sofx),
+                .i_sof    (enc_sof),
                 .i_w      (col_w[g_enc % NUM_COLS]),
                 .i_h      (swath_h),
                 .i_e      (rd_en_gated[g_enc]),

@@ -122,41 +122,60 @@ module tb_top_jls_vertical;
     // ------------------------------------------------------------
     // Write + slice management
     // ------------------------------------------------------------
+    // Detect slice boundary by EOI marker (FFD9) at byte level
+    // Track previous byte to catch FFD9 spanning across word boundaries
     integer wi;
+    reg [7:0] last_byte [0:N_E-1];
+
+    initial begin
+        for (wi = 0; wi < N_E; wi = wi + 1)
+            last_byte[wi] = 0;
+    end
+
+    task do_close(input integer enc_idx);
+        begin
+            $display("[%0t] CLOSE enc%0d%c.jls words=%0d bytes=%0d",
+                     $time, enc_idx, slice_letter(slice[enc_idx]), word_cnt[enc_idx], byte_cnt[enc_idx]);
+            $fclose(f[enc_idx]);
+            slice[enc_idx] = slice[enc_idx] + 1;
+            if (slice[enc_idx] < NUM_SLICES) begin
+                word_cnt[enc_idx] = 0;
+                byte_cnt[enc_idx] = 0;
+                $sformat(fname, "%0senc%0d%c.jls", basepath, enc_idx, slice_letter(slice[enc_idx]));
+                f[enc_idx] = $fopen(fname, "wb");
+                if (!f[enc_idx]) begin
+                    $display("*** ERROR: cannot open %s", fname);
+                    $finish;
+                end
+                $display("[%0t] OPEN enc%0d%c.jls", $time, enc_idx, slice_letter(slice[enc_idx]));
+            end else begin
+                closed[enc_idx] = 1;
+                $display("[%0t] DONE enc%0d total_bytes=%0d", $time, enc_idx, total_bytes[enc_idx]);
+            end
+        end
+    endtask
+
     always @(posedge clk) begin
         for (wi = 0; wi < N_E; wi = wi + 1) begin
-            if (!closed[wi]) begin
-                if (o_e[wi]) begin
-                    $fwrite(f[wi], "%c", o_data[wi*16+8 +: 8]);
-                    $fwrite(f[wi], "%c", o_data[wi*16 +: 8]);
-                    word_cnt[wi] = word_cnt[wi] + 1;
-                    byte_cnt[wi] = byte_cnt[wi] + 2;
-                    total_bytes[wi] = total_bytes[wi] + 2;
+            if (!closed[wi] && o_e[wi]) begin
+                // Each word has MSB (byte 1) and LSB (byte 0)
+                // Written as: MSB first, then LSB
+                $fwrite(f[wi], "%c", o_data[wi*16+8 +: 8]);
+                $fwrite(f[wi], "%c", o_data[wi*16 +: 8]);
+                word_cnt[wi] = word_cnt[wi] + 1;
+                byte_cnt[wi] = byte_cnt[wi] + 2;
+                total_bytes[wi] = total_bytes[wi] + 2;
+
+                // Check EOI: FF D9 can be:
+                // Case 1: MSB=FF, LSB=D9 (within this word)
+                // Case 2: prev LSB=FF, this MSB=D9 (spanning words)
+                if ((o_data[wi*16+8 +: 8] == 8'hFF && o_data[wi*16 +: 8] == 8'hD9) ||
+                    (last_byte[wi] == 8'hFF && o_data[wi*16+8 +: 8] == 8'hD9)) begin
+                    do_close(wi);
                 end
 
-                if (o_last[wi] && !prev_last[wi]) begin
-                    $display("[%0t] CLOSE enc%0d%c.jls words=%0d bytes=%0d",
-                             $time, wi, slice_letter(slice[wi]), word_cnt[wi], byte_cnt[wi]);
-                    $fclose(f[wi]);
-                    slice[wi] = slice[wi] + 1;
-
-                    if (slice[wi] < NUM_SLICES) begin
-                        word_cnt[wi] = 0;
-                        byte_cnt[wi] = 0;
-                        $sformat(fname, "%0senc%0d%c.jls", basepath, wi, slice_letter(slice[wi]));
-                        f[wi] = $fopen(fname, "wb");
-                        if (!f[wi]) begin
-                            $display("*** ERROR: cannot open %s", fname);
-                            $finish;
-                        end
-                        $display("[%0t] OPEN enc%0d%c.jls", $time, wi, slice_letter(slice[wi]));
-                    end else begin
-                        closed[wi] = 1;
-                        $display("[%0t] DONE enc%0d total_bytes=%0d", $time, wi, total_bytes[wi]);
-                    end
-                end
+                last_byte[wi] <= o_data[wi*16 +: 8]; // track LSB for cross-word detection
             end
-            prev_last[wi] <= o_last[wi];
         end
     end
 
