@@ -177,7 +177,10 @@
       "Bash(xxd -l 10 enc0b.jls)",
       "Bash(xxd enc2a.jls)",
       "Bash(xxd enc4a.jls)",
-      "Bash(xxd enc1a.jls)"
+      "Bash(xxd enc1a.jls)",
+      "Bash(xxd *)",
+      "Read(//tmp/**)",
+      "Bash(rm -f \"D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.sim/output_block/merged\"*.jls)"
     ]
   }
 }

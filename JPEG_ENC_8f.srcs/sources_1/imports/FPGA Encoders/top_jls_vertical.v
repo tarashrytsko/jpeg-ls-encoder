@@ -18,7 +18,12 @@ module top_jls_vertical #(
 
     output wire [N_E-1:0]    o_e,
     output wire [N_E-1:0]    o_last,
-    output wire [N_E*16-1:0] o_data
+    output wire [N_E*16-1:0] o_data,
+
+    // Merged single-stream output
+    output wire        m_e,
+    output wire        m_last,
+    output wire [15:0] m_data
 );
 
 wire [N_E-1:0] o_sof_st;
@@ -239,6 +244,26 @@ wire [N_E-1:0] o_sof_st;
         .dout_last   (o_last),
         .wr_rst_busy (wr_rst_busy_output),
         .rd_rst_busy (rd_rst_busy_output)
+    );
+
+    // =================================================================
+    // Merger: combine all encoder outputs into single JLS stream
+    // =================================================================
+    merger #(
+        .N_E(N_E),
+        .SLICES_PER_ENC(2)
+    ) u_merger (
+        .clk    (clk),
+        .rstn   (sys_rdy),
+        .i_w    (i_w),
+        .i_h    (i_h),
+        .near   (nr),
+        .i_e    (o_e),
+        .i_last (o_last),
+        .i_data (o_data),
+        .o_e    (m_e),
+        .o_last (m_last),
+        .o_data (m_data)
     );
 
 endmodule

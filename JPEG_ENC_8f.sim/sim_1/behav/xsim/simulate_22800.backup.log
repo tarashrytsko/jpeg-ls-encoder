@@ -3,8 +3,8 @@
 # SW Build 5239630 on Fri Nov 08 22:35:27 MST 2024
 # IP Build 5239520 on Sun Nov 10 16:12:51 MST 2024
 # SharedData Build 5239561 on Fri Nov 08 14:39:27 MST 2024
-# Start of session at: Tue May 19 21:56:20 2026
-# Process ID         : 25888
+# Start of session at: Wed May 20 00:06:24 2026
+# Process ID         : 22800
 # Current directory  : D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.sim/sim_1/behav/xsim
 # Command line       : xsim.exe -log simulate.log -mode tcl -source {xsim.dir/tb_top_jls_vertical_behav/xsim_script.tcl}
 # Log file           : D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.sim/sim_1/behav/xsim/simulate.log
@@ -19,7 +19,7 @@
 # Host memory        : 16840 MB
 # Swap memory        : 9126 MB
 # Total Virtual      : 25967 MB
-# Available Virtual  : 14907 MB
+# Available Virtual  : 14633 MB
 #-----------------------------------------------------------
 source xsim.dir/tb_top_jls_vertical_behav/xsim_script.tcl
 # xsim {tb_top_jls_vertical_behav} -autoloadwcfg -tclbatch {tb_top_jls_vertical.tcl}
@@ -42,12 +42,20 @@ WARNING: Behavioral models for independent clock FIFO configurations do not mode
 [0] OPEN all encoder files (enc0a..enc5a)
 [5716557500] CLOSE enc0a.jls words=9755 bytes=19510
 [5716557500] OPEN enc0b.jls
+[5716557500] CLOSE enc1a.jls words=14669 bytes=29338
+[5716557500] OPEN enc1b.jls
 [5716557500] CLOSE enc2a.jls words=20714 bytes=41428
 [5716557500] OPEN enc2b.jls
 [11431707500] CLOSE enc5a.jls words=16378 bytes=32756
 [11431707500] OPEN enc5b.jls
+[11431737500] CLOSE enc3a.jls words=4093 bytes=8186
+[11431737500] OPEN enc3b.jls
 [11431737500] CLOSE enc4a.jls words=11283 bytes=22566
 [11431737500] OPEN enc4b.jls
+[17146917500] CLOSE enc0b.jls words=6956 bytes=13912
+[17146917500] DONE enc0 total_bytes=33422
+[17146917500] CLOSE enc1b.jls words=15239 bytes=30478
+[17146917500] DONE enc1 total_bytes=59816
 [17146917500] CLOSE enc2b.jls words=17360 bytes=34720
 [17146917500] DONE enc2 total_bytes=76148
 image_generator: done streaming 2250000 pixels
@@ -55,3 +63,5 @@ image_generator: done streaming 2250000 pixels
 [22862067500] DONE enc4 total_bytes=53394
 [22862067500] CLOSE enc5b.jls words=18274 bytes=36548
 [22862067500] DONE enc5 total_bytes=69304
+[22862097500] CLOSE enc3b.jls words=13935 bytes=27870
+[22862097500] DONE enc3 total_bytes=36056

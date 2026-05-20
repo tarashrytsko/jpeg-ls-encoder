@@ -35,6 +35,8 @@ module tb_top_jls_vertical;
     wire [N_E-1:0]    o_e;
     wire [N_E-1:0]    o_last;
     wire [N_E*16-1:0] o_data;
+    wire              m_e, m_last;
+    wire [15:0]       m_data;
 
     // ------------------------------------------------------------
     // Pulse i_sof
@@ -63,6 +65,9 @@ module tb_top_jls_vertical;
         .o_e        (o_e),
         .o_last     (o_last),
         .o_data     (o_data),
+        .m_e        (m_e),
+        .m_last     (m_last),
+        .m_data     (m_data),
         .sys_rdy    (sys_rdy)
     );
 
@@ -190,10 +195,13 @@ module tb_top_jls_vertical;
             if (!closed[ci]) all_done = 0;
     end
 
+    // ------------------------------------------------------------
+    // End simulation when all per-encoder files are done
+    // ------------------------------------------------------------
     initial begin
         wait(all_done);
         repeat (50) @(posedge clk);
-        $display("=== All %0d encoder slices complete (%0d files total) ===", N_E, N_E * NUM_SLICES);
+        $display("=== Simulation complete: %0d encoder files ===", N_E * NUM_SLICES);
         $finish;
     end
 
