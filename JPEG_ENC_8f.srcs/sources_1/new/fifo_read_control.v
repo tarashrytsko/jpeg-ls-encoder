@@ -6,13 +6,13 @@ module fifo_read_control #(
     parameter integer NUM_ENCODERS = 6,
     parameter integer NUM_COLS     = 3,
     parameter integer NUM_SWATHS   = 4,
-    parameter integer CHUNK_H      = 750,
+    parameter integer CHUNK_H      = 1250,
     parameter integer SOF_CYCLES   = 3000,
     parameter integer GAP_CYCLES   = 5
 )(
     input  wire                       rd_clk,
     input  wire                       sys_rdy,
-    input  wire [13:0]                i_w_r,
+    input  wire [NUM_ENCODERS*14-1:0] i_w_r,
     input  wire [13:0]                i_h_r,
 
     input  wire [NUM_ENCODERS-1:0]    fifo_empty,
@@ -23,22 +23,16 @@ module fifo_read_control #(
     output reg  [32*NUM_ENCODERS-1:0] read_count_flat
 );
 
-    // CDC: i_w_r is on clk domain, sample on rd_clk with 2-FF sync
-    reg [13:0] iw_s1, iw_s2;
-    reg [13:0] i_w;
+    // Latch per-encoder widths from clk domain
+    reg [NUM_ENCODERS*14-1:0] i_w_bus;
     always @(posedge rd_clk) begin
-        if (!sys_rdy) begin
-            iw_s1 <= 0; iw_s2 <= 0; i_w <= 0;
-        end else begin
-            iw_s1 <= i_w_r;
-            iw_s2 <= iw_s1;
-            if (i_w == 0 && iw_s2 != 0)
-                i_w <= iw_s2;
-        end
+        if (!sys_rdy)
+            i_w_bus <= 0;
+        else
+            i_w_bus <= i_w_r;
     end
 
     // Pixels per encoder per swath = per_encoder_width * CHUNK_H
-    // i_w here is the per-encoder column width (broadcast by splitter)
     // Even swaths (0,2): enc 0,1,2 active; Odd swaths (1,3): enc 3,4,5 active
     reg [31:0] block_pixels [0:NUM_SWATHS-1][0:NUM_ENCODERS-1];
     integer s, e;
@@ -46,7 +40,7 @@ module fifo_read_control #(
         for (s = 0; s < NUM_SWATHS; s = s + 1)
             for (e = 0; e < NUM_ENCODERS; e = e + 1) begin
                 if ((s % 2) == (e / NUM_COLS))
-                    block_pixels[s][e] = i_w * CHUNK_H;
+                    block_pixels[s][e] = i_w_bus[e*14 +: 14] * CHUNK_H;
                 else
                     block_pixels[s][e] = 0;
             end

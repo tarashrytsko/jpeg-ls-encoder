@@ -7,7 +7,8 @@
       "Bash(find /c -name \"java.exe\" -maxdepth 8)",
       "Bash(cmd.exe /c \"where java\")",
       "Bash(cmd.exe /c \"java -version\")",
-      "Bash(/c/Users/admin/.jdks/ms-21.0.8/bin/java.exe -cp target/classes com.jpegls.decoder.Main ../JPEG_ENC_8f.sim/output_block/merged.jls ../JPEG_ENC_8f.sim/output_block/output.pgm --decoder 'C:/Users/admin/Downloads/Shared with VM/FPGA-JPEG-LS-encoder/SIM/JPEGLSdec.exe')"
+      "Bash(/c/Users/admin/.jdks/ms-21.0.8/bin/java.exe -cp target/classes com.jpegls.decoder.Main ../JPEG_ENC_8f.sim/output_block/merged.jls ../JPEG_ENC_8f.sim/output_block/output.pgm --decoder 'C:/Users/admin/Downloads/Shared with VM/FPGA-JPEG-LS-encoder/SIM/JPEGLSdec.exe')",
+      "Bash(\"/c/Users/admin/.jdks/ms-21.0.8/bin/java.exe\" -cp target/classes com.jpegls.decoder.Main ../JPEG_ENC_8f.sim/output_block/merged.jls ../JPEG_ENC_8f.sim/output_block/output.pgm --decoder \"C:/Users/admin/Downloads/Shared with VM/FPGA-JPEG-LS-encoder/SIM/JPEGLSdec.exe\")"
     ]
   }
 }
