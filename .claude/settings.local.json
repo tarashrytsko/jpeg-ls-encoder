@@ -180,7 +180,17 @@
       "Bash(xxd enc1a.jls)",
       "Bash(xxd *)",
       "Read(//tmp/**)",
-      "Bash(rm -f \"D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.sim/output_block/merged\"*.jls)"
+      "Bash(rm -f \"D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.sim/output_block/merged\"*.jls)",
+      "Bash(java -version)",
+      "Bash('/c/Program Files/JetBrains/IntelliJ IDEA 2025.2.4/jbr/bin/java' -version)",
+      "Bash(mkdir -p target/classes)",
+      "Bash('/c/Program Files/JetBrains/IntelliJ IDEA 2025.2.4/jbr/bin/javac' -d target/classes src/main/java/com/jpegls/decoder/*.java)",
+      "Bash('/c/Program Files/JetBrains/IntelliJ IDEA 2025.2.4/jbr/bin/java' -cp target/classes com.jpegls.decoder.Main D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.sim/output_block/merged.jls D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.sim/output_block/output.jls --pgm D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.sim/output_block/output.pgm)",
+      "Bash(sed -i 's/C_RD_DATA_COUNT_WIDTH\\(22\\)/C_RD_DATA_COUNT_WIDTH\\(17\\)/g' \"D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.gen/sources_1/ip/fifo_generator_0/sim/fifo_generator_0.v\")",
+      "Bash(sed -i 's/C_RD_DEPTH\\(4194304\\)/C_RD_DEPTH\\(131072\\)/g' \"D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.gen/sources_1/ip/fifo_generator_0/sim/fifo_generator_0.v\")",
+      "Bash(sed -i 's/C_RD_PNTR_WIDTH\\(22\\)/C_RD_PNTR_WIDTH\\(17\\)/g' \"D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.gen/sources_1/ip/fifo_generator_0/sim/fifo_generator_0.v\")",
+      "Bash(sed -i 's/C_WR_DATA_COUNT_WIDTH\\(22\\)/C_WR_DATA_COUNT_WIDTH\\(17\\)/g' \"D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.gen/sources_1/ip/fifo_generator_0/sim/fifo_generator_0.v\")",
+      "Bash(sed -i 's/C_WR_DEPTH\\(4194304\\)/C_WR_DEPTH\\(131072\\)/g' \"D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.gen/sources_1/ip/fifo_generator_0/sim/fifo_generator_0.v\")"
     ]
   }
 }

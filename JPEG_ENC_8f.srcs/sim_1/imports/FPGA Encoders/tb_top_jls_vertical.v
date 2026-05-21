@@ -199,6 +199,7 @@ module tb_top_jls_vertical;
     // End simulation when all per-encoder files are done
     // ------------------------------------------------------------
     initial begin
+        @(posedge sys_rdy);
         wait(all_done);
         repeat (50) @(posedge clk);
         $display("=== Simulation complete: %0d encoder files ===", N_E * NUM_SLICES);

@@ -1,10 +1,12 @@
 `timescale 1ns/1ps
-// fifo_read_control for 6-encoder (3 cols x 2 groups) architecture
-// 4 swaths total: group A (enc 0,1,2) handles swaths 0,2; group B (enc 3,4,5) handles swaths 1,3
+// fifo_read_control for 6-encoder streaming architecture.
+// Processes 4 swaths sequentially. Each swath: 3 encoders active.
+// Reads col_w * CHUNK_H pixels per active encoder per swath.
 module fifo_read_control #(
     parameter integer NUM_ENCODERS = 6,
     parameter integer NUM_COLS     = 3,
     parameter integer NUM_SWATHS   = 4,
+    parameter integer CHUNK_H      = 75,
     parameter integer SOF_CYCLES   = 3000,
     parameter integer GAP_CYCLES   = 5
 )(
@@ -21,43 +23,30 @@ module fifo_read_control #(
     output reg  [32*NUM_ENCODERS-1:0] read_count_flat
 );
 
-    reg [13:0] i_w, i_h;
+    // CDC: i_w_r is on clk domain, sample on rd_clk with 2-FF sync
+    reg [13:0] iw_s1, iw_s2;
+    reg [13:0] i_w;
     always @(posedge rd_clk) begin
         if (!sys_rdy) begin
-            i_w <= 0; i_h <= 0;
+            iw_s1 <= 0; iw_s2 <= 0; i_w <= 0;
         end else begin
-            i_w <= i_w_r; i_h <= i_h_r;
+            iw_s1 <= i_w_r;
+            iw_s2 <= iw_s1;
+            if (i_w == 0 && iw_s2 != 0)
+                i_w <= iw_s2;
         end
     end
 
-    // Column widths (3 columns from image width)
-    reg [15:0] col_w [0:NUM_COLS-1];
-    integer a;
-    always @(*) begin
-        for (a = 0; a < NUM_COLS-1; a = a + 1)
-            col_w[a] = i_w / NUM_COLS;
-        col_w[NUM_COLS-1] = i_w - (i_w / NUM_COLS) * (NUM_COLS - 1);
-    end
-
-    // Swath height (4 swaths from image height)
-    reg [15:0] swath_h [0:NUM_SWATHS-1];
-    integer b;
-    always @(*) begin
-        for (b = 0; b < NUM_SWATHS-1; b = b + 1)
-            swath_h[b] = i_h / NUM_SWATHS;
-        swath_h[NUM_SWATHS-1] = i_h - (i_h / NUM_SWATHS) * (NUM_SWATHS - 1);
-    end
-
-    // Pixels per encoder per swath
-    // Swath 0,2 → enc 0,1,2; Swath 1,3 → enc 3,4,5
+    // Pixels per encoder per swath = per_encoder_width * CHUNK_H
+    // i_w here is the per-encoder column width (broadcast by splitter)
+    // Even swaths (0,2): enc 0,1,2 active; Odd swaths (1,3): enc 3,4,5 active
     reg [31:0] block_pixels [0:NUM_SWATHS-1][0:NUM_ENCODERS-1];
     integer s, e;
     always @(*) begin
         for (s = 0; s < NUM_SWATHS; s = s + 1)
             for (e = 0; e < NUM_ENCODERS; e = e + 1) begin
-                // Encoder e is active in swath s if (s%2)==(e/NUM_COLS)
                 if ((s % 2) == (e / NUM_COLS))
-                    block_pixels[s][e] = col_w[e % NUM_COLS] * swath_h[s];
+                    block_pixels[s][e] = i_w * CHUNK_H;
                 else
                     block_pixels[s][e] = 0;
             end
@@ -99,9 +88,9 @@ module fifo_read_control #(
                         state <= S_DONE;
                     end else begin
                         i_sof_st_enc <= 1'b1;
-                        if (sof_cnt < SOF_CYCLES - 1) begin
+                        if (sof_cnt < SOF_CYCLES - 1)
                             sof_cnt <= sof_cnt + 1;
-                        end else begin
+                        else begin
                             sof_cnt <= 0;
                             for (e = 0; e < NUM_ENCODERS; e = e + 1) begin
                                 rd_cnt[e] <= 0;
@@ -142,8 +131,6 @@ module fifo_read_control #(
                 end
 
                 S_DONE: begin
-                    rd_en        <= 0;
-                    i_sof_st_enc <= 0;
                 end
             endcase
         end

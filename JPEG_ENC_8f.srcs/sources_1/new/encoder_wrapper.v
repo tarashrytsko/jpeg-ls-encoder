@@ -22,28 +22,21 @@ module encoder_wrapper #(
 
     localparam ENC_ID_WIDTH = ($clog2(N_E) > 0) ? $clog2(N_E) : 1;
 
+    // Continuously sample dimensions from clk domain
     reg [13:0] s_w, s_h;
+    wire dims_valid = (s_w != 0);
     always @(posedge rd_clk) begin
         if (!sys_rdy) begin
             s_w <= 0;
             s_h <= 0;
-        end else if (s_w == 0 && s_h == 0) begin
+        end else begin
             s_w <= i_w;
             s_h <= i_h;
         end
     end
 
-    // Per-column width
-    reg [13:0] col_w [0:NUM_COLS-1];
-    integer ci;
-    always @(*) begin
-        for (ci = 0; ci < NUM_COLS-1; ci = ci + 1)
-            col_w[ci] = s_w / NUM_COLS;
-        col_w[NUM_COLS-1] = s_w - (s_w / NUM_COLS) * (NUM_COLS - 1);
-    end
-
-    // Swath height
-    wire [13:0] swath_h = s_h / NUM_SWATHS;
+    // s_w is already per-encoder column width (from splitter)
+    // s_h is already chunk height (from splitter)
 
     assign last_enc_id = N_E - 1;
 
@@ -70,7 +63,7 @@ module encoder_wrapper #(
         for (g_enc = 0; g_enc < N_E; g_enc = g_enc + 1) begin : ENC_INST
             wire [ENC_ID_WIDTH-1:0] curr_enc_sig = 0;
             wire enc_in_group_a = (g_enc < NUM_COLS);
-            wire enc_sof = enc_i_sofx && (enc_in_group_a ? group_a_active : group_b_active);
+            wire enc_sof = enc_i_sofx && dims_valid && (enc_in_group_a ? group_a_active : group_b_active);
 
             jls_encoder #(
                 .NEAR(nr),
@@ -79,8 +72,8 @@ module encoder_wrapper #(
                 .rstn     (sys_rdy),
                 .clk      (rd_clk),
                 .i_sof    (enc_sof),
-                .i_w      (col_w[g_enc % NUM_COLS]),
-                .i_h      (swath_h),
+                .i_w      (s_w),
+                .i_h      (s_h),
                 .i_e      (rd_en_gated[g_enc]),
                 .i_x      (dout[g_enc*8 +: 8]),
                 .my_last  (my_last[g_enc]),

@@ -110,23 +110,24 @@ wire [N_E-1:0] o_sof_st;
     );
 
     // =================================================================
-    // Splitter (3 columns x 2 rows = 6 blocks)
+    // Splitter (streaming, 3 columns, chunk height = 375)
     // =================================================================
+    wire [N_E-1:0] chunk_done;
+
     splitter_block #(
         .N_H(3),
-        .N_V(4),
-        .N_E(N_E)
+        .N_E(N_E),
+        .CHUNK_H(75)
     ) u_splitter_block (
-        .sys_rdy     (rstn),
         .clk         (clk),
-        .i_sof       (i_sof),
+        .rstn        (sys_rdy),
         .i_e         (i_e),
         .i_x         (i_x),
         .i_w         (i_w),
-        .i_h         (i_h),
         .i_sof_st    (o_sof_st),
         .o_e         (s_e),
         .o_x         (s_x),
+        .chunk_done  (chunk_done),
         .o_w         (s_w),
         .o_h         (s_h),
         .encoder_sel_d (encoder_sel),
