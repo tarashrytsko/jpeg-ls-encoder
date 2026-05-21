@@ -6,7 +6,7 @@ module fifo_read_control #(
     parameter integer NUM_ENCODERS = 6,
     parameter integer NUM_COLS     = 3,
     parameter integer NUM_SWATHS   = 4,
-    parameter integer CHUNK_H      = 75,
+    parameter integer CHUNK_H      = 750,
     parameter integer SOF_CYCLES   = 3000,
     parameter integer GAP_CYCLES   = 5
 )(

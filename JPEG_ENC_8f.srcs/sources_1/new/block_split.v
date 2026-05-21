@@ -6,7 +6,7 @@
 module splitter_block #(
     parameter integer N_H     = 3,      // horizontal columns
     parameter integer N_E     = 6,      // total encoders (2 groups of N_H)
-    parameter integer CHUNK_H = 75      // lines per swath
+    parameter integer CHUNK_H = 750     // lines per swath
 )(
     input  wire                          clk,
     input  wire                          rstn,

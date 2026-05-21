@@ -1,6 +1,13 @@
 {
   "permissions": {
+    "defaultMode": "dontAsk",
     "allow": [
+      "Bash(xsim *)",
+      "Bash(xvlog *)",
+      "Bash(xelab *)",
+      "Bash(rm -f *enc*.jls*)",
+      "Bash(rm -f *enc*.pgm*)",
+      "Bash(rm -rf xsim.dir/*)",
       "Bash(where vivado *)",
       "Bash(where xsim *)",
       "Bash(where xelab *)",

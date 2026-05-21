@@ -117,7 +117,7 @@ wire [N_E-1:0] o_sof_st;
     splitter_block #(
         .N_H(3),
         .N_E(N_E),
-        .CHUNK_H(75)
+        .CHUNK_H(750)
     ) u_splitter_block (
         .clk         (clk),
         .rstn        (sys_rdy),
