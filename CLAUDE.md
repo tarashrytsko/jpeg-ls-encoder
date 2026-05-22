@@ -127,9 +127,41 @@ All clock domain crossings use async FIFOs or toggle synchronizers.
 - **Golomb J-table:** 32-entry lookup hardcoded in the encoder.
 - The XDC file maps the differential clock to pins R3/P3, single-ended clock to E17, and reset to R8.
 
+## Optimal Encoder/Chunk Configuration
+
+Benchmarked compression ratios for different configurations (NEAR=0 lossless, satellite imagery):
+
+| Image Size | Encoders | Chunks | Block Size | Compression | Throughput |
+|---|---|---|---|---|---|
+| 1500×1500 | 3 | 4 | 500×375 | **6.87:1** | 148 Mpix/s |
+| 1500×1500 | 5 | 10 | 300×150 | 2.13:1 | 150 Mpix/s |
+| 3000×3000 | 3 | 4 | 1000×750 | **4.78:1** | 150 Mpix/s |
+| 3000×3000 | 5 | 10 | 600×300 | 1.82:1 | 150 Mpix/s |
+| 5000×5000 | 3 | 4 | 1666×1250 | **4.32:1** | 150 Mpix/s |
+
+**Recommended configurations by image size:**
+
+| Image Size | Best Config | Block Size | Expected Ratio |
+|---|---|---|---|
+| ≤3K | 3 enc × 4 chunks | ~1000×750 | 4–7:1 |
+| 5K–10K | 5 enc × 4 chunks | ~1000–2000 × 1250–2500 | 3–5:1 |
+| >10K | 5 enc × 8 chunks | ~2000–3000 × 1250–1875 | 3–4:1 |
+
+**Key findings:**
+- Block size > 500×500 is critical for good compression (>4:1)
+- Fewer chunks = better compression (larger context windows, less header overhead)
+- More encoders = faster throughput but each needs its own FIFO + encoder instance
+- Sweet spot: block size ~1000×1000 gives best compression-to-resource ratio
+
 ## Testbench
 
-`sim_1/imports/FPGA Encoders/tb_jls_encoder.v` drives the DUT:
+`sim_1/imports/FPGA Encoders/tb_top_jls_vertical.v` drives the full parallel system:
+- Streams pixels from PGM file via `image_generator.v` (no BRAM needed)
+- Captures per-encoder JLS output files (EOI byte-detection for slice boundaries)
+- Supports configurable N_E (encoders) and NUM_SLICES (chunks per encoder)
+- Output files: `enc{0..N_E-1}{a..j}.jls` in `JPEG_ENC_8f.sim/output_block/`
+
+`sim_1/imports/FPGA Encoders/tb_jls_encoder.v` drives a single encoder:
 - Loads a `.pgm` file and streams pixels via AXI-Stream-like handshake (`i_e`/`i_last`).
 - Configurable `NEAR` parameter and bubble insertion (randomized gaps to stress flow control).
 - Captures compressed output to a `.jls` file for validation.

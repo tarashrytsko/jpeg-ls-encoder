@@ -4,9 +4,9 @@
 // Routes pixels to N_E encoder FIFOs based on column position and swath index.
 // Signals chunk_done when each CHUNK_H-line swath completes.
 module splitter_block #(
-    parameter integer N_H     = 3,      // horizontal columns
-    parameter integer N_E     = 6,      // total encoders (2 groups of N_H)
-    parameter integer CHUNK_H = 1250    // lines per swath
+    parameter integer N_H     = 5,      // horizontal columns
+    parameter integer N_E     = 5,      // total encoders (all simultaneous)
+    parameter integer CHUNK_H = 1250   // lines per swath
 )(
     input  wire                          clk,
     input  wire                          rstn,
@@ -96,11 +96,9 @@ module splitter_block #(
     end
 
     // -------------------------------------------------------
-    // Encoder select: group A (enc 0,1,2) for even swaths, group B (enc 3,4,5) for odd
+    // Encoder select: all encoders simultaneous (1 group)
     // -------------------------------------------------------
-    wire [$clog2(N_E)-1:0] encoder_sel = (swath_idx[0] == 0) ?
-                                          col_idx :
-                                          (N_H + col_idx);
+    wire [$clog2(N_E)-1:0] encoder_sel = col_idx;
 
     // -------------------------------------------------------
     // Pixel counter FSM
@@ -155,9 +153,7 @@ module splitter_block #(
 
                 // Signal chunk_done at last pixel of each swath
                 if (x_cnt == i_w - 1 && y_local == CHUNK_H - 1)
-                    chunk_done <= (swath_idx[0] == 0) ?
-                                  {{N_H{1'b0}}, {N_H{1'b1}}} :  // group A done (enc 0,1,2)
-                                  {{N_H{1'b1}}, {N_H{1'b0}}};   // group B done (enc 3,4,5)
+                    chunk_done <= {N_E{1'b1}};  // all encoders done
             end
         end
     end

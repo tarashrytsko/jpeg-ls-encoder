@@ -3,8 +3,8 @@
 
 module tb_top_jls_vertical;
 
-    localparam N_E = 6;
-    localparam NUM_SLICES = 2;
+    localparam N_E = 5;
+    localparam NUM_SLICES = 4;
 
     // ------------------------------------------------------------
     // Clock & Reset
@@ -75,7 +75,7 @@ module tb_top_jls_vertical;
     // Output capture: 6 encoders x 2 slices = 12 files
     // ------------------------------------------------------------
     integer f [0:N_E-1];
-    reg [1:0] slice [0:N_E-1];
+    reg [3:0] slice [0:N_E-1];
     reg closed [0:N_E-1];
     reg prev_last [0:N_E-1];
     integer word_cnt [0:N_E-1];
@@ -85,12 +85,20 @@ module tb_top_jls_vertical;
     reg [8*256-1:0] basepath;
     reg [8*256-1:0] fname;
 
-    function [7:0] slice_letter(input [1:0] idx);
+    function [7:0] slice_letter(input [3:0] idx);
         begin
             case(idx)
                 0: slice_letter = "a";
                 1: slice_letter = "b";
-                default: slice_letter = "a";
+                2: slice_letter = "c";
+                3: slice_letter = "d";
+                4: slice_letter = "e";
+                5: slice_letter = "f";
+                6: slice_letter = "g";
+                7: slice_letter = "h";
+                8: slice_letter = "i";
+                9: slice_letter = "j";
+                default: slice_letter = "x";
             endcase
         end
     endfunction

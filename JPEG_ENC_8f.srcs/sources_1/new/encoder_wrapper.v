@@ -1,8 +1,8 @@
 `timescale 1ns/1ps
 module encoder_wrapper #(
-    parameter integer N_E = 6,
-    parameter integer NUM_COLS = 3,
-    parameter integer NUM_SWATHS = 4,
+    parameter integer N_E = 5,
+    parameter integer NUM_COLS = 5,
+    parameter integer NUM_SWATHS = 10,
     parameter integer nr  = 0,
     parameter integer L   = 64
 )(
@@ -61,7 +61,7 @@ module encoder_wrapper #(
         for (g_enc = 0; g_enc < N_E; g_enc = g_enc + 1) begin : ENC_INST
             wire [ENC_ID_WIDTH-1:0] curr_enc_sig = 0;
             wire enc_in_group_a = (g_enc < NUM_COLS);
-            wire enc_sof = enc_i_sofx && dims_valid && (enc_in_group_a ? group_a_active : group_b_active);
+            wire enc_sof = enc_i_sofx && dims_valid;
 
             jls_encoder #(
                 .NEAR(nr),

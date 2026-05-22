@@ -1,6 +1,5 @@
 {
   "permissions": {
-    "defaultMode": "dontAsk",
     "allow": [
       "Bash(xsim *)",
       "Bash(xvlog *)",
@@ -197,7 +196,9 @@
       "Bash(sed -i 's/C_RD_DEPTH\\(4194304\\)/C_RD_DEPTH\\(131072\\)/g' \"D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.gen/sources_1/ip/fifo_generator_0/sim/fifo_generator_0.v\")",
       "Bash(sed -i 's/C_RD_PNTR_WIDTH\\(22\\)/C_RD_PNTR_WIDTH\\(17\\)/g' \"D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.gen/sources_1/ip/fifo_generator_0/sim/fifo_generator_0.v\")",
       "Bash(sed -i 's/C_WR_DATA_COUNT_WIDTH\\(22\\)/C_WR_DATA_COUNT_WIDTH\\(17\\)/g' \"D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.gen/sources_1/ip/fifo_generator_0/sim/fifo_generator_0.v\")",
-      "Bash(sed -i 's/C_WR_DEPTH\\(4194304\\)/C_WR_DEPTH\\(131072\\)/g' \"D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.gen/sources_1/ip/fifo_generator_0/sim/fifo_generator_0.v\")"
-    ]
+      "Bash(sed -i 's/C_WR_DEPTH\\(4194304\\)/C_WR_DEPTH\\(131072\\)/g' \"D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.gen/sources_1/ip/fifo_generator_0/sim/fifo_generator_0.v\")",
+      "Bash(awk '{sum+=$1} END {print sum \" KB total\"}')"
+    ],
+    "defaultMode": "dontAsk"
   }
 }

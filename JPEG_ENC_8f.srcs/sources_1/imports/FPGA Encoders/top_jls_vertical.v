@@ -1,6 +1,6 @@
 `timescale 1ps/1ps
 module top_jls_vertical #(
-    parameter integer N_E = 6,
+    parameter integer N_E = 5,
     parameter integer L   = 64,
     parameter [2:0]   nr  = 3'd0
 )(
@@ -115,7 +115,7 @@ wire [N_E-1:0] o_sof_st;
     wire [N_E-1:0] chunk_done;
 
     splitter_block #(
-        .N_H(3),
+        .N_H(5),
         .N_E(N_E),
         .CHUNK_H(1250)
     ) u_splitter_block (
@@ -198,6 +198,7 @@ wire [N_E-1:0] o_sof_st;
         .i_h_r(s_h),
         .fifo_empty(empty),
         .fifo_valid(valid),
+        .enc_done(my_last),
         .rd_en(fifo_rd_en),
         .read_count_flat(read_count_flat),
         .i_sof_st_enc(i_sof_st_enc)

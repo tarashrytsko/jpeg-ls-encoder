@@ -39,8 +39,11 @@ public class ImageStitcher {
 
             byte[] block = blocks[seg];
             for (int y = 0; y < blockHeight; y++) {
-                System.arraycopy(block, y * blockWidth, image,
-                    (yOff + y) * fullWidth + xOff, blockWidth);
+                int srcOff = y * blockWidth;
+                int available = block.length - srcOff;
+                if (available <= 0) break;
+                System.arraycopy(block, srcOff, image,
+                    (yOff + y) * fullWidth + xOff, Math.min(blockWidth, available));
             }
         }
 
