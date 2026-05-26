@@ -3,11 +3,11 @@
 # SW Build 5239630 on Fri Nov 08 22:35:27 MST 2024
 # IP Build 5239520 on Sun Nov 10 16:12:51 MST 2024
 # SharedData Build 5239561 on Fri Nov 08 14:39:27 MST 2024
-# Start of session at: Fri May 22 12:34:38 2026
-# Process ID         : 28664
+# Start of session at: Sun May 24 19:21:05 2026
+# Process ID         : 26928
 # Current directory  : D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.sim/sim_1/behav/xsim
-# Command line       : xsim.exe -log simulate.log -mode tcl -source {xsim.dir/tb_top_jls_vertical_behav/xsim_script.tcl}
-# Log file           : D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.sim/sim_1/behav/xsim/simulate.log
+# Command line       : xsim.exe -mode tcl -source {xsim.dir/tb_top_jls_vertical_behav/xsim_script.tcl}
+# Log file           : D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.sim/sim_1/behav/xsim/xsim.log
 # Journal file       : D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.sim/sim_1/behav/xsim\xsim.jou
 # Running On         : DESKTOP-PHB4K70
 # Platform           : Windows Server 2016 or Windows 10
@@ -19,14 +19,16 @@
 # Host memory        : 16840 MB
 # Swap memory        : 9126 MB
 # Total Virtual      : 25967 MB
-# Available Virtual  : 13022 MB
+# Available Virtual  : 11942 MB
 #-----------------------------------------------------------
 source xsim.dir/tb_top_jls_vertical_behav/xsim_script.tcl
-# xsim {tb_top_jls_vertical_behav} -autoloadwcfg -tclbatch {tb_top_jls_vertical.tcl}
+# xsim {tb_top_jls_vertical_behav} -autoloadwcfg -tclbatch {C:/Users/admin/AppData/Local/Temp/run100.tcl}
 Time resolution is 1 ps
-source tb_top_jls_vertical.tcl
-## run all
-image_generator: opened D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.sim/images/world_gray_462x237.pgm  462x237 depth=255  streaming 462x237
+source C:/Users/admin/AppData/Local/Temp/run100.tcl
+## run 100us
+image_generator: opened D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.sim/images/world_gray_300x300.pgm  300x300 depth=255  streaming 300x300
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
 WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
 WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
 WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
@@ -38,20 +40,5 @@ WARNING: Behavioral models for independent clock FIFO configurations do not mode
 WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
 WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
 [0] OPEN all encoder files (enc0a..enc5a)
-[749960833] CLOSE enc0a.jls words=3751 bytes=7502
-[749960833] DONE enc0 total_bytes=7502
-[750560833] CLOSE enc1a.jls words=2175 bytes=4350
-[750560833] DONE enc1 total_bytes=4350
-image_generator: done streaming 109494 pixels
-[751180833] CLOSE enc2a.jls words=2151 bytes=4302
-[751180833] DONE enc2 total_bytes=4302
-[751780833] CLOSE enc3a.jls words=2023 bytes=4046
-[751780833] DONE enc3 total_bytes=4046
-[752440833] CLOSE enc4a.jls words=2003 bytes=4006
-[752440833] DONE enc4 total_bytes=4006
-=== Simulation complete: 5 encoder files ===
-$finish called at time : 752774166 ps : File "D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/sim_1/imports/FPGA Encoders/tb_top_jls_vertical.v" Line 214
-run: Time (s): cpu = 00:00:00 ; elapsed = 00:00:12 . Memory (MB): peak = 202.414 ; gain = 0.000
-xsim: Time (s): cpu = 00:00:00 ; elapsed = 00:00:13 . Memory (MB): peak = 202.414 ; gain = 32.766
-xsim% INFO: xsimkernel Simulation Memory Usage: 41028 KB (Peak: 41028 KB), Simulation CPU Usage: 12359 ms
-INFO: [Common 17-206] Exiting xsim at Fri May 22 12:34:53 2026...
+[788000] FRC: dims_valid=1, i_w_bus[13:0]=100, col_w=33, chunk_pix=2475
+xsim% INFO: [Common 17-206] Exiting xsim at Sun May 24 19:21:08 2026...

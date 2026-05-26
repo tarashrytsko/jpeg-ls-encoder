@@ -13,7 +13,7 @@ module fifo_write_control #(
     input  wire [13:0]                  image_width,
     input  wire [$clog2(NUM_ENCODERS)-1:0] encoder_sel,
 
-    output wire [NUM_ENCODERS-1:0]      wr_en,
+    output reg  [NUM_ENCODERS-1:0]      wr_en,
     output reg  [32*NUM_ENCODERS-1:0]   wr_count_flat,
     output reg  [NUM_ENCODERS-1:0]      frame_done
 );
@@ -33,17 +33,17 @@ module fifo_write_control #(
     // But simpler: just count until s_e stops coming
     localparam [31:0] MAX_PIXELS = 32'hFFFFFFFF;
 
-    assign wr_en = write_req;
-
     always @(posedge wr_clk or negedge rstn) begin
         if (!rstn) begin
             for (i = 0; i < NUM_ENCODERS; i = i + 1) begin
+                wr_en[i] <= 0;
                 wr_cnt[i] <= 0;
                 frame_done[i] <= 0;
             end
             wr_count_flat <= 0;
         end else begin
             for (i = 0; i < NUM_ENCODERS; i = i + 1) begin
+                wr_en[i] <= write_req[i];
                 if (write_req[i])
                     wr_cnt[i] <= wr_cnt[i] + 1;
             end

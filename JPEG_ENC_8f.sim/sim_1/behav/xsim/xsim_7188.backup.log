@@ -1,0 +1,57 @@
+#-----------------------------------------------------------
+# xsim v2024.2 (64-bit)
+# SW Build 5239630 on Fri Nov 08 22:35:27 MST 2024
+# IP Build 5239520 on Sun Nov 10 16:12:51 MST 2024
+# SharedData Build 5239561 on Fri Nov 08 14:39:27 MST 2024
+# Start of session at: Sun May 24 18:57:34 2026
+# Process ID         : 7188
+# Current directory  : D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.sim/sim_1/behav/xsim
+# Command line       : xsim.exe -mode tcl -source {xsim.dir/tb_top_jls_vertical_behav/xsim_script.tcl}
+# Log file           : D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.sim/sim_1/behav/xsim/xsim.log
+# Journal file       : D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.sim/sim_1/behav/xsim\xsim.jou
+# Running On         : DESKTOP-PHB4K70
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 26200
+# Processor Detail   : 11th Gen Intel(R) Core(TM) i5-11400H @ 2.70GHz
+# CPU Frequency      : 2688 MHz
+# CPU Physical cores : 6
+# CPU Logical cores  : 12
+# Host memory        : 16840 MB
+# Swap memory        : 9126 MB
+# Total Virtual      : 25967 MB
+# Available Virtual  : 11989 MB
+#-----------------------------------------------------------
+source xsim.dir/tb_top_jls_vertical_behav/xsim_script.tcl
+# xsim {tb_top_jls_vertical_behav} -autoloadwcfg -tclbatch {C:/Users/admin/AppData/Local/Temp/trace.tcl}
+Time resolution is 1 ps
+source C:/Users/admin/AppData/Local/Temp/trace.tcl
+## run 50us
+image_generator: opened D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.sim/images/world_gray_300x300.pgm  300x300 depth=255  streaming 300x300
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+[0] OPEN all encoder files (enc0a..enc5a)
+## puts "=== At 50us ==="
+=== At 50us ===
+## puts "e_e = [get_value /tb_top_jls_vertical/dut/e_e]"
+e_e = 0
+## puts "o_e = [get_value /tb_top_jls_vertical/dut/o_e]"
+o_e = 0
+## puts "fifo_rst = [get_value /tb_top_jls_vertical/dut/fifo_rst]"
+fifo_rst = 0
+## puts "sys_rdy = [get_value /tb_top_jls_vertical/dut/sys_rdy]"
+sys_rdy = 1
+## run 50us
+## puts "=== At 100us ==="
+=== At 100us ===
+## puts "e_e = [get_value /tb_top_jls_vertical/dut/e_e]"
+e_e = 0
+## puts "o_e = [get_value /tb_top_jls_vertical/dut/o_e]"
+o_e = 0
+## puts "out_fifo_empty = [get_value /tb_top_jls_vertical/dut/u_fifo_wrapper_output/fifo_empty]"
+out_fifo_empty = 3
+## puts "out_fifo_valid = [get_value /tb_top_jls_vertical/dut/u_fifo_wrapper_output/fifo_valid]"
+out_fifo_valid = 0
+## puts "out_fifo_rd_en = [get_value /tb_top_jls_vertical/dut/u_fifo_wrapper_output/fifo_rd_en]"
+out_fifo_rd_en = 0

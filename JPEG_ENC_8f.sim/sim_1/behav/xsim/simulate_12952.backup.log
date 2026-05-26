@@ -1,0 +1,173 @@
+#-----------------------------------------------------------
+# xsim v2024.2 (64-bit)
+# SW Build 5239630 on Fri Nov 08 22:35:27 MST 2024
+# IP Build 5239520 on Sun Nov 10 16:12:51 MST 2024
+# SharedData Build 5239561 on Fri Nov 08 14:39:27 MST 2024
+# Start of session at: Tue May 26 12:10:51 2026
+# Process ID         : 12952
+# Current directory  : D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.sim/sim_1/behav/xsim
+# Command line       : xsim.exe -log simulate.log -mode tcl -source {xsim.dir/tb_top_jls_vertical_behav/xsim_script.tcl}
+# Log file           : D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.sim/sim_1/behav/xsim/simulate.log
+# Journal file       : D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.sim/sim_1/behav/xsim\xsim.jou
+# Running On         : DESKTOP-PHB4K70
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 26200
+# Processor Detail   : 11th Gen Intel(R) Core(TM) i5-11400H @ 2.70GHz
+# CPU Frequency      : 2688 MHz
+# CPU Physical cores : 6
+# CPU Logical cores  : 12
+# Host memory        : 16840 MB
+# Swap memory        : 8589 MB
+# Total Virtual      : 25430 MB
+# Available Virtual  : 12667 MB
+#-----------------------------------------------------------
+source xsim.dir/tb_top_jls_vertical_behav/xsim_script.tcl
+# xsim {tb_top_jls_vertical_behav} -autoloadwcfg -tclbatch {tb_top_jls_vertical.tcl}
+Time resolution is 1 ps
+source tb_top_jls_vertical.tcl
+## run all
+image_generator: opened D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.sim/images/world_gray_1500x1500.pgm  1500x1500 depth=255  streaming 1500x1500
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+[0] OPEN all encoder files (enc0a..enc5a)
+[767500] FIRST SOF enc0: iw=1500 swath_h=750 col0=750
+[987500] FIRST e_e[0]: rd_cnt=0 a_ii=0 j_sof=1 j_e=0 a_wl=749
+[666840833] DBG rd=30304/30304 st=1 e_e=00 a_e=1 j_sof=0 j_e=0 bcnt=9 h_eof=0
+[1333507500] DBG rd=63637/63637 st=1 e_e=00 a_e=1 j_sof=0 j_e=0 bcnt=11 h_eof=0
+[2000174166] DBG rd=96971/96971 st=1 e_e=00 a_e=1 j_sof=0 j_e=0 bcnt=8 h_eof=0
+[2666840833] DBG rd=130304/130304 st=1 e_e=00 a_e=1 j_sof=0 j_e=0 bcnt=7 h_eof=0
+[3333507500] DBG rd=163637/163637 st=1 e_e=00 a_e=1 j_sof=0 j_e=0 bcnt=5 h_eof=0
+[4000174166] DBG rd=196971/196971 st=1 e_e=00 a_e=1 j_sof=0 j_e=0 bcnt=5 h_eof=0
+[4666840833] DBG rd=230304/230304 st=1 e_e=00 a_e=1 j_sof=0 j_e=0 bcnt=14 h_eof=0
+[5333507500] DBG rd=263637/263637 st=1 e_e=00 a_e=1 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[6000174166] DBG rd=296971/296971 st=1 e_e=00 a_e=1 j_sof=0 j_e=0 bcnt=4 h_eof=0
+[6666840833] DBG rd=330304/330304 st=1 e_e=00 a_e=1 j_sof=0 j_e=0 bcnt=4 h_eof=0
+[7333507500] DBG rd=363637/363637 st=1 e_e=00 a_e=1 j_sof=0 j_e=0 bcnt=14 h_eof=0
+[8000174166] DBG rd=396971/396971 st=1 e_e=00 a_e=1 j_sof=0 j_e=1 bcnt=0 h_eof=0
+[8666840833] DBG rd=430304/430304 st=1 e_e=00 a_e=1 j_sof=0 j_e=0 bcnt=8 h_eof=0
+[9333507500] DBG rd=463637/463637 st=1 e_e=00 a_e=1 j_sof=0 j_e=0 bcnt=10 h_eof=0
+[10000174166] DBG rd=496971/496971 st=1 e_e=00 a_e=1 j_sof=0 j_e=0 bcnt=15 h_eof=0
+[10666840833] DBG rd=530304/530304 st=1 e_e=10 a_e=1 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[11311120833] CLOSE enc0a.jls words=50036 bytes=100072
+[11311120833] OPEN enc0b.jls
+[11311120833] CLOSE enc1a.jls words=47854 bytes=95708
+[11311120833] OPEN enc1b.jls
+[11333507500] DBG rd=562500/562500 st=0 e_e=00 a_e=0 j_sof=1 j_e=0 bcnt=8 h_eof=0
+[12000174166] DBG rd=31465/31465 st=1 e_e=11 a_e=1 j_sof=0 j_e=0 bcnt=13 h_eof=0
+[12666840833] DBG rd=64798/64798 st=1 e_e=00 a_e=1 j_sof=0 j_e=1 bcnt=2 h_eof=0
+[13333507500] DBG rd=98131/98131 st=1 e_e=10 a_e=1 j_sof=0 j_e=0 bcnt=10 h_eof=0
+[14000174166] DBG rd=131465/131465 st=1 e_e=00 a_e=1 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[14666840833] DBG rd=164798/164798 st=1 e_e=01 a_e=1 j_sof=0 j_e=0 bcnt=4 h_eof=0
+[15333507500] DBG rd=198131/198131 st=1 e_e=01 a_e=1 j_sof=0 j_e=0 bcnt=10 h_eof=0
+[16000174166] DBG rd=231465/231465 st=1 e_e=00 a_e=1 j_sof=0 j_e=0 bcnt=10 h_eof=0
+[16666840833] DBG rd=264798/264798 st=1 e_e=10 a_e=1 j_sof=0 j_e=0 bcnt=14 h_eof=0
+image_generator: done streaming 2250000 pixels
+[17333507500] DBG rd=298131/298131 st=1 e_e=01 a_e=1 j_sof=0 j_e=0 bcnt=9 h_eof=0
+[18000174166] DBG rd=331465/331465 st=1 e_e=00 a_e=1 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[18666840833] DBG rd=364798/364798 st=1 e_e=00 a_e=1 j_sof=0 j_e=0 bcnt=13 h_eof=0
+[19333507500] DBG rd=398131/398131 st=1 e_e=01 a_e=1 j_sof=0 j_e=0 bcnt=8 h_eof=0
+[20000174166] DBG rd=413691/413990 st=1 e_e=00 a_e=0 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[20666840833] DBG rd=413691/413990 st=1 e_e=00 a_e=0 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[21333507500] DBG rd=413691/413990 st=1 e_e=00 a_e=0 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[22000174166] DBG rd=413691/413990 st=1 e_e=00 a_e=0 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[22666840833] DBG rd=413691/413990 st=1 e_e=00 a_e=0 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[23333507500] DBG rd=413691/413990 st=1 e_e=00 a_e=0 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[24000174166] DBG rd=413691/413990 st=1 e_e=00 a_e=0 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[24666840833] DBG rd=413691/413990 st=1 e_e=00 a_e=0 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[25333507500] DBG rd=413691/413990 st=1 e_e=00 a_e=0 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[26000174166] DBG rd=413691/413990 st=1 e_e=00 a_e=0 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[26666840833] DBG rd=413691/413990 st=1 e_e=00 a_e=0 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[27333507500] DBG rd=413691/413990 st=1 e_e=00 a_e=0 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[28000174166] DBG rd=413691/413990 st=1 e_e=00 a_e=0 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[28666840833] DBG rd=413691/413990 st=1 e_e=00 a_e=0 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[29333507500] DBG rd=413691/413990 st=1 e_e=00 a_e=0 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[30000174166] DBG rd=413691/413990 st=1 e_e=00 a_e=0 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[30666840833] DBG rd=413691/413990 st=1 e_e=00 a_e=0 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[31333507500] DBG rd=413691/413990 st=1 e_e=00 a_e=0 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[32000174166] DBG rd=413691/413990 st=1 e_e=00 a_e=0 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[32666840833] DBG rd=413691/413990 st=1 e_e=00 a_e=0 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[33333507500] DBG rd=413691/413990 st=1 e_e=00 a_e=0 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[34000174166] DBG rd=413691/413990 st=1 e_e=00 a_e=0 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[34666840833] DBG rd=413691/413990 st=1 e_e=00 a_e=0 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[35333507500] DBG rd=413691/413990 st=1 e_e=00 a_e=0 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[36000174166] DBG rd=413691/413990 st=1 e_e=00 a_e=0 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[36666840833] DBG rd=413691/413990 st=1 e_e=00 a_e=0 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[37333507500] DBG rd=413691/413990 st=1 e_e=00 a_e=0 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[38000174166] DBG rd=413691/413990 st=1 e_e=00 a_e=0 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[38666840833] DBG rd=413691/413990 st=1 e_e=00 a_e=0 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[39333507500] DBG rd=413691/413990 st=1 e_e=00 a_e=0 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[40000174166] DBG rd=413691/413990 st=1 e_e=00 a_e=0 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[40666840833] DBG rd=413691/413990 st=1 e_e=00 a_e=0 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[41333507500] DBG rd=413691/413990 st=1 e_e=00 a_e=0 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[42000174166] DBG rd=413691/413990 st=1 e_e=00 a_e=0 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[42666840833] DBG rd=413691/413990 st=1 e_e=00 a_e=0 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[43333507500] DBG rd=413691/413990 st=1 e_e=00 a_e=0 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[44000174166] DBG rd=413691/413990 st=1 e_e=00 a_e=0 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[44666840833] DBG rd=413691/413990 st=1 e_e=00 a_e=0 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[45333507500] DBG rd=413691/413990 st=1 e_e=00 a_e=0 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[46000174166] DBG rd=413691/413990 st=1 e_e=00 a_e=0 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[46666840833] DBG rd=413691/413990 st=1 e_e=00 a_e=0 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[47333507500] DBG rd=413691/413990 st=1 e_e=00 a_e=0 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[48000174166] DBG rd=413691/413990 st=1 e_e=00 a_e=0 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[48666840833] DBG rd=413691/413990 st=1 e_e=00 a_e=0 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[49333507500] DBG rd=413691/413990 st=1 e_e=00 a_e=0 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[50000174166] DBG rd=413691/413990 st=1 e_e=00 a_e=0 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[50666840833] DBG rd=413691/413990 st=1 e_e=00 a_e=0 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[51333507500] DBG rd=413691/413990 st=1 e_e=00 a_e=0 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[52000174166] DBG rd=413691/413990 st=1 e_e=00 a_e=0 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[52666840833] DBG rd=413691/413990 st=1 e_e=00 a_e=0 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[53333507500] DBG rd=413691/413990 st=1 e_e=00 a_e=0 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[54000174166] DBG rd=413691/413990 st=1 e_e=00 a_e=0 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[54666840833] DBG rd=413691/413990 st=1 e_e=00 a_e=0 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[55333507500] DBG rd=413691/413990 st=1 e_e=00 a_e=0 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[56000174166] DBG rd=413691/413990 st=1 e_e=00 a_e=0 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[56666840833] DBG rd=413691/413990 st=1 e_e=00 a_e=0 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[57333507500] DBG rd=413691/413990 st=1 e_e=00 a_e=0 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[58000174166] DBG rd=413691/413990 st=1 e_e=00 a_e=0 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[58666840833] DBG rd=413691/413990 st=1 e_e=00 a_e=0 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[59333507500] DBG rd=413691/413990 st=1 e_e=00 a_e=0 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[60000174166] DBG rd=413691/413990 st=1 e_e=00 a_e=0 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[60666840833] DBG rd=413691/413990 st=1 e_e=00 a_e=0 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[61333507500] DBG rd=413691/413990 st=1 e_e=00 a_e=0 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[62000174166] DBG rd=413691/413990 st=1 e_e=00 a_e=0 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[62666840833] DBG rd=413691/413990 st=1 e_e=00 a_e=0 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[63333507500] DBG rd=413691/413990 st=1 e_e=00 a_e=0 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[64000174166] DBG rd=413691/413990 st=1 e_e=00 a_e=0 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[64666840833] DBG rd=413691/413990 st=1 e_e=00 a_e=0 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[65333507500] DBG rd=413691/413990 st=1 e_e=00 a_e=0 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[66000174166] DBG rd=413691/413990 st=1 e_e=00 a_e=0 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[66666840833] DBG rd=413691/413990 st=1 e_e=00 a_e=0 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[67333507500] DBG rd=413691/413990 st=1 e_e=00 a_e=0 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[68000174166] DBG rd=413691/413990 st=1 e_e=00 a_e=0 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[68666840833] DBG rd=413691/413990 st=1 e_e=00 a_e=0 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[69333507500] DBG rd=413691/413990 st=1 e_e=00 a_e=0 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[70000174166] DBG rd=413691/413990 st=1 e_e=00 a_e=0 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[70666840833] DBG rd=413691/413990 st=1 e_e=00 a_e=0 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[71333507500] DBG rd=413691/413990 st=1 e_e=00 a_e=0 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[72000174166] DBG rd=413691/413990 st=1 e_e=00 a_e=0 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[72666840833] DBG rd=413691/413990 st=1 e_e=00 a_e=0 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[73333507500] DBG rd=413691/413990 st=1 e_e=00 a_e=0 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[74000174166] DBG rd=413691/413990 st=1 e_e=00 a_e=0 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[74666840833] DBG rd=413691/413990 st=1 e_e=00 a_e=0 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[75333507500] DBG rd=413691/413990 st=1 e_e=00 a_e=0 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[76000174166] DBG rd=413691/413990 st=1 e_e=00 a_e=0 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[76666840833] DBG rd=413691/413990 st=1 e_e=00 a_e=0 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[77333507500] DBG rd=413691/413990 st=1 e_e=00 a_e=0 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[78000174166] DBG rd=413691/413990 st=1 e_e=00 a_e=0 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[78666840833] DBG rd=413691/413990 st=1 e_e=00 a_e=0 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[79333507500] DBG rd=413691/413990 st=1 e_e=00 a_e=0 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[80000174166] DBG rd=413691/413990 st=1 e_e=00 a_e=0 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[80666840833] DBG rd=413691/413990 st=1 e_e=00 a_e=0 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[81333507500] DBG rd=413691/413990 st=1 e_e=00 a_e=0 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[82000174166] DBG rd=413691/413990 st=1 e_e=00 a_e=0 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[82666840833] DBG rd=413691/413990 st=1 e_e=00 a_e=0 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[83333507500] DBG rd=413691/413990 st=1 e_e=00 a_e=0 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[84000174166] DBG rd=413691/413990 st=1 e_e=00 a_e=0 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[84666840833] DBG rd=413691/413990 st=1 e_e=00 a_e=0 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[85333507500] DBG rd=413691/413990 st=1 e_e=00 a_e=0 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[86000174166] DBG rd=413691/413990 st=1 e_e=00 a_e=0 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[86666840833] DBG rd=413691/413990 st=1 e_e=00 a_e=0 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[87333507500] DBG rd=413691/413990 st=1 e_e=00 a_e=0 j_sof=0 j_e=0 bcnt=12 h_eof=0
+[88000174166] DBG rd=413691/413990 st=1 e_e=00 a_e=0 j_sof=0 j_e=0 bcnt=12 h_eof=0

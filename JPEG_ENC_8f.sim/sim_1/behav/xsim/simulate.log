@@ -3,8 +3,8 @@
 # SW Build 5239630 on Fri Nov 08 22:35:27 MST 2024
 # IP Build 5239520 on Sun Nov 10 16:12:51 MST 2024
 # SharedData Build 5239561 on Fri Nov 08 14:39:27 MST 2024
-# Start of session at: Fri May 22 12:42:13 2026
-# Process ID         : 27852
+# Start of session at: Tue May 26 13:50:38 2026
+# Process ID         : 23424
 # Current directory  : D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.sim/sim_1/behav/xsim
 # Command line       : xsim.exe -log simulate.log -mode tcl -source {xsim.dir/tb_top_jls_vertical_behav/xsim_script.tcl}
 # Log file           : D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.sim/sim_1/behav/xsim/simulate.log
@@ -17,71 +17,68 @@
 # CPU Physical cores : 6
 # CPU Logical cores  : 12
 # Host memory        : 16840 MB
-# Swap memory        : 9126 MB
-# Total Virtual      : 25967 MB
-# Available Virtual  : 12973 MB
+# Swap memory        : 8589 MB
+# Total Virtual      : 25430 MB
+# Available Virtual  : 12405 MB
 #-----------------------------------------------------------
 source xsim.dir/tb_top_jls_vertical_behav/xsim_script.tcl
 # xsim {tb_top_jls_vertical_behav} -autoloadwcfg -tclbatch {tb_top_jls_vertical.tcl}
 Time resolution is 1 ps
 source tb_top_jls_vertical.tcl
 ## run all
-image_generator: opened D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.sim/images/world_gray_16000x5000.pgm  16000x5000 depth=255  streaming 16000x5000
-WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
-WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
-WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
-WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
-WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
-WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+image_generator: opened D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.sim/images/world_gray_1500x1500.pgm  1500x1500 depth=255  streaming 1500x1500
 WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
 WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
 WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
 WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
 [0] OPEN all encoder files (enc0a..enc5a)
-[133311940833] CLOSE enc0a.jls words=758889 bytes=1517778
-[133311940833] OPEN enc0b.jls
-[133333240833] CLOSE enc1a.jls words=1306239 bytes=2612478
-[133333240833] OPEN enc1b.jls
-[133354560833] CLOSE enc2a.jls words=998594 bytes=1997188
-[133354560833] OPEN enc2b.jls
-[133376020833] CLOSE enc3a.jls words=973161 bytes=1946322
-[133376020833] OPEN enc3b.jls
-[133397360833] CLOSE enc4a.jls words=1023627 bytes=2047254
-[133397360833] OPEN enc4b.jls
-[266645240833] CLOSE enc0b.jls words=1878214 bytes=3756428
-[266645240833] OPEN enc0c.jls
-[266666780833] CLOSE enc1b.jls words=2911148 bytes=5822296
-[266666780833] OPEN enc1c.jls
-[266687940833] CLOSE enc2b.jls words=1564055 bytes=3128110
-[266687940833] OPEN enc2c.jls
-[266709260833] CLOSE enc3b.jls words=2268323 bytes=4536646
-[266709260833] OPEN enc3c.jls
-[266730680833] CLOSE enc4b.jls words=3430781 bytes=6861562
-[266730680833] OPEN enc4c.jls
-[399978560833] CLOSE enc0c.jls words=201677 bytes=403354
-[399978560833] OPEN enc0d.jls
-[399999900833] CLOSE enc1c.jls words=3152563 bytes=6305126
-[399999900833] OPEN enc1d.jls
-[400021260833] CLOSE enc2c.jls words=802656 bytes=1605312
-[400021260833] OPEN enc2d.jls
-[400042760833] CLOSE enc3c.jls words=2471514 bytes=4943028
-[400042760833] OPEN enc3d.jls
-[400064080833] CLOSE enc4c.jls words=3322947 bytes=6645894
-[400064080833] OPEN enc4d.jls
-[533311900833] CLOSE enc0d.jls words=293877 bytes=587754
-[533311900833] DONE enc0 total_bytes=6265314
-[533333300833] CLOSE enc1d.jls words=1381460 bytes=2762920
-[533333300833] DONE enc1 total_bytes=17502820
-image_generator: done streaming 80000000 pixels
-[533354560833] CLOSE enc2d.jls words=794210 bytes=1588420
-[533354560833] DONE enc2 total_bytes=8319030
-[533376020833] CLOSE enc3d.jls words=2759455 bytes=5518910
-[533376020833] DONE enc3 total_bytes=16944906
-[533397240833] CLOSE enc4d.jls words=2321974 bytes=4643948
-[533397240833] DONE enc4 total_bytes=20198658
-=== Simulation complete: 20 encoder files ===
-$finish called at time : 533397574166 ps : File "D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/sim_1/imports/FPGA Encoders/tb_top_jls_vertical.v" Line 214
-run: Time (s): cpu = 00:00:12 ; elapsed = 02:45:43 . Memory (MB): peak = 202.879 ; gain = 0.000
-xsim: Time (s): cpu = 00:00:12 ; elapsed = 02:45:44 . Memory (MB): peak = 202.879 ; gain = 32.969
-xsim% INFO: xsimkernel Simulation Memory Usage: 40924 KB (Peak: 40924 KB), Simulation CPU Usage: 9920093 ms
-INFO: [Common 17-206] Exiting xsim at Fri May 22 15:27:58 2026...
+[767500] FIRST SOF enc0: iw=1500 swath_h=750 col0=750
+[987500] FIRST e_e[0]: rd_cnt=0 a_ii=0 j_sof=1 j_e=0 a_wl=749
+[666840833] DBG rd=30304/30304 st=1 e_e=00 wr=48750/48160 full=00 empty=0 pix=96912 s_e=10 wr_en=10 xcnt=911 ycnt=64 fa=1
+[1333507500] DBG rd=63637/63637 st=1 e_e=00 wr=98660/98250 full=00 empty=0 pix=196912 s_e=01 wr_en=01 xcnt=411 ycnt=131 fa=1
+[2000174166] DBG rd=96971/96971 st=1 e_e=00 wr=148500/148410 full=00 empty=0 pix=296912 s_e=10 wr_en=10 xcnt=1411 ycnt=197 fa=1
+[2666840833] DBG rd=130304/130304 st=1 e_e=00 wr=198750/198160 full=00 empty=0 pix=396912 s_e=10 wr_en=10 xcnt=911 ycnt=264 fa=1
+[3333507500] DBG rd=163637/163637 st=1 e_e=00 wr=248660/248250 full=00 empty=0 pix=496912 s_e=01 wr_en=01 xcnt=411 ycnt=331 fa=1
+[4000174166] DBG rd=196971/196971 st=1 e_e=00 wr=298500/298410 full=00 empty=0 pix=596912 s_e=10 wr_en=10 xcnt=1411 ycnt=397 fa=1
+[4666840833] DBG rd=230304/230304 st=1 e_e=00 wr=348750/348160 full=00 empty=0 pix=696912 s_e=10 wr_en=10 xcnt=911 ycnt=464 fa=1
+[5333507500] DBG rd=263637/263637 st=1 e_e=00 wr=398660/398250 full=00 empty=0 pix=796912 s_e=01 wr_en=01 xcnt=411 ycnt=531 fa=1
+[6000174166] DBG rd=296971/296971 st=1 e_e=00 wr=448500/448410 full=00 empty=0 pix=896912 s_e=10 wr_en=10 xcnt=1411 ycnt=597 fa=1
+[6666840833] DBG rd=330304/330304 st=1 e_e=00 wr=498750/498160 full=00 empty=0 pix=996912 s_e=10 wr_en=10 xcnt=911 ycnt=664 fa=1
+[7333507500] DBG rd=363637/363637 st=1 e_e=00 wr=548660/548250 full=00 empty=0 pix=1096912 s_e=01 wr_en=01 xcnt=411 ycnt=731 fa=1
+[8000174166] DBG rd=396971/396971 st=1 e_e=00 wr=598500/598410 full=00 empty=0 pix=1196912 s_e=10 wr_en=10 xcnt=1411 ycnt=797 fa=1
+[8666840833] DBG rd=430304/430304 st=1 e_e=00 wr=648750/648160 full=00 empty=0 pix=1296912 s_e=10 wr_en=10 xcnt=911 ycnt=864 fa=1
+[9333507500] DBG rd=463637/463637 st=1 e_e=00 wr=698660/698250 full=00 empty=0 pix=1396912 s_e=01 wr_en=01 xcnt=411 ycnt=931 fa=1
+[10000174166] DBG rd=496971/496971 st=1 e_e=00 wr=748500/748410 full=00 empty=0 pix=1496912 s_e=10 wr_en=10 xcnt=1411 ycnt=997 fa=1
+[10666840833] DBG rd=530304/530304 st=1 e_e=00 wr=798750/798160 full=00 empty=0 pix=1596912 s_e=10 wr_en=10 xcnt=911 ycnt=1064 fa=1
+[11311120833] CLOSE enc0a.jls words=42988 bytes=85976
+[11311120833] OPEN enc0b.jls
+[11311120833] CLOSE enc1a.jls words=39286 bytes=78572
+[11311120833] OPEN enc1b.jls
+[11333507500] DBG rd=562500/562500 st=0 e_e=00 wr=848660/848250 full=00 empty=0 pix=1696912 s_e=01 wr_en=01 xcnt=411 ycnt=1131 fa=1
+[12000174166] DBG rd=31465/31465 st=1 e_e=10 wr=898500/898410 full=00 empty=0 pix=1796912 s_e=10 wr_en=10 xcnt=1411 ycnt=1197 fa=1
+[12666840833] DBG rd=64798/64798 st=1 e_e=00 wr=948750/948160 full=00 empty=0 pix=1896912 s_e=10 wr_en=10 xcnt=911 ycnt=1264 fa=1
+[13333507500] DBG rd=98131/98131 st=1 e_e=10 wr=998660/998250 full=00 empty=0 pix=1996912 s_e=01 wr_en=01 xcnt=411 ycnt=1331 fa=1
+[14000174166] DBG rd=131465/131465 st=1 e_e=00 wr=1048500/1048410 full=00 empty=0 pix=2096912 s_e=10 wr_en=10 xcnt=1411 ycnt=1397 fa=1
+[14666840833] DBG rd=164798/164798 st=1 e_e=00 wr=1098750/1098160 full=00 empty=0 pix=2196912 s_e=10 wr_en=10 xcnt=911 ycnt=1464 fa=1
+image_generator: done streaming 2250000 pixels
+[15333507500] DBG rd=198131/198131 st=1 e_e=01 wr=1125000/1125000 full=00 empty=0 pix=2250000 s_e=00 wr_en=00 xcnt=0 ycnt=1499 fa=0
+[16000174166] DBG rd=231465/231465 st=1 e_e=00 wr=1125000/1125000 full=00 empty=0 pix=2250000 s_e=00 wr_en=00 xcnt=0 ycnt=1499 fa=0
+[16666840833] DBG rd=264798/264798 st=1 e_e=01 wr=1125000/1125000 full=00 empty=0 pix=2250000 s_e=00 wr_en=00 xcnt=0 ycnt=1499 fa=0
+[17333507500] DBG rd=298131/298131 st=1 e_e=00 wr=1125000/1125000 full=00 empty=0 pix=2250000 s_e=00 wr_en=00 xcnt=0 ycnt=1499 fa=0
+[18000174166] DBG rd=331465/331465 st=1 e_e=10 wr=1125000/1125000 full=00 empty=0 pix=2250000 s_e=00 wr_en=00 xcnt=0 ycnt=1499 fa=0
+[18666840833] DBG rd=364798/364798 st=1 e_e=00 wr=1125000/1125000 full=00 empty=0 pix=2250000 s_e=00 wr_en=00 xcnt=0 ycnt=1499 fa=0
+[19333507500] DBG rd=398131/398131 st=1 e_e=01 wr=1125000/1125000 full=00 empty=0 pix=2250000 s_e=00 wr_en=00 xcnt=0 ycnt=1499 fa=0
+[20000174166] DBG rd=431465/431465 st=1 e_e=01 wr=1125000/1125000 full=00 empty=0 pix=2250000 s_e=00 wr_en=00 xcnt=0 ycnt=1499 fa=0
+[20666840833] DBG rd=464798/464798 st=1 e_e=10 wr=1125000/1125000 full=00 empty=0 pix=2250000 s_e=00 wr_en=00 xcnt=0 ycnt=1499 fa=0
+[21333507500] DBG rd=498131/498131 st=1 e_e=10 wr=1125000/1125000 full=00 empty=0 pix=2250000 s_e=00 wr_en=00 xcnt=0 ycnt=1499 fa=0
+[22000174166] DBG rd=531465/531465 st=1 e_e=00 wr=1125000/1125000 full=00 empty=0 pix=2250000 s_e=00 wr_en=00 xcnt=0 ycnt=1499 fa=0
+[22621240833] CLOSE enc0b.jls words=87167 bytes=174334
+[22621240833] DONE enc0 total_bytes=260310
+[22621240833] CLOSE enc1b.jls words=100221 bytes=200442
+[22621240833] DONE enc1 total_bytes=279014
+=== All 2 encoder slices complete (4 files total) ===
+$finish called at time : 22621574166 ps : File "D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/sim_1/imports/FPGA Encoders/tb_top_jls_vertical.v" Line 197
+run: Time (s): cpu = 00:00:01 ; elapsed = 00:20:17 . Memory (MB): peak = 202.703 ; gain = 0.000
+xsim: Time (s): cpu = 00:00:01 ; elapsed = 00:20:19 . Memory (MB): peak = 202.703 ; gain = 33.094
+xsim% INFO: xsimkernel Simulation Memory Usage: 42860 KB (Peak: 42860 KB), Simulation CPU Usage: 1214843 ms
+INFO: [Common 17-206] Exiting xsim at Tue May 26 14:10:59 2026...

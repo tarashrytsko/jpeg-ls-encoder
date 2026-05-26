@@ -1,6 +1,6 @@
 `timescale 1ps/1ps
 module top_jls_vertical #(
-    parameter integer N_E = 5,
+    parameter integer N_E = 2,
     parameter integer L   = 64,
     parameter [2:0]   nr  = 3'd0
 )(
@@ -18,12 +18,7 @@ module top_jls_vertical #(
 
     output wire [N_E-1:0]    o_e,
     output wire [N_E-1:0]    o_last,
-    output wire [N_E*16-1:0] o_data,
-
-    // Merged single-stream output
-    output wire        m_e,
-    output wire        m_last,
-    output wire [15:0] m_data
+    output wire [N_E*16-1:0] o_data
 );
 
 wire [N_E-1:0] o_sof_st;
@@ -33,7 +28,10 @@ wire [N_E-1:0] o_sof_st;
     wire [N_E*14-1:0]  s_h;
     wire [N_E-1:0]     o_last_enc;
     wire [$clog2(N_E)-1:0] encoder_sel;
+    wire [$clog2(N_E)-1:0] encoder_sel_comb;
     wire [N_E-1:0]     e_e;
+    wire               fifo_full_cur;
+    wire [N_E-1:0]     fifo_overflow_masked;
     wire [N_E*16-1:0]  e_data;
     wire [13:0]        x_cnt, y_cnt;
     wire               rd_clk;
@@ -101,7 +99,7 @@ wire [N_E-1:0] o_sof_st;
         .clk           (clk),
         .rstn          (sys_rdy),
         .i_sof         (i_sof_in),
-        .fifo_overflow (fifo_full),
+        .fifo_overflow (fifo_overflow_masked),
         .pixel_out     (i_x),
         .pixel_valid   (i_e),
         .i_w           (i_w),
@@ -110,29 +108,29 @@ wire [N_E-1:0] o_sof_st;
     );
 
     // =================================================================
-    // Splitter (streaming, 3 columns, chunk height = 375)
+    // Splitter (3 columns x 2 rows = 6 blocks)
     // =================================================================
-    wire [N_E-1:0] chunk_done;
-
     splitter_block #(
-        .N_H(5),
-        .N_E(N_E),
-        .CHUNK_H(1250)
+        .N_H(2),
+        .N_V(2),
+        .N_E(N_E)
     ) u_splitter_block (
+        .sys_rdy     (rstn),
         .clk         (clk),
-        .rstn        (sys_rdy),
+        .i_sof       (i_sof),
         .i_e         (i_e),
         .i_x         (i_x),
         .i_w         (i_w),
+        .i_h         (i_h),
         .i_sof_st    (o_sof_st),
         .o_e         (s_e),
         .o_x         (s_x),
-        .chunk_done  (chunk_done),
         .o_w         (s_w),
         .o_h         (s_h),
-        .encoder_sel_d (encoder_sel),
-        .x_cnt_d       (x_cnt),
-        .y_cnt_d       (y_cnt)
+        .encoder_sel_d    (encoder_sel),
+        .x_cnt_d          (x_cnt),
+        .y_cnt_d          (y_cnt),
+        .encoder_sel_comb (encoder_sel_comb)
     );
 
     // =================================================================
@@ -143,6 +141,9 @@ wire [N_E-1:0] o_sof_st;
     wire [N_E-1:0]    valid, fifo_rd_en, empty, overflow, fifo_wr_en, almost_empty;
     wire [N_E-1:0]    fifo_full;
     wire [N_E*18-1:0] fifo_count_flat;
+    // Per-encoder backpressure: stall only when target encoder's FIFO is full
+    assign fifo_full_cur = fifo_full[encoder_sel_comb];
+    assign fifo_overflow_masked = {N_E{fifo_full_cur}};
 
     fifo_wrapper_input #(.N_E(N_E)) u_fifo_wrapper_input (
         .rst(fifo_rst),
@@ -190,7 +191,9 @@ wire [N_E-1:0] o_sof_st;
     wire [32*N_E-1:0] read_count_flat;
 
     fifo_read_control #(
-        .NUM_ENCODERS(N_E)
+        .NUM_ENCODERS(N_E),
+        .N_H(2),
+        .N_V(2)
     ) u_fifo_read_control (
         .rd_clk(rd_clk),
         .sys_rdy(sys_rdy),
@@ -198,7 +201,6 @@ wire [N_E-1:0] o_sof_st;
         .i_h_r(s_h),
         .fifo_empty(empty),
         .fifo_valid(valid),
-        .enc_done(my_last),
         .rd_en(fifo_rd_en),
         .read_count_flat(read_count_flat),
         .i_sof_st_enc(i_sof_st_enc)
@@ -212,6 +214,8 @@ wire [N_E-1:0] o_sof_st;
 
     encoder_wrapper #(
         .N_E(N_E),
+        .N_H(2),
+        .N_V(2),
         .nr(nr),
         .L(L)
     ) u_encoder_wrapper (
@@ -246,26 +250,6 @@ wire [N_E-1:0] o_sof_st;
         .dout_last   (o_last),
         .wr_rst_busy (wr_rst_busy_output),
         .rd_rst_busy (rd_rst_busy_output)
-    );
-
-    // =================================================================
-    // Merger: combine all encoder outputs into single JLS stream
-    // =================================================================
-    merger #(
-        .N_E(N_E),
-        .SLICES_PER_ENC(2)
-    ) u_merger (
-        .clk    (clk),
-        .rstn   (sys_rdy),
-        .i_w    (i_w),
-        .i_h    (i_h),
-        .near   (nr),
-        .i_e    (o_e),
-        .i_last (o_last),
-        .i_data (o_data),
-        .o_e    (m_e),
-        .o_last (m_last),
-        .o_data (m_data)
     );
 
 endmodule

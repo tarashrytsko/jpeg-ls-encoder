@@ -3,8 +3,8 @@
 
 module tb_top_jls_vertical;
 
-    localparam N_E = 5;
-    localparam NUM_SLICES = 4;
+    localparam N_E = 2;
+    localparam NUM_SLICES = 2;
 
     // ------------------------------------------------------------
     // Clock & Reset
@@ -35,8 +35,6 @@ module tb_top_jls_vertical;
     wire [N_E-1:0]    o_e;
     wire [N_E-1:0]    o_last;
     wire [N_E*16-1:0] o_data;
-    wire              m_e, m_last;
-    wire [15:0]       m_data;
 
     // ------------------------------------------------------------
     // Pulse i_sof
@@ -65,9 +63,6 @@ module tb_top_jls_vertical;
         .o_e        (o_e),
         .o_last     (o_last),
         .o_data     (o_data),
-        .m_e        (m_e),
-        .m_last     (m_last),
-        .m_data     (m_data),
         .sys_rdy    (sys_rdy)
     );
 
@@ -75,7 +70,7 @@ module tb_top_jls_vertical;
     // Output capture: 6 encoders x 2 slices = 12 files
     // ------------------------------------------------------------
     integer f [0:N_E-1];
-    reg [3:0] slice [0:N_E-1];
+    reg [1:0] slice [0:N_E-1];
     reg closed [0:N_E-1];
     reg prev_last [0:N_E-1];
     integer word_cnt [0:N_E-1];
@@ -85,20 +80,12 @@ module tb_top_jls_vertical;
     reg [8*256-1:0] basepath;
     reg [8*256-1:0] fname;
 
-    function [7:0] slice_letter(input [3:0] idx);
+    function [7:0] slice_letter(input [1:0] idx);
         begin
             case(idx)
                 0: slice_letter = "a";
                 1: slice_letter = "b";
-                2: slice_letter = "c";
-                3: slice_letter = "d";
-                4: slice_letter = "e";
-                5: slice_letter = "f";
-                6: slice_letter = "g";
-                7: slice_letter = "h";
-                8: slice_letter = "i";
-                9: slice_letter = "j";
-                default: slice_letter = "x";
+                default: slice_letter = "a";
             endcase
         end
     endfunction
@@ -203,15 +190,60 @@ module tb_top_jls_vertical;
             if (!closed[ci]) all_done = 0;
     end
 
-    // ------------------------------------------------------------
-    // End simulation when all per-encoder files are done
-    // ------------------------------------------------------------
     initial begin
-        @(posedge sys_rdy);
         wait(all_done);
         repeat (50) @(posedge clk);
-        $display("=== Simulation complete: %0d encoder files ===", N_E * NUM_SLICES);
+        $display("=== All %0d encoder slices complete (%0d files total) ===", N_E, N_E * NUM_SLICES);
         $finish;
+    end
+
+    // Debug: log first SOF and monitor key signals
+    reg sof_logged;
+    initial sof_logged = 0;
+    always @(posedge dut.rd_clk) begin
+        if (dut.u_encoder_wrapper.enc_i_sofx[0] && !sof_logged) begin
+            sof_logged <= 1;
+            $display("[%0t] FIRST SOF enc0: iw=%0d swath_h=%0d col0=%0d",
+                $time, dut.u_encoder_wrapper.i_w,
+                dut.u_encoder_wrapper.swath_h,
+                dut.u_encoder_wrapper.col_w[0]);
+        end
+    end
+
+    // Log first e_e output
+    reg ee_logged;
+    initial ee_logged = 0;
+    always @(posedge dut.rd_clk) begin
+        if (dut.e_e[0] && !ee_logged) begin
+            ee_logged <= 1;
+            $display("[%0t] FIRST e_e[0]: rd_cnt=%0d a_ii=%0d j_sof=%0d j_e=%0d a_wl=%0d",
+                $time,
+                dut.u_fifo_read_control.rd_cnt[0],
+                dut.u_encoder_wrapper.ENC_INST[0].u_encoder.a_ii,
+                dut.u_encoder_wrapper.ENC_INST[0].u_encoder.j_sof,
+                dut.u_encoder_wrapper.ENC_INST[0].u_encoder.j_e,
+                dut.u_encoder_wrapper.ENC_INST[0].u_encoder.a_wl);
+        end
+    end
+
+    initial begin
+        forever begin
+            repeat(100000) @(posedge clk); // ~1ms at 100MHz
+            $display("[%0t] DBG rd=%0d/%0d st=%0d e_e=%b wr=%0d/%0d full=%b empty=%b pix=%0d s_e=%b wr_en=%b xcnt=%0d ycnt=%0d fa=%0d",
+                $time,
+                dut.u_fifo_read_control.rd_cnt[0], dut.u_fifo_read_control.rd_cnt[1],
+                dut.u_fifo_read_control.state,
+                dut.e_e,
+                dut.u_fifo_write_control.wr_cnt[0], dut.u_fifo_write_control.wr_cnt[1],
+                dut.fifo_full,
+                dut.u_fifo_wrapper_input.GEN_FIFO[0].u_fifo_inst.empty,
+                dut.u_image_generator.pix_cnt,
+                dut.s_e,
+                dut.u_fifo_write_control.wr_en,
+                dut.u_splitter_block.x_cnt,
+                dut.u_splitter_block.y_cnt,
+                dut.u_splitter_block.frame_active);
+        end
     end
 
 endmodule

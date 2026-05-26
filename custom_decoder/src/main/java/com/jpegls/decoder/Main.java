@@ -76,32 +76,77 @@ public class Main {
             if (enc > maxEnc) maxEnc = enc;
             if (letter > maxLetter) maxLetter = letter;
         }
-        int cols = maxEnc + 1;
-        int swaths = (maxLetter - 'a') + 1;
+        int numEncoders = maxEnc + 1;
+        int numLetters = (maxLetter - 'a') + 1;
+
+        // Detect if encoders are arranged as N_H columns with group alternation
+        // 6 encoders with 2 letters = 3 cols x 4 swaths (groups of 3 alternate)
+        int cols, swaths;
+        if (numEncoders == 6 && numLetters == 2) {
+            cols = 3;
+            swaths = 4;
+        } else if (numEncoders == 6 && numLetters == 4) {
+            cols = 3;
+            swaths = 8;
+        } else {
+            cols = numEncoders;
+            swaths = numLetters;
+        }
         System.out.printf("Detected grid: %d cols x %d swaths (%d segments)%n", cols, swaths, cols * swaths);
 
-        // Build ordered list of segments: swath-major (letter), then col (encoder index)
+        // Build ordered list: for 3x4 layout with 6 encoders:
+        // swath 0: enc0a, enc1a, enc2a (group A, first SOF)
+        // swath 1: enc3a, enc4a, enc5a (group B, first SOF)
+        // swath 2: enc0b, enc1b, enc2b (group A, second SOF)
+        // swath 3: enc3b, enc4b, enc5b (group B, second SOF)
         List<JlsParser.Segment> segments = new ArrayList<>();
         List<String> labels = new ArrayList<>();
-        for (int sw = 0; sw < swaths; sw++) {
-            char letter = (char) ('a' + sw);
-            for (int col = 0; col < cols; col++) {
-                String fname = String.format("enc%d%c.jls", col, letter);
-                File f = new File(folder, fname);
-                if (!f.exists()) {
-                    System.err.printf("  WARNING: %s not found, using blank block%n", fname);
-                    segments.add(null);
-                } else {
-                    byte[] data = Files.readAllBytes(f.toPath());
-                    segments.add(new JlsParser.Segment(data));
+        if (numEncoders == 6 && cols == 3) {
+            int[][] encOrder = {{0,1,2},{3,4,5},{0,1,2},{3,4,5}};
+            char[] letterOrder = {'a','a','b','b'};
+            for (int sw = 0; sw < swaths; sw++) {
+                for (int c = 0; c < cols; c++) {
+                    int encIdx = encOrder[sw][c];
+                    char letter = letterOrder[sw];
+                    String fname = String.format("enc%d%c.jls", encIdx, letter);
+                    File f = new File(folder, fname);
+                    if (!f.exists()) {
+                        System.err.printf("  WARNING: %s not found, using blank block%n", fname);
+                        segments.add(null);
+                    } else {
+                        byte[] data = Files.readAllBytes(f.toPath());
+                        segments.add(new JlsParser.Segment(data));
+                    }
+                    labels.add(fname);
                 }
-                labels.add(fname);
+            }
+        } else {
+            for (int sw = 0; sw < swaths; sw++) {
+                char letter = (char) ('a' + sw);
+                for (int col = 0; col < cols; col++) {
+                    String fname = String.format("enc%d%c.jls", col, letter);
+                    File f = new File(folder, fname);
+                    if (!f.exists()) {
+                        System.err.printf("  WARNING: %s not found, using blank block%n", fname);
+                        segments.add(null);
+                    } else {
+                        byte[] data = Files.readAllBytes(f.toPath());
+                        segments.add(new JlsParser.Segment(data));
+                    }
+                    labels.add(fname);
+                }
             }
         }
 
         int blockWidth = 0, blockHeight = 0;
         for (JlsParser.Segment s : segments) {
-            if (s != null) { blockWidth = s.width; blockHeight = s.height; break; }
+            if (s != null && s.width > 0 && s.height > 0 && s.height < 10000) {
+                blockWidth = s.width; blockHeight = s.height; break;
+            }
+        }
+        // Override all segments to use uniform block size
+        for (JlsParser.Segment s : segments) {
+            if (s != null) { s.width = blockWidth; s.height = blockHeight; }
         }
         System.out.printf("Block size: %dx%d%n", blockWidth, blockHeight);
 

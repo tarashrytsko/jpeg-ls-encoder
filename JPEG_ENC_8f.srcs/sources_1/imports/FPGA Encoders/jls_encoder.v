@@ -467,10 +467,9 @@ always @(posedge clk) begin
         a_hl <= 14'd0;
     end
     else if (a_sof) begin
-        // Load width/height of current block for this encoder
-        a_wl <= ((blk_w[blk_cnt*N_H + cur_enc] - 1) < 4) ? 14'd4 :
-                 (blk_w[blk_cnt*N_H + cur_enc] - 1);
-        a_hl <= blk_h[blk_cnt*N_H + cur_enc]-1;
+        // N_H=1, N_V=1 inside jls_encoder → only block is index 0
+        a_wl <= ((blk_w[0] - 1) < 4) ? 14'd4 : (blk_w[0] - 1);
+        a_hl <= blk_h[0] - 1;
     end
 end
 
