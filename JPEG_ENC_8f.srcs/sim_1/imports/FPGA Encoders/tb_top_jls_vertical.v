@@ -67,63 +67,39 @@ module tb_top_jls_vertical;
     );
 
     // ------------------------------------------------------------
-    // Output capture: 6 encoders x 2 slices = 12 files
+    // Output capture: buffer all slices in memory, write single file
     // ------------------------------------------------------------
-    integer f [0:N_E-1];
-    reg [1:0] slice [0:N_E-1];
-    reg closed [0:N_E-1];
-    reg prev_last [0:N_E-1];
-    integer word_cnt [0:N_E-1];
-    integer byte_cnt [0:N_E-1];
-    integer total_bytes [0:N_E-1];
+    localparam MAX_BYTES_PER_SLICE = 1500000;
+
+    reg [7:0] slice_buf [0:N_E-1][0:NUM_SLICES-1][0:MAX_BYTES_PER_SLICE-1];
+    integer   slice_len [0:N_E-1][0:NUM_SLICES-1];
+
+    reg [1:0] slice   [0:N_E-1];
+    reg       closed  [0:N_E-1];
+    integer   word_cnt[0:N_E-1];
+    integer   total_bytes[0:N_E-1];
 
     reg [8*256-1:0] basepath;
-    reg [8*256-1:0] fname;
 
-    function [7:0] slice_letter(input [1:0] idx);
-        begin
-            case(idx)
-                0: slice_letter = "a";
-                1: slice_letter = "b";
-                default: slice_letter = "a";
-            endcase
-        end
-    endfunction
+    integer ei, si, bi;
+    integer fout, total_out;
 
-    integer ei;
-
-    // ------------------------------------------------------------
-    // Open initial files
-    // ------------------------------------------------------------
     initial begin
         basepath = "D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.sim/output_block/";
-
         for (ei = 0; ei < N_E; ei = ei + 1) begin
-            slice[ei] = 0;
-            closed[ei] = 0;
-            prev_last[ei] = 0;
-            word_cnt[ei] = 0;
-            byte_cnt[ei] = 0;
+            slice[ei]       = 0;
+            closed[ei]      = 0;
+            word_cnt[ei]    = 0;
             total_bytes[ei] = 0;
+            for (si = 0; si < NUM_SLICES; si = si + 1)
+                slice_len[ei][si] = 0;
         end
-
-        // Open first slice file for each encoder
-        for (ei = 0; ei < N_E; ei = ei + 1) begin
-            $sformat(fname, "%0senc%0d%c.jls", basepath, ei, slice_letter(0));
-            f[ei] = $fopen(fname, "wb");
-            if (!f[ei]) begin
-                $display("*** ERROR: Cannot open %s", fname);
-                $finish;
-            end
-        end
-        $display("[%0t] OPEN all encoder files (enc0a..enc5a)", $time);
+        $display("[%0t] Output capture ready (in-memory buffers)", $time);
     end
 
     // ------------------------------------------------------------
     // Write + slice management
     // ------------------------------------------------------------
-    // Detect slice boundary by EOI marker (FFD9) at byte level
-    // Track previous byte to catch FFD9 spanning across word boundaries
     integer wi;
     reg [7:0] last_byte [0:N_E-1];
 
@@ -133,21 +109,14 @@ module tb_top_jls_vertical;
     end
 
     task do_close(input integer enc_idx);
+        integer cur_sl;
         begin
-            $display("[%0t] CLOSE enc%0d%c.jls words=%0d bytes=%0d",
-                     $time, enc_idx, slice_letter(slice[enc_idx]), word_cnt[enc_idx], byte_cnt[enc_idx]);
-            $fclose(f[enc_idx]);
+            cur_sl = slice[enc_idx];
+            $display("[%0t] SLICE enc%0d[%0d] done: words=%0d bytes=%0d",
+                     $time, enc_idx, cur_sl, word_cnt[enc_idx], slice_len[enc_idx][cur_sl]);
             slice[enc_idx] = slice[enc_idx] + 1;
             if (slice[enc_idx] < NUM_SLICES) begin
                 word_cnt[enc_idx] = 0;
-                byte_cnt[enc_idx] = 0;
-                $sformat(fname, "%0senc%0d%c.jls", basepath, enc_idx, slice_letter(slice[enc_idx]));
-                f[enc_idx] = $fopen(fname, "wb");
-                if (!f[enc_idx]) begin
-                    $display("*** ERROR: cannot open %s", fname);
-                    $finish;
-                end
-                $display("[%0t] OPEN enc%0d%c.jls", $time, enc_idx, slice_letter(slice[enc_idx]));
             end else begin
                 closed[enc_idx] = 1;
                 $display("[%0t] DONE enc%0d total_bytes=%0d", $time, enc_idx, total_bytes[enc_idx]);
@@ -158,23 +127,25 @@ module tb_top_jls_vertical;
     always @(posedge clk) begin
         for (wi = 0; wi < N_E; wi = wi + 1) begin
             if (!closed[wi] && o_e[wi]) begin
-                // Each word has MSB (byte 1) and LSB (byte 0)
-                // Written as: MSB first, then LSB
-                $fwrite(f[wi], "%c", o_data[wi*16+8 +: 8]);
-                $fwrite(f[wi], "%c", o_data[wi*16 +: 8]);
-                word_cnt[wi] = word_cnt[wi] + 1;
-                byte_cnt[wi] = byte_cnt[wi] + 2;
+                // Buffer MSB then LSB
+                slice_buf[wi][slice[wi]][slice_len[wi][slice[wi]]]   = o_data[wi*16+8 +: 8];
+                slice_buf[wi][slice[wi]][slice_len[wi][slice[wi]]+1] = o_data[wi*16    +: 8];
+                slice_len[wi][slice[wi]] = slice_len[wi][slice[wi]] + 2;
+                word_cnt[wi]    = word_cnt[wi]    + 1;
                 total_bytes[wi] = total_bytes[wi] + 2;
 
-                // Check EOI: FF D9 can be:
-                // Case 1: MSB=FF, LSB=D9 (within this word)
-                // Case 2: prev LSB=FF, this MSB=D9 (spanning words)
-                if ((o_data[wi*16+8 +: 8] == 8'hFF && o_data[wi*16 +: 8] == 8'hD9) ||
-                    (last_byte[wi] == 8'hFF && o_data[wi*16+8 +: 8] == 8'hD9)) begin
+                // Detect EOI (FFD9): within word or spanning words
+                if (o_data[wi*16+8 +: 8] == 8'hFF && o_data[wi*16 +: 8] == 8'hD9) begin
+                    do_close(wi);
+                end else if (last_byte[wi] == 8'hFF && o_data[wi*16+8 +: 8] == 8'hD9) begin
+                    // FF from prev word, D9 is MSB of this word
+                    // LSB of this word is encoder padding (0x00) — trim it
+                    slice_len[wi][slice[wi]] = slice_len[wi][slice[wi]] - 1;
+                    total_bytes[wi] = total_bytes[wi] - 1;
                     do_close(wi);
                 end
 
-                last_byte[wi] <= o_data[wi*16 +: 8]; // track LSB for cross-word detection
+                last_byte[wi] <= o_data[wi*16 +: 8];
             end
         end
     end
@@ -190,10 +161,28 @@ module tb_top_jls_vertical;
             if (!closed[ci]) all_done = 0;
     end
 
+    // Write concatenated output.jls then finish
     initial begin
         wait(all_done);
         repeat (50) @(posedge clk);
-        $display("=== All %0d encoder slices complete (%0d files total) ===", N_E, N_E * NUM_SLICES);
+
+        fout = $fopen({basepath, "output.jls"}, "wb");
+        if (!fout) begin
+            $display("*** ERROR: cannot open output.jls");
+            $finish;
+        end
+        total_out = 0;
+        // Order: swath-major, encoder-minor
+        for (si = 0; si < NUM_SLICES; si = si + 1)
+            for (ei = 0; ei < N_E; ei = ei + 1)
+                for (bi = 0; bi < slice_len[ei][si]; bi = bi + 1) begin
+                    $fwrite(fout, "%c", slice_buf[ei][si][bi]);
+                    total_out = total_out + 1;
+                end
+        $fclose(fout);
+        $display("[%0t] output.jls written: %0d bytes (%0d slices, swath-major enc-minor order)",
+                 $time, total_out, N_E * NUM_SLICES);
+        $display("=== All %0d encoder slices complete ===", N_E * NUM_SLICES);
         $finish;
     end
 
@@ -228,21 +217,15 @@ module tb_top_jls_vertical;
 
     initial begin
         forever begin
-            repeat(100000) @(posedge clk); // ~1ms at 100MHz
-            $display("[%0t] DBG rd=%0d/%0d st=%0d e_e=%b wr=%0d/%0d full=%b empty=%b pix=%0d s_e=%b wr_en=%b xcnt=%0d ycnt=%0d fa=%0d",
+            repeat(100000) @(posedge clk);
+            $display("[%0t] DBG rd=%0d/%0d st=%0d e_e=%b wr=%0d/%0d full=%b pix=%0d",
                 $time,
                 dut.u_fifo_read_control.rd_cnt[0], dut.u_fifo_read_control.rd_cnt[1],
                 dut.u_fifo_read_control.state,
                 dut.e_e,
                 dut.u_fifo_write_control.wr_cnt[0], dut.u_fifo_write_control.wr_cnt[1],
                 dut.fifo_full,
-                dut.u_fifo_wrapper_input.GEN_FIFO[0].u_fifo_inst.empty,
-                dut.u_image_generator.pix_cnt,
-                dut.s_e,
-                dut.u_fifo_write_control.wr_en,
-                dut.u_splitter_block.x_cnt,
-                dut.u_splitter_block.y_cnt,
-                dut.u_splitter_block.frame_active);
+                dut.u_image_generator.pix_cnt);
         end
     end
 

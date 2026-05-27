@@ -7,7 +7,7 @@ module image_generator #(
     parameter IMG_W        = 0,
     parameter IMG_H        = 0,
     parameter SOF_STRETCH  = 3000,
-    parameter PGM_FILE     = "D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.sim/images/world_gray_3000x3000.pgm"
+    parameter PGM_FILE     = "D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.sim/images/world_gray_1500x1500.pgm"
 )(
     input  wire                    clk,
     input  wire                    rstn,

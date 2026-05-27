@@ -3,8 +3,8 @@
 # SW Build 5239630 on Fri Nov 08 22:35:27 MST 2024
 # IP Build 5239520 on Sun Nov 10 16:12:51 MST 2024
 # SharedData Build 5239561 on Fri Nov 08 14:39:27 MST 2024
-# Start of session at: Tue May 26 14:37:33 2026
-# Process ID         : 19556
+# Start of session at: Wed May 27 17:16:21 2026
+# Process ID         : 2100
 # Current directory  : D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.sim/sim_1/behav/xsim
 # Command line       : xsim.exe -log simulate.log -mode tcl -source {xsim.dir/tb_top_jls_vertical_behav/xsim_script.tcl}
 # Log file           : D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.sim/sim_1/behav/xsim/simulate.log
@@ -19,168 +19,65 @@
 # Host memory        : 16840 MB
 # Swap memory        : 8589 MB
 # Total Virtual      : 25430 MB
-# Available Virtual  : 12257 MB
+# Available Virtual  : 14729 MB
 #-----------------------------------------------------------
 source xsim.dir/tb_top_jls_vertical_behav/xsim_script.tcl
 # xsim {tb_top_jls_vertical_behav} -autoloadwcfg -tclbatch {tb_top_jls_vertical.tcl}
 Time resolution is 1 ps
 source tb_top_jls_vertical.tcl
 ## run all
-image_generator: opened D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.sim/images/world_gray_3000x3000.pgm  3000x3000 depth=255  streaming 3000x3000
+image_generator: opened D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.sim/images/world_gray_1500x1500.pgm  1500x1500 depth=255  streaming 1500x1500
 WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
 WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
 WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
 WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
-[0] OPEN all encoder files (enc0a..enc5a)
-[767500] FIRST SOF enc0: iw=3000 swath_h=1500 col0=1500
-[987500] FIRST e_e[0]: rd_cnt=0 a_ii=0 j_sof=1 j_e=0 a_wl=1499
-[666840833] DBG rd=30304/30304 st=1 e_e=00 wr=48910/48000 full=00 empty=0 pix=96912 s_e=01 wr_en=01 xcnt=911 ycnt=32 fa=1
-[1333507500] DBG rd=63637/63637 st=1 e_e=00 wr=99000/97910 full=00 empty=0 pix=196912 s_e=10 wr_en=10 xcnt=1911 ycnt=65 fa=1
-[2000174166] DBG rd=96971/96971 st=1 e_e=00 wr=148500/148410 full=00 empty=0 pix=296912 s_e=10 wr_en=10 xcnt=2911 ycnt=98 fa=1
-[2666840833] DBG rd=130304/130304 st=1 e_e=00 wr=198910/198000 full=00 empty=0 pix=396912 s_e=01 wr_en=01 xcnt=911 ycnt=132 fa=1
-[3333507500] DBG rd=163637/163637 st=1 e_e=10 wr=249000/247910 full=00 empty=0 pix=496912 s_e=10 wr_en=10 xcnt=1911 ycnt=165 fa=1
-[4000174166] DBG rd=196971/196971 st=1 e_e=00 wr=298500/298410 full=00 empty=0 pix=596912 s_e=10 wr_en=10 xcnt=2911 ycnt=198 fa=1
-[4666840833] DBG rd=230304/230304 st=1 e_e=00 wr=348910/348000 full=00 empty=0 pix=696912 s_e=01 wr_en=01 xcnt=911 ycnt=232 fa=1
-[5333507500] DBG rd=263637/263637 st=1 e_e=00 wr=399000/397910 full=00 empty=0 pix=796912 s_e=10 wr_en=10 xcnt=1911 ycnt=265 fa=1
-[6000174166] DBG rd=296971/296971 st=1 e_e=00 wr=448500/448410 full=00 empty=0 pix=896912 s_e=10 wr_en=10 xcnt=2911 ycnt=298 fa=1
-[6666840833] DBG rd=330304/330304 st=1 e_e=00 wr=498910/498000 full=00 empty=0 pix=996912 s_e=01 wr_en=01 xcnt=911 ycnt=332 fa=1
-[7333507500] DBG rd=363637/363637 st=1 e_e=00 wr=549000/547910 full=00 empty=0 pix=1096912 s_e=10 wr_en=10 xcnt=1911 ycnt=365 fa=1
-[8000174166] DBG rd=396971/396971 st=1 e_e=00 wr=598500/598410 full=00 empty=0 pix=1196912 s_e=10 wr_en=10 xcnt=2911 ycnt=398 fa=1
-[8666840833] DBG rd=430304/430304 st=1 e_e=00 wr=648910/648000 full=00 empty=0 pix=1296912 s_e=01 wr_en=01 xcnt=911 ycnt=432 fa=1
-[9333507500] DBG rd=463637/463637 st=1 e_e=10 wr=699000/697910 full=00 empty=0 pix=1396912 s_e=10 wr_en=10 xcnt=1911 ycnt=465 fa=1
-[10000174166] DBG rd=496971/496971 st=1 e_e=01 wr=748500/748410 full=00 empty=0 pix=1496912 s_e=10 wr_en=10 xcnt=2911 ycnt=498 fa=1
-[10666840833] DBG rd=530304/530304 st=1 e_e=00 wr=798910/798000 full=00 empty=0 pix=1596912 s_e=01 wr_en=01 xcnt=911 ycnt=532 fa=1
-[11333507500] DBG rd=563637/563637 st=1 e_e=00 wr=849000/847910 full=00 empty=0 pix=1696912 s_e=10 wr_en=10 xcnt=1911 ycnt=565 fa=1
-[12000174166] DBG rd=596971/596971 st=1 e_e=01 wr=898500/898410 full=00 empty=0 pix=1796912 s_e=10 wr_en=10 xcnt=2911 ycnt=598 fa=1
-[12666840833] DBG rd=630304/630304 st=1 e_e=00 wr=948910/948000 full=00 empty=0 pix=1896912 s_e=01 wr_en=01 xcnt=911 ycnt=632 fa=1
-[13333507500] DBG rd=663637/663637 st=1 e_e=00 wr=999000/997910 full=00 empty=0 pix=1996912 s_e=10 wr_en=10 xcnt=1911 ycnt=665 fa=1
-[14000174166] DBG rd=696971/696971 st=1 e_e=00 wr=1048500/1048410 full=00 empty=0 pix=2096912 s_e=10 wr_en=10 xcnt=2911 ycnt=698 fa=1
-[14666840833] DBG rd=730304/730304 st=1 e_e=00 wr=1098910/1098000 full=00 empty=0 pix=2196912 s_e=01 wr_en=01 xcnt=911 ycnt=732 fa=1
-[15333507500] DBG rd=763637/763637 st=1 e_e=00 wr=1149000/1147910 full=00 empty=0 pix=2296912 s_e=10 wr_en=10 xcnt=1911 ycnt=765 fa=1
-[16000174166] DBG rd=796971/796971 st=1 e_e=00 wr=1198500/1198410 full=00 empty=0 pix=2396912 s_e=10 wr_en=10 xcnt=2911 ycnt=798 fa=1
-[16666840833] DBG rd=830304/830304 st=1 e_e=00 wr=1248910/1248000 full=00 empty=0 pix=2496912 s_e=01 wr_en=01 xcnt=911 ycnt=832 fa=1
-[17333507500] DBG rd=863637/863637 st=1 e_e=00 wr=1299000/1297910 full=00 empty=0 pix=2596912 s_e=10 wr_en=10 xcnt=1911 ycnt=865 fa=1
-[18000174166] DBG rd=896971/896971 st=1 e_e=00 wr=1348500/1348410 full=00 empty=0 pix=2696912 s_e=10 wr_en=10 xcnt=2911 ycnt=898 fa=1
-[18666840833] DBG rd=930304/930304 st=1 e_e=00 wr=1398910/1398000 full=00 empty=0 pix=2796912 s_e=01 wr_en=01 xcnt=911 ycnt=932 fa=1
-[19333507500] DBG rd=963637/963637 st=1 e_e=00 wr=1449000/1447910 full=00 empty=0 pix=2896912 s_e=10 wr_en=10 xcnt=1911 ycnt=965 fa=1
-[20000174166] DBG rd=996971/996971 st=1 e_e=00 wr=1498500/1498410 full=00 empty=0 pix=2996912 s_e=10 wr_en=10 xcnt=2911 ycnt=998 fa=1
-[20666840833] DBG rd=1030304/1030304 st=1 e_e=00 wr=1548910/1548000 full=00 empty=0 pix=3096912 s_e=01 wr_en=01 xcnt=911 ycnt=1032 fa=1
-[21333507500] DBG rd=1063637/1063637 st=1 e_e=10 wr=1599000/1597910 full=00 empty=0 pix=3196912 s_e=10 wr_en=10 xcnt=1911 ycnt=1065 fa=1
-[22000174166] DBG rd=1096971/1096971 st=1 e_e=01 wr=1648500/1648410 full=00 empty=0 pix=3296912 s_e=10 wr_en=10 xcnt=2911 ycnt=1098 fa=1
-[22666840833] DBG rd=1130304/1130304 st=1 e_e=00 wr=1698910/1698000 full=00 empty=0 pix=3396912 s_e=01 wr_en=01 xcnt=911 ycnt=1132 fa=1
-[23333507500] DBG rd=1163637/1163637 st=1 e_e=01 wr=1749000/1747910 full=00 empty=0 pix=3496912 s_e=10 wr_en=10 xcnt=1911 ycnt=1165 fa=1
-[24000174166] DBG rd=1196971/1196971 st=1 e_e=00 wr=1798500/1798410 full=00 empty=0 pix=3596912 s_e=10 wr_en=10 xcnt=2911 ycnt=1198 fa=1
-[24666840833] DBG rd=1230304/1230304 st=1 e_e=00 wr=1848910/1848000 full=00 empty=0 pix=3696912 s_e=01 wr_en=01 xcnt=911 ycnt=1232 fa=1
-[25333507500] DBG rd=1263637/1263637 st=1 e_e=00 wr=1899000/1897910 full=00 empty=0 pix=3796912 s_e=10 wr_en=10 xcnt=1911 ycnt=1265 fa=1
-[26000174166] DBG rd=1296971/1296971 st=1 e_e=00 wr=1948500/1948410 full=00 empty=0 pix=3896912 s_e=10 wr_en=10 xcnt=2911 ycnt=1298 fa=1
-[26666840833] DBG rd=1330304/1330304 st=1 e_e=00 wr=1998910/1998000 full=00 empty=0 pix=3996912 s_e=01 wr_en=01 xcnt=911 ycnt=1332 fa=1
-[27333507500] DBG rd=1363637/1363637 st=1 e_e=00 wr=2049000/2047910 full=00 empty=0 pix=4096912 s_e=10 wr_en=10 xcnt=1911 ycnt=1365 fa=1
-[28000174166] DBG rd=1396971/1396971 st=1 e_e=00 wr=2098500/2098410 full=00 empty=0 pix=4196912 s_e=10 wr_en=10 xcnt=2911 ycnt=1398 fa=1
-[28666840833] DBG rd=1430304/1430304 st=1 e_e=00 wr=2148910/2148000 full=00 empty=0 pix=4296912 s_e=01 wr_en=01 xcnt=911 ycnt=1432 fa=1
-[29333507500] DBG rd=1463637/1463637 st=1 e_e=00 wr=2199000/2197910 full=00 empty=0 pix=4396912 s_e=10 wr_en=10 xcnt=1911 ycnt=1465 fa=1
-[30000174166] DBG rd=1496971/1496971 st=1 e_e=00 wr=2248500/2248410 full=00 empty=0 pix=4496912 s_e=10 wr_en=10 xcnt=2911 ycnt=1498 fa=1
-[30666840833] DBG rd=1530304/1530304 st=1 e_e=00 wr=2298910/2298000 full=00 empty=0 pix=4596912 s_e=01 wr_en=01 xcnt=911 ycnt=1532 fa=1
-[31333507500] DBG rd=1563637/1563637 st=1 e_e=00 wr=2349000/2347910 full=00 empty=0 pix=4696912 s_e=10 wr_en=10 xcnt=1911 ycnt=1565 fa=1
-[32000174166] DBG rd=1596971/1596971 st=1 e_e=01 wr=2398500/2398410 full=00 empty=0 pix=4796912 s_e=10 wr_en=10 xcnt=2911 ycnt=1598 fa=1
-[32666840833] DBG rd=1630304/1630304 st=1 e_e=00 wr=2448910/2448000 full=00 empty=0 pix=4896912 s_e=01 wr_en=01 xcnt=911 ycnt=1632 fa=1
-[33333507500] DBG rd=1663637/1663637 st=1 e_e=01 wr=2499000/2497910 full=00 empty=0 pix=4996912 s_e=10 wr_en=10 xcnt=1911 ycnt=1665 fa=1
-[34000174166] DBG rd=1696971/1696971 st=1 e_e=00 wr=2548500/2548410 full=00 empty=0 pix=5096912 s_e=10 wr_en=10 xcnt=2911 ycnt=1698 fa=1
-[34666840833] DBG rd=1730304/1730304 st=1 e_e=00 wr=2598910/2598000 full=00 empty=0 pix=5196912 s_e=01 wr_en=01 xcnt=911 ycnt=1732 fa=1
-[35333507500] DBG rd=1763637/1763637 st=1 e_e=00 wr=2649000/2647910 full=00 empty=0 pix=5296912 s_e=10 wr_en=10 xcnt=1911 ycnt=1765 fa=1
-[36000174166] DBG rd=1796971/1796971 st=1 e_e=10 wr=2698500/2698410 full=00 empty=0 pix=5396912 s_e=10 wr_en=10 xcnt=2911 ycnt=1798 fa=1
-[36666840833] DBG rd=1830304/1830304 st=1 e_e=00 wr=2748910/2748000 full=00 empty=0 pix=5496912 s_e=01 wr_en=01 xcnt=911 ycnt=1832 fa=1
-[37333507500] DBG rd=1863637/1863637 st=1 e_e=00 wr=2799000/2797910 full=00 empty=0 pix=5596912 s_e=10 wr_en=10 xcnt=1911 ycnt=1865 fa=1
-[38000174166] DBG rd=1896971/1896971 st=1 e_e=10 wr=2848500/2848410 full=00 empty=0 pix=5696912 s_e=10 wr_en=10 xcnt=2911 ycnt=1898 fa=1
-[38666840833] DBG rd=1930304/1930304 st=1 e_e=01 wr=2898910/2898000 full=00 empty=0 pix=5796912 s_e=01 wr_en=01 xcnt=911 ycnt=1932 fa=1
-[39333507500] DBG rd=1963637/1963637 st=1 e_e=00 wr=2949000/2947910 full=00 empty=0 pix=5896912 s_e=10 wr_en=10 xcnt=1911 ycnt=1965 fa=1
-[40000174166] DBG rd=1996971/1996971 st=1 e_e=00 wr=2998500/2998410 full=00 empty=0 pix=5996912 s_e=10 wr_en=10 xcnt=2911 ycnt=1998 fa=1
-[40666840833] DBG rd=2030304/2030304 st=1 e_e=00 wr=3048910/3048000 full=00 empty=0 pix=6096912 s_e=01 wr_en=01 xcnt=911 ycnt=2032 fa=1
-[41333507500] DBG rd=2063637/2063637 st=1 e_e=00 wr=3099000/3097910 full=00 empty=0 pix=6196912 s_e=10 wr_en=10 xcnt=1911 ycnt=2065 fa=1
-[42000174166] DBG rd=2096971/2096971 st=1 e_e=00 wr=3148500/3148410 full=00 empty=0 pix=6296912 s_e=10 wr_en=10 xcnt=2911 ycnt=2098 fa=1
-[42666840833] DBG rd=2130304/2130304 st=1 e_e=00 wr=3198910/3198000 full=00 empty=0 pix=6396912 s_e=01 wr_en=01 xcnt=911 ycnt=2132 fa=1
-[43333507500] DBG rd=2163637/2163637 st=1 e_e=01 wr=3249000/3247910 full=00 empty=0 pix=6496912 s_e=10 wr_en=10 xcnt=1911 ycnt=2165 fa=1
-[44000174166] DBG rd=2196971/2196971 st=1 e_e=00 wr=3298500/3298410 full=00 empty=0 pix=6596912 s_e=10 wr_en=10 xcnt=2911 ycnt=2198 fa=1
-[44666840833] DBG rd=2230304/2230304 st=1 e_e=00 wr=3348910/3348000 full=00 empty=0 pix=6696912 s_e=01 wr_en=01 xcnt=911 ycnt=2232 fa=1
-[45061120833] CLOSE enc0a.jls words=269928 bytes=539856
-[45061120833] OPEN enc0b.jls
-[45061120833] CLOSE enc1a.jls words=225603 bytes=451206
-[45061120833] OPEN enc1b.jls
-[45333507500] DBG rd=10631/10631 st=1 e_e=10 wr=3399000/3397910 full=00 empty=0 pix=6796912 s_e=10 wr_en=10 xcnt=1911 ycnt=2265 fa=1
-[46000174166] DBG rd=43965/43965 st=1 e_e=10 wr=3448500/3448410 full=00 empty=0 pix=6896912 s_e=10 wr_en=10 xcnt=2911 ycnt=2298 fa=1
-[46666840833] DBG rd=77298/77298 st=1 e_e=00 wr=3498910/3498000 full=00 empty=0 pix=6996912 s_e=01 wr_en=01 xcnt=911 ycnt=2332 fa=1
-[47333507500] DBG rd=110631/110631 st=1 e_e=10 wr=3549000/3547910 full=00 empty=0 pix=7096912 s_e=10 wr_en=10 xcnt=1911 ycnt=2365 fa=1
-[48000174166] DBG rd=143965/143965 st=1 e_e=01 wr=3598500/3598410 full=00 empty=0 pix=7196912 s_e=10 wr_en=10 xcnt=2911 ycnt=2398 fa=1
-[48666840833] DBG rd=177298/177298 st=1 e_e=11 wr=3648910/3648000 full=00 empty=0 pix=7296912 s_e=01 wr_en=01 xcnt=911 ycnt=2432 fa=1
-[49333507500] DBG rd=210631/210631 st=1 e_e=00 wr=3699000/3697910 full=00 empty=0 pix=7396912 s_e=10 wr_en=10 xcnt=1911 ycnt=2465 fa=1
-[50000174166] DBG rd=243965/243965 st=1 e_e=01 wr=3748500/3748410 full=00 empty=0 pix=7496912 s_e=10 wr_en=10 xcnt=2911 ycnt=2498 fa=1
-[50666840833] DBG rd=277298/277298 st=1 e_e=10 wr=3798910/3798000 full=00 empty=0 pix=7596912 s_e=01 wr_en=01 xcnt=911 ycnt=2532 fa=1
-[51333507500] DBG rd=310631/310631 st=1 e_e=00 wr=3849000/3847910 full=00 empty=0 pix=7696912 s_e=10 wr_en=10 xcnt=1911 ycnt=2565 fa=1
-[52000174166] DBG rd=343965/343965 st=1 e_e=01 wr=3898500/3898410 full=00 empty=0 pix=7796912 s_e=10 wr_en=10 xcnt=2911 ycnt=2598 fa=1
-[52666840833] DBG rd=377298/377298 st=1 e_e=10 wr=3948910/3948000 full=00 empty=0 pix=7896912 s_e=01 wr_en=01 xcnt=911 ycnt=2632 fa=1
-[53333507500] DBG rd=410631/410631 st=1 e_e=00 wr=3999000/3997910 full=00 empty=0 pix=7996912 s_e=10 wr_en=10 xcnt=1911 ycnt=2665 fa=1
-[54000174166] DBG rd=443965/443965 st=1 e_e=01 wr=4048500/4048410 full=00 empty=0 pix=8096912 s_e=10 wr_en=10 xcnt=2911 ycnt=2698 fa=1
-[54666840833] DBG rd=477298/477298 st=1 e_e=10 wr=4098910/4098000 full=00 empty=0 pix=8196912 s_e=01 wr_en=01 xcnt=911 ycnt=2732 fa=1
-[55333507500] DBG rd=510631/510631 st=1 e_e=00 wr=4149000/4147910 full=00 empty=0 pix=8296912 s_e=10 wr_en=10 xcnt=1911 ycnt=2765 fa=1
-[56000174166] DBG rd=543965/543965 st=1 e_e=00 wr=4198500/4198410 full=00 empty=0 pix=8396912 s_e=10 wr_en=10 xcnt=2911 ycnt=2798 fa=1
-[56666840833] DBG rd=577298/577298 st=1 e_e=01 wr=4248910/4248000 full=00 empty=0 pix=8496912 s_e=01 wr_en=01 xcnt=911 ycnt=2832 fa=1
-[57333507500] DBG rd=610631/610631 st=1 e_e=10 wr=4299000/4297910 full=00 empty=0 pix=8596912 s_e=10 wr_en=10 xcnt=1911 ycnt=2865 fa=1
-[58000174166] DBG rd=643965/643965 st=1 e_e=11 wr=4348500/4348410 full=00 empty=0 pix=8696912 s_e=10 wr_en=10 xcnt=2911 ycnt=2898 fa=1
-[58666840833] DBG rd=677298/677298 st=1 e_e=00 wr=4398910/4398000 full=00 empty=0 pix=8796912 s_e=01 wr_en=01 xcnt=911 ycnt=2932 fa=1
-[59333507500] DBG rd=710631/710631 st=1 e_e=00 wr=4449000/4447910 full=00 empty=0 pix=8896912 s_e=10 wr_en=10 xcnt=1911 ycnt=2965 fa=1
-[60000174166] DBG rd=743965/743965 st=1 e_e=10 wr=4498500/4498410 full=00 empty=0 pix=8996912 s_e=10 wr_en=10 xcnt=2911 ycnt=2998 fa=1
-image_generator: done streaming 9000000 pixels
-[60666840833] DBG rd=777298/777298 st=1 e_e=00 wr=4500000/4500000 full=00 empty=0 pix=9000000 s_e=00 wr_en=00 xcnt=0 ycnt=2999 fa=0
-[61333507500] DBG rd=810631/810631 st=1 e_e=00 wr=4500000/4500000 full=00 empty=0 pix=9000000 s_e=00 wr_en=00 xcnt=0 ycnt=2999 fa=0
-[62000174166] DBG rd=843965/843965 st=1 e_e=00 wr=4500000/4500000 full=00 empty=0 pix=9000000 s_e=00 wr_en=00 xcnt=0 ycnt=2999 fa=0
-[62666840833] DBG rd=877298/877298 st=1 e_e=00 wr=4500000/4500000 full=00 empty=0 pix=9000000 s_e=00 wr_en=00 xcnt=0 ycnt=2999 fa=0
-[63333507500] DBG rd=910631/910631 st=1 e_e=10 wr=4500000/4500000 full=00 empty=0 pix=9000000 s_e=00 wr_en=00 xcnt=0 ycnt=2999 fa=0
-[64000174166] DBG rd=943965/943965 st=1 e_e=00 wr=4500000/4500000 full=00 empty=0 pix=9000000 s_e=00 wr_en=00 xcnt=0 ycnt=2999 fa=0
-[64666840833] DBG rd=977298/977298 st=1 e_e=00 wr=4500000/4500000 full=00 empty=0 pix=9000000 s_e=00 wr_en=00 xcnt=0 ycnt=2999 fa=0
-[65333507500] DBG rd=1010631/1010631 st=1 e_e=01 wr=4500000/4500000 full=00 empty=0 pix=9000000 s_e=00 wr_en=00 xcnt=0 ycnt=2999 fa=0
-[66000174166] DBG rd=1043965/1043965 st=1 e_e=00 wr=4500000/4500000 full=00 empty=0 pix=9000000 s_e=00 wr_en=00 xcnt=0 ycnt=2999 fa=0
-[66666840833] DBG rd=1077298/1077298 st=1 e_e=00 wr=4500000/4500000 full=00 empty=0 pix=9000000 s_e=00 wr_en=00 xcnt=0 ycnt=2999 fa=0
-[67333507500] DBG rd=1110631/1110631 st=1 e_e=00 wr=4500000/4500000 full=00 empty=0 pix=9000000 s_e=00 wr_en=00 xcnt=0 ycnt=2999 fa=0
-[68000174166] DBG rd=1143965/1143965 st=1 e_e=00 wr=4500000/4500000 full=00 empty=0 pix=9000000 s_e=00 wr_en=00 xcnt=0 ycnt=2999 fa=0
-[68666840833] DBG rd=1177298/1177298 st=1 e_e=00 wr=4500000/4500000 full=00 empty=0 pix=9000000 s_e=00 wr_en=00 xcnt=0 ycnt=2999 fa=0
-[69333507500] DBG rd=1210631/1210631 st=1 e_e=00 wr=4500000/4500000 full=00 empty=0 pix=9000000 s_e=00 wr_en=00 xcnt=0 ycnt=2999 fa=0
-[70000174166] DBG rd=1243965/1243965 st=1 e_e=00 wr=4500000/4500000 full=00 empty=0 pix=9000000 s_e=00 wr_en=00 xcnt=0 ycnt=2999 fa=0
-[70666840833] DBG rd=1277298/1277298 st=1 e_e=00 wr=4500000/4500000 full=00 empty=0 pix=9000000 s_e=00 wr_en=00 xcnt=0 ycnt=2999 fa=0
-[71333507500] DBG rd=1310631/1310631 st=1 e_e=00 wr=4500000/4500000 full=00 empty=0 pix=9000000 s_e=00 wr_en=00 xcnt=0 ycnt=2999 fa=0
-[72000174166] DBG rd=1343965/1343965 st=1 e_e=00 wr=4500000/4500000 full=00 empty=0 pix=9000000 s_e=00 wr_en=00 xcnt=0 ycnt=2999 fa=0
-[72666840833] DBG rd=1377298/1377298 st=1 e_e=00 wr=4500000/4500000 full=00 empty=0 pix=9000000 s_e=00 wr_en=00 xcnt=0 ycnt=2999 fa=0
-[73333507500] DBG rd=1410631/1410631 st=1 e_e=00 wr=4500000/4500000 full=00 empty=0 pix=9000000 s_e=00 wr_en=00 xcnt=0 ycnt=2999 fa=0
-[74000174166] DBG rd=1443965/1443965 st=1 e_e=00 wr=4500000/4500000 full=00 empty=0 pix=9000000 s_e=00 wr_en=00 xcnt=0 ycnt=2999 fa=0
-[74666840833] DBG rd=1477298/1477298 st=1 e_e=00 wr=4500000/4500000 full=00 empty=0 pix=9000000 s_e=00 wr_en=00 xcnt=0 ycnt=2999 fa=0
-[75333507500] DBG rd=1510631/1510631 st=1 e_e=00 wr=4500000/4500000 full=00 empty=0 pix=9000000 s_e=00 wr_en=00 xcnt=0 ycnt=2999 fa=0
-[76000174166] DBG rd=1543965/1543965 st=1 e_e=00 wr=4500000/4500000 full=00 empty=0 pix=9000000 s_e=00 wr_en=00 xcnt=0 ycnt=2999 fa=0
-[76666840833] DBG rd=1577298/1577298 st=1 e_e=00 wr=4500000/4500000 full=00 empty=0 pix=9000000 s_e=00 wr_en=00 xcnt=0 ycnt=2999 fa=0
-[77333507500] DBG rd=1610631/1610631 st=1 e_e=00 wr=4500000/4500000 full=00 empty=0 pix=9000000 s_e=00 wr_en=00 xcnt=0 ycnt=2999 fa=0
-[78000174166] DBG rd=1643965/1643965 st=1 e_e=00 wr=4500000/4500000 full=00 empty=0 pix=9000000 s_e=00 wr_en=00 xcnt=0 ycnt=2999 fa=0
-[78666840833] DBG rd=1677298/1677298 st=1 e_e=00 wr=4500000/4500000 full=00 empty=0 pix=9000000 s_e=00 wr_en=00 xcnt=0 ycnt=2999 fa=0
-[79333507500] DBG rd=1710631/1710631 st=1 e_e=00 wr=4500000/4500000 full=00 empty=0 pix=9000000 s_e=00 wr_en=00 xcnt=0 ycnt=2999 fa=0
-[80000174166] DBG rd=1743965/1743965 st=1 e_e=00 wr=4500000/4500000 full=00 empty=0 pix=9000000 s_e=00 wr_en=00 xcnt=0 ycnt=2999 fa=0
-[80666840833] DBG rd=1777298/1777298 st=1 e_e=00 wr=4500000/4500000 full=00 empty=0 pix=9000000 s_e=00 wr_en=00 xcnt=0 ycnt=2999 fa=0
-[81333507500] DBG rd=1810631/1810631 st=1 e_e=00 wr=4500000/4500000 full=00 empty=0 pix=9000000 s_e=00 wr_en=00 xcnt=0 ycnt=2999 fa=0
-[82000174166] DBG rd=1843965/1843965 st=1 e_e=00 wr=4500000/4500000 full=00 empty=0 pix=9000000 s_e=00 wr_en=00 xcnt=0 ycnt=2999 fa=0
-[82666840833] DBG rd=1877298/1877298 st=1 e_e=00 wr=4500000/4500000 full=00 empty=0 pix=9000000 s_e=00 wr_en=00 xcnt=0 ycnt=2999 fa=0
-[83333507500] DBG rd=1910631/1910631 st=1 e_e=00 wr=4500000/4500000 full=00 empty=0 pix=9000000 s_e=00 wr_en=00 xcnt=0 ycnt=2999 fa=0
-[84000174166] DBG rd=1943965/1943965 st=1 e_e=00 wr=4500000/4500000 full=00 empty=0 pix=9000000 s_e=00 wr_en=00 xcnt=0 ycnt=2999 fa=0
-[84666840833] DBG rd=1977298/1977298 st=1 e_e=00 wr=4500000/4500000 full=00 empty=0 pix=9000000 s_e=00 wr_en=00 xcnt=0 ycnt=2999 fa=0
-[85333507500] DBG rd=2010631/2010631 st=1 e_e=00 wr=4500000/4500000 full=00 empty=0 pix=9000000 s_e=00 wr_en=00 xcnt=0 ycnt=2999 fa=0
-[86000174166] DBG rd=2043965/2043965 st=1 e_e=00 wr=4500000/4500000 full=00 empty=0 pix=9000000 s_e=00 wr_en=00 xcnt=0 ycnt=2999 fa=0
-[86666840833] DBG rd=2077298/2077298 st=1 e_e=00 wr=4500000/4500000 full=00 empty=0 pix=9000000 s_e=00 wr_en=00 xcnt=0 ycnt=2999 fa=0
-[87333507500] DBG rd=2110631/2110631 st=1 e_e=00 wr=4500000/4500000 full=00 empty=0 pix=9000000 s_e=00 wr_en=00 xcnt=0 ycnt=2999 fa=0
-[88000174166] DBG rd=2143965/2143965 st=1 e_e=00 wr=4500000/4500000 full=00 empty=0 pix=9000000 s_e=00 wr_en=00 xcnt=0 ycnt=2999 fa=0
-[88666840833] DBG rd=2177298/2177298 st=1 e_e=00 wr=4500000/4500000 full=00 empty=0 pix=9000000 s_e=00 wr_en=00 xcnt=0 ycnt=2999 fa=0
-[89333507500] DBG rd=2210631/2210631 st=1 e_e=00 wr=4500000/4500000 full=00 empty=0 pix=9000000 s_e=00 wr_en=00 xcnt=0 ycnt=2999 fa=0
-[90000174166] DBG rd=2243965/2243965 st=1 e_e=00 wr=4500000/4500000 full=00 empty=0 pix=9000000 s_e=00 wr_en=00 xcnt=0 ycnt=2999 fa=0
-[90121240833] CLOSE enc0b.jls words=160564 bytes=321128
-[90121240833] DONE enc0 total_bytes=860984
-[90121240833] CLOSE enc1b.jls words=287180 bytes=574360
-[90121240833] DONE enc1 total_bytes=1025566
-=== All 2 encoder slices complete (4 files total) ===
-$finish called at time : 90121574166 ps : File "D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/sim_1/imports/FPGA Encoders/tb_top_jls_vertical.v" Line 197
-run: Time (s): cpu = 00:00:09 ; elapsed = 02:19:51 . Memory (MB): peak = 202.289 ; gain = 0.000
-xsim: Time (s): cpu = 00:00:09 ; elapsed = 02:19:52 . Memory (MB): peak = 202.289 ; gain = 32.543
-xsim% INFO: xsimkernel Simulation Memory Usage: 50540 KB (Peak: 50540 KB), Simulation CPU Usage: 8366733 ms
-INFO: [Common 17-206] Exiting xsim at Tue May 26 16:57:26 2026...
+[0] Output capture ready (in-memory buffers)
+[767500] FIRST SOF enc0: iw=1500 swath_h=750 col0=750
+[987500] FIRST e_e[0]: rd_cnt=0 a_ii=0 j_sof=1 j_e=0 a_wl=749
+[666840833] DBG rd=30304/30304 st=1 e_e=00 wr=48750/48160 full=00 pix=96912
+[1333507500] DBG rd=63637/63637 st=1 e_e=00 wr=98660/98250 full=00 pix=196912
+[2000174166] DBG rd=96971/96971 st=1 e_e=00 wr=148500/148410 full=00 pix=296912
+[2666840833] DBG rd=130304/130304 st=1 e_e=00 wr=198750/198160 full=00 pix=396912
+[3333507500] DBG rd=163637/163637 st=1 e_e=00 wr=248660/248250 full=00 pix=496912
+[4000174166] DBG rd=196971/196971 st=1 e_e=00 wr=298500/298410 full=00 pix=596912
+[4666840833] DBG rd=230304/230304 st=1 e_e=00 wr=348750/348160 full=00 pix=696912
+[5333507500] DBG rd=263637/263637 st=1 e_e=00 wr=398660/398250 full=00 pix=796912
+[6000174166] DBG rd=296971/296971 st=1 e_e=00 wr=448500/448410 full=00 pix=896912
+[6666840833] DBG rd=330304/330304 st=1 e_e=00 wr=498750/498160 full=00 pix=996912
+[7333507500] DBG rd=363637/363637 st=1 e_e=00 wr=548660/548250 full=00 pix=1096912
+[8000174166] DBG rd=396971/396971 st=1 e_e=00 wr=598500/598410 full=00 pix=1196912
+[8666840833] DBG rd=430304/430304 st=1 e_e=00 wr=648750/648160 full=00 pix=1296912
+[9333507500] DBG rd=463637/463637 st=1 e_e=00 wr=698660/698250 full=00 pix=1396912
+[10000174166] DBG rd=496971/496971 st=1 e_e=00 wr=748500/748410 full=00 pix=1496912
+[10666840833] DBG rd=530304/530304 st=1 e_e=00 wr=798750/798160 full=00 pix=1596912
+[11311120833] SLICE enc0[0] done: words=42988 bytes=85975
+[11311120833] SLICE enc1[0] done: words=39286 bytes=78572
+[11333507500] DBG rd=562500/562500 st=0 e_e=00 wr=848660/848250 full=00 pix=1696912
+[12000174166] DBG rd=31465/31465 st=1 e_e=10 wr=898500/898410 full=00 pix=1796912
+[12666840833] DBG rd=64798/64798 st=1 e_e=00 wr=948750/948160 full=00 pix=1896912
+[13333507500] DBG rd=98131/98131 st=1 e_e=10 wr=998660/998250 full=00 pix=1996912
+[14000174166] DBG rd=131465/131465 st=1 e_e=00 wr=1048500/1048410 full=00 pix=2096912
+[14666840833] DBG rd=164798/164798 st=1 e_e=00 wr=1098750/1098160 full=00 pix=2196912
+image_generator: done streaming 2250000 pixels
+[15333507500] DBG rd=198131/198131 st=1 e_e=01 wr=1125000/1125000 full=00 pix=2250000
+[16000174166] DBG rd=231465/231465 st=1 e_e=00 wr=1125000/1125000 full=00 pix=2250000
+[16666840833] DBG rd=264798/264798 st=1 e_e=01 wr=1125000/1125000 full=00 pix=2250000
+[17333507500] DBG rd=298131/298131 st=1 e_e=00 wr=1125000/1125000 full=00 pix=2250000
+[18000174166] DBG rd=331465/331465 st=1 e_e=10 wr=1125000/1125000 full=00 pix=2250000
+[18666840833] DBG rd=364798/364798 st=1 e_e=00 wr=1125000/1125000 full=00 pix=2250000
+[19333507500] DBG rd=398131/398131 st=1 e_e=01 wr=1125000/1125000 full=00 pix=2250000
+[20000174166] DBG rd=431465/431465 st=1 e_e=01 wr=1125000/1125000 full=00 pix=2250000
+[20666840833] DBG rd=464798/464798 st=1 e_e=10 wr=1125000/1125000 full=00 pix=2250000
+[21333507500] DBG rd=498131/498131 st=1 e_e=10 wr=1125000/1125000 full=00 pix=2250000
+[22000174166] DBG rd=531465/531465 st=1 e_e=00 wr=1125000/1125000 full=00 pix=2250000
+[22621240833] SLICE enc0[1] done: words=87167 bytes=174333
+[22621240833] DONE enc0 total_bytes=260308
+[22621240833] SLICE enc1[1] done: words=100221 bytes=200441
+[22621240833] DONE enc1 total_bytes=279013
+[22621574166] output.jls written: 539321 bytes (4 slices, swath-major enc-minor order)
+=== All 4 encoder slices complete ===
+$finish called at time : 22621574166 ps : File "D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/sim_1/imports/FPGA Encoders/tb_top_jls_vertical.v" Line 186
+run: Time (s): cpu = 00:00:01 ; elapsed = 00:30:33 . Memory (MB): peak = 202.570 ; gain = 0.000
+xsim: Time (s): cpu = 00:00:01 ; elapsed = 00:30:35 . Memory (MB): peak = 202.570 ; gain = 32.441
+xsim% INFO: xsimkernel Simulation Memory Usage: 61012 KB (Peak: 61012 KB), Simulation CPU Usage: 1830421 ms
+INFO: [Common 17-206] Exiting xsim at Wed May 27 17:46:58 2026...
