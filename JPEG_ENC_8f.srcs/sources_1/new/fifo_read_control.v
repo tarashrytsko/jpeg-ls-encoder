@@ -8,7 +8,7 @@ module fifo_read_control #(
 )(
     input  wire                       rd_clk,
     input  wire                       sys_rdy,
-    input  wire [13:0]                i_w_r,
+    input  wire [15:0]                i_w_r,
     input  wire [13:0]                i_h_r,
 
     input  wire [NUM_ENCODERS-1:0]    fifo_empty,
@@ -19,7 +19,7 @@ module fifo_read_control #(
     output reg  [32*NUM_ENCODERS-1:0] read_count_flat
 );
 
-    reg [13:0] i_w, i_h;
+    reg [15:0] i_w; reg [13:0] i_h;
     always @(posedge rd_clk) begin
         if (!sys_rdy) begin
             i_w <= 0; i_h <= 0;

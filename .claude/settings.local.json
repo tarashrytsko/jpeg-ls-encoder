@@ -224,7 +224,10 @@
       "Bash(fuser \"D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.sim/sim_1/behav/xsim/xsim.dir/tb_top_jls_vertical_behav/xsimk.exe\")",
       "Bash(taskkill /F /PID 7180)",
       "Bash(taskkill /F /PID 11480)",
-      "Bash(break)"
+      "Bash(break)",
+      "Bash(rm -rf xsim.dir)",
+      "Bash(taskkill /F /PID 3452 /PID 6896 /PID 20944 /PID 3220)",
+      "Bash(pip show *)"
     ],
     "defaultMode": "dontAsk"
   }

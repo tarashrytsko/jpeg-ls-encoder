@@ -8,7 +8,7 @@ module encoder_wrapper #(
 )(
     input  wire              rd_clk,
     input  wire              sys_rdy,
-    input  wire [13:0]       i_w,
+    input  wire [15:0]       i_w,
     input  wire [13:0]       i_h,
     input  wire [N_E-1:0]    rd_en_gated,
     input  wire [N_E-1:0]    enc_i_sofx,   // per-encoder SOF from fifo_read_control
@@ -23,7 +23,7 @@ module encoder_wrapper #(
     localparam ENC_ID_WIDTH = ($clog2(N_E) > 0) ? $clog2(N_E) : 1;
 
     // Per-column width (combinatorial from i_w directly)
-    reg [13:0] col_w [0:N_H-1];
+    reg [15:0] col_w [0:N_H-1];
     integer ci;
     always @(*) begin
         for (ci = 0; ci < N_H-1; ci = ci + 1)
@@ -32,7 +32,7 @@ module encoder_wrapper #(
     end
 
     // Swath height per swath (full height)
-    wire [13:0] swath_h = i_h / N_V;
+    wire [13:0] swath_h = i_h[13:0] / N_V;
 
     assign last_enc_id = N_E - 1;
 

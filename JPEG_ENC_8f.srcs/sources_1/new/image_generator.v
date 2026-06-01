@@ -7,7 +7,7 @@ module image_generator #(
     parameter IMG_W        = 0,
     parameter IMG_H        = 0,
     parameter SOF_STRETCH  = 3000,
-    parameter PGM_FILE     = "D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.sim/images/world_gray_10000x10000.pgm"
+    parameter PGM_FILE     = "D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.sim/images/world_gray_16000x10800.pgm"
 )(
     input  wire                    clk,
     input  wire                    rstn,
@@ -16,7 +16,7 @@ module image_generator #(
 
     output reg  [DATA_WIDTH-1:0]   pixel_out,
     output reg                     pixel_valid,
-    output reg  [13:0]             i_w,
+    output reg  [15:0]             i_w,
     output reg  [13:0]             i_h,
     output reg  [NUM_ENCODERS-1:0] i_sof_st
 );
@@ -83,7 +83,7 @@ module image_generator #(
             case (state)
                 S_IDLE: begin
                     if (i_sof) begin
-                        i_w         <= img_w_int[13:0];
+                        i_w         <= img_w_int[15:0];
                         i_h         <= img_h_int[13:0];
                         sof_cnt     <= 0;
                         pix_cnt     <= 0;

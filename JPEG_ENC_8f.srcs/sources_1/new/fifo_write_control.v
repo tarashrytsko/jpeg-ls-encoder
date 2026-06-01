@@ -7,10 +7,10 @@ module fifo_write_control #(
     input  wire [NUM_ENCODERS-1:0]      s_e,
     input  wire [NUM_ENCODERS-1:0]      fifo_full,
     input  wire [NUM_ENCODERS-1:0]      fifo_overflow,
-    input  wire [13:0]                  x_cnt,
+    input  wire [15:0]                  x_cnt,
     input  wire [13:0]                  y_cnt,
     input  wire [13:0]                  total_lines,
-    input  wire [13:0]                  image_width,
+    input  wire [15:0]                  image_width,
     input  wire [$clog2(NUM_ENCODERS)-1:0] encoder_sel,
 
     output reg  [NUM_ENCODERS-1:0]      wr_en,

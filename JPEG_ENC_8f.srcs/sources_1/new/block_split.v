@@ -11,32 +11,32 @@ module splitter_block #(
     input  wire [N_E-1:0]      i_sof_st,    // <<< FROM IMAGE GENERATOR
     input  wire                 i_e,
     input  wire [7:0]           i_x,
-    input  wire [13:0]          i_w,
+    input  wire [15:0]          i_w,
     input  wire [13:0]          i_h,
 
     output reg  [N_E-1:0]       o_last_enc,
     output reg  [N_E-1:0]       o_e,
     output reg  [N_E*8-1:0]     o_x,
-    output reg  [N_E*14-1:0]    o_w,
+    output reg  [N_E*16-1:0]    o_w,
     output reg  [N_E*14-1:0]    o_h,
 
     output reg [$clog2(N_E)-1:0] encoder_sel_d,
-    output reg  [13:0]          x_cnt_d,
+    output reg  [15:0]          x_cnt_d,
     output reg  [13:0]          y_cnt_d,
     output wire [$clog2(N_E)-1:0] encoder_sel_comb
 );
 
     integer i, k;
-reg [13:0] x_cnt, y_cnt;
+reg [15:0] x_cnt, y_cnt;
 wire [$clog2(N_E)-1:0] encoder_sel;
 
     // -------------------------------------------------------
     // BLOCK GEOMETRY
     // -------------------------------------------------------
-    reg [13:0] blk_w_arr [0:N_H-1];
+    reg [15:0] blk_w_arr [0:N_H-1];
     reg [13:0] blk_h_arr [0:N_V-1];
-    reg [13:0] blk_x_start [0:N_H-1];
-    reg [13:0] blk_x_end   [0:N_H-1];
+    reg [15:0] blk_x_start [0:N_H-1];
+    reg [15:0] blk_x_end   [0:N_H-1];
     reg [13:0] blk_y_start [0:N_V-1];
     reg [13:0] blk_y_end   [0:N_V-1];
 
@@ -161,7 +161,7 @@ wire [$clog2(N_E)-1:0] encoder_sel;
 
             // broadcast width/height
             for (k=0; k<N_E; k=k+1) begin
-                o_w[k*14 +:14] <= i_w;
+                o_w[k*16 +:16] <= i_w;
                 o_h[k*14 +:14] <= i_h;
             end
 

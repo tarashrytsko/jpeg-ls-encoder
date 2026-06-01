@@ -12,7 +12,7 @@ module top_jls_vertical #(
     input  wire        i_sof,
     output wire        i_e,
     output wire [7:0]  i_x,
-    output wire [13:0] i_w,
+    output wire [15:0] i_w,
     output wire [13:0] i_h,
     output wire sys_rdy,
 
@@ -24,7 +24,7 @@ module top_jls_vertical #(
 wire [N_E-1:0] o_sof_st;
     wire [N_E-1:0]     s_e;
     wire [N_E*8-1:0]   s_x;
-    wire [N_E*14-1:0]  s_w;
+    wire [N_E*16-1:0]  s_w;
     wire [N_E*14-1:0]  s_h;
     wire [N_E-1:0]     o_last_enc;
     wire [$clog2(N_E)-1:0] encoder_sel;
@@ -33,7 +33,7 @@ wire [N_E-1:0] o_sof_st;
     wire               fifo_full_cur;
     wire [N_E-1:0]     fifo_overflow_masked;
     wire [N_E*16-1:0]  e_data;
-    wire [13:0]        x_cnt, y_cnt;
+    wire [15:0]        x_cnt, y_cnt;
     wire               rd_clk;
 
     // =================================================================

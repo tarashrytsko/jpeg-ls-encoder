@@ -27,7 +27,7 @@ module tb_top_jls_vertical;
     reg i_sof = 0;
     wire i_e;
     wire [7:0]  i_x;
-    wire [13:0] i_w;
+    wire [15:0] i_w;
     wire [13:0] i_h;
     wire clk;
     wire sys_rdy;
@@ -69,7 +69,7 @@ module tb_top_jls_vertical;
     // ------------------------------------------------------------
     // Output capture: buffer all slices in memory, write single file
     // ------------------------------------------------------------
-    localparam MAX_BYTES_PER_SLICE = 60000000;
+    localparam MAX_BYTES_PER_SLICE = 25000000;
 
     reg [7:0] slice_buf [0:N_E-1][0:NUM_SLICES-1][0:MAX_BYTES_PER_SLICE-1];
     integer   slice_len [0:N_E-1][0:NUM_SLICES-1];
