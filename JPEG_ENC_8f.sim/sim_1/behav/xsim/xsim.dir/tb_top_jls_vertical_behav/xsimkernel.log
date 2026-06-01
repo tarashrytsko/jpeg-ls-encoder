@@ -1,7 +1,7 @@
-Running: xsim.dir/tb_top_jls_vertical_behav/xsimk.exe -wdb NUL -simmode gui -simrunnum 0 -socket 63802
+Running: xsim.dir/tb_top_jls_vertical_behav/xsimk.exe -wdb NUL -simmode gui -simrunnum 0 -socket 58652
 Design successfully loaded
-Design Loading Memory Usage: 226748 KB (Peak: 226748 KB)
-Design Loading CPU Usage: 812 ms
+Design Loading Memory Usage: 226768 KB (Peak: 226768 KB)
+Design Loading CPU Usage: 1092 ms
 Simulation completed
-Simulation Memory Usage: 12400436 KB (Peak: 12400436 KB)
-Simulation CPU Usage: 15183577 ms
+Simulation Memory Usage: 1074288 KB (Peak: 1074288 KB)
+Simulation CPU Usage: 846687 ms
