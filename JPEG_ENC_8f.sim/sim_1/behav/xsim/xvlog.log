@@ -30,5 +30,3 @@ INFO: [VRFC 10-2263] Analyzing Verilog file "D:/techbistro/upwork/JPEG_Encoder_P
 INFO: [VRFC 10-311] analyzing module top_jls_vertical
 INFO: [VRFC 10-2263] Analyzing Verilog file "D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/sim_1/imports/FPGA Encoders/tb_top_jls_vertical.v" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module tb_top_jls_vertical
-INFO: [VRFC 10-2263] Analyzing Verilog file "D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.sim/sim_1/behav/xsim/glbl.v" into library xil_defaultlib
-INFO: [VRFC 10-311] analyzing module glbl

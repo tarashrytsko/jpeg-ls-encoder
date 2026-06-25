@@ -1,10 +1,19 @@
 `timescale 1ps/1ps
 `default_nettype wire
 
-module tb_top_jls_vertical;
-
-    localparam N_E = 2;
-    localparam NUM_SLICES = 2;
+// Splitting mode is selected purely by the (N_H, N_V) geometry:
+//   block      : N_H>1, N_V>1   (e.g. 5 x 4)
+//   vertical   : N_V=1          (cut along X only,  e.g. 20 x 1)
+//   horizontal : N_H=1          (cut along Y only,  e.g.  1 x 20)
+// All three keep N_E encoders and (N_H*N_V)/N_E slices each for an
+// apples-to-apples comparison. Override via xelab -generic_top.
+module tb_top_jls_vertical #(
+    parameter integer N_E        = 2,   // known-good default (block 2x2, 2 slices/enc)
+    parameter integer N_H        = 2,
+    parameter integer N_V        = 2,
+    parameter integer NUM_SLICES = (N_H * N_V) / N_E,
+    parameter integer MAX_BYTES_PER_SLICE = 25000000
+) ();
 
     // ------------------------------------------------------------
     // Clock & Reset
@@ -50,7 +59,7 @@ module tb_top_jls_vertical;
     // ------------------------------------------------------------
     // DUT
     // ------------------------------------------------------------
-    top_jls_vertical #(.N_E(N_E)) dut (
+    top_jls_vertical #(.N_E(N_E), .N_H(N_H), .N_V(N_V)) dut (
         .rstn       (rstn),
         .clk_in1_p  (clk_in1_p),
         .clk_in1_n  (clk_in1_n),
@@ -68,13 +77,12 @@ module tb_top_jls_vertical;
 
     // ------------------------------------------------------------
     // Output capture: buffer all slices in memory, write single file
+    // (MAX_BYTES_PER_SLICE is now a module parameter — override for large images)
     // ------------------------------------------------------------
-    localparam MAX_BYTES_PER_SLICE = 25000000;
-
     reg [7:0] slice_buf [0:N_E-1][0:NUM_SLICES-1][0:MAX_BYTES_PER_SLICE-1];
     integer   slice_len [0:N_E-1][0:NUM_SLICES-1];
 
-    reg [1:0] slice   [0:N_E-1];
+    reg [15:0] slice  [0:N_E-1];   // was [1:0] — overflowed for NUM_SLICES>=4
     reg       closed  [0:N_E-1];
     integer   word_cnt[0:N_E-1];
     integer   total_bytes[0:N_E-1];
@@ -83,6 +91,7 @@ module tb_top_jls_vertical;
 
     integer ei, si, bi;
     integer fout, total_out;
+    reg [8*256-1:0] outpath;
 
     initial begin
         basepath = "D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.sim/output_block/";
@@ -161,14 +170,37 @@ module tb_top_jls_vertical;
             if (!closed[ci]) all_done = 0;
     end
 
+    // ------------------------------------------------------------
+    // Watchdog: once the read FSM reaches S_DONE (state==3) the encoders
+    // should flush their final slice within a few hundred cycles. If they
+    // don't, bound the hang and dump per-encoder status for diagnosis.
+    // ------------------------------------------------------------
+    integer drain_cnt; integer di;
+    initial drain_cnt = 0;
+    always @(posedge clk) begin
+        if (dut.u_fifo_read_control.state == 2'd3 && !all_done)
+            drain_cnt = drain_cnt + 1;
+        else
+            drain_cnt = 0;
+        if (drain_cnt == 3000000) begin
+            $display("*** WATCHDOG: read FSM DONE but not all slices closed after %0d cycles", drain_cnt);
+            for (di = 0; di < N_E; di = di + 1)
+                $display("    enc%0d: slice=%0d/%0d closed=%0d total_bytes=%0d",
+                         di, slice[di], NUM_SLICES, closed[di], total_bytes[di]);
+            $finish;
+        end
+    end
+
     // Write concatenated output.jls then finish
     initial begin
         wait(all_done);
         repeat (50) @(posedge clk);
 
-        fout = $fopen({basepath, "output.jls"}, "wb");
+        // Geometry-tagged name so block/vertical/horizontal runs don't clobber
+        $sformat(outpath, "%0soutput_h%0dv%0d_%0dx%0d.jls", basepath, N_H, N_V, i_w, i_h);
+        fout = $fopen(outpath, "wb");
         if (!fout) begin
-            $display("*** ERROR: cannot open output.jls");
+            $display("*** ERROR: cannot open %0s", outpath);
             $finish;
         end
         total_out = 0;
@@ -180,9 +212,12 @@ module tb_top_jls_vertical;
                     total_out = total_out + 1;
                 end
         $fclose(fout);
-        $display("[%0t] output.jls written: %0d bytes (%0d slices, swath-major enc-minor order)",
-                 $time, total_out, N_E * NUM_SLICES);
+        $display("[%0t] %0s written: %0d bytes (%0d slices, swath-major enc-minor order)",
+                 $time, outpath, total_out, N_E * NUM_SLICES);
         $display("=== All %0d encoder slices complete ===", N_E * NUM_SLICES);
+        // Single machine-parseable line for the benchmark sweep script:
+        $display("BENCHMARK_RESULT N_H=%0d N_V=%0d W=%0d H=%0d N_E=%0d NUM_SLICES=%0d OUT_BYTES=%0d",
+                 N_H, N_V, i_w, i_h, N_E, NUM_SLICES, total_out);
         $finish;
     end
 

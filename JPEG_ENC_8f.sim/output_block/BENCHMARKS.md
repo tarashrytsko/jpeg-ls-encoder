@@ -64,3 +64,167 @@ The Java `custom_decoder` tool stitches all files into a single output PGM.
 - Line buffer depth: 16384 entries limits max encoder block width to 16384 pixels
 - FIFO depth: 131072 entries — sufficient for streaming with continuous-drain architecture
 - Pixel accuracy: 99.9%+ for evenly-divisible dimensions, ~0.06–0.1% prediction artifacts at block boundaries
+
+---
+
+# Splitting Mode Comparison — Block vs Vertical vs Horizontal
+
+The encoder now benchmarks all three splitting directions, not just block. Mode is
+selected purely by the `(N_H, N_V)` block-grid factorization (parameters on
+`top_jls_vertical` / `tb_top_jls_vertical`; driven by the sweep script). With one
+block per encoder (`N_E` encoders, `NUM_SLICES=1`):
+
+For a block grid `a×b`, N_E = a·b encoders (one block each), and the three cut
+directions at that parallelism are:
+
+| Grid (N_E) | Block (N_H×N_V) | Vertical (N_E×1) | Horizontal (1×N_E) |
+|------------|-----------------|------------------|--------------------|
+| 2×2 (4)    | 2 × 2           | 4 × 1            | 1 × 4              |
+| 3×3 (9)    | 3 × 3           | 9 × 1            | 1 × 9              |
+| 4×5 (20)   | 4 × 5           | 20 × 1           | 1 × 20             |
+
+## Results (NEAR=0 lossless, NASA Blue Marble grayscale) — all exact-match verified
+
+Compression ratio (input pixels / output bytes), by grid × cut direction:
+
+**300×300**
+| Grid | Block | Vertical | Horizontal |
+|------|------:|---------:|-----------:|
+| 2×2  | 7.55:1 | 7.55:1 | 7.47:1 |
+| 3×3  | 7.27:1 | 7.15:1 | 6.87:1 |
+| 4×5  | 6.51:1 | 6.38:1 | 5.09:1 |
+
+**1500×1500**
+| Grid | Block | Vertical | Horizontal |
+|------|------:|---------:|-----------:|
+| 2×2  | 4.17:1 | 4.17:1 | 4.16:1 |
+| 3×3  | 4.17:1 | 4.16:1 | 4.15:1 |
+| 4×5  | 4.16:1 | 4.11:1 | 4.10:1 |
+
+**5000×5000**
+| Grid | Block | Vertical | Horizontal |
+|------|------:|---------:|-----------:|
+| 2×2  | 4.31:1 | 4.33:1 | 4.29:1 |
+| 3×3  | 4.33:1 | 4.35:1 | 4.29:1 |
+| 4×5  | 4.33:1 | 4.35:1 | 4.28:1 |
+
+**16000×5000** (80 Mpix, 2×2 grid / N_E=4)
+| Grid | Block (8000×2500) | Vertical (4000×5000) | Horizontal (16000×1250) |
+|------|------:|---------:|-----------:|
+| 2×2  | 3.30:1 | 3.31:1 | 3.29:1 |
+
+All cells above (300², 1500², 5000² full 3×3×3 matrix + 16000×5000 2×2) were verified
+**lossless** (exact pixel match) by decoding each slice (imagecodecs/CharLS) and
+reassembling with `verify_lossless.py` — including the non-evenly-divisible cases
+(5000/3, 5000/9).
+
+> **Real-HW caveat for horizontal at large sizes.** In horizontal mode the read
+> control drains one full-width swath at a time, so while one encoder runs the other
+> N_V−1 encoders' rows stream in and must buffer. In *simulation* the FIFO model is
+> effectively unbounded so it stays lossless, but on real hardware the 131072-deep
+> input FIFO would fill and backpressure-stall hard once a swath exceeds the FIFO
+> depth (e.g. a 16000×1250 = 20-Mpix swath ≫ 131072). Block/vertical keep all encoders
+> draining concurrently and don't hit this. (Sim wall time already shows the cost:
+> the 16000×5000 horizontal run took ~3.6 h vs ~2 h block / ~1.5 h vertical.)
+
+## Findings
+- **Parallelism (block count) dominates compression, not cut direction.** Going from
+  4 blocks to 20 (more encoders) costs far more ratio than switching modes within a
+  grid (300²: 7.55→6.51 across grids vs ≤1.5pt between modes of the same grid).
+- **Block ≥ Vertical ≥ Horizontal**, and the gap widens as blocks shrink. At 1500²
+  and 5000² (large blocks) all three are within ~2%; at 300² with the 4×5 grid the
+  strips are tiny and horizontal (300×15 wide-short strips) drops to 5.09:1 vs block
+  6.51:1 — short, wide strips lose vertical prediction context fastest.
+- **The penalty for more encoders shrinks as the image grows.** At 5000² every block
+  is ≥1000 px on a side regardless of grid, so all 9 cells collapse into a tight
+  4.28–4.35:1 band — grid and cut direction barely matter once blocks are large. The
+  fine-grid penalty only bites small images.
+- Larger images compress less here (more high-detail terrain): ~7:1 @300², ~4.1:1
+  @1500², ~4.3:1 @5000² (5000² rebounds slightly because its blocks are huge).
+- Hardware throughput is `rd_clk`-limited (one pixel/cycle per encoder), independent
+  of mode. In *simulation*, horizontal is dramatically the slowest (one encoder
+  active per swath ⇒ least feed parallelism): the 5000² 1×20 horizontal took ~11.4 h
+  vs ~40–90 min for block/vertical of the same image.
+
+## How to run
+```
+JPEG_ENC_8f.sim/sim_1/behav/xsim/run_hv_benchmark.ps1 `
+    -Images 300x300,1500x1500 -Grids 2x2,3x3,4x5 -Modes block,vertical,horizontal
+```
+Results append to `output_block/hv_benchmark_results.csv`. Verify any run with:
+```
+python verify_lossless.py output_block/output_hHvV_WxH.jls images/world_gray_WxH.pgm <N_H> <N_V>
+```
+
+## Architecture notes / constraints
+- **Mode = geometry.** Vertical = `N_H=N_E, N_V=1`; Horizontal = `N_H=1, N_V=N_E`;
+  Block = a roughly-square `a×b` grid (`a·b=N_E`, so a composite `N_E` — 4→2×2,
+  9→3×3 — makes the grid differ from the vertical/horizontal degenerate cases).
+- **One block per encoder.** SOF is issued once per row-swath, so an encoder can
+  emit only one slice per swath it occupies. *Vertical chunking* (several columns to
+  one encoder within a single swath) is therefore unsupported — so the legacy
+  "5 enc × 4 chunk" table **cannot** be reproduced for vertical. Horizontal *can*
+  chunk via extra swaths; block chunks via `N_V` rows.
+- **Vertical-mode fix (`fifo_read_control.v`).** Vertical's narrow, bursty,
+  drains-to-empty-every-row feeding exposed an async-FIFO empty-flag race: the read
+  FSM counted `rd_en` pulses that returned no data ("phantom reads") and declared a
+  swath done before the encoder had received all its pixels, so end-of-frame never
+  fired and the slice never closed (hang). The FSM now counts delivered `fifo_valid`
+  pulses and gates reads on `rd_cnt + in_flight < enc_pixels`, fully draining each
+  FIFO without over-reading into the next swath. Block/horizontal (few/no phantoms)
+  are unaffected.
+- **Swath-height remainder fix (`encoder_wrapper.v`).** `swath_h = i_h/N_V` was a
+  single uniform value, so when the image height wasn't divisible by `N_V` the last
+  row of encoders was under-sized and dropped its remainder rows (broke 3×3 grids on
+  5000×5000 and 1×9 horizontal on 300×300). Each encoder is now given its own
+  `row_h[row]` with the remainder on the last swath — mirroring the `col_w` handling
+  that columns already had. Evenly-divisible cases are unchanged.
+
+---
+
+# Clock Ratio (wr_clk : rd_clk) and the Output-Drain Fix
+
+Clocks come from `clk_wiz_0` (200 MHz diff in): `wr_clk = clk` (input/FIFO-read side)
+and `rd_clk` (encoder). Baseline is **wr_clk = 450 MHz, rd_clk = 150 MHz (3:1)**.
+
+**Behavioral-sim note:** compression is identical at any absolute frequency; only the
+**wr_clk : rd_clk ratio** changes functional behavior (async-FIFO fill/drain). Actual
+max frequency on the Artix-7 is a synthesis/STA question, not a sim one.
+
+## Finding: the minimum safe ratio was 3:1 (now 2:1 after a fix)
+
+Raising rd_clk so the ratio dropped to **2:1** (e.g. 600/300, or 450/225) **corrupted
+the output** — the captured `.jls` had its SOI markers missing and every other 16-bit
+word duplicated — for *every* core count tested (N_E=2 and N_E=4). Root cause: the
+**output-FIFO drain** (`fifo_wrapper_output.v`) drove `rd_en` on every read-clock cycle
+that `!empty` was asserted. When the read clock (`clk`) is only ~2× the write clock
+(`rd_clk`), the async `empty` flag lags, so reads land on a near-empty FIFO and the IP
+returns duplicate/garbage `valid`s. At 3:1 the flag kept up, which is why the project
+sat at 3:1. (This is the output-side twin of the input "phantom-read" bug.)
+
+**Fix:** a one-outstanding-read handshake in the drain — issue `rd_en` only when
+`!empty AND !rd_pending`, and clear `rd_pending` on `valid`. Each read's result is
+consumed before the next is issued, so the drain can't over-read. Verified:
+
+| Image | Grid (N_E) | Ratio | rd_clk | Lossless |
+|-------|-----------|-------|--------|----------|
+| 300×300   | 2×1 (2) | 2:1 | 225 | ✓ (was corrupt) |
+| 300×300   | 2×2 (4) | 2:1 | 225 | ✓ (was corrupt) |
+| 1500×1500 | 2×2 (4) | 2:1 | 225 | ✓ (no FIFO overflow at scale) |
+| 300×300   | all modes | 3:1 | 150 | ✓ (no regression) |
+
+## Core-dependent clock ratio (constant aggregate throughput)
+
+With the drain fix, the ratio can scale with core count to hold aggregate throughput
+≈ constant (`N_E × rd_clk`), `wr_clk` fixed at 450 MHz:
+
+| Cores (N_E) | Ratio | rd_clk | Per-core | Aggregate | Lossless |
+|-------------|-------|--------|----------|-----------|----------|
+| 3 | 3:1 | 150 MHz | 150 Mpix/s | ~450 Mpix/s | ✓ |
+| 2 | 2:1 | 225 MHz | 225 Mpix/s | ~450 Mpix/s | ✓ |
+
+Caveats: the one-outstanding throttle halves the drain rate, so **2:1 is the floor** —
+at exactly 2:1 the drain rate equals the encoder's max write rate (balanced; the FIFO
+absorbs bursts). A ratio < 2:1 would overflow the output FIFO. `clk_wiz_0` is left at
+the 450/150 baseline; changing the deployed ratio means reconfiguring that IP (the
+sim model was edited only to characterize this).

@@ -1,6 +1,8 @@
 `timescale 1ps/1ps
 module top_jls_vertical #(
     parameter integer N_E = 2,
+    parameter integer N_H = 2,   // horizontal blocks (columns). N_H=1 => horizontal split
+    parameter integer N_V = 2,   // vertical blocks (rows/swaths). N_V=1 => vertical split
     parameter integer L   = 64,
     parameter [2:0]   nr  = 3'd0
 )(
@@ -108,11 +110,11 @@ wire [N_E-1:0] o_sof_st;
     );
 
     // =================================================================
-    // Splitter (3 columns x 2 rows = 6 blocks)
+    // Splitter (N_H columns x N_V rows). Block: N_H>1,N_V>1. Vertical: N_V=1. Horizontal: N_H=1.
     // =================================================================
     splitter_block #(
-        .N_H(2),
-        .N_V(2),
+        .N_H(N_H),
+        .N_V(N_V),
         .N_E(N_E)
     ) u_splitter_block (
         .sys_rdy     (rstn),
@@ -192,8 +194,8 @@ wire [N_E-1:0] o_sof_st;
 
     fifo_read_control #(
         .NUM_ENCODERS(N_E),
-        .N_H(2),
-        .N_V(2)
+        .N_H(N_H),
+        .N_V(N_V)
     ) u_fifo_read_control (
         .rd_clk(rd_clk),
         .sys_rdy(sys_rdy),
@@ -214,8 +216,8 @@ wire [N_E-1:0] o_sof_st;
 
     encoder_wrapper #(
         .N_E(N_E),
-        .N_H(2),
-        .N_V(2),
+        .N_H(N_H),
+        .N_V(N_V),
         .nr(nr),
         .L(L)
     ) u_encoder_wrapper (

@@ -124,6 +124,7 @@ module fifo_wrapper_output #(
     // ------------------------------------------------------------------
     reg [LEN_WIDTH-1:0] rd_cnt [0:N_E-1];
     reg [2:0]           rd_ptr [0:N_E-1];
+    reg [N_E-1:0]       rd_pending;   // a read is issued and awaiting its valid
 
     integer ri;
     always @(posedge rd_clk or posedge rst) begin
@@ -131,6 +132,7 @@ module fifo_wrapper_output #(
             fifo_rd_en <= 0;
             dout_valid <= 0;
             dout_last  <= 0;
+            rd_pending <= 0;
             for (ri = 0; ri < N_E; ri = ri + 1) begin
                 rd_cnt[ri] <= 0;
                 rd_ptr[ri] <= 0;
@@ -141,13 +143,22 @@ module fifo_wrapper_output #(
             dout_last  <= 0;
 
             for (ri = 0; ri < N_E; ri = ri + 1) begin
-                // Always drain when not empty
-                if (!fifo_empty[ri])
+                // One-outstanding-read handshake: request a read only when data is
+                // available AND no prior read is still in flight. The old code drove
+                // rd_en every cycle that !empty was asserted; when the read clock was
+                // only ~2x the write clock the async empty flag lagged, so reads
+                // landed on a near-empty FIFO and the IP returned duplicate/garbage
+                // valids -> corrupted output. Waiting for each read's valid before
+                // issuing the next keeps the stream clean down to a 2:1 ratio.
+                if (!fifo_empty[ri] && !rd_pending[ri]) begin
                     fifo_rd_en[ri] <= 1'b1;
+                    rd_pending[ri] <= 1'b1;
+                end
 
                 if (fifo_valid[ri]) begin
                     dout_valid[ri] <= 1'b1;
-                    rd_cnt[ri] <= rd_cnt[ri] + 1'b1;
+                    rd_cnt[ri]     <= rd_cnt[ri] + 1'b1;
+                    rd_pending[ri] <= 1'b0;
                 end
             end
         end

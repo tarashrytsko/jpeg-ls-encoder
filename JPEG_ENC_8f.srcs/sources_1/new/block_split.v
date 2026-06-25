@@ -122,9 +122,16 @@ wire [$clog2(N_E)-1:0] encoder_sel;
         end
     endfunction
 
-    reg [clog2(N_H)-1:0] x_block_idx;
-    reg [clog2(N_V)-1:0] y_block_idx;
-    reg [clog2(N_H*N_V)-1:0] block_idx;
+    // Guard index widths: clog2(1)=0 would give an illegal zero-width reg when
+    // N_H=1 (horizontal split) or N_V=1 (vertical split). Same pattern as
+    // encoder_wrapper.v ENC_ID_WIDTH.
+    localparam XW = (clog2(N_H)   > 0) ? clog2(N_H)   : 1;
+    localparam YW = (clog2(N_V)   > 0) ? clog2(N_V)   : 1;
+    localparam BW = (clog2(N_H*N_V) > 0) ? clog2(N_H*N_V) : 1;
+
+    reg [XW-1:0] x_block_idx;
+    reg [YW-1:0] y_block_idx;
+    reg [BW-1:0] block_idx;
 
     always @(*) begin
         x_block_idx = 0;

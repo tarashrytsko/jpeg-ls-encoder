@@ -31,8 +31,17 @@ module encoder_wrapper #(
         col_w[N_H-1] = i_w - (i_w / N_H) * (N_H - 1);
     end
 
-    // Swath height per swath (full height)
+    // Per-swath (row) height — like col_w, the LAST swath takes the remainder so
+    // images whose height isn't divisible by N_V still feed each encoder the exact
+    // block it expects. (swath_h kept for debug/back-compat only.)
     wire [13:0] swath_h = i_h[13:0] / N_V;
+    reg [13:0] row_h [0:N_V-1];
+    integer ri;
+    always @(*) begin
+        for (ri = 0; ri < N_V-1; ri = ri + 1)
+            row_h[ri] = i_h[13:0] / N_V;
+        row_h[N_V-1] = i_h[13:0] - (i_h[13:0] / N_V) * (N_V - 1);
+    end
 
     assign last_enc_id = N_E - 1;
 
@@ -49,7 +58,7 @@ module encoder_wrapper #(
                 .clk      (rd_clk),
                 .i_sof    (enc_i_sofx[g_enc]),
                 .i_w      (col_w[g_enc % N_H]),
-                .i_h      (swath_h),
+                .i_h      (row_h[g_enc / N_H]),
                 .i_e      (rd_en_gated[g_enc]),
                 .i_x      (dout[g_enc*8 +: 8]),
                 .my_last  (my_last[g_enc]),

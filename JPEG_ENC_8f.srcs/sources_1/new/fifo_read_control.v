@@ -70,7 +70,9 @@ module fifo_read_control #(
     localparam S_DONE = 2'd3;
 
     reg [1:0]  state;
-    reg [2:0]  swath_idx;
+    // Must hold values 0..N_V (the S_SOF exit test compares swath_idx >= N_V).
+    // [2:0] overflowed for horizontal mode (N_V up to 20) and the FSM hung.
+    reg [$clog2(N_V+1)-1:0] swath_idx;
     reg [31:0] sof_cnt;
     reg [2:0]  gap_cnt;
     reg [31:0] rd_cnt [0:NUM_ENCODERS-1];
@@ -114,14 +116,32 @@ module fifo_read_control #(
                 end
 
                 S_READ: begin
+                    // Count DELIVERED pixels (fifo_valid), not rd_en assertions.
+                    // The async FIFO empty flag can lag under bursty narrow-column
+                    // (vertical) feeding, so some rd_en pulses return no valid
+                    // ("phantom reads"). Counting rd_en let the FSM finish a swath
+                    // before the encoder had actually received enc_pixels real
+                    // pixels, so its end-of-frame (eof_cond) never fired and the
+                    // slice never closed. Counting valids drains the FIFO fully.
+                    //
+                    // rd_en[e] (the registered value from last cycle) is the single
+                    // read still in flight; gate new reads on rd_cnt+in_flight so we
+                    // never read past enc_pixels into the next swath.
                     for (e = 0; e < NUM_ENCODERS; e = e + 1) begin
-                        if (rd_active[e] && !fifo_empty[e]) begin
-                            rd_en[e] <= 1'b1;
+                        // Resolve the read issued last cycle.
+                        if (rd_active[e] && fifo_valid[e]) begin
                             rd_cnt[e] <= rd_cnt[e] + 1;
                             read_count_flat[e*32 +: 32] <= rd_cnt[e] + 1;
                             if ((rd_cnt[e] + 1) == enc_pixels[swath_idx][e])
                                 rd_active[e] <= 0;
                         end
+                        // Issue a new read only while more real pixels are still
+                        // needed than are already in flight.
+                        if (rd_active[e] && !fifo_empty[e] &&
+                            ((rd_cnt[e] + rd_en[e]) < enc_pixels[swath_idx][e]))
+                            rd_en[e] <= 1'b1;
+                        else
+                            rd_en[e] <= 1'b0;
                     end
 
                     if (rd_active == 0) begin
