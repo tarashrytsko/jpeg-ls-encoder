@@ -220,7 +220,8 @@ read-domain block (lines 124-151) with:
     reg  [N_E-1:0]       last_pend;        // that pending word is a slice-final word
 
     wire [N_E-1:0] out_free = ~dout_valid | m_axis_tready;   // output reg free next cycle
-    wire [N_E-1:0] fifo_rd_en = (~fifo_empty) & out_free & (~pending);
+    // full-rate when ready; <=1 outstanding read under backpressure (no data loss)
+    wire [N_E-1:0] fifo_rd_en = (~fifo_empty) & out_free & (~pending | m_axis_tready);
 
     // slice-final detection: the word at rd_cnt is the last of slice rd_ptr
     wire [N_E-1:0] read_is_last;
@@ -229,7 +230,7 @@ read-domain block (lines 124-151) with:
         for (li = 0; li < N_E; li = li + 1) begin : GEN_LAST
             assign read_is_last[li] =
                 (rd_ptr[li] != wr_ptr_rd[li]) &&
-                ((rd_cnt[li] + 1) == end_pos[li][rd_ptr[li][1:0]]);
+                (rd_cnt[li] == end_pos[li][rd_ptr[li][1:0]]);
         end
     endgenerate
 
