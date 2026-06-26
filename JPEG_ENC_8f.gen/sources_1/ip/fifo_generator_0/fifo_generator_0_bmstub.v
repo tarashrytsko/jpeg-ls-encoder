@@ -1,5 +1,5 @@
 // Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
-// Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+// Copyright 2022-2026 Advanced Micro Devices, Inc. All Rights Reserved.
 // -------------------------------------------------------------------------------
 
 `timescale 1 ps / 1 ps
@@ -64,9 +64,9 @@ module fifo_generator_0 (
   (* X_INTERFACE_IGNORE = "true" *)
   output underflow;
   (* X_INTERFACE_IGNORE = "true" *)
-  output [16:0]rd_data_count;
+  output [8:0]rd_data_count;
   (* X_INTERFACE_IGNORE = "true" *)
-  output [16:0]wr_data_count;
+  output [8:0]wr_data_count;
   (* X_INTERFACE_IGNORE = "true" *)
   output wr_rst_busy;
   (* X_INTERFACE_IGNORE = "true" *)

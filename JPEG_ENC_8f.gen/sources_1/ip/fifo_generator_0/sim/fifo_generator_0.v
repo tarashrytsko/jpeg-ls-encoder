@@ -1,5 +1,5 @@
 // (c) Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
-// (c) Copyright 2022-2025 Advanced Micro Devices, Inc. All rights reserved.
+// (c) Copyright 2022-2026 Advanced Micro Devices, Inc. All rights reserved.
 // 
 // This file contains confidential and proprietary information
 // of AMD and is protected under U.S. and international copyright
@@ -106,8 +106,8 @@ output wire empty;
 output wire almost_empty;
 output wire valid;
 output wire underflow;
-output wire [16 : 0] rd_data_count;
-output wire [16 : 0] wr_data_count;
+output wire [8 : 0] rd_data_count;
+output wire [8 : 0] wr_data_count;
 output wire wr_rst_busy;
 output wire rd_rst_busy;
 
@@ -115,7 +115,7 @@ output wire rd_rst_busy;
     .C_COMMON_CLOCK(0),
     .C_SELECT_XPM(0),
     .C_COUNT_TYPE(0),
-    .C_DATA_COUNT_WIDTH(27),
+    .C_DATA_COUNT_WIDTH(9),
     .C_DEFAULT_VALUE("BlankString"),
     .C_DIN_WIDTH(8),
     .C_DOUT_RST_VAL("0"),
@@ -147,17 +147,17 @@ output wire rd_rst_busy;
     .C_OVERFLOW_LOW(0),
     .C_PRELOAD_LATENCY(1),
     .C_PRELOAD_REGS(0),
-    .C_PRIM_FIFO_TYPE("8kx4"),
+    .C_PRIM_FIFO_TYPE("512x36"),
     .C_PROG_EMPTY_THRESH_ASSERT_VAL(2),
     .C_PROG_EMPTY_THRESH_NEGATE_VAL(3),
     .C_PROG_EMPTY_TYPE(0),
-    .C_PROG_FULL_THRESH_ASSERT_VAL(134217725),
-    .C_PROG_FULL_THRESH_NEGATE_VAL(134217724),
+    .C_PROG_FULL_THRESH_ASSERT_VAL(509),
+    .C_PROG_FULL_THRESH_NEGATE_VAL(508),
     .C_PROG_FULL_TYPE(0),
-    .C_RD_DATA_COUNT_WIDTH(27),
-    .C_RD_DEPTH(134217728),
+    .C_RD_DATA_COUNT_WIDTH(9),
+    .C_RD_DEPTH(512),
     .C_RD_FREQ(1),
-    .C_RD_PNTR_WIDTH(27),
+    .C_RD_PNTR_WIDTH(9),
     .C_UNDERFLOW_LOW(0),
     .C_USE_DOUT_RST(1),
     .C_USE_ECC(0),
@@ -168,10 +168,10 @@ output wire rd_rst_busy;
     .C_USE_FWFT_DATA_COUNT(0),
     .C_VALID_LOW(0),
     .C_WR_ACK_LOW(0),
-    .C_WR_DATA_COUNT_WIDTH(27),
-    .C_WR_DEPTH(134217728),
+    .C_WR_DATA_COUNT_WIDTH(9),
+    .C_WR_DEPTH(512),
     .C_WR_FREQ(1),
-    .C_WR_PNTR_WIDTH(27),
+    .C_WR_PNTR_WIDTH(9),
     .C_WR_RESPONSE_LATENCY(1),
     .C_MSGON_VAL(1),
     .C_ENABLE_RST_SYNC(1),
@@ -327,12 +327,12 @@ output wire rd_rst_busy;
     .din(din),
     .wr_en(wr_en),
     .rd_en(rd_en),
-    .prog_empty_thresh(17'B0),
-    .prog_empty_thresh_assert(17'B0),
-    .prog_empty_thresh_negate(17'B0),
-    .prog_full_thresh(17'B0),
-    .prog_full_thresh_assert(17'B0),
-    .prog_full_thresh_negate(17'B0),
+    .prog_empty_thresh(9'B0),
+    .prog_empty_thresh_assert(9'B0),
+    .prog_empty_thresh_negate(9'B0),
+    .prog_full_thresh(9'B0),
+    .prog_full_thresh_assert(9'B0),
+    .prog_full_thresh_negate(9'B0),
     .int_clk(1'D0),
     .injectdbiterr(1'D0),
     .injectsbiterr(1'D0),

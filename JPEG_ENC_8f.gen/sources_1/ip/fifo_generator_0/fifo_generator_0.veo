@@ -1,5 +1,5 @@
 // (c) Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
-// (c) Copyright 2022-2025 Advanced Micro Devices, Inc. All rights reserved.
+// (c) Copyright 2022-2026 Advanced Micro Devices, Inc. All rights reserved.
 // 
 // This file contains confidential and proprietary information
 // of AMD and is protected under U.S. and international copyright
@@ -70,8 +70,8 @@ fifo_generator_0 your_instance_name (
   .almost_empty(almost_empty),    // output wire almost_empty
   .valid(valid),                  // output wire valid
   .underflow(underflow),          // output wire underflow
-  .rd_data_count(rd_data_count),  // output wire [16 : 0] rd_data_count
-  .wr_data_count(wr_data_count),  // output wire [16 : 0] wr_data_count
+  .rd_data_count(rd_data_count),  // output wire [8 : 0] rd_data_count
+  .wr_data_count(wr_data_count),  // output wire [8 : 0] wr_data_count
   .wr_rst_busy(wr_rst_busy),      // output wire wr_rst_busy
   .rd_rst_busy(rd_rst_busy)      // output wire rd_rst_busy
 );
