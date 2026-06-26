@@ -104,9 +104,14 @@ instantiate by parameter; `encoder_wrapper` already computes per-lane `col_w = W
 - New XDC (`jls_demo_top` wide): diff clk (R3/P3), reset (R8), status outputs to pins.
 
 ### Clocking
-Keep `clk_wiz_0` dual-clock. Set `rd_clk` ≈ 32 MHz (the 16-lane throughput driver) and
-`wr_clk` ≥ `rd_clk` (e.g. 32–64 MHz) so the wide input never bottlenecks. Determine the
-highest `rd_clk` that closes with 16 lanes by build; report achieved clock + throughput.
+Keep `clk_wiz_0` dual-clock, but run the wide design **1:1** (`wr_clk = rd_clk = 32 MHz`). A
+wide design ingests N_E pixels/cycle and the lanes consume N_E pixels/cycle — the **same rate** —
+so 1:1 is the natural ratio. Critically, 1:1 also **aligns the two SOF stretches**
+(`axis_pixel_in` on wr_clk vs `fifo_read_control` on rd_clk, both 3000 cycles): at any wr>rd
+ratio the input finishes SOF in less wall-time and floods the (now shallow) input FIFOs before
+the read side drains, and `fifo_write_control` drops pixels at a full FIFO (the old 131072-deep
+FIFO masked this; verified failure at 2:1 — encoders starved at ~2661/4096 pixels). 32 MHz × 16
+lanes = 512 Mpix/s is exactly the design point. Report the achieved clock + throughput.
 
 ## File-level change plan
 
