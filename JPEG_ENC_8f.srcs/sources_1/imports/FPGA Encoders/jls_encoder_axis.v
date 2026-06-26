@@ -1,7 +1,7 @@
 `timescale 1ps/1ps
 module jls_encoder_axis #(
-    parameter integer N_E = 2,
-    parameter integer N_H = 2,   // columns. N_H=1 => horizontal split
+    parameter integer N_E = 16,
+    parameter integer N_H = 16,  // columns. N_H=1 => horizontal split
     parameter integer N_V = 1,   // swaths.  N_V=1 => vertical split
     parameter integer L   = 64,
     parameter [2:0]   nr  = 3'd0 // NEAR fixed 0 (lossless)
@@ -18,7 +18,7 @@ module jls_encoder_axis #(
     input  wire [13:0] i_h,
 
     // AXI4-Stream slave (pixels in), clocked by clk
-    input  wire [7:0]  s_axis_tdata,
+    input  wire [N_E*8-1:0] s_axis_tdata,
     input  wire        s_axis_tvalid,
     output wire        s_axis_tready,
     input  wire        s_axis_tlast,
@@ -80,7 +80,7 @@ wire [N_E-1:0] o_sof_st;
     // =================================================================
     // AXIS slave pixel adapter (replaces sim-only image_generator)
     // =================================================================
-    wire [7:0]  gen_x;
+    wire [N_E*8-1:0] gen_x;
     wire        gen_e;
     wire [15:0] gen_w;
     wire [13:0] gen_h;
@@ -138,7 +138,7 @@ wire [N_E-1:0] o_sof_st;
     wire [N_E-1:0]    fifo_full;
     wire [N_E*18-1:0] fifo_count_flat;
     // Per-encoder backpressure: stall only when target encoder's FIFO is full
-    assign fifo_full_cur = fifo_full[encoder_sel_comb];
+    assign fifo_full_cur = |fifo_full;                       // stall all lanes if ANY FIFO full (wide lockstep)
     assign fifo_overflow_masked = {N_E{fifo_full_cur}};
 
     fifo_wrapper_input #(.N_E(N_E)) u_fifo_wrapper_input (
