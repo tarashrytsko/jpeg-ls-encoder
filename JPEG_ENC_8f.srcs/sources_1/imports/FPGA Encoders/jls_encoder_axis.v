@@ -1,26 +1,33 @@
 `timescale 1ps/1ps
-module top_jls_vertical #(
+module jls_encoder_axis #(
     parameter integer N_E = 2,
-    parameter integer N_H = 2,   // horizontal blocks (columns). N_H=1 => horizontal split
-    parameter integer N_V = 2,   // vertical blocks (rows/swaths). N_V=1 => vertical split
+    parameter integer N_H = 2,   // columns. N_H=1 => horizontal split
+    parameter integer N_V = 1,   // swaths.  N_V=1 => vertical split
     parameter integer L   = 64,
-    parameter [2:0]   nr  = 3'd0
+    parameter [2:0]   nr  = 3'd0 // NEAR fixed 0 (lossless)
 )(
     input  wire        rstn,
-    output wire        clk,
+    output wire        clk,         // wr_clk (also s_axis_aclk / m_axis_aclk)
     input  wire        clk_in1_p,
     input  wire        clk_in1_n,
+    output wire        sys_rdy,
 
+    // sideband control
     input  wire        i_sof,
-    output wire        i_e,
-    output wire [7:0]  i_x,
-    output wire [15:0] i_w,
-    output wire [13:0] i_h,
-    output wire sys_rdy,
+    input  wire [15:0] i_w,
+    input  wire [13:0] i_h,
 
-    output wire [N_E-1:0]    o_e,
-    output wire [N_E-1:0]    o_last,
-    output wire [N_E*16-1:0] o_data
+    // AXI4-Stream slave (pixels in), clocked by clk
+    input  wire [7:0]  s_axis_tdata,
+    input  wire        s_axis_tvalid,
+    output wire        s_axis_tready,
+    input  wire        s_axis_tlast,
+
+    // AXI4-Stream masters (compressed out, N_E channels), clocked by clk
+    output wire [N_E*16-1:0] m_axis_tdata,
+    output wire [N_E-1:0]    m_axis_tvalid,
+    input  wire [N_E-1:0]    m_axis_tready,
+    output wire [N_E-1:0]    m_axis_tlast
 );
 
 wire [N_E-1:0] o_sof_st;
@@ -51,27 +58,6 @@ wire [N_E-1:0] o_sof_st;
         .clk_in1_n(clk_in1_n)
     );
 
-    // ---------------------------------------------------------
-    // Synchronize i_sof pulse
-    // ---------------------------------------------------------
-    reg sof_sync0, sof_sync1;
-    reg i_sof_r;
-    wire i_sof_in;
-
-    always @(posedge clk) begin
-        if (!rstn) begin
-            sof_sync0 <= 1'b0;
-            sof_sync1 <= 1'b0;
-            i_sof_r   <= 1'b0;
-        end else begin
-            sof_sync0 <= i_sof;
-            sof_sync1 <= sof_sync0;
-            i_sof_r <= sof_sync1;
-        end
-    end
-
-    assign i_sof_in = i_sof_r;
-
     // =================================================================
     // FIFO reset logic
     // =================================================================
@@ -92,20 +78,28 @@ wire [N_E-1:0] o_sof_st;
     );
 
     // =================================================================
-    // Image Generator
+    // AXIS slave pixel adapter (replaces sim-only image_generator)
     // =================================================================
-    image_generator #(
-        .DATA_WIDTH(8),
-        .NUM_ENCODERS(N_E)
-    ) u_image_generator (
+    wire [7:0]  gen_x;
+    wire        gen_e;
+    wire [15:0] gen_w;
+    wire [13:0] gen_h;
+
+    axis_pixel_in #(.N_E(N_E)) u_axis_pixel_in (
         .clk           (clk),
         .rstn          (sys_rdy),
-        .i_sof         (i_sof_in),
+        .i_sof         (i_sof),
+        .i_w_in        (i_w),
+        .i_h_in        (i_h),
         .fifo_overflow (fifo_overflow_masked),
-        .pixel_out     (i_x),
-        .pixel_valid   (i_e),
-        .i_w           (i_w),
-        .i_h           (i_h),
+        .s_axis_tdata  (s_axis_tdata),
+        .s_axis_tvalid (s_axis_tvalid),
+        .s_axis_tready (s_axis_tready),
+        .s_axis_tlast  (s_axis_tlast),
+        .pixel_out     (gen_x),
+        .pixel_valid   (gen_e),
+        .i_w           (gen_w),
+        .i_h           (gen_h),
         .i_sof_st      (o_sof_st)
     );
 
@@ -120,10 +114,10 @@ wire [N_E-1:0] o_sof_st;
         .sys_rdy     (rstn),
         .clk         (clk),
         .i_sof       (i_sof),
-        .i_e         (i_e),
-        .i_x         (i_x),
-        .i_w         (i_w),
-        .i_h         (i_h),
+        .i_e         (gen_e),
+        .i_x         (gen_x),
+        .i_w         (gen_w),
+        .i_h         (gen_h),
         .i_sof_st    (o_sof_st),
         .o_e         (s_e),
         .o_x         (s_x),
@@ -244,14 +238,15 @@ wire [N_E-1:0] o_sof_st;
         .rst         (fifo_rst),
         .wr_clk      (rd_clk),
         .rd_clk      (clk),
-        .din_flat    (e_data),
-        .wr_en       (e_e),
-        .o_last_enc  (o_last_enc),
-        .fifo_dout_flat (o_data),
-        .dout_valid  (o_e),
-        .dout_last   (o_last),
-        .wr_rst_busy (wr_rst_busy_output),
-        .rd_rst_busy (rd_rst_busy_output)
+        .din_flat       (e_data),
+        .wr_en          (e_e),
+        .o_last_enc     (o_last_enc),
+        .m_axis_tready  (m_axis_tready),
+        .fifo_dout_flat (m_axis_tdata),
+        .dout_valid     (m_axis_tvalid),
+        .dout_last      (m_axis_tlast),
+        .wr_rst_busy    (wr_rst_busy_output),
+        .rd_rst_busy    (rd_rst_busy_output)
     );
 
 endmodule
