@@ -238,3 +238,35 @@ silicon, 4 Gb/s needs a clock that closes timing (it won't at 500 MHz) or a **wi
 input datapath** (multiple pixels/cycle at a sane clock). What's real and portable is
 the **drain fix** — it makes the output path correct at any wr:rd ratio, which is the
 architectural enabler.
+
+---
+
+## Synthesis & Bitstream (real hardware, Artix-7 xc7a200tfbg676-2)
+
+The encoder was refactored into a synthesizable AXI4-Stream IP (`jls_encoder_axis`) and
+built to a **timing-closed bitstream** via the self-contained harness `jls_demo_top`
+(on-chip `$readmemh` ROM AXIS source → IP → output pins). Lossless-only (NEAR removed).
+Build: `build_synth.tcl` → `build_impl.tcl`; clock reconfigure via `build_fmax2.tcl`.
+
+**Config:** `N_E=2`, `N_H=2`, `N_V=1` (two parallel vertical column-strip encoders).
+
+| Metric | Result |
+|---|---|
+| Implementation | `impl_1` → `write_bitstream` Complete, `jls_demo_top.bit` (9.7 MB) |
+| Clocks (closed) | `wr_clk` 60 MHz / `rd_clk` (encoder) 30 MHz (MMCM, VCO 990 MHz) |
+| **WNS / WHS** | **+2.72 ns / +0.095 ns** (0 failing endpoints) |
+| Utilization | LUT 5931 (4.4%), FF 3748 (1.4%), **BRAM 133 (36.4%)**, DSP 5 (0.7%) |
+| Limiter | cross-domain CDC path; encoder logic has +11.6 ns intra slack (~46 MHz) |
+| **Throughput** | **≈ 60 Mpix/s ≈ 480 Mb/s** (30 MHz × 2 parallel column encoders) |
+
+BRAM (36%) is the gating resource — the two 16384×8 line buffers + the in/out FIFOs.
+A conservative 33.33/10 MHz build also closes (WNS +3.5 ns). To go faster: declare the
+two MMCM clocks asynchronous (CDC is FIFO/gray-code safe) to drop the cross-domain
+limiter, then push toward the ~46 MHz encoder ceiling; or add more parallel encoders /
+a wider input for higher aggregate throughput.
+
+**Functional validation:** `tb_jls_demo_top` simulates the full harness; its output is
+**byte-identical** to the proven AXIS path (`tb_jls_encoder_axis`) on the same 64×64
+image (1011 bytes), and the AXIS refactor reproduces the pre-refactor lossless output
+**exactly** at 300²/1500² across all split modes (incl. under ~50% `tready`
+backpressure). So synthesis changed no encoding behavior.
