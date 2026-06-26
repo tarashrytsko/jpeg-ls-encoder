@@ -191,40 +191,50 @@ and `rd_clk` (encoder). Baseline is **wr_clk = 450 MHz, rd_clk = 150 MHz (3:1)**
 **wr_clk : rd_clk ratio** changes functional behavior (async-FIFO fill/drain). Actual
 max frequency on the Artix-7 is a synthesis/STA question, not a sim one.
 
-## Finding: the minimum safe ratio was 3:1 (now 2:1 after a fix)
+## Output-drain evolution → full-rate, ratio-independent
 
-Raising rd_clk so the ratio dropped to **2:1** (e.g. 600/300, or 450/225) **corrupted
-the output** — the captured `.jls` had its SOI markers missing and every other 16-bit
-word duplicated — for *every* core count tested (N_E=2 and N_E=4). Root cause: the
-**output-FIFO drain** (`fifo_wrapper_output.v`) drove `rd_en` on every read-clock cycle
-that `!empty` was asserted. When the read clock (`clk`) is only ~2× the write clock
-(`rd_clk`), the async `empty` flag lags, so reads land on a near-empty FIFO and the IP
-returns duplicate/garbage `valid`s. At 3:1 the flag kept up, which is why the project
-sat at 3:1. (This is the output-side twin of the input "phantom-read" bug.)
+The output-FIFO drain (`fifo_wrapper_output.v`) went through three versions as the
+clock ratio was pushed down toward 1:1:
 
-**Fix:** a one-outstanding-read handshake in the drain — issue `rd_en` only when
-`!empty AND !rd_pending`, and clear `rd_pending` on `valid`. Each read's result is
-consumed before the next is issued, so the drain can't over-read. Verified:
+1. **Original (registered `rd_en = !empty`)** — fine at 3:1, but at **2:1** it
+   over-read the near-empty FIFO (the async `empty` flag lags at a 2× read clock) and
+   corrupted the stream (SOI dropped + words duplicated). That's why the project sat
+   at 3:1. (Output-side twin of the input "phantom-read" bug.)
+2. **1-outstanding throttle** — issue `rd_en` only when `!empty && !pending`, clear
+   `pending` on `valid`. Fixed 2:1, but **halved the drain rate**, forcing `wr ≥ 2×rd`
+   (2:1 floor; 1:1 overflowed).
+3. **Full-rate, first-word-correct (current)** — `rd_en = ~empty` (combinational,
+   full rate) **and `dout_valid` driven from the registered read-enable** rather than
+   the IP's `valid` flag. The IP's `valid` skipped the *first* read at a 1:1 rate,
+   dropping the leading `FFD8` of each multi-swath chunk. A probe confirmed the
+   encoder output was always correct (`ENC0_OUT[0]=ffd8`) while the FIFO output
+   started at `fff7`; a standard FIFO returns data one cycle after the read, so the
+   registered `rd_en` is the correct valid strobe and captures every word.
 
-| Image | Grid (N_E) | Ratio | rd_clk | Lossless |
-|-------|-----------|-------|--------|----------|
-| 300×300   | 2×1 (2) | 2:1 | 225 | ✓ (was corrupt) |
-| 300×300   | 2×2 (4) | 2:1 | 225 | ✓ (was corrupt) |
-| 1500×1500 | 2×2 (4) | 2:1 | 225 | ✓ (no FIFO overflow at scale) |
-| 300×300   | all modes | 3:1 | 150 | ✓ (no regression) |
+Verified lossless, **all three modes**, at **1:1, 2:1, and 3:1** (300²; plus 1:1 at
+1500² and 3000²). The `wr ≥ 2×rd` constraint is gone — the drain is correct at any
+ratio down to 1:1.
 
-## Core-dependent clock ratio (constant aggregate throughput)
+## 4 Gb/s in + out — 1:1 at 500/500 MHz
 
-With the drain fix, the ratio can scale with core count to hold aggregate throughput
-≈ constant (`N_E × rd_clk`), `wr_clk` fixed at 450 MHz:
+With 1:1 working, set `clk_wiz_0` to **wr_clk = rd_clk = 500 MHz**. Input is one 8-bit
+pixel/cycle = **500 MHz × 8 = 4 Gb/s**, and every split type runs at the encoder rate:
 
-| Cores (N_E) | Ratio | rd_clk | Per-core | Aggregate | Lossless |
-|-------------|-------|--------|----------|-----------|----------|
-| 3 | 3:1 | 150 MHz | 150 Mpix/s | ~450 Mpix/s | ✓ |
-| 2 | 2:1 | 225 MHz | 225 Mpix/s | ~450 Mpix/s | ✓ |
+| Mode @ 3000² | Geometry | Encode time | Throughput |
+|--------------|----------|-------------|------------|
+| Block      | 2×2 | 18.01 ms | **500 Mpix/s = 4.00 Gb/s** |
+| Vertical   | 4×1 | 18.01 ms | **500 Mpix/s = 4.00 Gb/s** |
+| Horizontal | 1×4 | 18.02 ms | **499 Mpix/s = 3.99 Gb/s** |
 
-Caveats: the one-outstanding throttle halves the drain rate, so **2:1 is the floor** —
-at exactly 2:1 the drain rate equals the encoder's max write rate (balanced; the FIFO
-absorbs bursts). A ratio < 2:1 would overflow the output FIFO. `clk_wiz_0` is left at
-the 450/150 baseline; changing the deployed ratio means reconfiguring that IP (the
-sim model was edited only to characterize this).
+(9 Mpix / ~18.0 ms = 500 Mpix/s.) Lossless across 300²/1500²/3000², all modes.
+Throughput is input-limited (input = 500 Mpix/s), so all three modes converge to the
+4 Gb/s input rate — horizontal is **no longer capped at input/2** now that the drain
+runs full-rate at 1:1.
+
+**Real-HW caveat.** 500 MHz for the JLS encoder is **not synthesizable on Artix-7**
+(fabric tops out far lower for logic this complex), and 500 MHz here is the behavioral
+`clk_wiz` *sim model* (the `.xci` synthesis config still says 450/150). On real
+silicon, 4 Gb/s needs a clock that closes timing (it won't at 500 MHz) or a **wider
+input datapath** (multiple pixels/cycle at a sane clock). What's real and portable is
+the **drain fix** — it makes the output path correct at any wr:rd ratio, which is the
+architectural enabler.

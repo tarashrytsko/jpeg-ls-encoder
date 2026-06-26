@@ -39,12 +39,12 @@ wire [N_E-1:0] o_sof_st;
     wire               rd_clk;
 
     // =================================================================
-    // Clock wizard
+    // Clock wizard: clk_out1 = wr_clk (input/FIFO-read), clk_out2 = rd_clk (encoder)
     // =================================================================
     wire locked;
     clk_wiz_0 clk_wiz_0 (
-        .clk_out1(clk),       // 100 MHz
-        .clk_out2(rd_clk),    // 33.33 MHz
+        .clk_out1(clk),
+        .clk_out2(rd_clk),
         .reset(~rstn),
         .locked(locked),
         .clk_in1_p(clk_in1_p),
