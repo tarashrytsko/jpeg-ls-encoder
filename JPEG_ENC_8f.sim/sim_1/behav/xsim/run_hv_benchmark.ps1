@@ -16,8 +16,8 @@
   at equal parallelism (same total block count = N_E).
 
   Geometry and image are injected by text-substituting the parameter defaults in
-  tb_top_jls_vertical.v (N_E/N_H/N_V/MAX_BYTES_PER_SLICE) and the PGM_FILE in
-  image_generator.v, then recompiling. (xelab -generic_top is avoided because the
+  tb_jls_encoder_axis.v (N_E/N_H/N_V/MAX_BYTES_PER_SLICE and PGM_FILE),
+  then recompiling. (xelab -generic_top is avoided because the
   Vivado xelab.bat wrapper splits "name=value" generics on the '=' under cmd.)
   NUM_SLICES is left as its derived default (N_H*N_V)/N_E = 1.
 
@@ -43,8 +43,8 @@ $ErrorActionPreference = "Stop"
 # ---- Paths -----------------------------------------------------------------
 $root    = "D:\techbistro\upwork\JPEG_Encoder_Project\JPEG_ENC_8f"
 $xsimDir = Join-Path $root "JPEG_ENC_8f.sim\sim_1\behav\xsim"
-$imgGen  = Join-Path $root "JPEG_ENC_8f.srcs\sources_1\new\image_generator.v"
-$tbFile  = Join-Path $root "JPEG_ENC_8f.srcs\sim_1\imports\FPGA Encoders\tb_top_jls_vertical.v"
+$imgGen  = Join-Path $root "JPEG_ENC_8f.srcs\sim_1\imports\FPGA Encoders\tb_jls_encoder_axis.v"
+$tbFile  = Join-Path $root "JPEG_ENC_8f.srcs\sim_1\imports\FPGA Encoders\tb_jls_encoder_axis.v"
 $imgDir  = Join-Path $root "JPEG_ENC_8f.sim\images"
 $outDir  = Join-Path $root "JPEG_ENC_8f.sim\output_block"
 $results = Join-Path $outDir "hv_benchmark_results.csv"
@@ -141,12 +141,12 @@ try {
                 & xelab --debug typical --relax --mt 2 `
                     -L xil_defaultlib -L fifo_generator_v13_2_11 -L unisims_ver `
                     -L unimacro_ver -L secureip -L xpm `
-                    --snapshot tb_top_jls_vertical_behav `
-                    xil_defaultlib.tb_top_jls_vertical xil_defaultlib.glbl -log $elabLog | Out-Null
+                    --snapshot tb_jls_encoder_axis_behav `
+                    xil_defaultlib.tb_jls_encoder_axis xil_defaultlib.glbl -log $elabLog | Out-Null
                 if ($LASTEXITCODE -ne 0) { throw "xelab failed for $tag (see $elabLog)" }
 
                 $sw = [System.Diagnostics.Stopwatch]::StartNew()
-                & xsim tb_top_jls_vertical_behav -tclbatch run_quit.tcl -log $simLog | Out-Null
+                & xsim tb_jls_encoder_axis_behav -tclbatch run_quit.tcl -log $simLog | Out-Null
                 $sw.Stop()
                 if ($LASTEXITCODE -ne 0) { throw "xsim failed for $tag (see $simLog)" }
 
@@ -168,7 +168,7 @@ try {
 finally {
     Write-Text $imgGen $imgGenBackup
     Write-Text $tbFile  $tbBackup
-    Write-Host "Restored image_generator.v and tb_top_jls_vertical.v" -ForegroundColor DarkGray
+    Write-Host "Restored tb_jls_encoder_axis.v" -ForegroundColor DarkGray
 }
 
 Write-Host "`nResults -> $results" -ForegroundColor Cyan
