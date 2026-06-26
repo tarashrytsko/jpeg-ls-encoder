@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2024.2 (win64) Build 5239630 Fri Nov 08 22:35:27 MST 2024
-| Date         : Fri Jun 26 18:51:42 2026
+| Date         : Fri Jun 26 21:21:34 2026
 | Host         : DESKTOP-PHB4K70 running 64-bit major release  (build 9200)
 | Command      : report_utilization -file D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/synth_util.rpt
 | Design       : jls_demo_top
@@ -31,8 +31,8 @@ Table of Contents
 +----------------------------+------+-------+------------+-----------+-------+
 |          Site Type         | Used | Fixed | Prohibited | Available | Util% |
 +----------------------------+------+-------+------------+-----------+-------+
-| Slice LUTs*                | 6129 |     0 |          0 |    134600 |  4.55 |
-|   LUT as Logic             | 5761 |     0 |          0 |    134600 |  4.28 |
+| Slice LUTs*                | 6131 |     0 |          0 |    134600 |  4.55 |
+|   LUT as Logic             | 5763 |     0 |          0 |    134600 |  4.28 |
 |   LUT as Memory            |  368 |     0 |          0 |     46200 |  0.80 |
 |     LUT as Distributed RAM |  360 |     0 |            |           |       |
 |     LUT as Shift Register  |    8 |     0 |            |           |       |
