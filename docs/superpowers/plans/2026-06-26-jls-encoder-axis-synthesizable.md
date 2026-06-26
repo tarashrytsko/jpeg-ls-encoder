@@ -233,10 +233,12 @@ always block with:
             assign read_is_last[li] =
                 (rd_ptr[li] != wr_ptr_rd[li]) &&
                 (rd_cnt[li] == end_pos[li][rd_ptr[li][1:0]]);
+            // one outstanding read at a time so a landing word always has a home
+            // (lossless under backpressure); ~1 word/2cyc, far above output rate
             assign fifo_rd_en[li] =
                 (~fifo_empty[li]) &
-                (~dout_valid[li] | m_axis_tready[li]) &
-                (~rd_en_q[li]    | m_axis_tready[li]);
+                (~rd_en_q[li]) &
+                (~dout_valid[li] | m_axis_tready[li]);
         end
     endgenerate
 
