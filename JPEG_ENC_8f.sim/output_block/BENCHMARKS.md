@@ -270,3 +270,47 @@ a wider input for higher aggregate throughput.
 image (1011 bytes), and the AXIS refactor reproduces the pre-refactor lossless output
 **exactly** at 300²/1500² across all split modes (incl. under ~50% `tready`
 backpressure). So synthesis changed no encoding behavior.
+
+---
+
+## Wide 16-Lane Encoder — 512 MB/s (Artix-7 xc7a200tfbg676-2)
+
+A 16-lane vertical column-strip configuration (`N_E=16`, `N_H=16`, `N_V=1`) was built
+to a timing-closed bitstream using the same `jls_demo_top` harness. Input is a 128-bit
+wide AXI4-Stream (16 pixels/cycle, column-strided — byte k carries strip k's pixel),
+feeding a widened lockstep splitter; per-lane async FIFOs are retained (dual-clock
+infrastructure kept but both run at the same frequency). Lossless-only (NEAR=0).
+
+| Metric | Result |
+|---|---|
+| Config | N_E=16, N_H=16, N_V=1 (vertical column strips) |
+| Input | 128-bit AXIS, 16 px/cycle, column-strided |
+| Clocks | wr_clk = rd_clk = **32 MHz** (1:1, MMCM) |
+| **WNS / WHS** | **+8.25 ns / +0.048 ns** (0 failing endpoints) |
+| LUT | 39576 (29.4%) |
+| FF | ~25012 (9.3%) |
+| **BRAM** | **40 (11.0%** of 365) |
+| DSP | 19 (2.6%) |
+| **Throughput** | **16 lanes × 32 MHz = 512 Mpix/s = 512 MB/s ≈ 4.1 Gb/s** |
+| Bitstream | `JPEG_ENC_8f.runs/impl_1/jls_demo_top.bit` |
+| Build TCL | `build_wide_synth.tcl` → `build_impl.tcl`; clock: `clkwiz_3232.tcl` |
+
+**How it fits on-chip (BRAM).** Naive 16-lane scaling of the 2-lane design would have
+consumed ~860 BRAM (well over the 365 available). Actual usage is 40 BRAM (11%) through
+two measures: (1) per-lane input FIFOs shrunk from depth 131072 to 512 and output FIFOs
+from 65536 to 2048 (safe because 1:1 clocking eliminates the deep-buffer CDC need), and
+(2) the encoder line buffer was parameterized (`LB_DEPTH=1024`) to the strip width
+rather than the full image width — sufficient for a max image width of 16384 with 16
+strips (16384/16=1024 per strip).
+
+**Why 1:1 clocks.** With a 128-bit (16-pixel) input bus, the host feeds 16 pixels every
+wr_clk cycle — exactly matching the 16 encoder lanes each consuming one pixel per
+rd_clk cycle. A 2:1 ratio (wr > rd) would flood the shallow input FIFOs and starve the
+encoders; this was verified to fail in practice. 1:1 is the natural frequency ratio for
+a wide design where input bandwidth equals lane consumption bandwidth.
+
+**Verification.** Lossless operation confirmed via 16-strip reassembly
+(`verify_lossless.py ... 16 1`) on a 256×256 test image (exact pixel match after
+decode). The self-contained `jls_demo_top` (on-chip ROM source) produced output
+byte-identical (9593 bytes) to the proven AXIS-fed path, confirming synthesis preserved
+all encoding behavior.

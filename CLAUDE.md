@@ -129,27 +129,46 @@ The design is now a **synthesizable AXI4-Stream IP**, `jls_encoder_axis` (the fo
 
 ### Clock Domains
 
+Two synthesizable configurations exist; both use `clk_wiz_0` (MMCM) clocking and the
+same `jls_demo_top` harness. Pick the one that matches the lane count.
+
+**2-lane build (N_E=2, N_H=2, N_V=1 — original)**
+
 | Domain | Synthesizable | Usage |
 |--------|---------------|-------|
 | `wr_clk` (`clk`) | **60 MHz** | AXIS/IO + FIFO read side |
 | `rd_clk` | **30 MHz** | Encoder operation |
 | `clk_in` | 200 MHz differential | Board input → `clk_wiz_0` |
 
-Both clocks come from `clk_wiz_0` (MMCM, VCO 990 MHz). The current **timing-closed**
-build (`xc7a200tfbg676-2`) runs `wr_clk` 60 MHz / `rd_clk` 30 MHz, **WNS +2.72 ns,
-WHS +0.095 ns**, → `jls_demo_top.bit`. All CDC uses async FIFOs + gray-code/2-FF
-synchronizers. The encoder *logic* has ~+11.6 ns intra-domain slack at 30 MHz
-(~46 MHz headroom); the limiter at 60/30 is the cross-domain CDC path. Throughput at
-this config ≈ **60 Mpix/s** (30 MHz × 2 parallel column encoders) ≈ 480 Mb/s.
+Both clocks come from `clk_wiz_0` (MMCM, VCO 990 MHz). This **timing-closed** build
+runs `wr_clk` 60 MHz / `rd_clk` 30 MHz, **WNS +2.72 ns, WHS +0.095 ns** → `jls_demo_top.bit`.
+All CDC uses async FIFOs + gray-code/2-FF synchronizers. The encoder *logic* has ~+11.6 ns
+intra-domain slack at 30 MHz (~46 MHz headroom); the limiter at 60/30 is the cross-domain
+CDC path. Throughput ≈ **60 Mpix/s ≈ 480 Mb/s** (30 MHz × 2 parallel column encoders).
+Build: `build_synth.tcl` → `build_impl.tcl`; clock: `build_fmax2.tcl`.
 
-> The earlier **4 Gb/s @ 500 MHz** figure is a **behavioral-sim / architectural** result
-> (1 pixel/cycle, compression is frequency-independent in sim) — **500 MHz is not
-> synthesizable on Artix-7.** Real throughput is set by the achievable clock above; scale
-> it with more parallel encoders or a wider input datapath.
+**16-lane wide build (N_E=16, N_H=16, N_V=1 — wide configuration)**
 
-Rebuild the bitstream via the TCL in `JPEG_ENC_8f.sim/sim_1/behav/xsim/`:
-`build_synth.tcl` (synth), `build_impl.tcl` (impl→bitstream), `build_fmax2.tcl`
-(reconfigure clk_wiz + rebuild).
+Input is a 128-bit AXI4-Stream (16 pixels/cycle, column-strided). Clocks run 1:1
+because the input bandwidth (16 px/cycle × wr_clk) equals lane consumption (16 lanes ×
+1 px/cycle × rd_clk) — a 2:1 ratio floods the shallow input FIFOs and was verified to
+fail. Per-lane FIFO depths were shrunk and the line buffer parameterized to strip width
+(`LB_DEPTH=1024`), cutting BRAM from a naive ~860 to 40 (11%).
+
+| Domain | Synthesizable | Usage |
+|--------|---------------|-------|
+| `wr_clk` = `rd_clk` | **32 MHz** | Both sides (1:1), MMCM |
+| `clk_in` | 200 MHz differential | Board input → `clk_wiz_0` |
+
+**WNS +8.25 ns, WHS +0.048 ns** (0 failing endpoints). Utilization: LUT 39576 (29.4%),
+FF ~25012 (9.3%), BRAM 40 (11%), DSP 19 (2.6%). Throughput: **16 × 32 MHz = 512 Mpix/s
+= 512 MB/s ≈ 4.1 Gb/s** — a genuinely synthesizable 4 Gb/s result (not the earlier
+sim-only 500 MHz figure). Verified lossless via 16-strip reassembly on a 256×256 image.
+Build: `build_wide_synth.tcl` → `build_impl.tcl`; clock: `clkwiz_3232.tcl`.
+
+> The earlier **4 Gb/s @ 500 MHz** figure was a **behavioral-sim / architectural** result
+> — **500 MHz is not synthesizable on Artix-7.** The 16-lane 32 MHz build above is the
+> first real synthesizable path to ~4.1 Gb/s on this device.
 
 ## Key Design Constraints
 
