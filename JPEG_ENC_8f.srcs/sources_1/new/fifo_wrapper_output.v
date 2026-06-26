@@ -10,6 +10,7 @@ module fifo_wrapper_output #(
     input  wire [N_E*16-1:0]        din_flat,
     input  wire [N_E-1:0]           wr_en,
     input  wire [N_E-1:0]           o_last_enc,
+    input  wire [N_E-1:0]           m_axis_tready,
 
     output wire [N_E*16-1:0]        fifo_dout_flat,
     output reg  [N_E-1:0]           dout_valid,
@@ -20,9 +21,6 @@ module fifo_wrapper_output #(
 
     wire [N_E-1:0] fifo_empty;
     wire [N_E-1:0] fifo_valid;
-    // Full-rate drain: read whenever data is available. With dout_valid taken from
-    // the registered rd_en below, this is correct at any wr:rd ratio down to 1:1.
-    wire [N_E-1:0] fifo_rd_en = ~fifo_empty;
 
     genvar gi;
     generate
@@ -122,31 +120,60 @@ module fifo_wrapper_output #(
     end
 
     // ------------------------------------------------------------------
-    // READ DOMAIN: drain FIFO continuously, assert dout_last at end positions
+    // READ DOMAIN: AXIS master with tready backpressure.
+    // One outstanding read max (standard FIFO has 1-cycle read latency, so a
+    // requested word lands the next cycle). dout_valid/dout_flat are the AXIS
+    // tvalid/tdata; reads are gated by tready so no word is dropped when the
+    // consumer stalls. With tready held high this matches the prior full-rate drain.
     // ------------------------------------------------------------------
-    reg [LEN_WIDTH-1:0] rd_cnt [0:N_E-1];
-    reg [2:0]           rd_ptr [0:N_E-1];
+    reg  [LEN_WIDTH-1:0] rd_cnt  [0:N_E-1];
+    reg  [2:0]           rd_ptr  [0:N_E-1];
+    reg  [N_E-1:0]       pending;          // a read issued last cycle; data on dout now
+    reg  [N_E-1:0]       last_pend;        // that pending word is a slice-final word
+
+    wire [N_E-1:0] out_free = ~dout_valid | m_axis_tready;   // output reg free next cycle
+    wire [N_E-1:0] fifo_rd_en = (~fifo_empty) & out_free & (~pending);
+
+    // slice-final detection: the word at rd_cnt is the last of slice rd_ptr
+    wire [N_E-1:0] read_is_last;
+    genvar li;
+    generate
+        for (li = 0; li < N_E; li = li + 1) begin : GEN_LAST
+            assign read_is_last[li] =
+                (rd_ptr[li] != wr_ptr_rd[li]) &&
+                ((rd_cnt[li] + 1) == end_pos[li][rd_ptr[li][1:0]]);
+        end
+    endgenerate
 
     integer ri;
     always @(posedge rd_clk or posedge rst) begin
         if (rst) begin
             dout_valid <= 0;
             dout_last  <= 0;
+            pending    <= 0;
+            last_pend  <= 0;
             for (ri = 0; ri < N_E; ri = ri + 1) begin
                 rd_cnt[ri] <= 0;
                 rd_ptr[ri] <= 0;
             end
         end else begin
-            dout_last  <= 0;
-            // A standard-FIFO read (rd_en & !empty) returns its data with the read
-            // strobe one cycle later. Drive dout_valid from the registered
-            // read-enable rather than the IP's `valid` flag, which skipped the very
-            // first word at a 1:1 clock ratio (dropping the leading FFD8 of each
-            // multi-swath chunk). rd_en is combinational (= ~empty), so every read
-            // produces exactly one dout_valid here — full rate, first word included.
-            dout_valid <= fifo_rd_en;
-            for (ri = 0; ri < N_E; ri = ri + 1)
+            for (ri = 0; ri < N_E; ri = ri + 1) begin
+                // consumer accepts the currently presented word
+                if (dout_valid[ri] && m_axis_tready[ri]) begin
+                    dout_valid[ri] <= 1'b0;
+                    dout_last[ri]  <= 1'b0;
+                end
+                // a previously requested word lands now -> present it
+                if (pending[ri]) begin
+                    dout_valid[ri] <= 1'b1;
+                    dout_last[ri]  <= last_pend[ri];
+                    if (last_pend[ri]) rd_ptr[ri] <= rd_ptr[ri] + 1'b1;
+                end
+                // issue a new read
                 if (fifo_rd_en[ri]) rd_cnt[ri] <= rd_cnt[ri] + 1'b1;
+                pending[ri]   <= fifo_rd_en[ri];
+                last_pend[ri] <= read_is_last[ri] & fifo_rd_en[ri];
+            end
         end
     end
 
