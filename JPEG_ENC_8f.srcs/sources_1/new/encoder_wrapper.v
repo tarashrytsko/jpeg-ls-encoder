@@ -52,7 +52,8 @@ module encoder_wrapper #(
 
             jls_encoder #(
                 .NEAR(nr),
-                .N_E(1)
+                .N_E(1),
+                .LB_DEPTH(1024)
             ) u_encoder (
                 .rstn     (sys_rdy),
                 .clk      (rd_clk),

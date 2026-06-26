@@ -10,6 +10,7 @@ module jls_encoder #(
     parameter   [ 2:0] NEAR = 3'd0,
      parameter N_E= 3,
       parameter L=64
+    , parameter integer LB_DEPTH = 1024   // line buffer depth = max strip width (i_w/N_H); 1024 -> max image width 16384
 
 ) (
     input  wire        rstn,
@@ -1474,7 +1475,7 @@ end
 //-------------------------------------------------------------------------------------------------------------------
 // linebuffer for context pixels
 //-------------------------------------------------------------------------------------------------------------------
-reg [7:0] linebuffer [0:(1<<14)-1];
+    reg [7:0] linebuffer [0:LB_DEPTH-1];
 always @ (posedge clk)  // line buffer read
     c_d <= linebuffer[a_ii];
 always @ (posedge clk)  // line buffer write
