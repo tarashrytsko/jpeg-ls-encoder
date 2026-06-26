@@ -7,12 +7,13 @@
 //   horizontal : N_H=1          (cut along Y only,  e.g.  1 x 20)
 // All three keep N_E encoders and (N_H*N_V)/N_E slices each for an
 // apples-to-apples comparison. Override via xelab -generic_top.
-module tb_top_jls_vertical #(
+module tb_jls_encoder_axis #(
     parameter integer N_E        = 2,   // known-good default (block 2x2, 2 slices/enc)
     parameter integer N_H        = 2,
     parameter integer N_V        = 2,
     parameter integer NUM_SLICES = (N_H * N_V) / N_E,
-    parameter integer MAX_BYTES_PER_SLICE = 25000000
+    parameter integer MAX_BYTES_PER_SLICE = 25000000,
+    parameter PGM_FILE = "D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.sim/images/world_gray_300x300.pgm"
 ) ();
 
     // ------------------------------------------------------------
@@ -30,49 +31,45 @@ module tb_top_jls_vertical #(
         rstn = 1;
     end
 
-    // ------------------------------------------------------------
-    // DUT I/O
-    // ------------------------------------------------------------
-    reg i_sof = 0;
-    wire i_e;
-    wire [7:0]  i_x;
-    wire [15:0] i_w;
-    wire [13:0] i_h;
+    // ---- DUT I/O ----
+    reg  i_sof = 0;
+    reg  [15:0] i_w = 0;
+    reg  [13:0] i_h = 0;
     wire clk;
     wire sys_rdy;
 
-    wire [N_E-1:0]    o_e;
-    wire [N_E-1:0]    o_last;
-    wire [N_E*16-1:0] o_data;
+    reg  [7:0]  s_axis_tdata  = 0;
+    reg         s_axis_tvalid = 0;
+    wire        s_axis_tready;
+    reg         s_axis_tlast  = 0;
 
-    // ------------------------------------------------------------
-    // Pulse i_sof
-    // ------------------------------------------------------------
-    initial begin
-        wait(sys_rdy);
-        @(posedge clk);
-        i_sof = 1;
-        @(posedge clk);
-        i_sof = 0;
-    end
+    wire [N_E*16-1:0] m_axis_tdata;
+    wire [N_E-1:0]    m_axis_tvalid;
+    wire [N_E-1:0]    m_axis_tready_w = {N_E{1'b1}};  // always-ready sink (matches old drain)
+    wire [N_E-1:0]    m_axis_tlast;
 
-    // ------------------------------------------------------------
-    // DUT
-    // ------------------------------------------------------------
-    top_jls_vertical #(.N_E(N_E), .N_H(N_H), .N_V(N_V)) dut (
-        .rstn       (rstn),
-        .clk_in1_p  (clk_in1_p),
-        .clk_in1_n  (clk_in1_n),
-        .clk        (clk),
-        .i_sof      (i_sof),
-        .i_e        (i_e),
-        .i_x        (i_x),
-        .i_w        (i_w),
-        .i_h        (i_h),
-        .o_e        (o_e),
-        .o_last     (o_last),
-        .o_data     (o_data),
-        .sys_rdy    (sys_rdy)
+    // capture aliases so existing capture logic keeps its names
+    wire [N_E-1:0]    o_e    = m_axis_tvalid;
+    wire [N_E*16-1:0] o_data = m_axis_tdata;
+    wire [N_E-1:0]    o_last = m_axis_tlast;
+
+    jls_encoder_axis #(.N_E(N_E), .N_H(N_H), .N_V(N_V)) dut (
+        .rstn          (rstn),
+        .clk           (clk),
+        .clk_in1_p     (clk_in1_p),
+        .clk_in1_n     (clk_in1_n),
+        .sys_rdy       (sys_rdy),
+        .i_sof         (i_sof),
+        .i_w           (i_w),
+        .i_h           (i_h),
+        .s_axis_tdata  (s_axis_tdata),
+        .s_axis_tvalid (s_axis_tvalid),
+        .s_axis_tready (s_axis_tready),
+        .s_axis_tlast  (s_axis_tlast),
+        .m_axis_tdata  (m_axis_tdata),
+        .m_axis_tvalid (m_axis_tvalid),
+        .m_axis_tready (m_axis_tready_w),
+        .m_axis_tlast  (m_axis_tlast)
     );
 
     // ------------------------------------------------------------
@@ -221,6 +218,43 @@ module tb_top_jls_vertical #(
         $finish;
     end
 
+    // ---- PGM source -> AXIS slave ----
+    integer fp, hdr_len, fw, fh, fdepth, sret, p;
+    reg [8*256-1:0] hline;
+    initial begin
+        fp = $fopen(PGM_FILE, "rb");
+        if (fp == 0) begin $display("TB: cannot open %s", PGM_FILE); $finish; end
+        hdr_len = $fgets(hline, fp);                       // "P5"
+        hdr_len = $fgets(hline, fp);                       // "W H" (skip # comments)
+        while (hline[8*(hdr_len-1) +: 8] == 8'h0A && hline[8*(hdr_len-2) +: 8] == 8'h23)
+            hdr_len = $fgets(hline, fp);
+        sret = $sscanf(hline, "%d %d", fw, fh);
+        if (sret < 2) begin
+            sret = $sscanf(hline, "%d", fw);
+            hdr_len = $fgets(hline, fp); sret = $sscanf(hline, "%d", fh);
+        end
+        hdr_len = $fgets(hline, fp);                       // maxval
+        sret = $sscanf(hline, "%d", fdepth);
+
+        wait (sys_rdy);
+        @(posedge clk);
+        i_w = fw[15:0];
+        i_h = fh[13:0];
+        @(posedge clk);
+        i_sof = 1; @(posedge clk); i_sof = 0;              // SOF pulse
+
+        // stream W*H bytes with AXIS handshake (advance only when tready)
+        for (p = 0; p < fw*fh; p = p + 1) begin
+            s_axis_tdata  = $fgetc(fp);
+            s_axis_tvalid = 1;
+            s_axis_tlast  = (p == fw*fh - 1);
+            @(posedge clk);
+            while (!s_axis_tready) @(posedge clk);          // hold until accepted
+        end
+        s_axis_tvalid = 0; s_axis_tlast = 0;
+        $fclose(fp);
+    end
+
     // Debug: log first SOF and monitor key signals
     reg sof_logged;
     initial sof_logged = 0;
@@ -260,7 +294,7 @@ module tb_top_jls_vertical #(
                 dut.e_e,
                 dut.u_fifo_write_control.wr_cnt[0], dut.u_fifo_write_control.wr_cnt[1],
                 dut.fifo_full,
-                dut.u_image_generator.pix_cnt);
+                dut.u_axis_pixel_in.pix_cnt);
         end
     end
 
