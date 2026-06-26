@@ -23,7 +23,9 @@ module jls_demo_top #(
     wire        src_tready;
     wire        src_tlast;
 
-    axis_image_source #(.IMG_W(IMG_W), .IMG_H(IMG_H), .HEXFILE("rom_image.hex")) u_src (
+    // Absolute path so both xsim (CWD = xsim/) and Vivado synth resolve the ROM init file.
+    axis_image_source #(.IMG_W(IMG_W), .IMG_H(IMG_H),
+        .HEXFILE("D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/sources_1/new/rom_image.hex")) u_src (
         .clk(clk), .rstn(sys_rdy),
         .i_w(src_w), .i_h(src_h), .i_sof(src_sof),
         .s_axis_tdata(src_tdata), .s_axis_tvalid(src_tvalid),

@@ -7,7 +7,7 @@
 module axis_image_source #(
     parameter integer IMG_W   = 64,
     parameter integer IMG_H   = 64,
-    parameter         HEXFILE = "rom_image.hex"
+    parameter         HEXFILE = "D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/sources_1/new/rom_image.hex"
 )(
     input  wire        clk,
     input  wire        rstn,           // = sys_rdy
