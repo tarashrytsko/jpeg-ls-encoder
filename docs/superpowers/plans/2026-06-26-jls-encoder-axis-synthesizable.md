@@ -201,77 +201,73 @@ Change the port list (the `output reg [N_E-1:0] dout_last,` line region) to add,
 ```
 (Place it among the inputs, e.g. immediately after `input wire [N_E-1:0] o_last_enc,`.)
 
-- [ ] **Step 2: Replace the read-domain always block** (`fifo_wrapper_output.v:124-151`)
+- [ ] **Step 2: Register the output data + replace the read-domain block**
 
-Replace the `wire [N_E-1:0] fifo_rd_en = ~fifo_empty;` line (line 25) AND the entire
-read-domain block (lines 124-151) with:
+The output **data must be registered** (captured when the requested word lands), not the raw
+FIFO `dout`: a standard FIFO advances `dout` on every back-to-back read, so a registered
+`dout_valid` would point at the *next* read's data and drop each chunk's leading `FFD8`. So:
+(a) make `fifo_dout_flat` an `output reg`; (b) add `wire [N_E*16-1:0] fifo_dout_raw;`; (c) change
+the FIFO instance `.dout(fifo_dout_flat[gi*16 +: 16])` → `.dout(fifo_dout_raw[gi*16 +: 16])`.
+Then replace the old `wire [N_E-1:0] fifo_rd_en = ~fifo_empty;` line and the entire read-domain
+always block with:
 
 ```verilog
     // ------------------------------------------------------------------
     // READ DOMAIN: AXIS master with tready backpressure.
-    // One outstanding read max (standard FIFO has 1-cycle read latency, so a
-    // requested word lands the next cycle). dout_valid/dout_flat are the AXIS
-    // tvalid/tdata; reads are gated by tready so no word is dropped when the
-    // consumer stalls. With tready held high this matches the prior full-rate drain.
+    // Standard FIFO has 1-cycle read latency: a requested word appears on
+    // fifo_dout_raw the NEXT cycle, then advances on the following read. CAPTURE
+    // that word into the registered output (fifo_dout_flat) on the same cycle we
+    // assert dout_valid, so tdata/tvalid stay aligned even with back-to-back reads.
+    // Full rate when m_axis_tready is high; <=1 read in flight under backpressure.
     // ------------------------------------------------------------------
     reg  [LEN_WIDTH-1:0] rd_cnt  [0:N_E-1];
     reg  [2:0]           rd_ptr  [0:N_E-1];
-    reg  [N_E-1:0]       pending;          // a read issued last cycle; data on dout now
-    reg  [N_E-1:0]       last_pend;        // that pending word is a slice-final word
+    reg  [N_E-1:0]       rd_en_q;          // read issued last cycle; data on fifo_dout_raw now
+    reg  [N_E-1:0]       last_q;           // that landing word is a slice-final word
 
-    wire [N_E-1:0] out_free = ~dout_valid | m_axis_tready;   // output reg free next cycle
-    // full-rate when ready; <=1 outstanding read under backpressure (no data loss)
-    wire [N_E-1:0] fifo_rd_en = (~fifo_empty) & out_free & (~pending | m_axis_tready);
-
-    // slice-final detection: the word at rd_cnt is the last of slice rd_ptr
     wire [N_E-1:0] read_is_last;
+    wire [N_E-1:0] fifo_rd_en;
     genvar li;
     generate
-        for (li = 0; li < N_E; li = li + 1) begin : GEN_LAST
+        for (li = 0; li < N_E; li = li + 1) begin : GEN_RD
             assign read_is_last[li] =
                 (rd_ptr[li] != wr_ptr_rd[li]) &&
                 (rd_cnt[li] == end_pos[li][rd_ptr[li][1:0]]);
+            assign fifo_rd_en[li] =
+                (~fifo_empty[li]) &
+                (~dout_valid[li] | m_axis_tready[li]) &
+                (~rd_en_q[li]    | m_axis_tready[li]);
         end
     endgenerate
 
     integer ri;
     always @(posedge rd_clk or posedge rst) begin
         if (rst) begin
-            dout_valid <= 0;
-            dout_last  <= 0;
-            pending    <= 0;
-            last_pend  <= 0;
-            for (ri = 0; ri < N_E; ri = ri + 1) begin
-                rd_cnt[ri] <= 0;
-                rd_ptr[ri] <= 0;
-            end
+            dout_valid     <= 0; dout_last <= 0; rd_en_q <= 0; last_q <= 0;
+            fifo_dout_flat <= 0;
+            for (ri = 0; ri < N_E; ri = ri + 1) begin rd_cnt[ri] <= 0; rd_ptr[ri] <= 0; end
         end else begin
             for (ri = 0; ri < N_E; ri = ri + 1) begin
-                // consumer accepts the currently presented word
                 if (dout_valid[ri] && m_axis_tready[ri]) begin
-                    dout_valid[ri] <= 1'b0;
-                    dout_last[ri]  <= 1'b0;
+                    dout_valid[ri] <= 1'b0; dout_last[ri] <= 1'b0;
                 end
-                // a previously requested word lands now -> present it
-                if (pending[ri]) begin
+                if (rd_en_q[ri]) begin                      // word lands -> capture + present
+                    fifo_dout_flat[ri*16 +: 16] <= fifo_dout_raw[ri*16 +: 16];
                     dout_valid[ri] <= 1'b1;
-                    dout_last[ri]  <= last_pend[ri];
-                    if (last_pend[ri]) rd_ptr[ri] <= rd_ptr[ri] + 1'b1;
+                    dout_last[ri]  <= last_q[ri];
+                    if (last_q[ri]) rd_ptr[ri] <= rd_ptr[ri] + 1'b1;
                 end
-                // issue a new read
                 if (fifo_rd_en[ri]) rd_cnt[ri] <= rd_cnt[ri] + 1'b1;
-                pending[ri]   <= fifo_rd_en[ri];
-                last_pend[ri] <= read_is_last[ri] & fifo_rd_en[ri];
+                rd_en_q[ri] <= fifo_rd_en[ri];
+                last_q[ri]  <= read_is_last[ri] & fifo_rd_en[ri];
             end
         end
     end
 ```
 
-Note: `fifo_dout_flat` is the FIFO `dout` and is already wired to the FIFO instance; with one
-outstanding read it holds the pending word until the next read, so AXIS `tdata = fifo_dout_flat`
-is valid whenever `dout_valid` is high. Leave the `fifo_dout_flat` output and the FIFO
-instantiation (lines 27-47) and the wr-domain/CDC blocks (lines 49-122) unchanged. The
-`fifo_valid` IP flag is intentionally unused (we trust registered `rd_en`, per the prior fix).
+Leave the FIFO instance (now driving `fifo_dout_raw`), the wr-domain counter, and the gray-code
+CDC blocks unchanged. The `fifo_valid` IP flag stays unused (we trust registered `rd_en`).
+(Implemented across commits `7ed48aa` + `f1c45c5` + `7873550`; verified bit-exact at A6.)
 
 - [ ] **Step 3: Verify it compiles standalone**
 
