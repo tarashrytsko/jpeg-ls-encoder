@@ -144,12 +144,16 @@ module fifo_wrapper_output #(
             assign read_is_last[li] =
                 (rd_ptr[li] != wr_ptr_rd[li]) &&
                 (rd_cnt[li] == end_pos[li][rd_ptr[li][1:0]]);
-            // read when the output reg will be free next cycle AND a landing word
-            // (if any) will have a home (so it never overwrites an unconsumed word)
+            // One read outstanding at a time (~rd_en_q), and only when the output
+            // register is free or draining (~dout_valid | tready). This makes the
+            // landing word always have a home, so it never overwrites an unconsumed
+            // word under backpressure. Drains one word every ~2 cycles, which far
+            // exceeds the compressed-word production rate, so it is never the
+            // bottleneck (the 1 pixel/cycle input is).
             assign fifo_rd_en[li] =
                 (~fifo_empty[li]) &
-                (~dout_valid[li] | m_axis_tready[li]) &
-                (~rd_en_q[li]    | m_axis_tready[li]);
+                (~rd_en_q[li]) &
+                (~dout_valid[li] | m_axis_tready[li]);
         end
     endgenerate
 

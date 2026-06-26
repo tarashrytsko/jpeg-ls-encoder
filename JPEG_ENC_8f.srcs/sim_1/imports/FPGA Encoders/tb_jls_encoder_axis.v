@@ -45,7 +45,7 @@ module tb_jls_encoder_axis #(
 
     wire [N_E*16-1:0] m_axis_tdata;
     wire [N_E-1:0]    m_axis_tvalid;
-    wire [N_E-1:0]    m_axis_tready_w = {N_E{1'b1}};  // always-ready sink (matches old drain)
+    wire [N_E-1:0]    m_axis_tready_w = {N_E{1'b1}};  // always-ready sink
     wire [N_E-1:0]    m_axis_tlast;
 
     // capture aliases so existing capture logic keeps its names
@@ -132,7 +132,7 @@ module tb_jls_encoder_axis #(
 
     always @(posedge clk) begin
         for (wi = 0; wi < N_E; wi = wi + 1) begin
-            if (!closed[wi] && o_e[wi]) begin
+            if (!closed[wi] && o_e[wi] && m_axis_tready_w[wi]) begin   // capture on AXIS transfer (tvalid&&tready)
                 // Buffer MSB then LSB
                 slice_buf[wi][slice[wi]][slice_len[wi][slice[wi]]]   = o_data[wi*16+8 +: 8];
                 slice_buf[wi][slice[wi]][slice_len[wi][slice[wi]]+1] = o_data[wi*16    +: 8];
