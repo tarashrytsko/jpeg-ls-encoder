@@ -14,13 +14,13 @@ module axis_pixel_in #(
     input  wire [N_E-1:0]        fifo_overflow,  // backpressure (= fifo_full masked)
 
     // AXI4-Stream slave (pixels in)
-    input  wire [7:0]            s_axis_tdata,
+    input  wire [N_E*8-1:0]      s_axis_tdata,
     input  wire                  s_axis_tvalid,
     output wire                  s_axis_tready,
     input  wire                  s_axis_tlast,   // accepted; framing driven by i_w/i_h
 
     // to splitter_block (same signals image_generator produced)
-    output reg  [7:0]            pixel_out,
+    output reg  [N_E*8-1:0]      pixel_out,
     output reg                   pixel_valid,
     output reg  [15:0]           i_w,
     output reg  [13:0]           i_h,
@@ -63,7 +63,7 @@ module axis_pixel_in #(
                         if (s_axis_tvalid && s_axis_tready) begin
                             pixel_out   <= s_axis_tdata;
                             pixel_valid <= 1'b1;
-                            pix_cnt     <= pix_cnt + 1;
+                            pix_cnt     <= pix_cnt + N_E;
                         end
                     end else begin
                         state <= S_DONE;
