@@ -22,25 +22,26 @@ module encoder_wrapper #(
 
     localparam ENC_ID_WIDTH = ($clog2(N_E) > 0) ? $clog2(N_E) : 1;
 
-    // Per-column width (combinatorial from i_w directly)
+    // Per-column width — UNIFORM floor for every lane. The wide lockstep splitter
+    // advances one shared (xs,ys) counter over stripW=i_w/N_H, swathH=i_h/N_V and
+    // delivers exactly stripW*swathH pixels to EVERY lane, so all lanes must use the
+    // same floor count (i_w must be divisible by N_H — enforced by make_strided_hex.py
+    // and documented as a hard requirement). A last-lane remainder would mismatch the
+    // splitter's delivery and hang the read FSM. (Divisible => floor == exact.)
     reg [15:0] col_w [0:N_H-1];
     integer ci;
     always @(*) begin
-        for (ci = 0; ci < N_H-1; ci = ci + 1)
+        for (ci = 0; ci < N_H; ci = ci + 1)
             col_w[ci] = i_w / N_H;
-        col_w[N_H-1] = i_w - (i_w / N_H) * (N_H - 1);
     end
 
-    // Per-swath (row) height — like col_w, the LAST swath takes the remainder so
-    // images whose height isn't divisible by N_V still feed each encoder the exact
-    // block it expects. (swath_h kept for debug/back-compat only.)
+    // Per-swath (row) height — uniform floor, same lockstep rationale as col_w.
     wire [13:0] swath_h = i_h[13:0] / N_V;
     reg [13:0] row_h [0:N_V-1];
     integer ri;
     always @(*) begin
-        for (ri = 0; ri < N_V-1; ri = ri + 1)
+        for (ri = 0; ri < N_V; ri = ri + 1)
             row_h[ri] = i_h[13:0] / N_V;
-        row_h[N_V-1] = i_h[13:0] - (i_h[13:0] / N_V) * (N_V - 1);
     end
 
     assign last_enc_id = N_E - 1;

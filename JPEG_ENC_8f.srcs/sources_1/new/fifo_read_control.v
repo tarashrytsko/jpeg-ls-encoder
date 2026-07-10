@@ -21,20 +21,22 @@ module fifo_read_control #(
     // Per-lane sub-image dims — use i_w_r/i_h_r directly so counts are valid as soon
     // as dimensions arrive. (i_w_r/i_h_r are held stable for the whole frame by the
     // upstream dimension source, so no registered copy is needed here.)
+    // UNIFORM floor for every lane — must match the splitter, which delivers exactly
+    // (i_w/N_H)*(i_h/N_V) pixels to EVERY lane in lockstep. i_w%N_H and i_h%N_V must be
+    // 0 (hard requirement, enforced by make_strided_hex.py); a last-lane remainder here
+    // would exceed the splitter's delivery and hang S_READ. (Divisible => floor == exact.)
     reg [15:0] col_w [0:N_H-1];
     integer a;
     always @(*) begin
-        for (a = 0; a < N_H-1; a = a + 1)
+        for (a = 0; a < N_H; a = a + 1)
             col_w[a] = i_w_r / N_H;
-        col_w[N_H-1] = i_w_r - (i_w_r / N_H) * (N_H - 1);
     end
 
     reg [15:0] swath_h [0:N_V-1];
     integer b;
     always @(*) begin
-        for (b = 0; b < N_V-1; b = b + 1)
+        for (b = 0; b < N_V; b = b + 1)
             swath_h[b] = i_h_r / N_V;
-        swath_h[N_V-1] = i_h_r - (i_h_r / N_V) * (N_V - 1);
     end
 
     // WIDE LOCKSTEP: all NUM_ENCODERS lanes run concurrently in a single pass — the
