@@ -405,3 +405,42 @@ totals closely track the 16-lane results (e.g. block 3000²: 1,883,193 B here vs
 16 lanes — compressed size depends on image content, not lane count). The 12-lane feeds use
 96-bit (12-byte) strided words — `make_strided_hex.py` emits `N_E·2` hex digits per word
 (24 for N_E=12, 32 for N_E=16).
+
+---
+
+## 14. Serial-In Front-End: byte_gearbox_12 (1 byte @ 540 MHz → 12 bytes @ 45 MHz)
+
+A serial-to-parallel input wrapper lets a **single 540 MHz byte stream** feed the 12-lane
+model, matching bandwidth exactly: **540 MHz × 1 byte = 45 MHz × 12 bytes = 540 MB/s**.
+
+**`byte_gearbox_12`** (`sources_1/new/byte_gearbox_12.v`):
+- **Fast side (540 MHz):** `i_byte[7:0]` + `i_valid`/`i_ready` — one pixel byte per cycle; collects 12.
+- **Slow side (45 MHz):** the group of 12 as **12 separate byte pins** `o_b0..o_b11` **and**
+  packed `o_word[95:0]` (= `jls_encoder_axis.s_axis_tdata`), with `o_valid`/`o_ready`.
+- **CDC:** a gray-coded dual-clock FIFO (`gearbox_afifo`) with **registered `full`/`empty`
+  flags**. (A *combinational* full flag deadlocks: `wfull → wbin_nxt (…& ~wfull) → wgray_nxt
+  → wfull` oscillates in zero time once the FIFO nears full — which happens during the
+  encoder's SOF stretch. Registering the flags, per the standard Cummings FIFO, breaks it.)
+- Byte *k* of each group → lane *k*, so the incoming stream must be in the model's strided
+  lane order (as `make_strided_hex.py` emits it).
+
+**Full backpressure chain:** `s_axis_tready` → gearbox `o_ready` → FIFO fills → `wfull` →
+gearbox `i_ready` deasserts → the serial byte input stalls. Lossless under any stall (e.g. the
+3000-cycle SOF stretch: the FIFO fills, the input pauses, then drains — no bytes dropped).
+
+**Verification**
+- *Standalone* (`tb_byte_gearbox`): stream a strided byte sequence at 540 MHz; the reconstructed
+  12-byte words match the reference **bit-exact — 7500/7500 words, 0 errors**.
+- *End-to-end* (`tb_jls_serial`): 540 MHz serial bytes → `byte_gearbox_12` (its slow clock is the
+  DUT's 45 MHz `wr_clk`; the fast clock is independent, so the async FIFO does real CDC) →
+  `jls_encoder_axis` (N_E=12, vertical 12×1) → 12 compressed lanes. At **300×300** the output is
+  **13,031 bytes — byte-identical to the parallel-fed result — and LOSSLESS** (grid reassembly).
+  Because the gearbox reconstructs the exact strided words the parallel path delivers, larger
+  images are byte-identical by construction (the parallel `vert12x1` results — 1500²=542,628,
+  3000²=1,883,214 — carry over); the 540 MHz behavioral sims for larger images are slow (the fine
+  540 MHz timestep dominates) and serve only as confirmation.
+
+**Synthesizability.** 540 MHz is **behavioral only** — it far exceeds the ~53 MHz Artix-7 -2
+fabric fmax. On real hardware the 540 MHz byte capture would use an **`ISERDES`/transceiver
+deserializer**; `byte_gearbox_12` + the async FIFO then run in a slower fabric clock fed by that
+front-end. Build/verify: `gearbox_vlog.prj` (standalone), `serial_vlog.prj` (end-to-end).
