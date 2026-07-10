@@ -45,7 +45,7 @@ module tb_byte_gearbox #(
         end
     end
 
-    byte_gearbox_12 #(.N(N), .AW(4)) dut (
+    byte_gearbox_12 #(.N(N), .AW(2)) dut (
         .rstn(rstn),
         .clk_fast(clk_fast), .i_valid(i_valid), .i_byte(i_byte), .i_ready(i_ready),
         .clk_slow(clk_slow),

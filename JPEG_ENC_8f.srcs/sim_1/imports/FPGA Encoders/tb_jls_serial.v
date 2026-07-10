@@ -86,7 +86,7 @@ module tb_jls_serial #(
         end
     end
 
-    byte_gearbox_12 #(.N(N_E), .AW(4)) u_gb (
+    byte_gearbox_12 #(.N(N_E), .AW(2)) u_gb (
         .rstn(rstn),
         .clk_fast(clk_fast), .i_valid(gb_i_valid), .i_byte(gb_i_byte), .i_ready(gb_i_ready),
         .clk_slow(clk),

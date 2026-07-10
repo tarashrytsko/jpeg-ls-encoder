@@ -440,7 +440,23 @@ gearbox `i_ready` deasserts → the serial byte input stalls. Lossless under any
   `vert12x1` 3000²=1,883,214 carries over); the 540 MHz behavioral sims are slow (the fine timestep
   dominates), so ≥3000² rely on that equivalence rather than a multi-hour run.
 
-**Synthesizability.** 540 MHz is **behavioral only** — it far exceeds the ~53 MHz Artix-7 -2
-fabric fmax. On real hardware the 540 MHz byte capture would use an **`ISERDES`/transceiver
-deserializer**; `byte_gearbox_12` + the async FIFO then run in a slower fabric clock fed by that
-front-end. Build/verify: `gearbox_vlog.prj` (standalone), `serial_vlog.prj` (end-to-end).
+**Synthesizability / Fmax (measured, out-of-context P&R).** Unlike the encoder (~53 MHz, deep
+combinational paths), the gearbox is shallow logic and runs far faster. After optimization —
+**registered** FIFO full/empty flags (a *combinational* full flag oscillates in zero time via the
+`& ~wfull` term once near full, which deadlocked the first sim), a **pipelined LUTRAM write**
+(FF→RAM arcs), a **depth-4** FIFO (short pointer logic), and a **shift-register collector**
+(enable = `accept`, no index decode) — `byte_gearbox_12` was placed-and-routed OOC with
+clk_fast @ 540 MHz / clk_slow @ 45 MHz (async):
+
+| Part | clk_fast (540 MHz target) WNS | fast-domain Fmax | 45 MHz slow side |
+|---|---|---|---|
+| **xc7a200t-3** | **−0.008 ns ≈ 0** | **≈ 537.6 MHz (essentially 540)** | +20 ns slack |
+| xc7a200t-2 (this project) | ~ −0.1 … −0.4 ns | ~440–520 MHz (placement-sensitive) | +19 ns slack |
+
+So a **540 MHz** serial front-end is feasible: on a **−3** device it closes directly (matching
+Artix-7's ~700 MHz-class clock-network spec); on the project's **−2** part it is routing-limited by
+the 96-bit CDC write (~520 MHz best), so a robust 540 MHz there uses an **`ISERDES`/GT deserialiser**
+at the pins — the fast byte capture happens in hard I/O logic and hands a slower parallel word to the
+fabric, so `byte_gearbox_12` + the FIFO never run at 540 MHz. Note BRAM (~460 MHz on −2) is too slow
+for 540 MHz, so the FIFO is LUTRAM. Build/verify: `gearbox_vlog.prj` (standalone), `serial_vlog.prj`
+(end-to-end), `ooc_gearbox.tcl <part>` (fmax sweep).
