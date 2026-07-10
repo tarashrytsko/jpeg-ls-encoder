@@ -460,3 +460,40 @@ at the pins — the fast byte capture happens in hard I/O logic and hands a slow
 fabric, so `byte_gearbox_12` + the FIFO never run at 540 MHz. Note BRAM (~460 MHz on −2) is too slow
 for 540 MHz, so the FIFO is LUTRAM. Build/verify: `gearbox_vlog.prj` (standalone), `serial_vlog.prj`
 (end-to-end), `ooc_gearbox.tcl <part>` (fmax sweep).
+
+---
+
+## 15. ISERDES Front-End — the robust −2 path to a 540 MB/s serial input
+
+Section 14's fabric gearbox is routing-limited to ~520 MHz on the −2 part. The idiomatic way
+to accept the full 540 MB/s over a serial interface on −2 is to capture it in the **hard I/O
+deserializers** so **no fabric runs above 45 MHz**. `iserdes_byte_in.v` does this.
+
+**Interface / architecture.** 12 serial data lanes (one per encoder lane), each carrying that
+lane's pixel bytes MSB-first at **360 Mb/s**; each lane's `ISERDESE2` does a **1:8 SDR**
+deserialize → one byte per lane at **45 MHz**. 12 lanes × 8 bits = 96 bits @ 45 MHz = the
+encoder word **directly** (byte k = lane k) — no fabric gearbox, no bit-transpose, no 540 MHz
+clock. Aggregate = 12 × 360 Mb/s = **4.32 Gb/s = 540 MB/s**, the same bandwidth as a single
+540 MHz byte port, but the fast capture is entirely in the IOB SERDES.
+
+**Clocking.** `clk_bit` = 360 MHz (BUFIO/BUFG, ISERDES `CLK`) and `clk_div` = 45 MHz = clk_bit/8
+(BUFR/BUFG, ISERDES `CLKDIV`), both from one MMCM. No BRAM/LUTRAM (BRAM's ~460 MHz −2 limit is
+irrelevant here — the deserialize is in the SERDES).
+
+**Word alignment.** Each lane exposes a `BITSLIP` port; a rotation-unique training marker is
+streamed and `bitslip` is pulsed until the word boundary locks (standard source-synchronous
+bring-up; on a real board `IDELAYE2` adds per-bit deskew + eye-centering).
+
+**Verification.**
+- *Mapping / synthesizability:* OOC synth places **12 `ISERDESE2`** on `xc7a200t-2`
+  (`ooc_iserdes.tcl`) — real hardware; nothing in the fabric exceeds 45 MHz.
+- *Function (behavioral, unisim `ISERDESE2`, `tb_iserdes_byte_in`):* 12 lanes driven at
+  360 Mb/s; after BITSLIP alignment (6 slips) **all 12 lanes reconstruct distinct bytes
+  bit-exact (0 errors)**. (Note: `ISERDESE2` presents the oldest bit on `Q8`, newest on `Q1`;
+  the byte map is `{Q8..Q1}` accordingly.)
+
+**Vs. the fabric gearbox (§14).** The gearbox needs ~520 MHz *fabric* on −2 (short of 540). The
+ISERDES front-end keeps the fabric at 45 MHz and puts the 360 MHz capture in hard I/O — so it
+delivers the full 540 MB/s serial input **on the project's −2 part** with margin. Full bit-level
+IDELAY calibration is a hardware bring-up step. Build/verify: `iserdes_vlog.prj` (sim),
+`ooc_iserdes.tcl <part>` (map/synth).
