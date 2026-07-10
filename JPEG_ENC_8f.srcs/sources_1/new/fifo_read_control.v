@@ -18,17 +18,9 @@ module fifo_read_control #(
     output reg  [32*NUM_ENCODERS-1:0] read_count_flat
 );
 
-    reg [15:0] i_w; reg [13:0] i_h;
-    always @(posedge rd_clk) begin
-        if (!sys_rdy) begin
-            i_w <= 0; i_h <= 0;
-        end else begin
-            i_w <= i_w_r; i_h <= i_h_r;
-        end
-    end
-
     // Per-lane sub-image dims — use i_w_r/i_h_r directly so counts are valid as soon
-    // as dimensions arrive.
+    // as dimensions arrive. (i_w_r/i_h_r are held stable for the whole frame by the
+    // upstream dimension source, so no registered copy is needed here.)
     reg [15:0] col_w [0:N_H-1];
     integer a;
     always @(*) begin
@@ -127,6 +119,8 @@ module fifo_read_control #(
                     rd_en        <= 0;
                     i_sof_st_enc <= 0;
                 end
+
+                default: ; // state 2'b11 unreachable — explicit for lint
             endcase
         end
     end
