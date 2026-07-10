@@ -208,6 +208,13 @@ three directions — block **4×3**, vertical **12×1**, horizontal **1×12**. T
 300/1500/3000/4992 (5000→4992 since 5000 is not ÷12; strided feeds use `N_E·2` hex digits/word).
 See `docs/RTL_HW_IMPLEMENTATION.md` §13.
 
+> **Active/committed project config = this 12-lane @ 45 MHz build.** The repo's `clk_wiz_0`
+> (45 MHz), `sources_1` generic (`N_E=12 N_H=12 N_V=1 IMG_W=300 IMG_H=300`), and `rom_wide.hex`
+> (vertical 12×1 feed) are set to it, so a plain `jls_demo_top` build produces the 12-lane
+> 45 MHz vertical bitstream. Re-apply with `apply_n12_45.tcl`. `jls_demo_top`'s *module*
+> defaults stay `N_E=16`, so the 16-lane `build_wide_mode.tcl <N_H> <N_V>` flow (which overrides
+> `N_H`/`N_V`) still builds the 16-lane 32 MHz modes when desired.
+
 ## Key Design Constraints
 
 - **Line buffer depth:** 16384 entries (2^14) — limits max image width.
