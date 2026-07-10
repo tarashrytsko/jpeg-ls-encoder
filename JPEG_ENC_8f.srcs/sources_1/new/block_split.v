@@ -28,10 +28,11 @@ module splitter_block #(
 
     integer i, k;
 
-    // strip width (per lane). Each lane encodes a stripW x i_h sub-image.
+    // per-lane sub-image is stripW x swathH (grid geometry).
     wire [15:0] stripW = i_w / N_H;
+    wire [13:0] swathH = i_h / N_V;
     reg  [15:0] xs;   // intra-strip x: 0..stripW-1
-    reg  [13:0] ys;   // y: 0..i_h-1
+    reg  [13:0] ys;   // intra-swath y: 0..swathH-1
 
     // -------------------------------------------------------
     // Detect falling edge of i_sof_st
@@ -55,7 +56,7 @@ module splitter_block #(
             frame_active_after_stretch <= 1'b0;
         else if(stretch_done_falling)
             frame_active_after_stretch <= 1'b1;
-        else if(xs == stripW-1 && ys == i_h-1)
+        else if(xs == stripW-1 && ys == swathH-1)
             frame_active_after_stretch <= 1'b0;
     end
 
@@ -72,7 +73,7 @@ module splitter_block #(
         end else if (i_e && frame_active) begin
             if (xs == stripW-1) begin
                 xs <= 0;
-                if (ys < i_h-1) ys <= ys + 1;
+                if (ys < swathH-1) ys <= ys + 1;
             end else xs <= xs + 1;
         end
     end
@@ -95,7 +96,7 @@ module splitter_block #(
                 for (k=0; k<N_E; k=k+1) begin
                     o_e[k] <= 1'b1;
                     o_x[k*8 +:8] <= i_x[k*8 +:8];     // lane k <- strip k's pixel
-                    if (xs == stripW-1 && ys == i_h-1)
+                    if (xs == stripW-1 && ys == swathH-1)
                         o_last_enc[k] <= 1'b1;
                 end
             end
