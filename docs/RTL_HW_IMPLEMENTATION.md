@@ -433,12 +433,12 @@ gearbox `i_ready` deasserts → the serial byte input stalls. Lossless under any
   12-byte words match the reference **bit-exact — 7500/7500 words, 0 errors**.
 - *End-to-end* (`tb_jls_serial`): 540 MHz serial bytes → `byte_gearbox_12` (its slow clock is the
   DUT's 45 MHz `wr_clk`; the fast clock is independent, so the async FIFO does real CDC) →
-  `jls_encoder_axis` (N_E=12, vertical 12×1) → 12 compressed lanes. At **300×300** the output is
-  **13,031 bytes — byte-identical to the parallel-fed result — and LOSSLESS** (grid reassembly).
-  Because the gearbox reconstructs the exact strided words the parallel path delivers, larger
-  images are byte-identical by construction (the parallel `vert12x1` results — 1500²=542,628,
-  3000²=1,883,214 — carry over); the 540 MHz behavioral sims for larger images are slow (the fine
-  540 MHz timestep dominates) and serve only as confirmation.
+  `jls_encoder_axis` (N_E=12, vertical 12×1) → 12 compressed lanes. Verified end-to-end at
+  **300×300 = 13,031 B** and **1500×1500 = 542,628 B** — both **byte-identical to the parallel-fed
+  result and LOSSLESS** (grid reassembly). Because the gearbox reconstructs the exact strided words
+  the parallel path delivers, still-larger images are byte-identical by construction (parallel
+  `vert12x1` 3000²=1,883,214 carries over); the 540 MHz behavioral sims are slow (the fine timestep
+  dominates), so ≥3000² rely on that equivalence rather than a multi-hour run.
 
 **Synthesizability.** 540 MHz is **behavioral only** — it far exceeds the ~53 MHz Artix-7 -2
 fabric fmax. On real hardware the 540 MHz byte capture would use an **`ISERDES`/transceiver
