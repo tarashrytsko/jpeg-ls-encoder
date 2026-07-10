@@ -2,9 +2,8 @@
 module fifo_read_control #(
     parameter integer NUM_ENCODERS = 2,
     parameter integer N_H          = 2,   // horizontal blocks (cols)
-    parameter integer N_V          = 2,   // vertical blocks (rows = swaths)
-    parameter integer SOF_CYCLES   = 3000,
-    parameter integer GAP_CYCLES   = 5
+    parameter integer N_V          = 2,   // vertical blocks (rows)
+    parameter integer SOF_CYCLES   = 3000
 )(
     input  wire                       rd_clk,
     input  wire                       sys_rdy,
@@ -28,7 +27,8 @@ module fifo_read_control #(
         end
     end
 
-    // Column widths — use i_w_r directly so enc_pixels is valid as soon as dimensions arrive
+    // Per-lane sub-image dims — use i_w_r/i_h_r directly so counts are valid as soon
+    // as dimensions arrive.
     reg [15:0] col_w [0:N_H-1];
     integer a;
     always @(*) begin
@@ -37,7 +37,6 @@ module fifo_read_control #(
         col_w[N_H-1] = i_w_r - (i_w_r / N_H) * (N_H - 1);
     end
 
-    // Swath heights
     reg [15:0] swath_h [0:N_V-1];
     integer b;
     always @(*) begin
@@ -46,44 +45,33 @@ module fifo_read_control #(
         swath_h[N_V-1] = i_h_r - (i_h_r / N_V) * (N_V - 1);
     end
 
-    // Pixels per encoder for each swath row
-    // block_idx = row*N_H + col; encoder = block_idx % NUM_ENCODERS
-    // Sum col widths assigned to this encoder in this row
-    reg [31:0] enc_pixels [0:N_V-1][0:NUM_ENCODERS-1];
-    integer s, e, col;
+    // WIDE LOCKSTEP: all NUM_ENCODERS lanes run concurrently in a single pass — the
+    // wide splitter feeds one pixel per lane per cycle for every lane at once, so
+    // there is no sequential swath ordering. Lane e occupies grid block
+    // (bx=e%N_H, by=e/N_H) and drains col_w[bx]*swath_h[by] pixels. For N_V=1 this
+    // reduces to col_w[e]*swath_h[0] = the previous per-swath count (vertical
+    // behavior unchanged).
+    reg [31:0] enc_pix [0:NUM_ENCODERS-1];
+    integer e;
     always @(*) begin
-        for (s = 0; s < N_V; s = s + 1)
-            for (e = 0; e < NUM_ENCODERS; e = e + 1)
-                enc_pixels[s][e] = 0;
-        for (s = 0; s < N_V; s = s + 1)
-            for (col = 0; col < N_H; col = col + 1) begin
-                // block_idx = s*N_H + col, maps to encoder (s*N_H+col) % NUM_ENCODERS
-                e = (s * N_H + col) % NUM_ENCODERS;
-                enc_pixels[s][e] = enc_pixels[s][e] + col_w[col] * swath_h[s];
-            end
+        for (e = 0; e < NUM_ENCODERS; e = e + 1)
+            enc_pix[e] = col_w[e % N_H] * swath_h[e / N_H];
     end
 
-    // FSM
+    // FSM: SOF stretch -> READ (all lanes concurrently) -> DONE.
     localparam S_SOF  = 2'd0;
     localparam S_READ = 2'd1;
-    localparam S_GAP  = 2'd2;
-    localparam S_DONE = 2'd3;
+    localparam S_DONE = 2'd2;
 
     reg [1:0]  state;
-    // Must hold values 0..N_V (the S_SOF exit test compares swath_idx >= N_V).
-    // [2:0] overflowed for horizontal mode (N_V up to 20) and the FSM hung.
-    reg [$clog2(N_V+1)-1:0] swath_idx;
     reg [31:0] sof_cnt;
-    reg [2:0]  gap_cnt;
     reg [31:0] rd_cnt [0:NUM_ENCODERS-1];
     reg [NUM_ENCODERS-1:0] rd_active;
 
     always @(posedge rd_clk) begin
         if (!sys_rdy) begin
             state           <= S_SOF;
-            swath_idx       <= 0;
             sof_cnt         <= 0;
-            gap_cnt         <= 0;
             rd_en           <= 0;
             rd_active       <= 0;
             i_sof_st_enc    <= 0;
@@ -97,67 +85,42 @@ module fifo_read_control #(
 
             case (state)
                 S_SOF: begin
-                    if (swath_idx >= N_V) begin
-                        state <= S_DONE;
+                    i_sof_st_enc <= {NUM_ENCODERS{1'b1}};
+                    if (sof_cnt < SOF_CYCLES - 1 || i_w_r == 0 || i_h_r == 0) begin
+                        if (i_w_r != 0 && i_h_r != 0)
+                            sof_cnt <= sof_cnt + 1;
                     end else begin
-                        i_sof_st_enc <= {NUM_ENCODERS{1'b1}};
-                        if (sof_cnt < SOF_CYCLES - 1 || i_w_r == 0 || i_h_r == 0) begin
-                            if (i_w_r != 0 && i_h_r != 0)
-                                sof_cnt <= sof_cnt + 1;
-                        end else begin
-                            sof_cnt <= 0;
-                            for (e = 0; e < NUM_ENCODERS; e = e + 1) begin
-                                rd_cnt[e] <= 0;
-                                rd_active[e] <= (enc_pixels[swath_idx][e] != 0);
-                            end
-                            state <= S_READ;
+                        sof_cnt <= 0;
+                        for (e = 0; e < NUM_ENCODERS; e = e + 1) begin
+                            rd_cnt[e] <= 0;
+                            rd_active[e] <= (enc_pix[e] != 0);
                         end
+                        state <= S_READ;
                     end
                 end
 
                 S_READ: begin
-                    // Count DELIVERED pixels (fifo_valid), not rd_en assertions.
-                    // The async FIFO empty flag can lag under bursty narrow-column
-                    // (vertical) feeding, so some rd_en pulses return no valid
-                    // ("phantom reads"). Counting rd_en let the FSM finish a swath
-                    // before the encoder had actually received enc_pixels real
-                    // pixels, so its end-of-frame (eof_cond) never fired and the
-                    // slice never closed. Counting valids drains the FIFO fully.
-                    //
-                    // rd_en[e] (the registered value from last cycle) is the single
-                    // read still in flight; gate new reads on rd_cnt+in_flight so we
-                    // never read past enc_pixels into the next swath.
+                    // Count DELIVERED pixels (fifo_valid), not rd_en assertions — the
+                    // async FIFO empty flag can lag, so some rd_en pulses return no
+                    // valid ("phantom reads"). Counting valids drains each FIFO fully;
+                    // rd_en[e] (registered last-cycle value) is the single read in
+                    // flight, so gate new reads on rd_cnt+in_flight < enc_pix.
                     for (e = 0; e < NUM_ENCODERS; e = e + 1) begin
-                        // Resolve the read issued last cycle.
                         if (rd_active[e] && fifo_valid[e]) begin
                             rd_cnt[e] <= rd_cnt[e] + 1;
                             read_count_flat[e*32 +: 32] <= rd_cnt[e] + 1;
-                            if ((rd_cnt[e] + 1) == enc_pixels[swath_idx][e])
+                            if ((rd_cnt[e] + 1) == enc_pix[e])
                                 rd_active[e] <= 0;
                         end
-                        // Issue a new read only while more real pixels are still
-                        // needed than are already in flight.
                         if (rd_active[e] && !fifo_empty[e] &&
-                            ((rd_cnt[e] + rd_en[e]) < enc_pixels[swath_idx][e]))
+                            ((rd_cnt[e] + rd_en[e]) < enc_pix[e]))
                             rd_en[e] <= 1'b1;
                         else
                             rd_en[e] <= 1'b0;
                     end
 
-                    if (rd_active == 0) begin
-                        swath_idx <= swath_idx + 1;
-                        gap_cnt   <= 0;
-                        state     <= S_GAP;
-                    end
-                end
-
-                S_GAP: begin
-                    if (gap_cnt < GAP_CYCLES - 1)
-                        gap_cnt <= gap_cnt + 1;
-                    else begin
-                        gap_cnt <= 0;
-                        state   <= S_SOF;
-                    end
+                    if (rd_active == 0)
+                        state <= S_DONE;
                 end
 
                 S_DONE: begin
