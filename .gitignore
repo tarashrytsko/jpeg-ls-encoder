@@ -22,3 +22,21 @@
 # (organized copies are kept under output_block/bitstreams/)
 /mode_h*_util.rpt
 /mode_h*_timing.rpt
+
+# Large regenerable N_E=12 sweep feeds (make via tools/make_strided_hex.py <pgm> <out> <N_H> <N_V>)
+/JPEG_ENC_8f.sim/images/block4x3_1500.hex
+/JPEG_ENC_8f.sim/images/block4x3_3000.hex
+/JPEG_ENC_8f.sim/images/block4x3_4992.hex
+/JPEG_ENC_8f.sim/images/vert12x1_1500.hex
+/JPEG_ENC_8f.sim/images/vert12x1_3000.hex
+/JPEG_ENC_8f.sim/images/vert12x1_4992.hex
+/JPEG_ENC_8f.sim/images/horiz1x12_1500.hex
+/JPEG_ENC_8f.sim/images/horiz1x12_3000.hex
+/JPEG_ENC_8f.sim/images/horiz1x12_4992.hex
+# N_E=12 4992 compressed outputs
+/JPEG_ENC_8f.sim/output_block/output_h4v3_4992x4992.jls
+/JPEG_ENC_8f.sim/output_block/output_h12v1_4992x4992.jls
+/JPEG_ENC_8f.sim/output_block/output_h1v12_4992x4992.jls
+# fmax sweep reports (root)
+/n12_45_util.rpt
+/n12_45_timing.rpt

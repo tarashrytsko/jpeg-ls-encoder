@@ -28,6 +28,6 @@ def main():
                 for k in range(NE):
                     bx=k%NH; by=k//NH
                     word |= px[(by*sh+ys)*w + (bx*sw+xs)] << (8*k)
-                f.write("%032X\n" % word)
+                f.write("%0*X\n" % (NE*2, word))   # NE bytes -> NE*2 hex digits (32 for N_E=16)
     print("wrote %d words (%dx%d N_H=%d N_V=%d sw=%d sh=%d N_E=%d) to %s"%(sw*sh,w,h,NH,NV,sw,sh,NE,dst))
 if __name__=="__main__": main()

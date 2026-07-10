@@ -418,3 +418,24 @@ modes).** MMCM reconfigured to 1:1 clocks above 32 MHz, re-implemented through r
 **fmax = 53.33 MHz → real max ≈ 853 MB/s ≈ 6.83 Gb/s** (0 failing endpoints; +67 % over the
 512 MB/s shipped design point). Script: `build_fmax_wide.tcl -tclargs <DIV>` (f = 800/DIV).
 See `docs/RTL_HW_IMPLEMENTATION.md` for the full RTL + HW reference.
+
+### 12-lane configuration @ 45 MHz (540 MB/s) — 3 directions × image sweep
+
+Same mode-parameterized RTL at **N_E=12 @ 45 MHz** — block **4×3**, vertical **12×1**,
+horizontal **1×12** (`N_H·N_V=12`). Timing-closed HW build (`build_n12_45.tcl`, vertical 12×1,
+300² on-chip ROM, 45/45 MHz MMCM): **WNS +0.652 ns / WHS +0.047 ns**, 0 failing endpoints;
+util LUT 32748 (24.3%), FF 18720 (7.0%), BRAM 30 (8.2%), DSP 14 (1.9%).
+**Throughput = 12 × 45 MHz = 540 Mpix/s = 540 MB/s ≈ 4.3 Gb/s.**
+
+Lossless across the image set (5000 → **4992**, the nearest size ÷12/÷4/÷3; 300/1500/3000 native):
+
+| Image | block 4×3 | vertical 12×1 | horizontal 1×12 |
+|---|---|---|---|
+| 300×300 | 12,464 (7.22:1) | 13,031 (6.91:1) | 12,538 (7.18:1) |
+| 1500×1500 | 539,490 (4.17:1) | 542,628 (4.15:1) | 541,936 (4.15:1) |
+| 3000×3000 | 1,883,193 (4.78:1) | 1,883,214 (4.78:1) | 1,895,967 (4.75:1) |
+| 4992×4992 | 5,756,846 (4.33:1) | 5,732,381 (4.35:1) | 5,814,093 (4.29:1) |
+
+All 12 **LOSSLESS: exact match** (grid reassembly, `verify_lossless.py`). Per-size totals track
+the 16-lane results (compressed size follows image content, not lane count). Full RTL + HW
+reference incl. this config: `docs/RTL_HW_IMPLEMENTATION.md` §13.

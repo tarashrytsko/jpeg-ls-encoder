@@ -361,3 +361,47 @@ square blocks due to narrower causal context.
   endpoints) at 32/32 MHz.
 - **Equivalence:** the on-chip-ROM demo (`jls_demo_top`) output is byte-identical to the
   AXIS-fed path, confirming synthesis preserved all encoding behaviour.
+
+---
+
+## 13. Alternate Configuration — 12 Lanes @ 45 MHz (540 MB/s)
+
+The same mode-parameterized RTL was exercised at **N_E = 12 lanes @ 45 MHz** in all three
+split directions — **block 4×3**, **vertical 12×1**, **horizontal 1×12** (`N_H·N_V = 12`).
+Only the lane count, clock, and grid change; no RTL edits.
+
+**Timing-closed HW build (12 lanes @ 45/45 MHz, `jls_demo_top`, vertical 12×1, 300² on-chip ROM):**
+
+| Metric | Result |
+|---|---|
+| Clocks | wr_clk = rd_clk = **45 MHz** (1:1, MMCM VCO=900) |
+| **WNS / WHS** | **+0.652 ns / +0.047 ns** (0 failing endpoints) |
+| LUT | 32748 (24.3%) |
+| FF | 18720 (7.0%) |
+| BRAM | 30 (8.2%) |
+| DSP | 14 (1.9%) |
+| **Throughput** | **12 lanes × 45 MHz = 540 Mpix/s = 540 MB/s ≈ 4.3 Gb/s** |
+| Build | `build_n12_45.tcl` |
+
+Resource use is ~¾ of the 16-lane build (12/16 lanes), and 45 MHz is well within the
+53.3 MHz fmax established in Section 9, so the +0.652 ns closure is expected.
+
+**Lossless verification — 3 directions × 4 image sizes (all bit-exact, grid reassembly).**
+Sizes 300/1500/3000 run natively (all divisible by 12, 4, and 3). **5000 is not divisible by
+12** (nor its height by 3 for block 4×3), so the "5000" point uses **4992** (= 16·312 = 4·1248
+= 3·1664), the nearest size divisible by 12/4/3. `LB_DEPTH` was raised to 8192 for the sims to
+cover horizontal 1×12's full-width (4992) strips.
+
+| Image | block 4×3 (bytes / ratio) | vertical 12×1 | horizontal 1×12 |
+|---|---|---|---|
+| 300×300 | 12,464 / 7.22:1 | 13,031 / 6.91:1 | 12,538 / 7.18:1 |
+| 1500×1500 | 539,490 / 4.17:1 | 542,628 / 4.15:1 | 541,936 / 4.15:1 |
+| 3000×3000 | 1,883,193 / 4.78:1 | 1,883,214 / 4.78:1 | 1,895,967 / 4.75:1 |
+| 4992×4992 | 5,756,846 / 4.33:1 | 5,732,381 / 4.35:1 | 5,814,093 / 4.29:1 |
+
+All 12 configurations **LOSSLESS: exact match**. As with the 16-lane design, the three
+directions compress within ~1–4 % at each size (total block area dominates); and the per-size
+totals closely track the 16-lane results (e.g. block 3000²: 1,883,193 B here vs 1,884,408 B at
+16 lanes — compressed size depends on image content, not lane count). The 12-lane feeds use
+96-bit (12-byte) strided words — `make_strided_hex.py` emits `N_E·2` hex digits per word
+(24 for N_E=12, 32 for N_E=16).

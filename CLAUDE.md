@@ -201,6 +201,13 @@ maximum is **16 × 53.33 = 853 Mpix/s ≈ 853 MB/s ≈ 6.83 Gb/s** — **+67 %**
 design point. The 32 MHz point is retained for guard-band; sweep via `build_fmax_wide.tcl -tclargs
 <DIV>` (f = 800/DIV). Full RTL + HW reference: `docs/RTL_HW_IMPLEMENTATION.md`.
 
+**12-lane @ 45 MHz variant (540 MB/s).** The same RTL also builds at `N_E=12` @ 45 MHz in all
+three directions — block **4×3**, vertical **12×1**, horizontal **1×12**. Timing-closed
+(`build_n12_45.tcl`, vertical 12×1, 300²): WNS +0.652 ns, util LUT 24.3%/FF 7.0%/BRAM 8.2%/DSP
+1.9%; throughput 12 × 45 = **540 MB/s ≈ 4.3 Gb/s**. Verified lossless in all 3 modes across
+300/1500/3000/4992 (5000→4992 since 5000 is not ÷12; strided feeds use `N_E·2` hex digits/word).
+See `docs/RTL_HW_IMPLEMENTATION.md` §13.
+
 ## Key Design Constraints
 
 - **Line buffer depth:** 16384 entries (2^14) — limits max image width.
