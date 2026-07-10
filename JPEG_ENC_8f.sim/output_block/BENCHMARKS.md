@@ -314,3 +314,75 @@ a wide design where input bandwidth equals lane consumption bandwidth.
 decode). The self-contained `jls_demo_top` (on-chip ROM source) produced output
 byte-identical (9593 bytes) to the proven AXIS-fed path, confirming synthesis preserved
 all encoding behavior.
+
+## Wide 16-Lane — All Three Split Directions Synthesizable at 512 MB/s (Artix-7 xc7a200tfbg676-2)
+
+The wide 16-lane design is **mode-parameterized**: the same RTL builds vertical, horizontal,
+or block splitting by setting the build-time `(N_H, N_V)` generic (`N_H·N_V = N_E = 16`, one
+grid block per lane) and swapping in a matching strided input ROM. All three directions were
+taken to **timing-closed bitstreams** at 32/32 MHz (1:1). Throughput is identical in every
+direction — **16 lanes × 32 MHz = 512 Mpix/s = 512 MB/s ≈ 4.1 Gb/s** — because the parallelism
+(16 independent encoder lanes, 1 px/cycle each, fed 16 px/cycle over a 128-bit AXIS bus) does
+not change; only *which* sub-image each lane encodes changes.
+
+| Mode | (N_H, N_V) | Per-lane sub-image (256²) | WNS / WHS | LUT | FF | BRAM | DSP | Bitstream |
+|---|---|---|---|---|---|---|---|---|
+| **Vertical** | 16 × 1 | 16 × 256 (column strip) | **+8.25 / +0.048 ns** | 39576 (29.4%) | 25012 (9.3%) | 40 (11.0%) | 19 (2.6%) | — (baseline) |
+| **Horizontal** | 1 × 16 | 256 × 16 (row strip) | **+8.446 / +0.034 ns** | 39647 (29.5%) | 24663 (9.2%) | 40 (11.0%) | 19 (2.6%) | `bitstreams/jls_demo_top_h1v16.bit` |
+| **Block** | 4 × 4 | 64 × 64 | **+8.636 / +0.047 ns** | 40300 (29.9%) | 24597 (9.1%) | 40 (11.0%) | 21 (2.8%) | `bitstreams/jls_demo_top_h4v4.bit` |
+
+All three: **0 failing endpoints**, resource footprint within ~0.5% of each other (same
+encoder logic; only splitter routing and the input ROM differ). Preserved bitstreams and
+per-mode `mode_h{N_H}v{N_V}_util.rpt` / `_timing.rpt` live in `output_block/bitstreams/`.
+
+**One RTL, one build entry point.** `build_wide_mode.tcl` takes the direction as arguments:
+
+```
+vivado -mode batch -source build_wide_mode.tcl -tclargs <N_H> <N_V>
+```
+
+It copies the mode ROM (`rom_wide_h<N_H>v<N_V>.hex`) into the synthesized `rom_wide.hex`,
+overrides the `(N_H, N_V)` generic on `jls_demo_top`, and runs `synth_1` + `impl_1` →
+`write_bitstream`. Vertical = `-tclargs 16 1`, horizontal = `-tclargs 1 16`, block = `-tclargs 4 4`.
+The mode ROMs are produced by `tools/make_strided_hex.py <in.pgm> <out.hex> <N_H> <N_V>`
+(column-strided for `N_V=1`, row-strided for `N_H=1`, block-strided otherwise).
+
+**Lossless verification (256²).** Each direction's AXIS-fed sim (`tb_jls_wide`, 16-lane capture)
+reassembles bit-exact via `verify_lossless.py … <N_H> <N_V>`:
+
+| Mode | Output bytes (256²) | Grid reassembly |
+|---|---|---|
+| Vertical 16×1 | 9593 | LOSSLESS exact |
+| Horizontal 1×16 | 9226 | LOSSLESS exact |
+| Block 4×4 | 9056 | LOSSLESS exact |
+
+> **Read-side fix enabling horizontal/block.** The original read controller drained encoder
+> lanes swath-by-swath (one subset active per swath). That deadlocked the wide *lockstep* feed
+> for `N_V > 1`: the splitter presents all 16 lanes concurrently, so any lane not in the active
+> swath filled its FIFO, back-pressured the shared input, and starved the active swath.
+> `fifo_read_control.v` was rewritten to a single-pass **all-lanes-concurrent** drain
+> (`enc_pix[e] = col_w[e%N_H] · swath_h[e/N_H]`), which reduces to the previous per-lane count
+> at `N_V=1` (vertical unchanged, still 9593 B).
+
+### Block-mode size sweep (300 / 1500 / 3000) — synthesizable IP, lossless
+
+The on-chip-ROM *demo* bitstream is BRAM-limited to 256² (a 1500² block ROM would need ~2.25 MB,
+exceeding device BRAM), so larger images are validated by driving the **synthesizable IP core**
+(`jls_encoder_axis` — the exact core inside every bitstream above) over its 128-bit AXIS input.
+Block 4×4 is the natural fit: it only requires `W,H` divisible by 4 (300/1500/3000 all qualify),
+and every per-lane strip width (75 / 375 / 750) stays within the encoder's `LB_DEPTH=1024` line
+buffer, so no resynthesis is needed.
+
+| Image | Grid | Per-lane block | Output bytes | Ratio | Lossless (grid reassembly) |
+|---|---|---|---|---|---|
+| 300 × 300   | 4×4 | 75 × 75   | 12,650    | 7.11:1 | exact match |
+| 1500 × 1500 | 4×4 | 375 × 375 | 540,125   | 4.17:1 | exact match |
+| 3000 × 3000 | 4×4 | 750 × 750 | 1,884,408 | 4.78:1 | exact match |
+
+Feeds generated with `make_strided_hex.py world_gray_<N>x<N>.pgm blk4x4_<N>.hex 4 4`; verified
+with `verify_lossless.py … 4 4`. Throughput remains 512 MB/s (16 lanes × 32 MHz) at every size.
+
+> **Divisibility note.** The 16-lane single-direction modes need one dimension divisible by 16:
+> vertical needs `W % 16 == 0`, horizontal needs `H % 16 == 0`. 300/1500/3000 are **not** ÷16,
+> so those sizes are exercised in **block 4×4** (÷4), which covers all three exactly. To run them
+> vertical/horizontal you would crop to the nearest ÷16 (e.g. 300→288, 1500→1488, 3000→2992).

@@ -1,0 +1,11 @@
+# Large, regenerable wide size-test feeds (make via tools/make_strided_hex.py <pgm> <out> 4 4)
+/JPEG_ENC_8f.sim/images/blk4x4_1500.hex
+/JPEG_ENC_8f.sim/images/blk4x4_3000.hex
+
+# Timing-closed bitstreams — regenerable via build_wide_mode.tcl; util/timing .rpt kept as evidence
+/JPEG_ENC_8f.sim/output_block/bitstreams/*.bit
+
+# Per-mode build reports written to repo root by build_wide_mode.tcl
+# (organized copies are kept under output_block/bitstreams/)
+/mode_h*_util.rpt
+/mode_h*_timing.rpt

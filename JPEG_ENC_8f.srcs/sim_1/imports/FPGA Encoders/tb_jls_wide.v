@@ -77,8 +77,9 @@ module tb_jls_wide #(
     // load the strided hex into memory and stream one 128-bit word per
     // accepted cycle. Byte k of each word is strip k's pixel.
     // ------------------------------------------------------------
-    localparam integer SW = IMG_W / N_E;        // strip width
-    localparam integer NWORDS = SW * IMG_H;     // strided words
+    localparam integer SW     = IMG_W / N_H;     // per-lane strip width
+    localparam integer SH     = IMG_H / N_V;     // per-lane strip height
+    localparam integer NWORDS = SW * SH;         // strided words (grid-aware; = W*H/N_E)
     reg [N_E*8-1:0] feed [0:NWORDS-1];
     integer p;
     initial $readmemh(HEXFILE, feed);

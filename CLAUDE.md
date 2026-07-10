@@ -170,6 +170,27 @@ Build: `build_wide_synth.tcl` → `build_impl.tcl`; clock: `clkwiz_3232.tcl`.
 > — **500 MHz is not synthesizable on Artix-7.** The 16-lane 32 MHz build above is the
 > first real synthesizable path to ~4.1 Gb/s on this device.
 
+**All three split directions are HW-proven (mode-parameterized, one RTL).** The same wide
+design builds vertical / horizontal / block by setting the build-time `(N_H, N_V)` generic
+(`N_H·N_V=16`) and swapping the strided input ROM — all timing-closed at 512 MB/s:
+
+| Mode | (N_H,N_V) | WNS | LUT | BRAM | DSP | Bitstream |
+|---|---|---|---|---|---|---|
+| Vertical   | 16×1 | +8.25 ns  | 39576 | 40 | 19 | (baseline) |
+| Horizontal | 1×16 | +8.446 ns | 39647 | 40 | 19 | `output_block/bitstreams/jls_demo_top_h1v16.bit` |
+| Block      | 4×4  | +8.636 ns | 40300 | 40 | 21 | `output_block/bitstreams/jls_demo_top_h4v4.bit` |
+
+One build entry point: `vivado -mode batch -source build_wide_mode.tcl -tclargs <N_H> <N_V>`
+(vertical `16 1`, horizontal `1 16`, block `4 4`). It copies the mode ROM into `rom_wide.hex`,
+sets the generic, and runs synth+impl→bitstream. Mode ROMs come from
+`tools/make_strided_hex.py <in.pgm> <out.hex> <N_H> <N_V>`. The read controller drains all 16
+lanes concurrently (`fifo_read_control.v`, single-pass), required because the wide splitter
+feeds every lane each cycle in lockstep. **Block 4×4 size sweep** (synthesizable IP via the
+AXIS harness, lossless): 300²→7.11:1, 1500²→4.17:1, 3000²→4.78:1. See `output_block/BENCHMARKS.md`.
+The on-chip-ROM demo bitstream is BRAM-limited to 256²; larger images drive the IP core over AXIS
+(strip width ≤ `LB_DEPTH=1024`). Single-direction modes need one dim ÷16 (vertical `W%16`,
+horizontal `H%16`); block only needs `W,H % N_H,N_V`, so 300/1500/3000 use block 4×4 (÷4).
+
 ## Key Design Constraints
 
 - **Line buffer depth:** 16384 entries (2^14) — limits max image width.
