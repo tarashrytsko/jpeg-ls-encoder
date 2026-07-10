@@ -386,3 +386,35 @@ with `verify_lossless.py … 4 4`. Throughput remains 512 MB/s (16 lanes × 32 M
 > vertical needs `W % 16 == 0`, horizontal needs `H % 16 == 0`. 300/1500/3000 are **not** ÷16,
 > so those sizes are exercised in **block 4×4** (÷4), which covers all three exactly. To run them
 > vertical/horizontal you would crop to the nearest ÷16 (e.g. 300→288, 1500→1488, 3000→2992).
+
+### 5000-scale sweep (all three directions) + real max throughput
+
+All three split directions verified lossless at ~5000 scale (16-lane AXIS-fed IP, grid
+reassembly). Vertical/horizontal need a dimension ÷16 → run at 4992² (nearest multiple of 16);
+block needs ÷4 → runs at native 5000². `LB_DEPTH` raised to 8192 for the sims (horizontal's
+full-width 4992 strips; block's 1250 strips).
+
+| Mode | Image | Per-lane sub-image | Output bytes | Ratio | Lossless |
+|---|---|---|---|---|---|
+| Vertical 16×1 | 4992×4992 | 312×4992 | 5,730,774 | 4.35:1 | exact |
+| Horizontal 1×16 | 4992×4992 | 4992×312 | 5,816,262 | 4.28:1 | exact |
+| Block 4×4 | 5000×5000 | 1250×1250 | 5,776,389 | 4.33:1 | exact |
+
+The three agree within ~1.6 % (block *area* dominates, not aspect ratio).
+
+**Real maximum synthesizable throughput (fmax sweep, vertical = tightest-slack = floor for all
+modes).** MMCM reconfigured to 1:1 clocks above 32 MHz, re-implemented through route each time:
+
+| Clock | Encoder WNS | Result | Throughput (16 lanes) |
+|---|---|---|---|
+| 42.1 MHz | +1.643 ns | closes | 673.7 MB/s |
+| 44.4 MHz | +0.369 ns | closes | 711.1 MB/s |
+| 47.1 MHz | +0.325 ns | closes | 752.9 MB/s |
+| 50.0 MHz | +0.268 ns | closes | 800.0 MB/s |
+| **53.3 MHz** | **+0.159 ns** | **closes (max)** | **853.3 MB/s ≈ 6.83 Gb/s** |
+| 57.1 MHz | −1.018 ns | fails | — |
+| 61.5 MHz | −2.365 ns | fails | — |
+
+**fmax = 53.33 MHz → real max ≈ 853 MB/s ≈ 6.83 Gb/s** (0 failing endpoints; +67 % over the
+512 MB/s shipped design point). Script: `build_fmax_wide.tcl -tclargs <DIV>` (f = 800/DIV).
+See `docs/RTL_HW_IMPLEMENTATION.md` for the full RTL + HW reference.

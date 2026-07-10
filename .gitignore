@@ -1,6 +1,19 @@
-# Large, regenerable wide size-test feeds (make via tools/make_strided_hex.py <pgm> <out> 4 4)
+# Large, regenerable wide size-test feeds (make via tools/make_strided_hex.py <pgm> <out> <N_H> <N_V>)
 /JPEG_ENC_8f.sim/images/blk4x4_1500.hex
 /JPEG_ENC_8f.sim/images/blk4x4_3000.hex
+/JPEG_ENC_8f.sim/images/blk4x4_5000.hex
+/JPEG_ENC_8f.sim/images/vert16x1_4992.hex
+/JPEG_ENC_8f.sim/images/horiz1x16_4992.hex
+
+# Large 5000-scale test images (cropped from world_gray_10000x10000.pgm) + their .jls outputs
+/JPEG_ENC_8f.sim/images/world_gray_5000x5000.pgm
+/JPEG_ENC_8f.sim/images/world_gray_4992x4992.pgm
+/JPEG_ENC_8f.sim/output_block/output_h16v1_4992x4992.jls
+/JPEG_ENC_8f.sim/output_block/output_h1v16_4992x4992.jls
+/JPEG_ENC_8f.sim/output_block/output_h4v4_5000x5000.jls
+
+# fmax sweep reports written to repo root by build_fmax_wide.tcl
+/fmax_div*_timing.rpt
 
 # Timing-closed bitstreams — regenerable via build_wide_mode.tcl; util/timing .rpt kept as evidence
 /JPEG_ENC_8f.sim/output_block/bitstreams/*.bit

@@ -1,0 +1,363 @@
+# Wide 16-Lane JPEG-LS Encoder — RTL & Hardware Implementation
+
+**Device:** Xilinx Artix-7 `xc7a200tfbg676-2`  **Tools:** Vivado 2024.2
+**Standard:** JPEG-LS / ITU-T T.87 (ISO/IEC 14495-1), lossless (NEAR = 0)
+**Design point:** 16 parallel encoder lanes @ 32 MHz = **512 Mpix/s = 512 MB/s ≈ 4.1 Gb/s**
+**Branch:** `feature/jls-encoder-axis`
+
+This document describes the complete RTL and hardware implementation of the synthesizable
+wide 16-lane JPEG-LS encoder: every module, the two clock domains and their clock-domain
+crossings (CDC), the 11-stage encoder pipeline, the three split directions, and all
+measured synthesis / timing / throughput / compression statistics — including the **real
+maximum synthesizable throughput** established by an fmax sweep.
+
+---
+
+## 1. Overview
+
+The encoder compresses an 8-bit grayscale image losslessly into JPEG-LS bitstream(s). A
+single JPEG-LS encoder core is inherently **one pixel per clock** (its prediction is causal
+— each pixel depends on already-encoded neighbours), so throughput is scaled by running
+**N_E = 16 encoder cores in parallel**, each on an independent sub-image ("strip"/"block").
+A 128-bit-wide AXI4-Stream input delivers 16 pixels per clock (one per lane); 16 AXI4-Stream
+masters carry the 16 compressed sub-streams out.
+
+The image is partitioned on an **(N_H × N_V) grid**, one grid block per lane
+(`N_H · N_V = N_E = 16`). The split *direction* is just the choice of factorization:
+
+| Mode | (N_H, N_V) | Per-lane sub-image | Input striding |
+|---|---|---|---|
+| **Vertical** | 16 × 1 | tall column strip (W/16 × H) | column-strided |
+| **Horizontal** | 1 × 16 | wide row strip (W × H/16) | row-strided |
+| **Block** | 4 × 4 | ~square block (W/4 × H/4) | block-strided |
+
+Throughput is **identical** in all three directions (16 lanes × 1 px/clk × 32 MHz); only
+*which* sub-image each lane encodes differs. All three are proven to timing-closed
+bitstreams (Section 8) and bit-exact lossless (Section 10).
+
+---
+
+## 2. Top-Level Architecture
+
+### 2.1 Module hierarchy
+
+```
+jls_demo_top                         self-contained bitstream harness (only I/O: clk, reset, done, status)
+├─ axis_image_source                 on-chip BRAM ROM → 128-bit AXIS pixel source
+├─ jls_encoder_axis                  the synthesizable IP (AXIS slave in, 16 AXIS masters out)
+│  ├─ clk_wiz_0                       MMCM: 200 MHz diff → wr_clk 32 MHz, rd_clk 32 MHz
+│  ├─ fifo_reset_bram_async          reset sequencer → sys_rdy after MMCM lock + FIFO reset
+│  ├─ axis_pixel_in                  AXIS slave adapter (SOF stretch, backpressure)
+│  ├─ splitter_block  (block_split.v) wide lockstep splitter → 16 lanes
+│  ├─ fifo_write_control             per-lane input-FIFO write enables
+│  ├─ fifo_wrapper_input             16× async FIFO (8-bit, depth 512)  ── CDC wr→rd ──
+│  ├─ fifo_read_control              per-lane read enables + encoder SOF (single-pass)
+│  ├─ encoder_wrapper                instantiates the 16 lanes
+│  │  └─ jls_encoder × 16            single-lane JPEG-LS core (11-stage pipeline)
+│  └─ fifo_wrapper_output            16× async FIFO (16-bit, depth 2048) ── CDC rd→wr ──
+└─ axis_sink                         on-chip sink: checksum + word count + done
+```
+
+`jls_encoder_axis` is the reusable deliverable IP. `jls_demo_top` wraps it with an on-chip
+ROM source and sink so the whole thing is a self-contained, prune-proof bitstream whose only
+real pins are the differential clock, reset, `done`, and a 31-bit status (checksum).
+
+### 2.2 End-to-end dataflow
+
+```
+ROM/AXIS ─128b─▶ axis_pixel_in ─128b─▶ splitter_block ─┬─8b─▶ inFIFO0 ─▶ jls_encoder0 ─16b─▶ outFIFO0 ─┐
+ 16 px/clk        (SOF stretch,         (lockstep,      ├─8b─▶ inFIFO1 ─▶ jls_encoder1 ─16b─▶ outFIFO1 ─┤ 16 AXIS
+ s_axis_tdata     backpressure)          byte k→lane k) │ ...                                    ...    ├─masters
+ tvalid/tready                                          └─8b─▶ inFIFO15─▶ jls_encoder15─16b─▶ outFIFO15─┘ m_axis_*
+ tlast                                                                                                   → sink
+   sideband: i_w[15:0], i_h[13:0], i_sof (one-shot)
+```
+
+- **Input AXIS (slave):** `s_axis_tdata` 128-bit (16 px), `tvalid`/`tready`/`tlast`, plus
+  sideband `i_w`/`i_h`/`i_sof`. `tready` is de-asserted during the SOF stretch and whenever
+  any input FIFO is full (lockstep backpressure).
+- **Output AXIS (16 masters):** `m_axis_tdata` 256-bit (16 × 16-bit words), per-lane
+  `tvalid`/`tready`/`tlast`. `tready` backpressure is honoured losslessly (one read
+  outstanding).
+
+---
+
+## 3. Clock Domains & CDC
+
+Two domains, both **32 MHz** and running **1:1** (input bandwidth = lane consumption):
+
+| Domain | Clock | Modules |
+|---|---|---|
+| Write / IO | `wr_clk` (clk_out1) | axis_image_source, axis_pixel_in, splitter_block, fifo_write_control, input-FIFO **write** side, output-FIFO **read** side, axis_sink |
+| Read / encoder | `rd_clk` (clk_out2) | fifo_reset_bram_async, input-FIFO **read** side, fifo_read_control, encoder_wrapper + 16× jls_encoder, output-FIFO **write** side |
+
+**Why 1:1.** A 128-bit input delivers 16 px/wr_clk; the 16 lanes consume 16 px/rd_clk. Equal
+rates keep the shallow input FIFOs from flooding or starving. (A 2:1 ratio was verified to
+fail — it floods the depth-512 input FIFOs.)
+
+**CDC crossings** — the only two are the async FIFOs (Xilinx independent-clock block-RAM
+FIFOs, 2-stage pointer synchronizers):
+
+1. **Input FIFO** (`fifo_wrapper_input`, 16× `fifo_generator_0`): 8-bit × 512 deep. Pixels
+   cross wr_clk → rd_clk. A per-lane 18-bit fill count is double-flopped to rd_clk
+   (informational backpressure hint only).
+2. **Output FIFO** (`fifo_wrapper_output`, 16× `fifo_output`): 16-bit × 2048 deep. Compressed
+   words cross rd_clk → wr_clk. Slice boundaries are tracked with a **3-bit Gray-coded write
+   pointer** synchronized across the boundary (up to 4 pending slices per lane).
+
+MMCM: 200 MHz differential input → 32 MHz on both outputs (`clk_wiz_0`). The reset sequencer
+holds all FIFOs in reset for 10 cycles after MMCM lock, then asserts `sys_rdy`.
+
+---
+
+## 4. RTL Module Reference
+
+### jls_demo_top  (`sources_1/new/jls_demo_top.v`)
+Structural harness. Params `N_E=16, N_H, N_V, IMG_W=256, IMG_H=256`. Instantiates
+`axis_image_source` → `jls_encoder_axis` → `axis_sink`; exposes `rstn`, `clk_in1_p/n`,
+`clk`, `done`, `status[30:0]`. Uses the IP's `sys_rdy` as source/sink reset.
+
+### axis_image_source  (`sources_1/new/axis_image_source.v`)
+On-chip pixel source. `(* rom_style="block" *)` ROM of `IMG_W*IMG_H/N_E` words × 128-bit,
+`$readmemh`-initialized from a strided hex. 3-state FSM (IDLE→RUN→DONE): emits one-shot
+`i_sof`, then one 128-bit word per AXIS beat. Word count is mode-invariant `= W·H/N_E`.
+
+### jls_encoder_axis  (`sources_1/imports/FPGA Encoders/jls_encoder_axis.v`)
+The IP top. Params `N_E=16, N_H, N_V, L=64, nr=0`. Instantiates the MMCM, reset sequencer,
+AXIS adapter, splitter, both FIFO wrappers + controllers, and the encoder wrapper. Produces
+`clk` (wr_clk), `sys_rdy`; consumes the AXIS slave + sideband; drives 16 AXIS masters. Input
+backpressure = OR of all input-FIFO `full` flags fed back to `axis_pixel_in`.
+
+### axis_pixel_in  (`sources_1/new/axis_pixel_in.v`)
+AXIS slave → splitter adapter. Param `SOF_STRETCH=3000`. 4-state FSM (IDLE→SOF→PIXEL→DONE):
+holds `i_sof_st` (all-lanes) high for 3000 cycles, then forwards `pixel_out`/`pixel_valid`
+while `pix_cnt < i_w·i_h`; de-asserts `tready` under FIFO-full backpressure.
+
+### splitter_block  (module `splitter_block`, `sources_1/new/block_split.v`)
+Wide **lockstep** splitter. Params `N_H, N_V, N_E`. Maintains one shared intra-strip counter
+`(xs, ys)` over `stripW = i_w/N_H`, `swathH = i_h/N_V`; every active cycle drives **all**
+lanes: `o_e[k]=1`, `o_x[k·8+:8]=i_x[k·8+:8]` (byte k → lane k). `o_last_enc[k]` asserts at
+`xs==stripW-1 && ys==swathH-1`. The generalization from vertical-only was replacing the
+hardcoded `i_h` y-range with `swathH = i_h/N_V` (any grid; vertical N_V=1 unchanged).
+
+### fifo_write_control  (`sources_1/new/fifo_write_control.v`)
+Per-lane input-FIFO write enable: `wr_en[i]` = registered `(s_e[i] && !fifo_full[i] &&
+!frame_done[i])`. Tracks per-lane write counts and completion.
+
+### fifo_wrapper_input  (`sources_1/new/fifo_wrapper_input.v`)
+16× async `fifo_generator_0` (8-bit × 512, 2-stage sync). Registers `din` one cycle before
+the FIFO; exposes `full/overflow/empty/valid/...` and an 18-bit CDC-synced fill count.
+
+### fifo_read_control  (`sources_1/new/fifo_read_control.v`)
+rd_clk-domain read controller. Params `NUM_ENCODERS, N_H, N_V, SOF_CYCLES=3000`. Computes
+uniform per-lane counts `col_w[·]=i_w_r/N_H`, `swath_h[·]=i_h_r/N_V`, and
+`enc_pix[e]=col_w[e%N_H]·swath_h[e/N_H]`. **Single-pass all-lanes-concurrent** FSM
+(SOF→READ→DONE): asserts SOF to all lanes for 3000 cycles, then drains every active lane
+concurrently, counting delivered `fifo_valid` pulses (robust against async-empty lag), and
+terminates when all lanes reach their pixel count. (This single-pass rewrite is what enables
+N_V>1: the earlier swath-sequential FSM deadlocked the lockstep feed.)
+
+### encoder_wrapper  (`sources_1/new/encoder_wrapper.v`)
+Instantiates `N_E` `jls_encoder` cores via generate. Derives per-lane dims `col_w=i_w/N_H`,
+`row_h=i_h/N_V` (uniform floor — matches the splitter's lockstep delivery; divisibility is a
+hard requirement). Each lane gets `i_w=col_w[g%N_H]`, `i_h=row_h[g/N_H]`, its pixel/SOF, and
+`LB_DEPTH` line buffer.
+
+### jls_encoder  (`sources_1/imports/FPGA Encoders/jls_encoder.v`, ~1500 lines)
+Single-lane JPEG-LS core — see Section 5.
+
+### fifo_wrapper_output  (`sources_1/new/fifo_wrapper_output.v`)
+16× async `fifo_output` (16-bit × 2048, 2-stage sync). Tracks slice end positions
+(`end_pos[lane][slot]`, 4 slots) and Gray-codes a 3-bit write pointer across the CDC.
+Presents AXIS master output with correct `tlast`; one read outstanding, lossless under
+`tready` backpressure.
+
+### fifo_reset_bram_async  (`sources_1/new/fifo_reset_bram_async.v`)
+Param `RESET_CYCLES=10`. Asserts `fifo_rst` for 10 cycles after `rstn_ext & locked`, then
+raises `sys_rdy` once `wr_rst_busy` and `rd_rst_busy` are clear.
+
+### axis_sink  (`sources_1/new/axis_sink.v`)
+On-chip sink (harness only). `tready`=1; accumulates a 32-bit XOR checksum + total word
+count; `done = &lane_done` (each lane done on `tvalid & tlast`).
+
+---
+
+## 5. jls_encoder Pipeline (11 registered stages, 1 px/clk)
+
+Derived JPEG-LS constants for NEAR=0: T1=3, T2=7, T3=21, QBPP=8, LIMIT=23, A_INIT=4.
+Per-lane context memory: **366 contexts** — `Nram` 366×6, `Aram` 366×13, `Bram` 366×7 (signed),
+`Cram` 364×8 (signed). Golomb run table `J[0..31]`. Line buffer `LB_DEPTH` × 8-bit.
+
+| Stage | Function |
+|---|---|
+| **A** | Register input; maintain intra-strip coords `(ii, jj)` vs `(wl, hl)=(stripW-1, swathH-1)`; block-complete detect. |
+| **B** | First/last-column, first-row flags; end-of-frame (`eof`) detect; gate valid. |
+| **C** | Line-buffer read → causal neighbours a, b, c, d (above / left / above-left); first-row zero-fill. |
+| **D** | Context fixup at row/column boundaries; quantized gradient partial `qp1 = 81·Q(d−b)+9·Q(b−c)`. |
+| **E** | Full context index `{sign, q}`; read `C/N/B[q]`; predicted pixel + error residual; quantize + modrange; (lossless: reconstruct = input). |
+| **F(NBC)** | Write back updated N, B, C to context RAMs (or init during SOF). |
+| **EF** | Registered `Aram[q]` read (one cycle ahead of use). |
+| **F** | Golomb parameter `k=func_get_k(A,N)`; run counter/index; mapped error; accumulator `A` update. |
+| **G** | Write back `Aram`; parse the Golomb codeword (unary zero-run, data bits, run-interrupt prefix). |
+| **H** | Merge code components into a 57-bit bit-level buffer. |
+| **J** | 248-bit shift register → pack bytes; **0xFF byte-stuffing** (insert 0x00, consume 7 bits); on EOF drain + emit `FFD9` (EOI) footer. |
+| **K** | Prepend the 12-word JPEG-LS header (SOI `FFD8`, SOF55 `FFF7`, LSE, frame/scan params) during SOF; then forward. |
+
+Output: `o_e` (word valid), `o_data[15:0]` (compressed word), `o_last` (final word).
+
+---
+
+## 6. Splitting Modes & the Lockstep Model
+
+All 16 lanes advance one shared `(xs, ys)` counter over each lane's `stripW × swathH`
+sub-image, where `stripW = W/N_H`, `swathH = H/N_V`. Each cycle, the 128-bit input word's
+slot `k` carries lane `k`'s pixel; lane `k` occupies grid block `(bx=k%N_H, by=k/N_H)`, i.e.
+full-image pixel `(bx·stripW + xs, by·swathH + ys)`. Total cycles per frame = `stripW·swathH
+= W·H/16` in **every** mode.
+
+The input feed is produced by `tools/make_strided_hex.py <in.pgm> <out.hex> <N_H> <N_V>`,
+which packs byte `k = px[(by·swathH+ys)·W + (bx·stripW+xs)]` per word (column-strided for
+N_V=1, row-strided for N_H=1, block-strided otherwise). The same `(bx,by)` mapping is used by
+the splitter, `fifo_read_control`, and `encoder_wrapper` — verified consistent.
+
+**Hard requirement:** `W % N_H == 0` and `H % N_V == 0` (the lockstep delivers a uniform
+`stripW·swathH` to every lane; the tool asserts this). Consequences for a single image size:
+- Vertical (16×1) needs `W % 16 == 0`; horizontal (1×16) needs `H % 16 == 0`.
+- Block (4×4) needs `W % 4 == 0` and `H % 4 == 0`.
+
+**Line buffer:** `LB_DEPTH` must be ≥ per-lane strip width `W/N_H`. Canonical builds use
+`LB_DEPTH=1024` (→ max image width 16384 with 16 vertical strips). Horizontal (N_H=1) uses
+full-width strips, so wide images need `LB_DEPTH ≥ W` (more BRAM).
+
+---
+
+## 7. Build & Run
+
+```
+# Per-mode timing-closed bitstream (vertical 16 1, horizontal 1 16, block 4 4):
+vivado -mode batch -source build_wide_mode.tcl -tclargs <N_H> <N_V>
+#   copies rom_wide_h<NH>v<NV>.hex → rom_wide.hex, sets the (N_H,N_V) generic,
+#   runs synth_1 + impl_1 → write_bitstream, reports mode_h<NH>v<NV>_{util,timing}.rpt
+
+# Mode input ROM:      tools/make_strided_hex.py <in.pgm> <out.hex> <N_H> <N_V>
+# Lossless sim (AXIS): tb_jls_wide (16-lane capture) → output_h<NH>v<NV>_<W>x<H>.jls
+# Verify:              python verify_lossless.py <jls> <pgm> <N_H> <N_V>   (grid reassembly)
+```
+
+Clock: `clkwiz_3232.tcl` sets the MMCM to 32/32 MHz. The vertical default is restored by
+`restore_vertical_generic.tcl` (`.xpr` generic → N_H=16 N_V=1).
+
+---
+
+## 8. Synthesis & Implementation Results (timing-closed bitstreams)
+
+All three modes built from one RTL @ 32/32 MHz on `xc7a200tfbg676-2`, **0 failing endpoints**:
+
+| Mode | (N_H,N_V) | WNS | WHS | LUT (of 134600) | FF (of 269200) | BRAM (of 365) | DSP (of 740) |
+|---|---|---|---|---|---|---|---|
+| Vertical   | 16×1 | **+8.25 ns**  | +0.048 ns | 39576 (29.4%) | 25012 (9.3%) | 40 (11.0%) | 19 (2.6%) |
+| Horizontal | 1×16 | **+8.446 ns** | +0.034 ns | 39647 (29.5%) | 24663 (9.2%) | 40 (11.0%) | 19 (2.6%) |
+| Block      | 4×4  | **+8.636 ns** | +0.047 ns | 40300 (29.9%) | 24597 (9.1%) | 40 (11.0%) | 21 (2.8%) |
+
+Resource footprint is within ~0.5% across modes (identical encoder logic; only splitter
+routing and the input ROM differ). BRAM held to 40 (11%) — vs a naive 16-lane scaling of
+~860 — via shallow FIFOs (input 512, output 2048) enabled by 1:1 clocking, plus the
+`LB_DEPTH=1024` strip-width line buffer.
+
+---
+
+## 9. Throughput — Design Point and Real Maximum
+
+**Design point (verified, timing-closed):** 16 lanes × 1 px/clk × 32 MHz =
+**512 Mpix/s = 512 MB/s ≈ 4.1 Gb/s** (8-bit pixels).
+
+**Real maximum synthesizable throughput (fmax sweep):** The MMCM was reconfigured to a
+series of 1:1 clocks above 32 MHz and the design re-implemented (synth + place + route) at
+each, on the **vertical** config — which has the *tightest* slack at 32 MHz (+8.25 ns vs
++8.446 horizontal / +8.636 block), so its fmax is the guaranteed **floor for all three
+directions**. WNS is the final post-route setup slack of the encoder domain (`clk_out2`),
+which is the limiter (`clk_out1`/IO and inter-clock paths have >3 ns more margin at every
+point).
+
+| Clock (1:1) | Period | Encoder-domain WNS | WHS | Result | Throughput (16 lanes) |
+|---|---|---|---|---|---|
+| 42.105 MHz | 23.75 ns | +1.643 ns | +0.047 ns | closes | 673.7 MB/s (5.39 Gb/s) |
+| 44.444 MHz | 22.50 ns | +0.369 ns | +0.028 ns | closes | 711.1 MB/s (5.69 Gb/s) |
+| 47.059 MHz | 21.25 ns | +0.325 ns | +0.038 ns | closes | 752.9 MB/s (6.02 Gb/s) |
+| 50.000 MHz | 20.00 ns | +0.268 ns | +0.026 ns | closes | 800.0 MB/s (6.40 Gb/s) |
+| **53.333 MHz** | **18.75 ns** | **+0.159 ns** | **+0.044 ns** | **closes (max)** | **853.3 MB/s (6.83 Gb/s)** |
+| 57.143 MHz | 17.50 ns | −1.018 ns | — | fails | — |
+| 61.538 MHz | 16.25 ns | −2.365 ns | — | fails | — |
+
+**Real maximum: fmax = 53.33 MHz → 16 × 53.33 = 853.3 Mpix/s = 853.3 MB/s ≈ 6.83 Gb/s**
+(0 failing endpoints; the next 1:1 step, 57.1 MHz, fails). That is **+67 %** over the
+512 MB/s design point. All three split directions reach at least this figure (vertical is the
+tightest). The 32 MHz shipped design point is retained for guard-band and clean 1:1 MMCM
+generation; 53.33 MHz is the measured synthesizable ceiling of this RTL on the -2 device.
+Sweep script: `build_fmax_wide.tcl -tclargs <DIV>` (f = 800/DIV MHz, VCO = 800).
+
+> Historical note: an earlier "4 Gb/s @ 500 MHz" figure was a **behavioral-sim** result;
+> 500 MHz is **not** synthesizable on Artix-7. The numbers here are all real,
+> place-and-route-closed results.
+
+---
+
+## 10. Compression & Losslessness Results
+
+All NEAR=0 lossless, verified bit-exact by 16-lane grid reassembly (`verify_lossless.py`).
+
+**256×256 reference image** (`wide_256.pgm`), all three modes:
+
+| Mode | Output bytes | Ratio | Lossless |
+|---|---|---|---|
+| Vertical 16×1 | 9593 | 6.83:1 | exact |
+| Horizontal 1×16 | 9226 | 7.10:1 | exact |
+| Block 4×4 | 9056 | 7.24:1 | exact |
+
+**Block 4×4 size sweep** (`world_gray` satellite imagery, synthesizable IP over AXIS):
+
+| Image | Per-lane block | Output bytes | Ratio | Lossless |
+|---|---|---|---|---|
+| 300×300 | 75×75 | 12,650 | 7.11:1 | exact |
+| 1500×1500 | 375×375 | 540,125 | 4.17:1 | exact |
+| 3000×3000 | 750×750 | 1,884,408 | 4.78:1 | exact |
+| 5000×5000 | 1250×1250 | 5,776,389 | 4.33:1 | exact |
+
+**~5000-scale, all three directions** (`world_gray`; vertical/horizontal use 4992² = nearest
+multiple of 16, block uses native 5000²):
+
+| Mode | Image | Per-lane sub-image | Output bytes | Ratio | Lossless |
+|---|---|---|---|---|---|
+| Vertical 16×1 | 4992×4992 | 312×4992 | 5,730,774 | 4.35:1 | exact |
+| Horizontal 1×16 | 4992×4992 | 4992×312 | 5,816,262 | 4.28:1 | exact |
+| Block 4×4 | 5000×5000 | 1250×1250 | 5,776,389 | 4.33:1 | exact |
+
+At equal parallelism the three directions compress within a small margin (total block *area*
+dominates, not aspect ratio). Thin vertical strips (312 px wide) compress slightly worse than
+square blocks due to narrower causal context.
+
+---
+
+## 11. Constraints & Limits
+
+- **Divisibility (hard):** `W % N_H == 0`, `H % N_V == 0` (lockstep uniform blocks). Vertical/
+  horizontal at 16 lanes need a dimension ÷16; block 4×4 needs ÷4. E.g. 5000 is ÷4 (block OK)
+  but not ÷16 (vertical/horizontal use 4992).
+- **Line buffer:** `LB_DEPTH ≥ W/N_H`. Canonical 1024 → 16384 max width (vertical). Horizontal
+  full-width or large block strips need a larger `LB_DEPTH` (more BRAM); the 5000-scale sims
+  used `LB_DEPTH=8192`.
+- **On-chip demo ROM:** BRAM-limited to 256² in `jls_demo_top`; larger images drive the IP core
+  (`jls_encoder_axis`) over external AXIS. Throughput is size-independent (clock × lanes).
+- **Context memory:** 366 contexts/lane (JPEG-LS Appendix C).
+- **0xFF stuffing:** required by the spec, handled in stage J.
+
+---
+
+## 12. Verification Summary
+
+- **Functional:** every configuration bit-exact lossless via independent-decoder grid
+  reassembly (`verify_lossless.py`), from 256² up to 5000-scale, in all three directions.
+- **Timing:** all three bitstreams close with WNS ≥ +8.25 ns and WHS ≥ +0.034 ns (0 failing
+  endpoints) at 32/32 MHz.
+- **Equivalence:** the on-chip-ROM demo (`jls_demo_top`) output is byte-identical to the
+  AXIS-fed path, confirming synthesis preserved all encoding behaviour.

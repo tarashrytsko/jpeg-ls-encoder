@@ -186,10 +186,20 @@ sets the generic, and runs synth+impl→bitstream. Mode ROMs come from
 `tools/make_strided_hex.py <in.pgm> <out.hex> <N_H> <N_V>`. The read controller drains all 16
 lanes concurrently (`fifo_read_control.v`, single-pass), required because the wide splitter
 feeds every lane each cycle in lockstep. **Block 4×4 size sweep** (synthesizable IP via the
-AXIS harness, lossless): 300²→7.11:1, 1500²→4.17:1, 3000²→4.78:1. See `output_block/BENCHMARKS.md`.
+AXIS harness, lossless): 300²→7.11:1, 1500²→4.17:1, 3000²→4.78:1, 5000²→4.33:1. **~5000-scale
+all three directions** (lossless): vertical 16×1 @4992²→4.35:1, horizontal 1×16 @4992²→4.28:1,
+block 4×4 @5000²→4.33:1 (within ~1.6%). See `output_block/BENCHMARKS.md`.
 The on-chip-ROM demo bitstream is BRAM-limited to 256²; larger images drive the IP core over AXIS
-(strip width ≤ `LB_DEPTH=1024`). Single-direction modes need one dim ÷16 (vertical `W%16`,
-horizontal `H%16`); block only needs `W,H % N_H,N_V`, so 300/1500/3000 use block 4×4 (÷4).
+(strip width ≤ `LB_DEPTH`; canonical 1024, raised to 8192 for the 5000-scale sims). Single-direction
+modes need one dim ÷16 (vertical `W%16`, horizontal `H%16`); block only needs `W,H % N_H,N_V`, so
+300/1500/3000/5000 use block 4×4 (÷4), and vertical/horizontal use 4992 (÷16).
+
+**Real max synthesizable throughput.** An fmax sweep (MMCM reconfigured 1:1 above 32 MHz,
+re-implemented through route, on the tightest-slack vertical config → floor for all modes) closes
+at **53.33 MHz** (encoder-domain WNS +0.159 ns, 0 failing endpoints; 57.1 MHz fails). So the real
+maximum is **16 × 53.33 = 853 Mpix/s ≈ 853 MB/s ≈ 6.83 Gb/s** — **+67 %** over the 512 MB/s shipped
+design point. The 32 MHz point is retained for guard-band; sweep via `build_fmax_wide.tcl -tclargs
+<DIV>` (f = 800/DIV). Full RTL + HW reference: `docs/RTL_HW_IMPLEMENTATION.md`.
 
 ## Key Design Constraints
 
