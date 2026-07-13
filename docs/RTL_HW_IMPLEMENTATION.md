@@ -497,3 +497,40 @@ ISERDES front-end keeps the fabric at 45 MHz and puts the 360 MHz capture in har
 delivers the full 540 MB/s serial input **on the project's −2 part** with margin. Full bit-level
 IDELAY calibration is a hardware bring-up step. Build/verify: `iserdes_vlog.prj` (sim),
 `ooc_iserdes.tcl <part>` (map/synth).
+
+---
+
+## 16. End-to-End Serial-In Demo (ISERDES → CDC → encoder)
+
+The ISERDES front-end (§15) wired end-to-end to the encoder, the serial-input analogue of
+`jls_demo_top`:
+
+```
+12 serial pins ─IBUF─▶ iserdes_byte_in (ISERDESE2 1:8, §15) ─▶ 12 bytes @ 45 MHz
+  ─▶ BITSLIP align + sentinel framing ─▶ gearbox_afifo (async CDC, clk_div↔enc wr_clk)
+  ─▶ jls_encoder_axis (N_E=12, vertical 12×1) ─▶ 12 compressed lanes ─▶ axis_sink
+```
+
+**Integration points.**
+- **Clocking:** an `MMCME2_BASE` turns the 200 MHz board diff clock into `clk_bit` (360 MHz,
+  ISERDES line clock) + `clk_div` (45 MHz). The encoder makes its own 45 MHz (`clk`), so the
+  ISERDES output crosses an async 45↔45 boundary via `gearbox_afifo`.
+- **SOF stretch, no flow control:** the encoder holds `tready` low for 3000 cycles after SOF;
+  the CDC FIFO is sized **depth 4096** to absorb that backlog, so the serial source streams
+  continuously with no external handshake.
+- **Alignment / framing:** a receiver FSM BITSLIP-aligns on a `0x01` preamble, then begins
+  forwarding on a `0xAA` sentinel (so only pixel words reach the encoder).
+- Fixed `i_w`/`i_h` and a one-shot `i_sof` are generated on-chip after `sys_rdy`.
+
+**Verification.**
+- *End-to-end behavioral* (`tb_jls_serial_demo`, unisim `ISERDESE2` + the full encoder): serial
+  bytes @ 360 Mb/s → **300×300 compressed = 13,031 bytes, LOSSLESS (grid reassembly), and
+  byte-identical to the parallel/gearbox paths**.
+- *Structural* (`jls_serial_demo_top`): elaborates cleanly with all HW primitives (MMCM, IBUFDS,
+  IBUF, ISERDESE2, BUFG); its blocks are independently synth-proven (ISERDES OOC on −2, §15; the
+  encoder to a bitstream, §8). Full-top P&R needs an XDC for the 12 serial pins + clk/reset.
+
+**Note vs. `jls_demo_top`:** this is *not* a self-contained on-chip bitstream — `ISERDESE2`
+inputs must come from device pads, so the 12 serial lanes are real input pins (driven by an
+external serialiser; in sim, the testbench). That is inherent to a high-speed serial receiver.
+Build/verify: `serial_demo_vlog.prj` (end-to-end sim), `serial_demo_top_vlog.prj` (top elaborate).

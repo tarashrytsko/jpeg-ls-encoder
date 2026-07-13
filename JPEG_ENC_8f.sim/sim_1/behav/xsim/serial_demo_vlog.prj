@@ -1,0 +1,23 @@
+verilog xil_defaultlib  --include "../../../../JPEG_ENC_8f.ip_user_files/ipstatic" \
+"../../../../JPEG_ENC_8f.gen/sources_1/ip/fifo_output/sim/fifo_output.v" \
+"../../../../JPEG_ENC_8f.gen/sources_1/ip/fifo_generator_0/sim/fifo_generator_0.v" \
+"../../../../JPEG_ENC_8f.gen/sources_1/ip/clk_wiz_0/clk_wiz_0_clk_wiz.v" \
+"../../../../JPEG_ENC_8f.gen/sources_1/ip/clk_wiz_0/clk_wiz_0.v" \
+"../../../../JPEG_ENC_8f.srcs/sources_1/new/iserdes_byte_in.v" \
+"../../../../JPEG_ENC_8f.srcs/sources_1/new/byte_gearbox_12.v" \
+"../../../../JPEG_ENC_8f.srcs/sources_1/new/block_split.v" \
+"../../../../JPEG_ENC_8f.srcs/sources_1/new/axis_pixel_in.v" \
+"../../../../JPEG_ENC_8f.srcs/sources_1/new/encoder_wrapper.v" \
+"../../../../JPEG_ENC_8f.srcs/sources_1/new/fifo_read_control.v" \
+"../../../../JPEG_ENC_8f.srcs/sources_1/new/fifo_reset_bram_async.v" \
+"../../../../JPEG_ENC_8f.srcs/sources_1/new/fifo_wrapper_input.v" \
+"../../../../JPEG_ENC_8f.srcs/sources_1/new/fifo_wrapper_output.v" \
+"../../../../JPEG_ENC_8f.srcs/sources_1/new/fifo_write_control.v" \
+"../../../../JPEG_ENC_8f.srcs/sources_1/imports/FPGA Encoders/jls_encoder.v" \
+"../../../../JPEG_ENC_8f.srcs/sources_1/imports/FPGA Encoders/merger.v" \
+"../../../../JPEG_ENC_8f.srcs/sources_1/imports/FPGA Encoders/jls_encoder_axis.v" \
+"../../../../JPEG_ENC_8f.srcs/sim_1/imports/FPGA Encoders/tb_jls_serial_demo.v" \
+
+verilog xil_defaultlib "glbl.v"
+
+nosort
