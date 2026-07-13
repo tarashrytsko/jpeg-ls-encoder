@@ -512,9 +512,15 @@ The ISERDES front-end (§15) wired end-to-end to the encoder, the serial-input a
 ```
 
 **Integration points.**
-- **Clocking:** an `MMCME2_BASE` turns the 200 MHz board diff clock into `clk_bit` (360 MHz,
-  ISERDES line clock) + `clk_div` (45 MHz). The encoder makes its own 45 MHz (`clk`), so the
-  ISERDES output crosses an async 45↔45 boundary via `gearbox_afifo`.
+- **Clocking (single MMCM):** one `MMCME2_BASE` turns the 200 MHz board diff clock — buffered
+  **once** by `IBUFDS` — into `clk_bit` (360 MHz, ISERDES line clock) + `clk_div` (45 MHz).
+  VCO = 900 MHz from **integer** feedback `M=9` with `DIVCLK=2` (Fpfd 100 MHz) and a single
+  fractional output `CLKOUT0=2.5`, so every divider lands on the 0.125 hardware grid
+  (DRC AVAL-139 clean — an earlier `M=7.2` off-grid value blocked bitgen). The encoder takes its
+  45 MHz from this MMCM via a new backward-compatible `EXT_CLK=1` mode (`jls_encoder_axis`), rather
+  than instantiating its own `clk_wiz_0`: a board has one clock and a port can feed only one input
+  buffer, so a second on-chip IBUFDS on the same pins is illegal. `gearbox_afifo` still bridges the
+  `clk_div`→encoder domains (now the same frequency).
 - **SOF stretch, no flow control:** the encoder holds `tready` low for 3000 cycles after SOF;
   the CDC FIFO is sized **depth 4096** to absorb that backlog, so the serial source streams
   continuously with no external handshake.
@@ -522,15 +528,32 @@ The ISERDES front-end (§15) wired end-to-end to the encoder, the serial-input a
   forwarding on a `0xAA` sentinel (so only pixel words reach the encoder).
 - Fixed `i_w`/`i_h` and a one-shot `i_sof` are generated on-chip after `sys_rdy`.
 
-**Verification.**
-- *End-to-end behavioral* (`tb_jls_serial_demo`, unisim `ISERDESE2` + the full encoder): serial
-  bytes @ 360 Mb/s → **300×300 compressed = 13,031 bytes, LOSSLESS (grid reassembly), and
-  byte-identical to the parallel/gearbox paths**.
-- *Structural* (`jls_serial_demo_top`): elaborates cleanly with all HW primitives (MMCM, IBUFDS,
-  IBUF, ISERDESE2, BUFG); its blocks are independently synth-proven (ISERDES OOC on −2, §15; the
-  encoder to a bitstream, §8). Full-top P&R needs an XDC for the 12 serial pins + clk/reset.
+**Verification — end-to-end behavioral** (`tb_jls_serial_demo`, unisim `ISERDESE2` + the full
+encoder): serial bytes @ 360 Mb/s → compressed capture, grid-reassembly lossless vs the source PGM,
+byte-identical to the parallel/gearbox paths. Verified across image sizes (vertical 12×1):
+
+| Image | Serial out (B) | Ratio | Result |
+|---|---|---|---|
+| 300×300   | 13,031    | 6.91:1 | LOSSLESS |
+| 1500×1500 | 542,628   | 4.15:1 | LOSSLESS |
+| 3000×3000 | 1,883,214 | 4.78:1 | LOSSLESS |
+
+(The 3000×3000 serial byte count matches the AXIS/block-mode result in `CLAUDE.md` exactly —
+the serial front-end changes only *how* pixels arrive, never the compressed output.)
+
+**Verification — synthesizable bitstream** (`jls_serial_demo_top`, real P&R on xc7a200tfbg676-2,
+`build_serial_demo.tcl`): synth → place & route → **`jls_serial_demo_top.bit`**, **timing-closed
+WNS +0.743 ns / WHS +0.048 ns, DRC 0 errors**. Utilization: LUT 37 405 (27.8 %; incl. 10 412
+LUT-as-memory = the depth-4096 distributed CDC FIFO — async-read, so it stays LUTRAM not BRAM),
+FF 18 937 (7.0 %), BRAM 30 (8.2 %), DSP 14 (1.9 %), **12× ISERDESE2**, 1 MMCM, 2 BUFG, 48 IOB.
+XDC (`constrs_1/imports/new/jls_serial_demo_top.xdc`): diff clock R3/P3, reset R8, `clk`/`done`/
+`status[30:0]` on the same pins as `jls_demo_top_wide.xdc`; the 12 `ser_d` ISERDES inputs are
+`set_false_path` and auto-placed (UCIO/NSTD downgraded to warning in the build) — a real board pins
+them and adds per-bit IDELAYE2 eye-centering.
 
 **Note vs. `jls_demo_top`:** this is *not* a self-contained on-chip bitstream — `ISERDESE2`
 inputs must come from device pads, so the 12 serial lanes are real input pins (driven by an
 external serialiser; in sim, the testbench). That is inherent to a high-speed serial receiver.
-Build/verify: `serial_demo_vlog.prj` (end-to-end sim), `serial_demo_top_vlog.prj` (top elaborate).
+The `.bit` is a regenerable build artifact (not committed); rebuild with `build_serial_demo.tcl`,
+which also restores the canonical `jls_demo_top` / 12-lane config afterward. Sim projects:
+`serial_demo_vlog.prj` (end-to-end sim), `serial_demo_top_vlog.prj` (top elaborate).

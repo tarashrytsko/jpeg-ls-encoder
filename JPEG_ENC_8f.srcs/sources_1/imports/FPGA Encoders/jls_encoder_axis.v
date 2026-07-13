@@ -4,12 +4,16 @@ module jls_encoder_axis #(
     parameter integer N_H = 16,  // columns. N_H=1 => horizontal split
     parameter integer N_V = 1,   // swaths.  N_V=1 => vertical split
     parameter integer L   = 64,
-    parameter [2:0]   nr  = 3'd0 // NEAR fixed 0 (lossless)
+    parameter [2:0]   nr  = 3'd0, // NEAR fixed 0 (lossless)
+    parameter integer EXT_CLK = 0 // 1 => take clk/rd_clk from ext_clk (skip clk_wiz_0);
+                                  //      for tops that own the MMCM (e.g. serial demo)
 )(
     input  wire        rstn,
     output wire        clk,         // wr_clk (also s_axis_aclk / m_axis_aclk)
-    input  wire        clk_in1_p,
-    input  wire        clk_in1_n,
+    input  wire        clk_in1_p,   // (unused when EXT_CLK=1)
+    input  wire        clk_in1_n,   // (unused when EXT_CLK=1)
+    input  wire        ext_clk,     // external wr_clk=rd_clk (used when EXT_CLK=1)
+    input  wire        ext_locked,  // external clock-locked (used when EXT_CLK=1)
     output wire        sys_rdy,
 
     // sideband control
@@ -49,14 +53,22 @@ wire [N_E-1:0] o_sof_st;
     // Clock wizard: clk_out1 = wr_clk (input/FIFO-read), clk_out2 = rd_clk (encoder)
     // =================================================================
     wire locked;
-    clk_wiz_0 clk_wiz_0 (
-        .clk_out1(clk),
-        .clk_out2(rd_clk),
-        .reset(~rstn),
-        .locked(locked),
-        .clk_in1_p(clk_in1_p),
-        .clk_in1_n(clk_in1_n)
-    );
+    generate
+      if (EXT_CLK == 0) begin : g_clkwiz
+        clk_wiz_0 clk_wiz_0 (
+            .clk_out1(clk),
+            .clk_out2(rd_clk),
+            .reset(~rstn),
+            .locked(locked),
+            .clk_in1_p(clk_in1_p),
+            .clk_in1_n(clk_in1_n)
+        );
+      end else begin : g_extclk
+        assign clk    = ext_clk;    // wr_clk = rd_clk = external MMCM output
+        assign rd_clk = ext_clk;
+        assign locked = ext_locked;
+      end
+    endgenerate
 
     // =================================================================
     // FIFO reset logic

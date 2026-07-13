@@ -35,14 +35,16 @@ module jls_serial_demo_top #(
     wire clk200;
     IBUFDS u_ibufds (.I(clk_in1_p), .IB(clk_in1_n), .O(clk200));
 
-    // ---- MMCM: 200 MHz -> clk_bit 360 MHz + clk_div 45 MHz (VCO 1440) ----
+    // ---- MMCM: 200 MHz -> clk_bit 360 MHz + clk_div 45 MHz (VCO 900) ----
+    // Integer feedback (M=9) + a single fractional output (CLKOUT0=2.5) keeps every
+    // divider on the 0.125 hardware grid (AVAL-139 clean). Fpfd = 200/2 = 100 MHz.
     wire clkfb, clk_bit_i, clk_div_i, mmcm_locked;
     MMCME2_BASE #(
         .CLKIN1_PERIOD   (5.000),   // 200 MHz
-        .DIVCLK_DIVIDE   (1),
-        .CLKFBOUT_MULT_F (7.200),   // VCO = 200*7.2 = 1440 MHz
-        .CLKOUT0_DIVIDE_F(4.000),   // 1440/4  = 360 MHz
-        .CLKOUT1_DIVIDE  (32)       // 1440/32 = 45 MHz
+        .DIVCLK_DIVIDE   (2),       // Fpfd = 100 MHz
+        .CLKFBOUT_MULT_F (9.000),   // VCO = 100*9 = 900 MHz  (integer feedback)
+        .CLKOUT0_DIVIDE_F(2.500),   // 900/2.5 = 360 MHz  (clk_bit; sole fractional output)
+        .CLKOUT1_DIVIDE  (20)       // 900/20  = 45 MHz   (clk_div)
     ) u_mmcm (
         .CLKIN1(clk200), .CLKFBIN(clkfb), .CLKFBOUT(clkfb),
         .CLKOUT0(clk_bit_i), .CLKOUT1(clk_div_i),
@@ -114,8 +116,11 @@ module jls_serial_demo_top #(
     end
 
     wire [N*16-1:0] m_tdata;  wire [N-1:0] m_tvalid, m_tlast, m_tready;
-    jls_encoder_axis #(.N_E(N), .N_H(N), .N_V(1)) u_enc (
-        .rstn(rstn), .clk(clk_enc), .clk_in1_p(clk_in1_p), .clk_in1_n(clk_in1_n),
+    // Encoder takes its 45 MHz from the top MMCM (EXT_CLK=1) — the board's single diff
+    // clock is buffered once (u_ibufds) for the MMCM, so the encoder must NOT re-buffer it.
+    jls_encoder_axis #(.N_E(N), .N_H(N), .N_V(1), .EXT_CLK(1)) u_enc (
+        .rstn(rstn), .clk(clk_enc), .clk_in1_p(1'b0), .clk_in1_n(1'b0),
+        .ext_clk(clk_div), .ext_locked(mmcm_locked),
         .sys_rdy(sys_rdy), .i_sof(i_sof), .i_w(IMG_W[15:0]), .i_h(IMG_H[13:0]),
         .s_axis_tdata(s_tdata), .s_axis_tvalid(s_tvalid), .s_axis_tready(s_tready),
         .s_axis_tlast(1'b0),
