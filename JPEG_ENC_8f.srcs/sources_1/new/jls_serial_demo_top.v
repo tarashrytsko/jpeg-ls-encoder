@@ -18,6 +18,8 @@
 // ---------------------------------------------------------------------------
 module jls_serial_demo_top #(
     parameter integer N     = 12,
+    parameter integer N_H   = N,    // split grid: vertical=(N,1), horizontal=(1,N), block=(4,3)
+    parameter integer N_V   = 1,    // N_H*N_V must equal N
     parameter integer IMG_W = 300,
     parameter integer IMG_H = 300
 )(
@@ -118,7 +120,7 @@ module jls_serial_demo_top #(
     wire [N*16-1:0] m_tdata;  wire [N-1:0] m_tvalid, m_tlast, m_tready;
     // Encoder takes its 45 MHz from the top MMCM (EXT_CLK=1) — the board's single diff
     // clock is buffered once (u_ibufds) for the MMCM, so the encoder must NOT re-buffer it.
-    jls_encoder_axis #(.N_E(N), .N_H(N), .N_V(1), .EXT_CLK(1)) u_enc (
+    jls_encoder_axis #(.N_E(N), .N_H(N_H), .N_V(N_V), .EXT_CLK(1)) u_enc (
         .rstn(rstn), .clk(clk_enc), .clk_in1_p(1'b0), .clk_in1_n(1'b0),
         .ext_clk(clk_div), .ext_locked(mmcm_locked),
         .sys_rdy(sys_rdy), .i_sof(i_sof), .i_w(IMG_W[15:0]), .i_h(IMG_H[13:0]),

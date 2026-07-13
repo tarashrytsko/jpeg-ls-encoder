@@ -551,6 +551,24 @@ XDC (`constrs_1/imports/new/jls_serial_demo_top.xdc`): diff clock R3/P3, reset R
 `set_false_path` and auto-placed (UCIO/NSTD downgraded to warning in the build) — a real board pins
 them and adds per-bit IDELAYE2 eye-centering.
 
+**All three split directions (serial path).** The serial front-end is direction-agnostic —
+`(N_H, N_V)` only re-parameterises the encoder's block grid and the external feed striding; the
+ISERDES → CDC path is identical. Both `tb_jls_serial_demo` and `jls_serial_demo_top` are
+parameterised on `(N_H, N_V)` (default vertical). Verified at 300² — serial end-to-end,
+CharLS-decoded pixel-exact lossless — and each built to a **timing-closed bitstream**
+(`build_serial_mode.tcl -tclargs <N_H> <N_V>`):
+
+| Mode | (N_H,N_V) | Serial out @300² | Ratio | WNS | WHS | LUT | Bitstream |
+|---|---|---|---|---|---|---|---|
+| Vertical   | 12×1 | 13,031 | 6.91:1 | +0.743 ns | +0.048 ns | 27.79 % | `jls_serial_demo_top.bit` |
+| Horizontal | 1×12 | 12,538 | 7.18:1 | +0.184 ns | +0.045 ns | 27.85 % | `jls_serial_demo_top_h1v12.bit` |
+| Block      | 4×3  | 12,464 | 7.22:1 | +0.573 ns | +0.026 ns | 27.98 % | `jls_serial_demo_top_h4v3.bit` |
+
+Resources are direction-invariant (FF 7.0 %, BRAM 30, DSP 14, 12× ISERDESE2 in all three) — as in
+the wide 16-lane study, per-lane block *area* sets the cost, not the cut direction. Horizontal
+(N_H=1) uses full-width line buffers (300 ≤ `LB_DEPTH` 1024 here); larger horizontal images need
+`LB_DEPTH ≥ W`. All lossless (CharLS reference decode vs the source PGM).
+
 **Note vs. `jls_demo_top`:** this is *not* a self-contained on-chip bitstream — `ISERDESE2`
 inputs must come from device pads, so the 12 serial lanes are real input pins (driven by an
 external serialiser; in sim, the testbench). That is inherent to a high-speed serial receiver.

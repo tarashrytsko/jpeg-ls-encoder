@@ -14,12 +14,14 @@
 // Verifies the compressed output is bit-exact lossless (== the parallel/gearbox paths).
 module tb_jls_serial_demo #(
     parameter integer N   = 12,
+    parameter integer N_H = N,    // split grid: vertical=(N,1), horizontal=(1,N), block=(4,3)
+    parameter integer N_V = 1,    // N_H*N_V must equal N
     parameter integer IMG_W = 300,
     parameter integer IMG_H = 300,
     parameter HEXFILE = "D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.sim/images/vert12x1_300.hex",
     parameter integer MAX_BYTES_PER_SLICE = 300000
 ) ();
-    localparam integer NWORDS = (IMG_W/N) * IMG_H;    // 7500 for vert12x1 300
+    localparam integer NWORDS = (IMG_W*IMG_H) / N;    // total pixels / lanes (same all dirs)
     localparam [7:0]   PRE = 8'h01;                   // alignment preamble (rotation-unique)
     localparam [7:0]   SNT = 8'hAA;                   // pixel-stream start sentinel
 
@@ -137,7 +139,7 @@ module tb_jls_serial_demo #(
     assign enc_ready = s_tready;
 
     reg  i_sof = 0;  reg [15:0] i_w = 0;  reg [13:0] i_h = 0;
-    jls_encoder_axis #(.N_E(N), .N_H(N), .N_V(1)) dut (
+    jls_encoder_axis #(.N_E(N), .N_H(N_H), .N_V(N_V)) dut (
         .rstn(rstn), .clk(clk), .clk_in1_p(clk_in1_p), .clk_in1_n(clk_in1_n),
         .sys_rdy(sys_rdy), .i_sof(i_sof), .i_w(i_w), .i_h(i_h),
         .s_axis_tdata(s_tdata), .s_axis_tvalid(s_tvalid), .s_axis_tready(s_tready),
@@ -193,7 +195,7 @@ module tb_jls_serial_demo #(
 
     initial begin
         wait (all_done); repeat (50) @(posedge clk);
-        $sformat(outpath, "D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.sim/output_block/output_serialdemo_h%0dv1_%0dx%0d.jls", N, IMG_W, IMG_H);
+        $sformat(outpath, "D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.sim/output_block/output_serialdemo_h%0dv%0d_%0dx%0d.jls", N_H, N_V, IMG_W, IMG_H);
         fout = $fopen(outpath, "wb"); total_out = 0;
         for (ei=0; ei<N; ei=ei+1) for (bi=0; bi<slice_len[ei]; bi=bi+1) begin
             $fwrite(fout, "%c", slice_buf[ei][bi]); total_out=total_out+1;
