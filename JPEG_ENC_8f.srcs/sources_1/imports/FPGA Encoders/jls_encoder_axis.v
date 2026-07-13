@@ -5,8 +5,10 @@ module jls_encoder_axis #(
     parameter integer N_V = 1,   // swaths.  N_V=1 => vertical split
     parameter integer L   = 64,
     parameter [2:0]   nr  = 3'd0, // NEAR fixed 0 (lossless)
-    parameter integer EXT_CLK = 0 // 1 => take clk/rd_clk from ext_clk (skip clk_wiz_0);
+    parameter integer EXT_CLK = 0,// 1 => take clk/rd_clk from ext_clk (skip clk_wiz_0);
                                   //      for tops that own the MMCM (e.g. serial demo)
+    parameter integer LB_DEPTH = 1024 // line-buffer depth = max strip width (i_w/N_H);
+                                  //      horizontal (N_H=1) needs LB_DEPTH >= image width
 )(
     input  wire        rstn,
     output wire        clk,         // wr_clk (also s_axis_aclk / m_axis_aclk)
@@ -225,7 +227,8 @@ wire [N_E-1:0] o_sof_st;
         .N_H(N_H),
         .N_V(N_V),
         .nr(nr),
-        .L(L)
+        .L(L),
+        .LB_DEPTH(LB_DEPTH)
     ) u_encoder_wrapper (
         .rd_clk(rd_clk),
         .sys_rdy(sys_rdy),

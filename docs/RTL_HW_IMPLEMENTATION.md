@@ -528,50 +528,56 @@ The ISERDES front-end (§15) wired end-to-end to the encoder, the serial-input a
   forwarding on a `0xAA` sentinel (so only pixel words reach the encoder).
 - Fixed `i_w`/`i_h` and a one-shot `i_sof` are generated on-chip after `sys_rdy`.
 
-**Verification — end-to-end behavioral** (`tb_jls_serial_demo`, unisim `ISERDESE2` + the full
-encoder): serial bytes @ 360 Mb/s → compressed capture, grid-reassembly lossless vs the source PGM,
-byte-identical to the parallel/gearbox paths. Verified across image sizes (vertical 12×1):
+**Verification — end-to-end behavioral, full size × direction matrix.** `tb_jls_serial_demo`
+(unisim `ISERDESE2` + the full encoder) drives serial bytes @ 360 Mb/s → compressed capture; each
+lane's chunk is decoded by the **CharLS reference decoder** (`imagecodecs.jpegls_decode`, via
+`verify_lossless.py`) and grid-reassembled for a **pixel-exact** compare against the source PGM.
+The serial front-end is direction-agnostic — `(N_H, N_V)` only re-parameterises the encoder block
+grid and the external feed striding; the ISERDES → CDC path is identical — so both
+`tb_jls_serial_demo` and `jls_serial_demo_top` are parameterised on `(N_H, N_V)` (default vertical).
+**All nine (3 sizes × 3 directions) decode LOSSLESS**; compressed bytes (ratio):
 
-| Image | Serial out (B) | Ratio | Result |
+| Image | Vertical 12×1 | Horizontal 1×12 | Block 4×3 |
 |---|---|---|---|
-| 300×300   | 13,031    | 6.91:1 | LOSSLESS |
-| 1500×1500 | 542,628   | 4.15:1 | LOSSLESS |
-| 3000×3000 | 1,883,214 | 4.78:1 | LOSSLESS |
+| 300×300   | 13,031 (6.91:1)      | 12,538 (7.18:1)      | 12,464 (7.22:1)      |
+| 1500×1500 | 542,628 (4.15:1)     | 541,936 (4.15:1)     | 539,490 (4.17:1)     |
+| 3000×3000 | 1,883,214 (4.78:1)   | 1,895,967 (4.75:1)   | 1,883,193 (4.78:1)   |
 
-(The 3000×3000 serial byte count matches the AXIS/block-mode result in `CLAUDE.md` exactly —
-the serial front-end changes only *how* pixels arrive, never the compressed output.)
+At each size the three directions compress within ~1 % (per-lane block *area* dominates, not cut
+direction — matching the wide 16-lane study). Serial byte counts match the AXIS/parallel path
+exactly: the front-end changes only *how* pixels arrive, never the compressed output.
 
-**Verification — synthesizable bitstream** (`jls_serial_demo_top`, real P&R on xc7a200tfbg676-2,
-`build_serial_demo.tcl`): synth → place & route → **`jls_serial_demo_top.bit`**, **timing-closed
-WNS +0.743 ns / WHS +0.048 ns, DRC 0 errors**. Utilization: LUT 37 405 (27.8 %; incl. 10 412
-LUT-as-memory = the depth-4096 distributed CDC FIFO — async-read, so it stays LUTRAM not BRAM),
-FF 18 937 (7.0 %), BRAM 30 (8.2 %), DSP 14 (1.9 %), **12× ISERDESE2**, 1 MMCM, 2 BUFG, 48 IOB.
-XDC (`constrs_1/imports/new/jls_serial_demo_top.xdc`): diff clock R3/P3, reset R8, `clk`/`done`/
-`status[30:0]` on the same pins as `jls_demo_top_wide.xdc`; the 12 `ser_d` ISERDES inputs are
-`set_false_path` and auto-placed (UCIO/NSTD downgraded to warning in the build) — a real board pins
-them and adds per-bit IDELAYE2 eye-centering.
+**Line-buffer sizing (`LB_DEPTH`).** The per-lane line buffer must hold one full block row =
+per-lane strip width = `i_w / N_H`. `LB_DEPTH` is parameterised end-to-end
+(`encoder_wrapper → jls_encoder_axis → jls_serial_demo_top`/`tb`, default 1024). Vertical
+(strip `W/12`) and block 4×3 (strip `W/4`) stay ≤ 1024 through 3000² (250 and 750), so those builds
+are line-buffer-invariant with size. **Horizontal (N_H=1) needs `LB_DEPTH ≥ W`** — the only
+size-dependent case.
 
-**All three split directions (serial path).** The serial front-end is direction-agnostic —
-`(N_H, N_V)` only re-parameterises the encoder's block grid and the external feed striding; the
-ISERDES → CDC path is identical. Both `tb_jls_serial_demo` and `jls_serial_demo_top` are
-parameterised on `(N_H, N_V)` (default vertical). Verified at 300² — serial end-to-end,
-CharLS-decoded pixel-exact lossless — and each built to a **timing-closed bitstream**
-(`build_serial_mode.tcl -tclargs <N_H> <N_V>`):
+**Verification — synthesizable bitstreams** (`jls_serial_demo_top`, real P&R on xc7a200tfbg676-2;
+`build_serial_mode.tcl -tclargs <N_H> <N_V> [LB_DEPTH IMG_W IMG_H]`). All timing-closed, DRC 0
+errors, each restores the canonical `jls_demo_top` config afterward:
 
-| Mode | (N_H,N_V) | Serial out @300² | Ratio | WNS | WHS | LUT | Bitstream |
+| Mode | (N_H,N_V) | IMG | LB_DEPTH | WNS | WHS | LUT | BRAM |
 |---|---|---|---|---|---|---|---|
-| Vertical   | 12×1 | 13,031 | 6.91:1 | +0.743 ns | +0.048 ns | 27.79 % | `jls_serial_demo_top.bit` |
-| Horizontal | 1×12 | 12,538 | 7.18:1 | +0.184 ns | +0.045 ns | 27.85 % | `jls_serial_demo_top_h1v12.bit` |
-| Block      | 4×3  | 12,464 | 7.22:1 | +0.573 ns | +0.026 ns | 27.98 % | `jls_serial_demo_top_h4v3.bit` |
+| Vertical   | 12×1 | 300²  | 1024 | +0.743 ns | +0.048 ns | 27.79 % | 30 |
+| Horizontal | 1×12 | 300²  | 1024 | +0.184 ns | +0.045 ns | 27.85 % | 30 |
+| Block      | 4×3  | 300²  | 1024 | +0.573 ns | +0.026 ns | 27.98 % | 30 |
+| Horizontal | 1×12 | 3000² | 4096 | +0.329 ns | +0.033 ns | 28.14 % | 36 |
 
-Resources are direction-invariant (FF 7.0 %, BRAM 30, DSP 14, 12× ISERDESE2 in all three) — as in
-the wide 16-lane study, per-lane block *area* sets the cost, not the cut direction. Horizontal
-(N_H=1) uses full-width line buffers (300 ≤ `LB_DEPTH` 1024 here); larger horizontal images need
-`LB_DEPTH ≥ W`. All lossless (CharLS reference decode vs the source PGM).
+The three 300² directions are near-identical (LUT ≈ 27.8–28.0 %, FF 7.0 %, BRAM 30, DSP 14,
+**12× ISERDESE2**, 1 MMCM in each). The full-width horizontal build at 3000² (`LB_DEPTH=4096`)
+still closes with +0.329 ns and only grows BRAM 30 → 36 (the deeper per-lane line buffers) — the
+LUT 37 405 total includes ~10.4 k LUT-as-memory for the async-read depth-4096 CDC FIFO. Vertical
+and block at 1500²/3000² reuse the `LB_DEPTH=1024` config (strip < 1024), i.e. the 300² builds.
+XDC (`jls_serial_demo_top.xdc`): diff clock R3/P3, reset R8, `clk`/`done`/`status[30:0]` on the
+`jls_demo_top_wide.xdc` pins; the 12 `ser_d` ISERDES inputs are `set_false_path` + auto-placed
+(UCIO/NSTD downgraded) — a real board pins them and adds per-bit IDELAYE2 eye-centering.
 
 **Note vs. `jls_demo_top`:** this is *not* a self-contained on-chip bitstream — `ISERDESE2`
 inputs must come from device pads, so the 12 serial lanes are real input pins (driven by an
 external serialiser; in sim, the testbench). That is inherent to a high-speed serial receiver.
-The `.bit` is a regenerable build artifact (not committed); rebuild with `build_serial_demo.tcl`,
-which also restores the canonical `jls_demo_top` / 12-lane config afterward. Sim projects:
-`serial_demo_vlog.prj` (end-to-end sim), `serial_demo_top_vlog.prj` (top elaborate).
+The `.bit`s are regenerable build artifacts (not committed); rebuild the vertical baseline with
+`build_serial_demo.tcl` or any direction/size with `build_serial_mode.tcl -tclargs <N_H> <N_V>
+[LB_DEPTH IMG_W IMG_H]` — both restore the canonical `jls_demo_top` / 12-lane config afterward.
+Sim projects: `serial_demo_vlog.prj` (end-to-end sim), `serial_demo_top_vlog.prj` (top elaborate).

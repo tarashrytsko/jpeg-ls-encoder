@@ -16,6 +16,7 @@ module tb_jls_serial_demo #(
     parameter integer N   = 12,
     parameter integer N_H = N,    // split grid: vertical=(N,1), horizontal=(1,N), block=(4,3)
     parameter integer N_V = 1,    // N_H*N_V must equal N
+    parameter integer LB_DEPTH = 1024, // line-buffer depth; horizontal (N_H=1) needs >= IMG_W
     parameter integer IMG_W = 300,
     parameter integer IMG_H = 300,
     parameter HEXFILE = "D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.sim/images/vert12x1_300.hex",
@@ -139,7 +140,7 @@ module tb_jls_serial_demo #(
     assign enc_ready = s_tready;
 
     reg  i_sof = 0;  reg [15:0] i_w = 0;  reg [13:0] i_h = 0;
-    jls_encoder_axis #(.N_E(N), .N_H(N_H), .N_V(N_V)) dut (
+    jls_encoder_axis #(.N_E(N), .N_H(N_H), .N_V(N_V), .LB_DEPTH(LB_DEPTH)) dut (
         .rstn(rstn), .clk(clk), .clk_in1_p(clk_in1_p), .clk_in1_n(clk_in1_n),
         .sys_rdy(sys_rdy), .i_sof(i_sof), .i_w(i_w), .i_h(i_h),
         .s_axis_tdata(s_tdata), .s_axis_tvalid(s_tvalid), .s_axis_tready(s_tready),

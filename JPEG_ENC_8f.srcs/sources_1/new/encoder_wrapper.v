@@ -4,7 +4,9 @@ module encoder_wrapper #(
     parameter integer N_H      = 2,   // horizontal blocks (cols)
     parameter integer N_V      = 2,   // vertical swaths
     parameter integer nr       = 0,
-    parameter integer L        = 64
+    parameter integer L        = 64,
+    parameter integer LB_DEPTH = 1024 // line-buffer depth = max per-lane strip width (i_w/N_H);
+                                      // horizontal (N_H=1) needs LB_DEPTH >= image width
 )(
     input  wire              rd_clk,
     input  wire              sys_rdy,
@@ -54,7 +56,7 @@ module encoder_wrapper #(
             jls_encoder #(
                 .NEAR(nr),
                 .N_E(1),
-                .LB_DEPTH(1024)
+                .LB_DEPTH(LB_DEPTH)
             ) u_encoder (
                 .rstn     (sys_rdy),
                 .clk      (rd_clk),
