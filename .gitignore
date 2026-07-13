@@ -40,3 +40,7 @@
 # fmax sweep reports (root)
 /n12_45_util.rpt
 /n12_45_timing.rpt
+
+# IP packaging scratch projects
+/.ip_pkg_tmp/
+/.ip_inst_tmp/
