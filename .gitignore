@@ -44,3 +44,8 @@
 # IP packaging scratch projects
 /.ip_pkg_tmp/
 /.ip_inst_tmp/
+
+# jls_encoder_ip regenerable OOC build products (rebuilt from the .xci)
+/JPEG_ENC_8f.gen/sources_1/ip/jls_encoder_ip/*_sim_netlist.*
+/JPEG_ENC_8f.gen/sources_1/ip/jls_encoder_ip/jls_encoder_ip.dcp
+/JPEG_ENC_8f.runs/jls_encoder_ip_synth_1/

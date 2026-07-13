@@ -53,25 +53,47 @@ module encoder_wrapper #(
         for (g_enc = 0; g_enc < N_E; g_enc = g_enc + 1) begin : ENC_INST
             wire [ENC_ID_WIDTH-1:0] curr_enc_sig = 0;
 
-            jls_encoder #(
-                .NEAR(nr),
-                .N_E(1),
-                .LB_DEPTH(LB_DEPTH)
-            ) u_encoder (
-                .rstn     (sys_rdy),
-                .clk      (rd_clk),
-                .i_sof    (enc_i_sofx[g_enc]),
-                .i_w      (col_w[g_enc % N_H]),
-                .i_h      (row_h[g_enc / N_H]),
-                .i_e      (rd_en_gated[g_enc]),
-                .i_x      (dout[g_enc*8 +: 8]),
-                .my_last  (my_last[g_enc]),
-                .o_e      (e_e[g_enc]),
-                .o_data   (e_data[g_enc*16 +: 16]),
-                .o_last   (o_last[g_enc]),
-                .is_last_encoder(g_enc == N_E-1),
-                .cur_enc  (curr_enc_sig)
-            );
+            // Canonical config (lossless, LB_DEPTH=1024) uses the packaged IP core
+            // (user.org:user:jls_encoder:1.0, fixed NEAR=0/N_E=1/LB_DEPTH=1024). Wide
+            // builds (LB_DEPTH>1024, e.g. full-width horizontal) keep the parameterized
+            // RTL, since a Vivado IP instance has a fixed LB_DEPTH.
+            if (LB_DEPTH == 1024 && nr == 0) begin : g_ip
+                jls_encoder_ip u_encoder (
+                    .rstn     (sys_rdy),
+                    .clk      (rd_clk),
+                    .i_sof    (enc_i_sofx[g_enc]),
+                    .i_w      (col_w[g_enc % N_H]),
+                    .i_h      (row_h[g_enc / N_H]),
+                    .i_e      (rd_en_gated[g_enc]),
+                    .i_x      (dout[g_enc*8 +: 8]),
+                    .my_last  (my_last[g_enc]),
+                    .o_e      (e_e[g_enc]),
+                    .o_data   (e_data[g_enc*16 +: 16]),
+                    .o_last   (o_last[g_enc]),
+                    .is_last_encoder(g_enc == N_E-1),
+                    .cur_enc  (curr_enc_sig)
+                );
+            end else begin : g_rtl
+                jls_encoder #(
+                    .NEAR(nr),
+                    .N_E(1),
+                    .LB_DEPTH(LB_DEPTH)
+                ) u_encoder (
+                    .rstn     (sys_rdy),
+                    .clk      (rd_clk),
+                    .i_sof    (enc_i_sofx[g_enc]),
+                    .i_w      (col_w[g_enc % N_H]),
+                    .i_h      (row_h[g_enc / N_H]),
+                    .i_e      (rd_en_gated[g_enc]),
+                    .i_x      (dout[g_enc*8 +: 8]),
+                    .my_last  (my_last[g_enc]),
+                    .o_e      (e_e[g_enc]),
+                    .o_data   (e_data[g_enc*16 +: 16]),
+                    .o_last   (o_last[g_enc]),
+                    .is_last_encoder(g_enc == N_E-1),
+                    .cur_enc  (curr_enc_sig)
+                );
+            end
         end
     endgenerate
 
