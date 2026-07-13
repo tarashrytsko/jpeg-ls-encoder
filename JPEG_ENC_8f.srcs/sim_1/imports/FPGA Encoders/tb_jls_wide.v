@@ -11,6 +11,7 @@ module tb_jls_wide #(
     parameter integer N_V        = 1,
     parameter integer NUM_SLICES = 1,
     parameter integer MAX_BYTES_PER_SLICE = 300000,
+    parameter integer LB_DEPTH = 1024,   // line-buffer depth; horizontal (N_H=1) needs >= IMG_W
     parameter HEXFILE = "D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.sim/images/wide_256_strided.hex",
     parameter integer IMG_W = 256,
     parameter integer IMG_H = 256
@@ -53,7 +54,7 @@ module tb_jls_wide #(
     wire [N_E*16-1:0] o_data = m_axis_tdata;
     wire [N_E-1:0]    o_last = m_axis_tlast;
 
-    jls_encoder_axis #(.N_E(N_E), .N_H(N_H), .N_V(N_V)) dut (
+    jls_encoder_axis #(.N_E(N_E), .N_H(N_H), .N_V(N_V), .LB_DEPTH(LB_DEPTH)) dut (
         .rstn          (rstn),
         .clk           (clk),
         .clk_in1_p     (clk_in1_p),

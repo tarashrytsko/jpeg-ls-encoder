@@ -560,10 +560,11 @@ errors, each restores the canonical `jls_demo_top` config afterward:
 
 | Mode | (N_H,N_V) | IMG | LB_DEPTH | WNS | WHS | LUT | BRAM |
 |---|---|---|---|---|---|---|---|
-| Vertical   | 12×1 | 300²  | 1024 | +0.743 ns | +0.048 ns | 27.79 % | 30 |
-| Horizontal | 1×12 | 300²  | 1024 | +0.184 ns | +0.045 ns | 27.85 % | 30 |
-| Block      | 4×3  | 300²  | 1024 | +0.573 ns | +0.026 ns | 27.98 % | 30 |
-| Horizontal | 1×12 | 3000² | 4096 | +0.329 ns | +0.033 ns | 28.14 % | 36 |
+| Vertical   | 12×1 | 300²        | 1024  | +0.743 ns | +0.048 ns | 27.79 % | 30 |
+| Horizontal | 1×12 | 300²        | 1024  | +0.184 ns | +0.045 ns | 27.85 % | 30 |
+| Block      | 4×3  | 300²        | 1024  | +0.573 ns | +0.026 ns | 27.98 % | 30 |
+| Horizontal | 1×12 | 3000²       | 4096  | +0.329 ns | +0.033 ns | 28.14 % | 36 |
+| Horizontal | 1×12 | 16000×10800 | 16384 | +0.697 ns | +0.046 ns | 27.86 % | 72 |
 
 The three 300² directions are near-identical (LUT ≈ 27.8–28.0 %, FF 7.0 %, BRAM 30, DSP 14,
 **12× ISERDESE2**, 1 MMCM in each). The full-width horizontal build at 3000² (`LB_DEPTH=4096`)
@@ -573,6 +574,20 @@ and block at 1500²/3000² reuse the `LB_DEPTH=1024` config (strip < 1024), i.e.
 XDC (`jls_serial_demo_top.xdc`): diff clock R3/P3, reset R8, `clk`/`done`/`status[30:0]` on the
 `jls_demo_top_wide.xdc` pins; the 12 `ser_d` ISERDES inputs are `set_false_path` + auto-placed
 (UCIO/NSTD downgraded) — a real board pins them and adds per-bit IDELAYE2 eye-centering.
+
+**Extreme scale — 16k image (16000×10800, 172.8 Mpix).** For 12 lanes only **horizontal (1×12)**
+and **block (4×3)** are valid grids — 16000 is not divisible by 12, so vertical is impossible for
+this width. Horizontal puts a **full 16000-wide strip** per lane, i.e. `LB_DEPTH = 16000` — right
+at the line buffer's architectural ceiling (`i_w` is 14-bit → max width 16384). The bit-level
+serial sim is impractical at 172.8 Mpix (≈13 h), so losslessness is verified over the **AXIS path**
+(`tb_jls_wide`, byte-identical to the serial front-end which is proven at 300²–3000²): **16000×10800
+horizontal → 39,570,604 bytes, 4.37:1, LOSSLESS** (CharLS reference decode, all 12 strips bit-exact
+vs the source PGM). The matching bitstream (`LB_DEPTH=16384`, table above) still **closes timing at
++0.697 ns** and uses BRAM 72/365 (20 %) — the 16384-deep line buffers × 12 lanes — so the full
+maximum-width horizontal configuration is synthesizable with wide margin. (Capture note: the
+`tb_jls_wide` per-slice buffer must exceed the largest per-lane stream — high-detail 16k strips
+reach ~6 MB, so `MAX_BYTES_PER_SLICE` was raised to 8 MB; too small a buffer silently truncates a
+slice, which is a harness limit, not an encoder one.)
 
 **Note vs. `jls_demo_top`:** this is *not* a self-contained on-chip bitstream — `ISERDESE2`
 inputs must come from device pads, so the 12 serial lanes are real input pins (driven by an
