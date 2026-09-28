@@ -2,17 +2,18 @@
 
 module fifo_wrapper_output #(
     parameter integer N_E = 3,
-    parameter integer LEN_WIDTH = 32
+    parameter integer LEN_WIDTH = 32,
+    parameter integer DW = 16          // compressed word width per lane (16, or 32 for BPP>8)
 )(
     input  wire                     rst,
     input  wire                     wr_clk,
     input  wire                     rd_clk,
-    input  wire [N_E*16-1:0]        din_flat,
+    input  wire [N_E*DW-1:0]        din_flat,
     input  wire [N_E-1:0]           wr_en,
     input  wire [N_E-1:0]           o_last_enc,
     input  wire [N_E-1:0]           m_axis_tready,
 
-    output reg  [N_E*16-1:0]        fifo_dout_flat,
+    output reg  [N_E*DW-1:0]        fifo_dout_flat,
     output reg  [N_E-1:0]           dout_valid,
     output reg  [N_E-1:0]           dout_last,
     output wire [N_E-1:0]           wr_rst_busy,
@@ -21,27 +22,38 @@ module fifo_wrapper_output #(
 
     wire [N_E-1:0]      fifo_empty;
     wire [N_E-1:0]      fifo_valid;
-    wire [N_E*16-1:0]   fifo_dout_raw;   // raw FIFO output (advances each read)
+    wire [N_E*DW-1:0]   fifo_dout_raw;   // raw FIFO output (advances each read)
 
-    genvar gi;
+    // DW/16 16-bit fifo_output slices per lane in lockstep (DW=16: one slice, original).
+    // Reads are already gated by the combined empty (fifo_rd_en below), so all slices
+    // pop together; writes are unconditional as before (2048-deep, never full in use).
+    localparam integer NS = DW / 16;
+    genvar gi, gs;
     generate
         for (gi = 0; gi < N_E; gi = gi + 1) begin : GEN_FIFO
-            fifo_output u_fifo (
-                .rst         (rst),
-                .wr_clk      (wr_clk),
-                .rd_clk      (rd_clk),
-                .din         (din_flat[gi*16 +: 16]),
-                .wr_en       (wr_en[gi]),
-                .rd_en       (fifo_rd_en[gi]),
-                .dout        (fifo_dout_raw[gi*16 +: 16]),
-                .empty       (fifo_empty[gi]),
-                .valid       (fifo_valid[gi]),
-                .underflow   (),
-                .almost_full (),
-                .almost_empty(),
-                .wr_rst_busy (wr_rst_busy[gi]),
-                .rd_rst_busy (rd_rst_busy[gi])
-            );
+            wire [NS-1:0] s_empty, s_valid, s_wbusy, s_rbusy;
+            for (gs = 0; gs < NS; gs = gs + 1) begin : GEN_SLICE
+                fifo_output u_fifo (
+                    .rst         (rst),
+                    .wr_clk      (wr_clk),
+                    .rd_clk      (rd_clk),
+                    .din         (din_flat[gi*DW + gs*16 +: 16]),
+                    .wr_en       (wr_en[gi]),
+                    .rd_en       (fifo_rd_en[gi]),
+                    .dout        (fifo_dout_raw[gi*DW + gs*16 +: 16]),
+                    .empty       (s_empty[gs]),
+                    .valid       (s_valid[gs]),
+                    .underflow   (),
+                    .almost_full (),
+                    .almost_empty(),
+                    .wr_rst_busy (s_wbusy[gs]),
+                    .rd_rst_busy (s_rbusy[gs])
+                );
+            end
+            assign fifo_empty[gi]  = |s_empty;
+            assign fifo_valid[gi]  = &s_valid;
+            assign wr_rst_busy[gi] = |s_wbusy;
+            assign rd_rst_busy[gi] = |s_rbusy;
         end
     endgenerate
 
@@ -178,7 +190,7 @@ module fifo_wrapper_output #(
                 end
                 // a previously requested word lands now -> capture data + present it
                 if (rd_en_q[ri]) begin
-                    fifo_dout_flat[ri*16 +: 16] <= fifo_dout_raw[ri*16 +: 16];
+                    fifo_dout_flat[ri*DW +: DW] <= fifo_dout_raw[ri*DW +: DW];
                     dout_valid[ri]              <= 1'b1;
                     dout_last[ri]               <= last_q[ri];
                     if (last_q[ri]) rd_ptr[ri] <= rd_ptr[ri] + 1'b1;

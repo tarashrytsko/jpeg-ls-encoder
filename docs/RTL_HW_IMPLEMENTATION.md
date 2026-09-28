@@ -596,3 +596,35 @@ The `.bit`s are regenerable build artifacts (not committed); rebuild the vertica
 `build_serial_demo.tcl` or any direction/size with `build_serial_mode.tcl -tclargs <N_H> <N_V>
 [LB_DEPTH IMG_W IMG_H]` — both restore the canonical `jls_demo_top` / 12-lane config afterward.
 Sim projects: `serial_demo_vlog.prj` (end-to-end sim), `serial_demo_top_vlog.prj` (top elaborate).
+
+---
+
+## 17. Sample Precision Generic — 8/12/16-bit (`BPP`)
+
+`jls_encoder` takes `BPP` (sample precision P, 8…16, lossless / NEAR = 0), threaded through
+`jls_encoder_axis`, `encoder_wrapper`, the FIFO wrappers, `axis_image_source`, `axis_sink` and
+`jls_demo_top`. **BPP = 8 is byte-identical to the original core** (verified against the committed
+outputs: 300² 12×1 via both the packaged-IP and RTL paths, 1500² 4×3 and 1×12 via RTL).
+
+| Item | BPP = 8 | BPP > 8 |
+|---|---|---|
+| Pixel lane (`s_axis_tdata` = N_E·PW) | PW = 8 | PW = 16 (value in the low BPP bits) |
+| Compressed word (`m_axis_tdata` = N_E·OW) | OW = 16 (2 bytes) | OW = 32 (4 bytes) |
+| Input FIFO per lane | 1 × `fifo_generator_0` | 2 lock-stepped 8-bit slices (rd/wr gated by combined empty/full) |
+| Output FIFO per lane | 1 × `fifo_output` | 2 lock-stepped 16-bit slices |
+| Thresholds T1/T2/T3 | 3/7/21 | 18/67/276 (ISO 14495-1 C.2.4.1.1, FACTOR = (min(MAXVAL,4095)+128)>>8) |
+| LIMIT = 2(P+max(8,P)) | 32 | 48 (P=12), 64 (P=16) |
+| A width / A-init | 13 / 4 | P+6 / max(2,(RANGE+32)>>6) = 64 (P=12), 1024 (P=16) |
+| Golomb merge register / byte buffer | 57 / 248 bits | 16+(LIMIT−P−1)+1+AW bits / 320 bits |
+| Encoder instance | packaged IP (LB_DEPTH=1024) or RTL | always parameterized RTL |
+
+The 32-bit output word keeps the per-lane output port (32 bit/clk) above the code rate of a
+P-bit pixel per clock even for incompressible data (verified: full-range 16-bit noise, CR 0.958,
+lossless). The end-of-scan drain for OB = 4 may span several words, then FF D9 and 00 padding;
+`tb_jls_wide` captures byte-wise (FF D9 detection) for both word widths.
+
+Verification (`tools/run_rtl_sim.py`, `tools/run_matrix.py`): every 12/16-bit RTL stream is decoded
+by CharLS (P=12 / P=16 SOF55 header) and grid-reassembled — Sentinel-2 L1C crops, noise and
+half-flat stress images, all three split directions: exact. Hex feeds for 16-bit PGMs come from
+`tools/make_strided_hex.py` (16-bit lanes, N_E·4 hex digits/word). Build a BPP bitstream with
+`build_power_seu.tcl … <romhex> <BPP>`. Results: `docs/REVIEW_V4_EVIDENCE.md`.

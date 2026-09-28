@@ -14,8 +14,13 @@ module tb_jls_wide #(
     parameter integer LB_DEPTH = 1024,   // line-buffer depth; horizontal (N_H=1) needs >= IMG_W
     parameter HEXFILE = "D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.sim/images/wide_256_strided.hex",
     parameter integer IMG_W = 256,
-    parameter integer IMG_H = 256
+    parameter integer IMG_H = 256,
+    parameter integer BPP   = 8,       // sample precision; BPP>8 -> 16-bit pixel lanes, 32-bit words
+    parameter OUTFILE = ""             // override output .jls path (default output_h<NH>v<NV>_<W>x<H>.jls)
 ) ();
+    localparam integer PW = (BPP > 8) ? 16 : 8;
+    localparam integer OW = (BPP > 8) ? 32 : 16;
+    localparam integer OB = OW / 8;
 
     // ------------------------------------------------------------
     // Clock & Reset
@@ -39,22 +44,22 @@ module tb_jls_wide #(
     wire clk;
     wire sys_rdy;
 
-    reg  [N_E*8-1:0] s_axis_tdata  = 0;
+    reg  [N_E*PW-1:0] s_axis_tdata = 0;
     reg              s_axis_tvalid = 0;
     wire             s_axis_tready;
     reg              s_axis_tlast  = 0;
 
-    wire [N_E*16-1:0] m_axis_tdata;
+    wire [N_E*OW-1:0] m_axis_tdata;
     wire [N_E-1:0]    m_axis_tvalid;
     wire [N_E-1:0]    m_axis_tready_w = {N_E{1'b1}};  // always-ready sink
     wire [N_E-1:0]    m_axis_tlast;
 
     // capture aliases so the reused capture logic keeps its names
     wire [N_E-1:0]    o_e    = m_axis_tvalid;
-    wire [N_E*16-1:0] o_data = m_axis_tdata;
+    wire [N_E*OW-1:0] o_data = m_axis_tdata;
     wire [N_E-1:0]    o_last = m_axis_tlast;
 
-    jls_encoder_axis #(.N_E(N_E), .N_H(N_H), .N_V(N_V), .LB_DEPTH(LB_DEPTH)) dut (
+    jls_encoder_axis #(.N_E(N_E), .N_H(N_H), .N_V(N_V), .LB_DEPTH(LB_DEPTH), .BPP(BPP)) dut (
         .rstn          (rstn),
         .clk           (clk),
         .clk_in1_p     (clk_in1_p),
@@ -81,7 +86,7 @@ module tb_jls_wide #(
     localparam integer SW     = IMG_W / N_H;     // per-lane strip width
     localparam integer SH     = IMG_H / N_V;     // per-lane strip height
     localparam integer NWORDS = SW * SH;         // strided words (grid-aware; = W*H/N_E)
-    reg [N_E*8-1:0] feed [0:NWORDS-1];
+    reg [N_E*PW-1:0] feed [0:NWORDS-1];
     integer p;
     initial $readmemh(HEXFILE, feed);
     initial begin
@@ -158,28 +163,29 @@ module tb_jls_wide #(
         end
     endtask
 
+    // Byte-wise capture (MSB byte first). A slice closes on the FF D9 byte pair; the
+    // encoder's 0x00 word padding after EOI is dropped. Identical bytes to the original
+    // word-pattern capture for 16-bit words; also handles 32-bit words (BPP>8).
+    integer bk;
+    reg [7:0] cb;
     always @(posedge clk) begin
         for (wi = 0; wi < N_E; wi = wi + 1) begin
             if (!closed[wi] && o_e[wi] && m_axis_tready_w[wi]) begin   // capture on AXIS transfer (tvalid&&tready)
-                // Buffer MSB then LSB
-                slice_buf[wi][slice[wi]][slice_len[wi][slice[wi]]]   = o_data[wi*16+8 +: 8];
-                slice_buf[wi][slice[wi]][slice_len[wi][slice[wi]]+1] = o_data[wi*16    +: 8];
-                slice_len[wi][slice[wi]] = slice_len[wi][slice[wi]] + 2;
-                word_cnt[wi]    = word_cnt[wi]    + 1;
-                total_bytes[wi] = total_bytes[wi] + 2;
-
-                // Detect EOI (FFD9): within word or spanning words
-                if (o_data[wi*16+8 +: 8] == 8'hFF && o_data[wi*16 +: 8] == 8'hD9) begin
-                    do_close(wi);
-                end else if (last_byte[wi] == 8'hFF && o_data[wi*16+8 +: 8] == 8'hD9) begin
-                    // FF from prev word, D9 is MSB of this word
-                    // LSB of this word is encoder padding (0x00) — trim it
-                    slice_len[wi][slice[wi]] = slice_len[wi][slice[wi]] - 1;
-                    total_bytes[wi] = total_bytes[wi] - 1;
-                    do_close(wi);
+                word_cnt[wi] = word_cnt[wi] + 1;
+                for (bk = OB-1; bk >= 0; bk = bk - 1) begin
+                    cb = o_data[wi*OW + bk*8 +: 8];
+                    if (!closed[wi]) begin
+                        slice_buf[wi][slice[wi]][slice_len[wi][slice[wi]]] = cb;
+                        slice_len[wi][slice[wi]] = slice_len[wi][slice[wi]] + 1;
+                        total_bytes[wi] = total_bytes[wi] + 1;
+                        if (last_byte[wi] == 8'hFF && cb == 8'hD9) begin
+                            last_byte[wi] = 8'h00;
+                            do_close(wi);
+                            bk = -1;                 // rest of this word is padding
+                        end else
+                            last_byte[wi] = cb;
+                    end
                 end
-
-                last_byte[wi] <= o_data[wi*16 +: 8];
             end
         end
     end
@@ -215,7 +221,10 @@ module tb_jls_wide #(
         repeat (50) @(posedge clk);
 
         // Geometry-tagged name (use IMG_W/IMG_H, not i_w probes)
-        $sformat(outpath, "%0soutput_h%0dv%0d_%0dx%0d.jls", basepath, N_H, N_V, IMG_W, IMG_H);
+        if (OUTFILE != "")
+            outpath = OUTFILE;
+        else
+            $sformat(outpath, "%0soutput_h%0dv%0d_%0dx%0d.jls", basepath, N_H, N_V, IMG_W, IMG_H);
         fout = $fopen(outpath, "wb");
         if (!fout) begin
             $display("*** ERROR: cannot open %0s", outpath);
@@ -234,8 +243,8 @@ module tb_jls_wide #(
                  $time, outpath, total_out, N_E * NUM_SLICES);
         $display("=== All %0d encoder slices complete ===", N_E * NUM_SLICES);
         // Single machine-parseable line for the benchmark sweep script:
-        $display("BENCHMARK_RESULT N_H=%0d N_V=%0d W=%0d H=%0d N_E=%0d NUM_SLICES=%0d OUT_BYTES=%0d",
-                 N_H, N_V, IMG_W, IMG_H, N_E, NUM_SLICES, total_out);
+        $display("BENCHMARK_RESULT N_H=%0d N_V=%0d W=%0d H=%0d N_E=%0d NUM_SLICES=%0d BPP=%0d OUT_BYTES=%0d",
+                 N_H, N_V, IMG_W, IMG_H, N_E, NUM_SLICES, BPP, total_out);
         $finish;
     end
 

@@ -1,0 +1,24 @@
+# Regenerable / large evaluation artifacts (keep reports, CSVs and summaries)
+*.ebd
+*.ebc
+*.bit
+*.dcp
+*_funcsim.v
+*.saif
+*.wdb
+*.jou
+*.pb
+xsim.dir/
+.Xil/
+power/saif/*/
+seu/xsim/
+seu/inj/
+hw/hex/
+hw/*.jls
+hw/*.log
+hw/test/
+corpus/
+ref_8bit/
+*.backup.log
+*.backup.jou
+__pycache__/

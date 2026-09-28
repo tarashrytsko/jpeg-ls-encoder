@@ -40,9 +40,16 @@ always @(posedge wr_clk)
 begin
 din_flatx <=din_flat;
 end
-    genvar i;
+    // Each lane is DATA_WIDTH/8 byte-wide fifo_generator_0 slices run in lockstep
+    // (DATA_WIDTH=8: one slice, identical to the original). With >1 slice, reads and
+    // writes are gated by the COMBINED empty/full so every slice sees exactly the same
+    // op sequence even if their independent CDC synchronizers resolve a cycle apart.
+    localparam integer NS = DATA_WIDTH / 8;
+    genvar i, sl;
     generate
         for (i = 0; i < N_E; i = i + 1) begin : GEN_FIFO
+            wire [NS-1:0] s_full, s_wr_ack, s_ovf, s_empty, s_aempty, s_valid, s_wbusy, s_rbusy, s_udf;
+            if (NS == 1) begin : g_one
             //------------------------------------------------------------------------------------------------
             // Async FIFO instance
             //------------------------------------------------------------------------------------------------
@@ -66,10 +73,48 @@ end
                 .rd_rst_busy(rd_rst_busy[i]),
                  .rd_data_count(rd_data_count),  // output wire [16 : 0] rd_data_count
                  .wr_data_count(wr_data_count)  // output wire [16 : 0] wr_data_count
-               //.prog_full(prog_full)
-              //  .rd_data_count() , //rd_data_count[i*17 +: 17]),
-               // .wr_data_count() //wr_data_count[i*17 +: 17])
             );
+            end else begin : g_multi
+            wire any_full  = |s_full;
+            wire any_empty = |s_empty;
+            wire wr_g = wr_en[i] & ~any_full;
+            wire rd_g = rd_en[i] & ~any_empty;
+            reg  ovf_r;
+            always @(posedge wr_clk or posedge rst)
+                if (rst) ovf_r <= 1'b0; else ovf_r <= wr_en[i] & any_full;
+            for (sl = 0; sl < NS; sl = sl + 1) begin : GEN_SLICE
+                fifo_generator_0 u_fifo_inst(
+                    .rst(rst),
+                    .wr_clk(wr_clk),
+                    .rd_clk(rd_clk),
+                    .din(din_flatx[i*DATA_WIDTH + sl*8 +: 8]),
+                    .wr_en(wr_g),
+                    .rd_en(rd_g),
+                    .dout(dout_flat[i*DATA_WIDTH + sl*8 +: 8]),
+                    .full(s_full[sl]),
+                    .wr_ack(s_wr_ack[sl]),
+                    .overflow(s_ovf[sl]),
+                    .empty(s_empty[sl]),
+                    .almost_empty(s_aempty[sl]),
+                    .almost_full(),
+                    .underflow(s_udf[sl]),
+                    .valid(s_valid[sl]),
+                    .wr_rst_busy(s_wbusy[sl]),
+                    .rd_rst_busy(s_rbusy[sl]),
+                    .rd_data_count(),
+                    .wr_data_count()
+                );
+            end
+            assign full[i]         = any_full;
+            assign empty[i]        = any_empty;
+            assign almost_empty[i] = |s_aempty;
+            assign valid[i]        = &s_valid;
+            assign wr_ack[i]       = &s_wr_ack;
+            assign overflow[i]     = ovf_r;
+            assign underflow[i]    = |s_udf;
+            assign wr_rst_busy[i]  = |s_wbusy;
+            assign rd_rst_busy[i]  = |s_rbusy;
+            end
 
             //------------------------------------------------------------------------------------------------
             // External fifo_count generation (write domain)

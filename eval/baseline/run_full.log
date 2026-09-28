@@ -1,0 +1,55 @@
+bm_300x300 {'cr_charls_full': 7.726, 'cr_j2k': 6.7715, 'cr_jxl': 10.0942, 'cr_png': 6.7568, 'cr_charls_h12v1': 6.6377, 'cr_hw_h12v1': 6.9066, 'cr_charls_h1v12': 6.8881, 'cr_hw_h1v12': 7.1782, 'cr_charls_h4v3': 6.9273, 'cr_hw_h4v3': 7.2208, 'cr_charls_h4v4': 6.7396, 'cr_hw_h4v4': 7.1146}
+bm_1500x1500 {'cr_charls_full': 4.1674, 'cr_j2k': 3.7962, 'cr_jxl': 4.5481, 'cr_png': 3.4464, 'cr_charls_h12v1': 4.1425, 'cr_hw_h12v1': 4.1465, 'cr_charls_h1v12': 4.1477, 'cr_hw_h1v12': 4.1518, 'cr_charls_h4v3': 4.1665, 'cr_hw_h4v3': 4.1706, 'cr_charls_h4v4': 4.1603, 'cr_hw_h4v4': 4.1657}
+bm_3000x3000 {'cr_charls_full': 4.759, 'cr_j2k': 4.4446, 'cr_jxl': 5.0865, 'cr_png': 3.9783, 'cr_charls_h12v1': 4.7777, 'cr_hw_h12v1': 4.7791, 'cr_charls_h1v12': 4.7456, 'cr_hw_h1v12': 4.7469, 'cr_charls_h4v3': 4.7778, 'cr_hw_h4v3': 4.7791, 'cr_charls_h4v4': 4.7743, 'cr_hw_h4v4': 4.776}
+bm_4992x4992 {'cr_charls_full': 4.2914, 'cr_j2k': 4.0832, 'cr_jxl': 4.5872, 'cr_png': 3.559, 'cr_charls_h12v1': 4.3468, 'cr_hw_h12v1': 4.3472, 'cr_charls_h1v12': 4.2858, 'cr_hw_h1v12': 4.2861, 'cr_charls_h4v3': 4.3284, 'cr_hw_h4v3': 4.3288, 'cr_charls_h16v1': 4.3479, 'cr_hw_h16v1': 4.3485, 'cr_charls_h1v16': 4.284, 'cr_hw_h1v16': 4.2845, 'cr_charls_h4v4': 4.3275}
+bm_5000x5000 {'cr_charls_full': 4.292, 'cr_j2k': 4.0832, 'cr_jxl': 4.5881, 'cr_png': 3.5592, 'cr_charls_h4v4': 4.3274, 'cr_hw_h4v4': 4.328}
+aer_2_1_01 {'cr_charls_full': 1.3288, 'cr_j2k': 1.2889, 'cr_jxl': 1.3482, 'cr_png': 1.2555, 'cr_charls_h12v1': 1.2953, 'cr_charls_h1v12': 1.2953, 'cr_charls_h4v3': 1.2977, 'cr_charls_h4v4': 1.2886}
+aer_2_1_02 {'cr_charls_full': 1.252, 'cr_j2k': 1.22, 'cr_jxl': 1.2731, 'cr_png': 1.1894, 'cr_charls_h12v1': 1.2257, 'cr_charls_h1v12': 1.223, 'cr_charls_h4v3': 1.2289, 'cr_charls_h4v4': 1.2189}
+aer_2_1_03 {'cr_charls_full': 1.8615, 'cr_j2k': 1.835, 'cr_jxl': 1.8916, 'cr_png': 1.6049, 'cr_charls_h12v1': 1.8185, 'cr_charls_h1v12': 1.8224, 'cr_charls_h4v3': 1.8348, 'cr_charls_h4v4': 1.8267}
+aer_2_1_04 {'cr_charls_full': 1.3659, 'cr_j2k': 1.3294, 'cr_jxl': 1.3797, 'cr_png': 1.2896, 'cr_charls_h12v1': 1.3374, 'cr_charls_h1v12': 1.3356, 'cr_charls_h4v3': 1.3391, 'cr_charls_h4v4': 1.3304}
+aer_2_1_05 {'cr_charls_full': 1.4953, 'cr_j2k': 1.448, 'cr_jxl': 1.5396, 'cr_png': 1.3389, 'cr_charls_h12v1': 1.4654, 'cr_charls_h1v12': 1.4606, 'cr_charls_h4v3': 1.4685, 'cr_charls_h4v4': 1.4614}
+aer_2_1_06 {'cr_charls_full': 1.3889, 'cr_j2k': 1.3462, 'cr_jxl': 1.4196, 'cr_png': 1.2874, 'cr_charls_h12v1': 1.3612, 'cr_charls_h1v12': 1.3598, 'cr_charls_h4v3': 1.3635, 'cr_charls_h4v4': 1.3547}
+aer_2_1_07 {'cr_charls_full': 1.6262, 'cr_j2k': 1.6001, 'cr_jxl': 1.6376, 'cr_png': 1.4526, 'cr_charls_h12v1': 1.5878, 'cr_charls_h1v12': 1.5888, 'cr_charls_h4v3': 1.6023, 'cr_charls_h4v4': 1.5923}
+aer_2_1_08 {'cr_charls_full': 1.6419, 'cr_j2k': 1.5982, 'cr_jxl': 1.6667, 'cr_png': 1.478, 'cr_charls_h12v1': 1.6116, 'cr_charls_h1v12': 1.612, 'cr_charls_h4v3': 1.6142, 'cr_charls_h4v4': 1.6058}
+aer_2_1_09 {'cr_charls_full': 1.6905, 'cr_j2k': 1.6706, 'cr_jxl': 1.7166, 'cr_png': 1.4998, 'cr_charls_h12v1': 1.6669, 'cr_charls_h1v12': 1.6601, 'cr_charls_h4v3': 1.6678, 'cr_charls_h4v4': 1.6592}
+aer_2_1_10 {'cr_charls_full': 1.4856, 'cr_j2k': 1.4513, 'cr_jxl': 1.5121, 'cr_png': 1.3566, 'cr_charls_h12v1': 1.4561, 'cr_charls_h1v12': 1.4542, 'cr_charls_h4v3': 1.4591, 'cr_charls_h4v4': 1.4503}
+aer_2_1_11 {'cr_charls_full': 1.5508, 'cr_j2k': 1.5221, 'cr_jxl': 1.5988, 'cr_png': 1.388, 'cr_charls_h12v1': 1.525, 'cr_charls_h1v12': 1.522, 'cr_charls_h4v3': 1.5266, 'cr_charls_h4v4': 1.5194}
+aer_2_1_12 {'cr_charls_full': 1.5711, 'cr_j2k': 1.527, 'cr_jxl': 1.6037, 'cr_png': 1.4145, 'cr_charls_h12v1': 1.5445, 'cr_charls_h1v12': 1.5427, 'cr_charls_h4v3': 1.5473, 'cr_charls_h4v4': 1.5398}
+aer_2_2_01 {'cr_charls_full': 1.415, 'cr_j2k': 1.3769, 'cr_jxl': 1.4297, 'cr_png': 1.3238, 'cr_charls_h12v1': 1.4136, 'cr_charls_h1v12': 1.4035, 'cr_charls_h4v3': 1.4119, 'cr_charls_h4v4': 1.4085}
+aer_2_2_02 {'cr_charls_full': 1.8098, 'cr_j2k': 1.7949, 'cr_jxl': 1.8358, 'cr_png': 1.5788, 'cr_charls_h12v1': 1.8062, 'cr_charls_h1v12': 1.7983, 'cr_charls_h4v3': 1.8108, 'cr_charls_h4v4': 1.8071}
+aer_2_2_03 {'cr_charls_full': 1.746, 'cr_j2k': 1.7222, 'cr_jxl': 1.8012, 'cr_png': 1.5377, 'cr_charls_h12v1': 1.7463, 'cr_charls_h1v12': 1.7377, 'cr_charls_h4v3': 1.7473, 'cr_charls_h4v4': 1.7449}
+aer_2_2_04 {'cr_charls_full': 1.4954, 'cr_j2k': 1.4639, 'cr_jxl': 1.5239, 'cr_png': 1.3486, 'cr_charls_h12v1': 1.4964, 'cr_charls_h1v12': 1.4857, 'cr_charls_h4v3': 1.4966, 'cr_charls_h4v4': 1.4938}
+aer_2_2_05 {'cr_charls_full': 1.4839, 'cr_j2k': 1.4383, 'cr_jxl': 1.5139, 'cr_png': 1.3521, 'cr_charls_h12v1': 1.4766, 'cr_charls_h1v12': 1.4741, 'cr_charls_h4v3': 1.478, 'cr_charls_h4v4': 1.4747}
+aer_2_2_06 {'cr_charls_full': 1.6808, 'cr_j2k': 1.676, 'cr_jxl': 1.723, 'cr_png': 1.5062, 'cr_charls_h12v1': 1.6745, 'cr_charls_h1v12': 1.6715, 'cr_charls_h4v3': 1.675, 'cr_charls_h4v4': 1.6727}
+aer_2_2_07 {'cr_charls_full': 1.6571, 'cr_j2k': 1.6257, 'cr_jxl': 1.68, 'cr_png': 1.4722, 'cr_charls_h12v1': 1.6513, 'cr_charls_h1v12': 1.648, 'cr_charls_h4v3': 1.6528, 'cr_charls_h4v4': 1.6497}
+aer_2_2_08 {'cr_charls_full': 1.3668, 'cr_j2k': 1.3324, 'cr_jxl': 1.3822, 'cr_png': 1.2736, 'cr_charls_h12v1': 1.3635, 'cr_charls_h1v12': 1.3567, 'cr_charls_h4v3': 1.3642, 'cr_charls_h4v4': 1.3611}
+aer_2_2_09 {'cr_charls_full': 1.8272, 'cr_j2k': 1.7924, 'cr_jxl': 1.8607, 'cr_png': 1.5728, 'cr_charls_h12v1': 1.8347, 'cr_charls_h1v12': 1.8121, 'cr_charls_h4v3': 1.8332, 'cr_charls_h4v4': 1.8297}
+aer_2_2_10 {'cr_charls_full': 1.9328, 'cr_j2k': 1.8898, 'cr_jxl': 1.9631, 'cr_png': 1.6498, 'cr_charls_h12v1': 1.9358, 'cr_charls_h1v12': 1.9167, 'cr_charls_h4v3': 1.9345, 'cr_charls_h4v4': 1.9302}
+aer_2_2_11 {'cr_charls_full': 1.5677, 'cr_j2k': 1.5048, 'cr_jxl': 1.5841, 'cr_png': 1.3844, 'cr_charls_h12v1': 1.5581, 'cr_charls_h1v12': 1.5541, 'cr_charls_h4v3': 1.5599, 'cr_charls_h4v4': 1.5562}
+aer_2_2_12 {'cr_charls_full': 1.6368, 'cr_j2k': 1.618, 'cr_jxl': 1.6592, 'cr_png': 1.4621, 'cr_charls_h12v1': 1.6277, 'cr_charls_h1v12': 1.624, 'cr_charls_h4v3': 1.6339, 'cr_charls_h4v4': 1.6297}
+aer_2_2_13 {'cr_charls_full': 1.5544, 'cr_j2k': 1.5122, 'cr_jxl': 1.571, 'cr_png': 1.3872, 'cr_charls_h12v1': 1.5502, 'cr_charls_h1v12': 1.545, 'cr_charls_h4v3': 1.5513, 'cr_charls_h4v4': 1.5489}
+aer_2_2_14 {'cr_charls_full': 1.4575, 'cr_j2k': 1.4164, 'cr_jxl': 1.4673, 'cr_png': 1.3313, 'cr_charls_h12v1': 1.4544, 'cr_charls_h1v12': 1.448, 'cr_charls_h4v3': 1.4534, 'cr_charls_h4v4': 1.4505}
+aer_2_2_15 {'cr_charls_full': 1.6331, 'cr_j2k': 1.6097, 'cr_jxl': 1.6529, 'cr_png': 1.4591, 'cr_charls_h12v1': 1.624, 'cr_charls_h1v12': 1.621, 'cr_charls_h4v3': 1.6299, 'cr_charls_h4v4': 1.6267}
+aer_2_2_16 {'cr_charls_full': 1.5352, 'cr_j2k': 1.5107, 'cr_jxl': 1.5615, 'cr_png': 1.3912, 'cr_charls_h12v1': 1.5298, 'cr_charls_h1v12': 1.5256, 'cr_charls_h4v3': 1.5307, 'cr_charls_h4v4': 1.528}
+aer_2_2_17 {'cr_charls_full': 1.3985, 'cr_j2k': 1.3625, 'cr_jxl': 1.4296, 'cr_png': 1.311, 'cr_charls_h12v1': 1.3904, 'cr_charls_h1v12': 1.3895, 'cr_charls_h4v3': 1.3907, 'cr_charls_h4v4': 1.388}
+aer_2_2_18 {'cr_charls_full': 1.4878, 'cr_j2k': 1.4534, 'cr_jxl': 1.5059, 'cr_png': 1.3291, 'cr_charls_h12v1': 1.4826, 'cr_charls_h1v12': 1.4764, 'cr_charls_h4v3': 1.4841, 'cr_charls_h4v4': 1.481}
+aer_2_2_19 {'cr_charls_full': 1.5464, 'cr_j2k': 1.5123, 'cr_jxl': 1.5697, 'cr_png': 1.3932, 'cr_charls_h12v1': 1.5359, 'cr_charls_h1v12': 1.5344, 'cr_charls_h4v3': 1.5373, 'cr_charls_h4v4': 1.534}
+aer_2_2_20 {'cr_charls_full': 1.5133, 'cr_j2k': 1.4895, 'cr_jxl': 1.5399, 'cr_png': 1.3877, 'cr_charls_h12v1': 1.5057, 'cr_charls_h1v12': 1.5034, 'cr_charls_h4v3': 1.5066, 'cr_charls_h4v4': 1.5038}
+aer_2_2_21 {'cr_charls_full': 1.4593, 'cr_j2k': 1.427, 'cr_jxl': 1.4795, 'cr_png': 1.3385, 'cr_charls_h12v1': 1.4606, 'cr_charls_h1v12': 1.4504, 'cr_charls_h4v3': 1.4588, 'cr_charls_h4v4': 1.4563}
+aer_2_2_22 {'cr_charls_full': 1.7884, 'cr_j2k': 1.7582, 'cr_jxl': 1.8233, 'cr_png': 1.5471, 'cr_charls_h12v1': 1.797, 'cr_charls_h1v12': 1.7749, 'cr_charls_h4v3': 1.7927, 'cr_charls_h4v4': 1.789}
+aer_2_2_23 {'cr_charls_full': 2.0361, 'cr_j2k': 2.0332, 'cr_jxl': 2.0887, 'cr_png': 1.7575, 'cr_charls_h12v1': 2.0424, 'cr_charls_h1v12': 2.0247, 'cr_charls_h4v3': 2.0492, 'cr_charls_h4v4': 2.0471}
+aer_2_2_24 {'cr_charls_full': 1.5043, 'cr_j2k': 1.4717, 'cr_jxl': 1.5155, 'cr_png': 1.3648, 'cr_charls_h12v1': 1.4979, 'cr_charls_h1v12': 1.495, 'cr_charls_h4v3': 1.4977, 'cr_charls_h4v4': 1.4947}
+aer_3_2_25 {'cr_charls_full': 1.5482, 'cr_j2k': 1.4931, 'cr_jxl': 1.5699, 'cr_png': 1.369, 'cr_charls_h12v1': 1.547, 'cr_charls_h1v12': 1.537, 'cr_charls_h4v3': 1.5483, 'cr_charls_h4v4': 1.5451}
+aer_wash-ir {'cr_charls_full': 1.201, 'cr_j2k': 1.17, 'cr_jxl': 1.1891, 'cr_png': 1.1588, 'cr_charls_h12v1': 1.2036, 'cr_charls_h1v12': 1.1991, 'cr_charls_h4v3': 1.2014, 'cr_charls_h4v4': 1.2007}
+s2_cairo_urban_16b {'cr_charls_full': 1.8838, 'cr_j2k': 1.8458, 'cr_jxl': 1.9194, 'cr_png': 1.3799, 'cr_charls_h12v1': 1.8794, 'cr_charls_h1v12': 1.8738, 'cr_charls_h4v3': 1.8802, 'cr_charls_h4v4': 1.8773}
+s2_delta_west_12b {'cr_charls_full': 1.6966, 'cr_j2k': 1.6555, 'cr_jxl': 1.7464, 'cr_png': 1.1815, 'cr_charls_h12v1': 1.6916, 'cr_charls_h1v12': 1.684, 'cr_charls_h4v3': 1.6897, 'cr_charls_h4v4': 1.6859}
+s2_delta_west_16b {'cr_charls_full': 2.2621, 'cr_j2k': 2.2074, 'cr_jxl': 2.3286, 'cr_png': 1.5744, 'cr_charls_h12v1': 2.2555, 'cr_charls_h1v12': 2.2454, 'cr_charls_h4v3': 2.253, 'cr_charls_h4v4': 2.2479}
+s2_desert_16b {'cr_charls_full': 2.2095, 'cr_j2k': 2.1621, 'cr_jxl': 2.264, 'cr_png': 1.5518, 'cr_charls_h12v1': 2.1986, 'cr_charls_h1v12': 2.1943, 'cr_charls_h4v3': 2.1986, 'cr_charls_h4v4': 2.194}
+s2_nile_agri_12b {'cr_charls_full': 1.7076, 'cr_j2k': 1.6601, 'cr_jxl': 1.7397, 'cr_png': 1.2067, 'cr_charls_h12v1': 1.7003, 'cr_charls_h1v12': 1.6934, 'cr_charls_h4v3': 1.6981, 'cr_charls_h4v4': 1.6939}
+s2_nile_agri_16b {'cr_charls_full': 2.2769, 'cr_j2k': 2.2135, 'cr_jxl': 2.3195, 'cr_png': 1.6099, 'cr_charls_h12v1': 2.2671, 'cr_charls_h1v12': 2.2578, 'cr_charls_h4v3': 2.2641, 'cr_charls_h4v4': 2.2586}
+s2_nile_agri_nir_12b {'cr_charls_full': 1.5182, 'cr_j2k': 1.4721, 'cr_jxl': 1.546, 'cr_png': 1.0852, 'cr_charls_h12v1': 1.5117, 'cr_charls_h1v12': 1.5075, 'cr_charls_h4v3': 1.5113, 'cr_charls_h4v4': 1.5083}
+s2_nile_agri_nir_16b {'cr_charls_full': 2.0242, 'cr_j2k': 1.963, 'cr_jxl': 2.0614, 'cr_png': 1.4467, 'cr_charls_h12v1': 2.0156, 'cr_charls_h1v12': 2.01, 'cr_charls_h4v3': 2.015, 'cr_charls_h4v4': 2.0111}
+s2_nile_branch_12b {'cr_charls_full': 1.7227, 'cr_j2k': 1.6769, 'cr_jxl': 1.7596, 'cr_png': 1.2103, 'cr_charls_h12v1': 1.7163, 'cr_charls_h1v12': 1.7089, 'cr_charls_h4v3': 1.7142, 'cr_charls_h4v4': 1.71}
+s2_nile_branch_16b {'cr_charls_full': 2.297, 'cr_j2k': 2.2359, 'cr_jxl': 2.3461, 'cr_png': 1.6107, 'cr_charls_h12v1': 2.2885, 'cr_charls_h1v12': 2.2786, 'cr_charls_h4v3': 2.2856, 'cr_charls_h4v4': 2.28}
+s2_pivot_fields_16b {'cr_charls_full': 2.1673, 'cr_j2k': 2.0965, 'cr_jxl': 2.2043, 'cr_png': 1.5306, 'cr_charls_h12v1': 2.1548, 'cr_charls_h1v12': 2.1502, 'cr_charls_h4v3': 2.1558, 'cr_charls_h4v4': 2.151}
+CharLS throughput 84.2 MB/s

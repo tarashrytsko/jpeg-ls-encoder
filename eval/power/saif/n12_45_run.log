@@ -1,0 +1,5 @@
+SAIF_START 69745277
+SAIF_END 237167500 status=00001344
+| Total On-Chip Power (W)  | 0.535                                                                                 |
+| Dynamic (W)              | 0.398                                                                                 |
+| Design Nets Matched      | 35%   (25644/73387)                                                                   |

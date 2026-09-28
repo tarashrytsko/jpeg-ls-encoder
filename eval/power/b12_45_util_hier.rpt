@@ -1,0 +1,153 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2024.2 (win64) Build 5239630 Fri Nov 08 22:35:27 MST 2024
+| Date         : Mon Sep 28 12:58:53 2026
+| Host         : DESKTOP-PHB4K70 running 64-bit major release  (build 9200)
+| Command      : report_utilization -hierarchical -hierarchical_depth 4 -file D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/eval/power/b12_45_util_hier.rpt
+| Design       : jls_demo_top
+| Device       : xc7a200tfbg676-2
+| Speed File   : -2
+| Design State : Routed
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Utilization Design Information
+
+Table of Contents
+-----------------
+1. Utilization by Hierarchy
+
+1. Utilization by Hierarchy
+---------------------------
+
++-----------------------------------------------------+------------------------------------------------+------------+------------+---------+------+-------+--------+--------+------------+
+|                       Instance                      |                     Module                     | Total LUTs | Logic LUTs | LUTRAMs | SRLs |  FFs  | RAMB36 | RAMB18 | DSP Blocks |
++-----------------------------------------------------+------------------------------------------------+------------+------------+---------+------+-------+--------+--------+------------+
+| jls_demo_top                                        |                                          (top) |      75534 |      73269 |    2160 |  105 | 25840 |     24 |     48 |         14 |
+|   (jls_demo_top)                                    |                                          (top) |          0 |          0 |       0 |    0 |     1 |      0 |      0 |          0 |
+|   u_ip                                              |                               jls_encoder_axis |      59156 |      56891 |    2160 |  105 | 25721 |     24 |     48 |         14 |
+|     g_clkwiz.clk_wiz_0                              |                                      clk_wiz_0 |          0 |          0 |       0 |    0 |     0 |      0 |      0 |          0 |
+|       inst                                          |                              clk_wiz_0_clk_wiz |          0 |          0 |       0 |    0 |     0 |      0 |      0 |          0 |
+|     u_axis_pixel_in                                 |                                  axis_pixel_in |         64 |         64 |       0 |    0 |   192 |      0 |      0 |          1 |
+|     u_encoder_wrapper                               |                                encoder_wrapper |      53400 |      51240 |    2160 |    0 | 12441 |      0 |     24 |          0 |
+|       ENC_INST[0].g_rtl.u_encoder                   |                                    jls_encoder |       4485 |       4305 |     180 |    0 |  1045 |      0 |      2 |          0 |
+|       ENC_INST[10].g_rtl.u_encoder                  |                                  jls_encoder_0 |       4447 |       4267 |     180 |    0 |  1036 |      0 |      2 |          0 |
+|       ENC_INST[11].g_rtl.u_encoder                  |                                  jls_encoder_1 |       4449 |       4269 |     180 |    0 |  1036 |      0 |      2 |          0 |
+|       ENC_INST[1].g_rtl.u_encoder                   |                                  jls_encoder_2 |       4446 |       4266 |     180 |    0 |  1036 |      0 |      2 |          0 |
+|       ENC_INST[2].g_rtl.u_encoder                   |                                  jls_encoder_3 |       4449 |       4269 |     180 |    0 |  1036 |      0 |      2 |          0 |
+|       ENC_INST[3].g_rtl.u_encoder                   |                                  jls_encoder_4 |       4447 |       4267 |     180 |    0 |  1036 |      0 |      2 |          0 |
+|       ENC_INST[4].g_rtl.u_encoder                   |                                  jls_encoder_5 |       4449 |       4269 |     180 |    0 |  1036 |      0 |      2 |          0 |
+|       ENC_INST[5].g_rtl.u_encoder                   |                                  jls_encoder_6 |       4446 |       4266 |     180 |    0 |  1036 |      0 |      2 |          0 |
+|       ENC_INST[6].g_rtl.u_encoder                   |                                  jls_encoder_7 |       4449 |       4269 |     180 |    0 |  1036 |      0 |      2 |          0 |
+|       ENC_INST[7].g_rtl.u_encoder                   |                                  jls_encoder_8 |       4448 |       4268 |     180 |    0 |  1036 |      0 |      2 |          0 |
+|       ENC_INST[8].g_rtl.u_encoder                   |                                  jls_encoder_9 |       4448 |       4268 |     180 |    0 |  1036 |      0 |      2 |          0 |
+|       ENC_INST[9].g_rtl.u_encoder                   |                                 jls_encoder_10 |       4450 |       4270 |     180 |    0 |  1036 |      0 |      2 |          0 |
+|     u_fifo_read_control                             |                              fifo_read_control |        444 |        444 |       0 |    0 |   447 |      0 |      0 |         13 |
+|     u_fifo_reset                                    |                          fifo_reset_bram_async |         46 |         46 |       0 |    0 |     7 |      0 |      0 |          0 |
+|     u_fifo_wrapper_input                            |                             fifo_wrapper_input |       1995 |       1935 |       0 |   60 |  4464 |      0 |     24 |          0 |
+|       (u_fifo_wrapper_input)                        |                             fifo_wrapper_input |         71 |         71 |       0 |    0 |   144 |      0 |      0 |          0 |
+|       GEN_FIFO[0].g_multi.GEN_SLICE[0].u_fifo_inst  |                               fifo_generator_0 |         82 |         79 |       0 |    3 |   181 |      0 |      1 |          0 |
+|         U0                                          |       fifo_generator_0_fifo_generator_v13_2_11 |         82 |         79 |       0 |    3 |   181 |      0 |      1 |          0 |
+|       GEN_FIFO[0].g_multi.GEN_SLICE[1].u_fifo_inst  |                          fifo_generator_0_HD24 |         79 |         77 |       0 |    2 |   179 |      0 |      1 |          0 |
+|         U0                                          |  fifo_generator_0_fifo_generator_v13_2_11_HD25 |         79 |         77 |       0 |    2 |   179 |      0 |      1 |          0 |
+|       GEN_FIFO[10].g_multi.GEN_SLICE[0].u_fifo_inst |                          fifo_generator_0_HD60 |         82 |         79 |       0 |    3 |   181 |      0 |      1 |          0 |
+|         U0                                          |  fifo_generator_0_fifo_generator_v13_2_11_HD61 |         82 |         79 |       0 |    3 |   181 |      0 |      1 |          0 |
+|       GEN_FIFO[10].g_multi.GEN_SLICE[1].u_fifo_inst |                          fifo_generator_0_HD96 |         79 |         77 |       0 |    2 |   179 |      0 |      1 |          0 |
+|         U0                                          |  fifo_generator_0_fifo_generator_v13_2_11_HD97 |         79 |         77 |       0 |    2 |   179 |      0 |      1 |          0 |
+|       GEN_FIFO[11].g_multi.GEN_SLICE[0].u_fifo_inst |                         fifo_generator_0_HD132 |         81 |         78 |       0 |    3 |   181 |      0 |      1 |          0 |
+|         U0                                          | fifo_generator_0_fifo_generator_v13_2_11_HD133 |         81 |         78 |       0 |    3 |   181 |      0 |      1 |          0 |
+|       GEN_FIFO[11].g_multi.GEN_SLICE[1].u_fifo_inst |                         fifo_generator_0_HD168 |         79 |         77 |       0 |    2 |   179 |      0 |      1 |          0 |
+|         U0                                          | fifo_generator_0_fifo_generator_v13_2_11_HD169 |         79 |         77 |       0 |    2 |   179 |      0 |      1 |          0 |
+|       GEN_FIFO[1].g_multi.GEN_SLICE[0].u_fifo_inst  |                         fifo_generator_0_HD204 |         82 |         79 |       0 |    3 |   181 |      0 |      1 |          0 |
+|         U0                                          | fifo_generator_0_fifo_generator_v13_2_11_HD205 |         82 |         79 |       0 |    3 |   181 |      0 |      1 |          0 |
+|       GEN_FIFO[1].g_multi.GEN_SLICE[1].u_fifo_inst  |                         fifo_generator_0_HD240 |         79 |         77 |       0 |    2 |   179 |      0 |      1 |          0 |
+|         U0                                          | fifo_generator_0_fifo_generator_v13_2_11_HD241 |         79 |         77 |       0 |    2 |   179 |      0 |      1 |          0 |
+|       GEN_FIFO[2].g_multi.GEN_SLICE[0].u_fifo_inst  |                         fifo_generator_0_HD276 |         82 |         79 |       0 |    3 |   181 |      0 |      1 |          0 |
+|         U0                                          | fifo_generator_0_fifo_generator_v13_2_11_HD277 |         82 |         79 |       0 |    3 |   181 |      0 |      1 |          0 |
+|       GEN_FIFO[2].g_multi.GEN_SLICE[1].u_fifo_inst  |                         fifo_generator_0_HD312 |         79 |         77 |       0 |    2 |   179 |      0 |      1 |          0 |
+|         U0                                          | fifo_generator_0_fifo_generator_v13_2_11_HD313 |         79 |         77 |       0 |    2 |   179 |      0 |      1 |          0 |
+|       GEN_FIFO[3].g_multi.GEN_SLICE[0].u_fifo_inst  |                         fifo_generator_0_HD348 |         82 |         79 |       0 |    3 |   181 |      0 |      1 |          0 |
+|         U0                                          | fifo_generator_0_fifo_generator_v13_2_11_HD349 |         82 |         79 |       0 |    3 |   181 |      0 |      1 |          0 |
+|       GEN_FIFO[3].g_multi.GEN_SLICE[1].u_fifo_inst  |                         fifo_generator_0_HD384 |         79 |         77 |       0 |    2 |   179 |      0 |      1 |          0 |
+|         U0                                          | fifo_generator_0_fifo_generator_v13_2_11_HD385 |         79 |         77 |       0 |    2 |   179 |      0 |      1 |          0 |
+|       GEN_FIFO[4].g_multi.GEN_SLICE[0].u_fifo_inst  |                         fifo_generator_0_HD420 |         82 |         79 |       0 |    3 |   181 |      0 |      1 |          0 |
+|         U0                                          | fifo_generator_0_fifo_generator_v13_2_11_HD421 |         82 |         79 |       0 |    3 |   181 |      0 |      1 |          0 |
+|       GEN_FIFO[4].g_multi.GEN_SLICE[1].u_fifo_inst  |                         fifo_generator_0_HD456 |         79 |         77 |       0 |    2 |   179 |      0 |      1 |          0 |
+|         U0                                          | fifo_generator_0_fifo_generator_v13_2_11_HD457 |         79 |         77 |       0 |    2 |   179 |      0 |      1 |          0 |
+|       GEN_FIFO[5].g_multi.GEN_SLICE[0].u_fifo_inst  |                         fifo_generator_0_HD492 |         82 |         79 |       0 |    3 |   181 |      0 |      1 |          0 |
+|         U0                                          | fifo_generator_0_fifo_generator_v13_2_11_HD493 |         82 |         79 |       0 |    3 |   181 |      0 |      1 |          0 |
+|       GEN_FIFO[5].g_multi.GEN_SLICE[1].u_fifo_inst  |                         fifo_generator_0_HD528 |         79 |         77 |       0 |    2 |   179 |      0 |      1 |          0 |
+|         U0                                          | fifo_generator_0_fifo_generator_v13_2_11_HD529 |         79 |         77 |       0 |    2 |   179 |      0 |      1 |          0 |
+|       GEN_FIFO[6].g_multi.GEN_SLICE[0].u_fifo_inst  |                         fifo_generator_0_HD564 |         82 |         79 |       0 |    3 |   181 |      0 |      1 |          0 |
+|         U0                                          | fifo_generator_0_fifo_generator_v13_2_11_HD565 |         82 |         79 |       0 |    3 |   181 |      0 |      1 |          0 |
+|       GEN_FIFO[6].g_multi.GEN_SLICE[1].u_fifo_inst  |                         fifo_generator_0_HD600 |         79 |         77 |       0 |    2 |   179 |      0 |      1 |          0 |
+|         U0                                          | fifo_generator_0_fifo_generator_v13_2_11_HD601 |         79 |         77 |       0 |    2 |   179 |      0 |      1 |          0 |
+|       GEN_FIFO[7].g_multi.GEN_SLICE[0].u_fifo_inst  |                         fifo_generator_0_HD636 |         82 |         79 |       0 |    3 |   181 |      0 |      1 |          0 |
+|         U0                                          | fifo_generator_0_fifo_generator_v13_2_11_HD637 |         82 |         79 |       0 |    3 |   181 |      0 |      1 |          0 |
+|       GEN_FIFO[7].g_multi.GEN_SLICE[1].u_fifo_inst  |                         fifo_generator_0_HD672 |         79 |         77 |       0 |    2 |   179 |      0 |      1 |          0 |
+|         U0                                          | fifo_generator_0_fifo_generator_v13_2_11_HD673 |         79 |         77 |       0 |    2 |   179 |      0 |      1 |          0 |
+|       GEN_FIFO[8].g_multi.GEN_SLICE[0].u_fifo_inst  |                         fifo_generator_0_HD708 |         81 |         78 |       0 |    3 |   181 |      0 |      1 |          0 |
+|         U0                                          | fifo_generator_0_fifo_generator_v13_2_11_HD709 |         81 |         78 |       0 |    3 |   181 |      0 |      1 |          0 |
+|       GEN_FIFO[8].g_multi.GEN_SLICE[1].u_fifo_inst  |                         fifo_generator_0_HD744 |         79 |         77 |       0 |    2 |   179 |      0 |      1 |          0 |
+|         U0                                          | fifo_generator_0_fifo_generator_v13_2_11_HD745 |         79 |         77 |       0 |    2 |   179 |      0 |      1 |          0 |
+|       GEN_FIFO[9].g_multi.GEN_SLICE[0].u_fifo_inst  |                         fifo_generator_0_HD780 |         81 |         78 |       0 |    3 |   181 |      0 |      1 |          0 |
+|         U0                                          | fifo_generator_0_fifo_generator_v13_2_11_HD781 |         81 |         78 |       0 |    3 |   181 |      0 |      1 |          0 |
+|       GEN_FIFO[9].g_multi.GEN_SLICE[1].u_fifo_inst  |                         fifo_generator_0_HD816 |         79 |         77 |       0 |    2 |   179 |      0 |      1 |          0 |
+|         U0                                          | fifo_generator_0_fifo_generator_v13_2_11_HD817 |         79 |         77 |       0 |    2 |   179 |      0 |      1 |          0 |
+|     u_fifo_wrapper_output                           |                            fifo_wrapper_output |       3144 |       3096 |       0 |   48 |  7980 |     24 |      0 |          0 |
+|       (u_fifo_wrapper_output)                       |                            fifo_wrapper_output |        925 |        925 |       0 |    0 |  2940 |      0 |      0 |          0 |
+|       GEN_FIFO[0].GEN_SLICE[0].u_fifo               |                                    fifo_output |         93 |         91 |       0 |    2 |   210 |      1 |      0 |          0 |
+|         U0                                          |            fifo_output_fifo_generator_v13_2_11 |         93 |         91 |       0 |    2 |   210 |      1 |      0 |          0 |
+|       GEN_FIFO[0].GEN_SLICE[1].u_fifo               |                              fifo_output_HD875 |         93 |         91 |       0 |    2 |   210 |      1 |      0 |          0 |
+|         U0                                          |      fifo_output_fifo_generator_v13_2_11_HD876 |         93 |         91 |       0 |    2 |   210 |      1 |      0 |          0 |
+|       GEN_FIFO[10].GEN_SLICE[0].u_fifo              |                              fifo_output_HD909 |         93 |         91 |       0 |    2 |   210 |      1 |      0 |          0 |
+|         U0                                          |      fifo_output_fifo_generator_v13_2_11_HD910 |         93 |         91 |       0 |    2 |   210 |      1 |      0 |          0 |
+|       GEN_FIFO[10].GEN_SLICE[1].u_fifo              |                              fifo_output_HD943 |         93 |         91 |       0 |    2 |   210 |      1 |      0 |          0 |
+|         U0                                          |      fifo_output_fifo_generator_v13_2_11_HD944 |         93 |         91 |       0 |    2 |   210 |      1 |      0 |          0 |
+|       GEN_FIFO[11].GEN_SLICE[0].u_fifo              |                              fifo_output_HD977 |         93 |         91 |       0 |    2 |   210 |      1 |      0 |          0 |
+|         U0                                          |      fifo_output_fifo_generator_v13_2_11_HD978 |         93 |         91 |       0 |    2 |   210 |      1 |      0 |          0 |
+|       GEN_FIFO[11].GEN_SLICE[1].u_fifo              |                             fifo_output_HD1011 |         93 |         91 |       0 |    2 |   210 |      1 |      0 |          0 |
+|         U0                                          |     fifo_output_fifo_generator_v13_2_11_HD1012 |         93 |         91 |       0 |    2 |   210 |      1 |      0 |          0 |
+|       GEN_FIFO[1].GEN_SLICE[0].u_fifo               |                             fifo_output_HD1045 |         93 |         91 |       0 |    2 |   210 |      1 |      0 |          0 |
+|         U0                                          |     fifo_output_fifo_generator_v13_2_11_HD1046 |         93 |         91 |       0 |    2 |   210 |      1 |      0 |          0 |
+|       GEN_FIFO[1].GEN_SLICE[1].u_fifo               |                             fifo_output_HD1079 |         93 |         91 |       0 |    2 |   210 |      1 |      0 |          0 |
+|         U0                                          |     fifo_output_fifo_generator_v13_2_11_HD1080 |         93 |         91 |       0 |    2 |   210 |      1 |      0 |          0 |
+|       GEN_FIFO[2].GEN_SLICE[0].u_fifo               |                             fifo_output_HD1113 |         93 |         91 |       0 |    2 |   210 |      1 |      0 |          0 |
+|         U0                                          |     fifo_output_fifo_generator_v13_2_11_HD1114 |         93 |         91 |       0 |    2 |   210 |      1 |      0 |          0 |
+|       GEN_FIFO[2].GEN_SLICE[1].u_fifo               |                             fifo_output_HD1147 |         93 |         91 |       0 |    2 |   210 |      1 |      0 |          0 |
+|         U0                                          |     fifo_output_fifo_generator_v13_2_11_HD1148 |         93 |         91 |       0 |    2 |   210 |      1 |      0 |          0 |
+|       GEN_FIFO[3].GEN_SLICE[0].u_fifo               |                             fifo_output_HD1181 |         93 |         91 |       0 |    2 |   210 |      1 |      0 |          0 |
+|         U0                                          |     fifo_output_fifo_generator_v13_2_11_HD1182 |         93 |         91 |       0 |    2 |   210 |      1 |      0 |          0 |
+|       GEN_FIFO[3].GEN_SLICE[1].u_fifo               |                             fifo_output_HD1215 |         93 |         91 |       0 |    2 |   210 |      1 |      0 |          0 |
+|         U0                                          |     fifo_output_fifo_generator_v13_2_11_HD1216 |         93 |         91 |       0 |    2 |   210 |      1 |      0 |          0 |
+|       GEN_FIFO[4].GEN_SLICE[0].u_fifo               |                             fifo_output_HD1249 |         93 |         91 |       0 |    2 |   210 |      1 |      0 |          0 |
+|         U0                                          |     fifo_output_fifo_generator_v13_2_11_HD1250 |         93 |         91 |       0 |    2 |   210 |      1 |      0 |          0 |
+|       GEN_FIFO[4].GEN_SLICE[1].u_fifo               |                             fifo_output_HD1283 |         93 |         91 |       0 |    2 |   210 |      1 |      0 |          0 |
+|         U0                                          |     fifo_output_fifo_generator_v13_2_11_HD1284 |         93 |         91 |       0 |    2 |   210 |      1 |      0 |          0 |
+|       GEN_FIFO[5].GEN_SLICE[0].u_fifo               |                             fifo_output_HD1317 |         93 |         91 |       0 |    2 |   210 |      1 |      0 |          0 |
+|         U0                                          |     fifo_output_fifo_generator_v13_2_11_HD1318 |         93 |         91 |       0 |    2 |   210 |      1 |      0 |          0 |
+|       GEN_FIFO[5].GEN_SLICE[1].u_fifo               |                             fifo_output_HD1351 |         92 |         90 |       0 |    2 |   210 |      1 |      0 |          0 |
+|         U0                                          |     fifo_output_fifo_generator_v13_2_11_HD1352 |         92 |         90 |       0 |    2 |   210 |      1 |      0 |          0 |
+|       GEN_FIFO[6].GEN_SLICE[0].u_fifo               |                             fifo_output_HD1385 |         93 |         91 |       0 |    2 |   210 |      1 |      0 |          0 |
+|         U0                                          |     fifo_output_fifo_generator_v13_2_11_HD1386 |         93 |         91 |       0 |    2 |   210 |      1 |      0 |          0 |
+|       GEN_FIFO[6].GEN_SLICE[1].u_fifo               |                             fifo_output_HD1419 |         93 |         91 |       0 |    2 |   210 |      1 |      0 |          0 |
+|         U0                                          |     fifo_output_fifo_generator_v13_2_11_HD1420 |         93 |         91 |       0 |    2 |   210 |      1 |      0 |          0 |
+|       GEN_FIFO[7].GEN_SLICE[0].u_fifo               |                             fifo_output_HD1453 |         93 |         91 |       0 |    2 |   210 |      1 |      0 |          0 |
+|         U0                                          |     fifo_output_fifo_generator_v13_2_11_HD1454 |         93 |         91 |       0 |    2 |   210 |      1 |      0 |          0 |
+|       GEN_FIFO[7].GEN_SLICE[1].u_fifo               |                             fifo_output_HD1487 |         93 |         91 |       0 |    2 |   210 |      1 |      0 |          0 |
+|         U0                                          |     fifo_output_fifo_generator_v13_2_11_HD1488 |         93 |         91 |       0 |    2 |   210 |      1 |      0 |          0 |
+|       GEN_FIFO[8].GEN_SLICE[0].u_fifo               |                             fifo_output_HD1521 |         93 |         91 |       0 |    2 |   210 |      1 |      0 |          0 |
+|         U0                                          |     fifo_output_fifo_generator_v13_2_11_HD1522 |         93 |         91 |       0 |    2 |   210 |      1 |      0 |          0 |
+|       GEN_FIFO[8].GEN_SLICE[1].u_fifo               |                             fifo_output_HD1555 |         93 |         91 |       0 |    2 |   210 |      1 |      0 |          0 |
+|         U0                                          |     fifo_output_fifo_generator_v13_2_11_HD1556 |         93 |         91 |       0 |    2 |   210 |      1 |      0 |          0 |
+|       GEN_FIFO[9].GEN_SLICE[0].u_fifo               |                             fifo_output_HD1589 |         94 |         92 |       0 |    2 |   210 |      1 |      0 |          0 |
+|         U0                                          |     fifo_output_fifo_generator_v13_2_11_HD1590 |         94 |         92 |       0 |    2 |   210 |      1 |      0 |          0 |
+|       GEN_FIFO[9].GEN_SLICE[1].u_fifo               |                             fifo_output_HD1623 |         93 |         91 |       0 |    2 |   210 |      1 |      0 |          0 |
+|         U0                                          |     fifo_output_fifo_generator_v13_2_11_HD1624 |         93 |         91 |       0 |    2 |   210 |      1 |      0 |          0 |
+|     u_fifo_write_control                            |                             fifo_write_control |          0 |          0 |       0 |    0 |    12 |      0 |      0 |          0 |
+|     u_splitter_block                                |                                 splitter_block |         82 |         82 |       0 |    0 |   178 |      0 |      0 |          0 |
+|   u_sink                                            |                                      axis_sink |          3 |          3 |       0 |    0 |    44 |      0 |      0 |          0 |
+|   u_src                                             |                              axis_image_source |      16376 |      16376 |       0 |    0 |    74 |      0 |      0 |          0 |
++-----------------------------------------------------+------------------------------------------------+------------+------------+---------+------+-------+--------+--------+------------+
+* Note: The sum of lower-level cells may be larger than their parent cells total, due to cross-hierarchy LUT combining
+
+

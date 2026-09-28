@@ -11,7 +11,8 @@ module jls_encoder #(
      parameter N_E= 3,
       parameter L=64
     , parameter integer LB_DEPTH = 1024   // line buffer depth = max strip width (i_w/N_H); 1024 -> max image width 16384
-
+    , parameter integer BPP = 8           // sample precision P (8..16). BPP>8 requires NEAR=0 (lossless).
+                                          // BPP=8 is bit-/byte-identical to the original 8-bit core.
 ) (
     input  wire        rstn,
     input  wire        clk,
@@ -22,42 +23,60 @@ module jls_encoder #(
     input  wire [13:0] i_w,     // image_width-1 , range: 4~16383, that is, image_width range: 5~16384
     input  wire [13:0] i_h,     // image_height-1, range: 0~16382, that is, image_height range: 1~16383
     input  wire        i_e,     // input pixel enable
-    input  wire [ 7:0] i_x,     // input pixel
+    input  wire [BPP-1:0] i_x,  // input pixel
 
     // AXI-Stream Output
     output wire        o_e,     // output data enable
     output wire        o_last,  // indicate the last output data of a image
-    output wire [15:0] o_data,   // output data
+    output wire [((BPP>8)?32:16)-1:0] o_data, // output data: 2 bytes/word (BPP=8), 4 bytes/word (BPP>8)
     output wire my_last
 );
 
 //---------------------------------------------------------------------------------------------------------------------------
 // local parameters
 //---------------------------------------------------------------------------------------------------------------------------
-wire [3:0] P_QBPPS [0:7];
-assign P_QBPPS[0] = 4'd8;
-assign P_QBPPS[1] = 4'd7;
-assign P_QBPPS[2] = 4'd6;
-assign P_QBPPS[3] = 4'd6;
-assign P_QBPPS[4] = 4'd5;
-assign P_QBPPS[5] = 4'd5;
-assign P_QBPPS[6] = 4'd5;
-assign P_QBPPS[7] = 4'd5;
+// Bit-depth dependent sizing (ISO/IEC 14495-1 Annex A / C.2.4.1.1 defaults, MAXVAL = 2^BPP-1):
+//   PW  pixel width, EW signed prediction-error width, AW context-A width, KW Golomb-k width,
+//   LIMIT = 2*(bpp+max(8,bpp)), OB output bytes per word, HB golomb merge width, BBW byte-buffer width.
+localparam integer PW     = BPP;
+localparam integer EW     = BPP + 2;
+localparam integer MAXVAL = (1 << BPP) - 1;
+localparam integer AW     = (BPP <= 8) ? 13 : (BPP + 6);
+localparam integer KW     = (AW < 16) ? 4 : 5;
+localparam integer ZW     = (BPP <= 8) ? 5 : 6;
+localparam integer LIMIT  = 2 * (BPP + ((BPP > 8) ? BPP : 8));
+localparam integer OB     = (BPP > 8) ? 4 : 2;
+localparam integer OW     = 8 * OB;
+localparam integer HB     = (BPP <= 8) ? 57 : (16 + (LIMIT - BPP - 1) + 1 + AW);
+localparam integer HNW    = (BPP <= 8) ? 6 : 7;
+localparam integer BBW    = (BPP <= 8) ? 248 : 320;
+localparam integer TFAC   = ((((MAXVAL < 4095) ? MAXVAL : 4095) + 128) >> 8); // threshold FACTOR
+
+wire [4:0] P_QBPPS [0:7];
+assign P_QBPPS[0] = BPP;
+assign P_QBPPS[1] = 5'd7;
+assign P_QBPPS[2] = 5'd6;
+assign P_QBPPS[3] = 5'd6;
+assign P_QBPPS[4] = 5'd5;
+assign P_QBPPS[5] = 5'd5;
+assign P_QBPPS[6] = 5'd5;
+assign P_QBPPS[7] = 5'd5;
 
 localparam N_H = 1; // horizontal blocks per encoder
 localparam N_V = 1; // vertical blocks per encoder
 
-localparam                     P_LOSSY     = (NEAR != 3'd0);
-localparam        signed [8:0] P_NEAR      = $signed({6'd0, NEAR});
-localparam        signed [8:0] P_T1        = $signed(9'd3) + $signed(9'd3) * P_NEAR;
-localparam        signed [8:0] P_T2        = $signed(9'd7) + $signed(9'd5) * P_NEAR;
-localparam        signed [8:0] P_T3        = $signed(9'd21)+ $signed(9'd7) * P_NEAR;
-localparam        signed [9:0] P_QUANT     = {P_NEAR, 1'b1};
-localparam        signed [9:0] P_QBETA     = $signed(10'd256 + {5'd0,NEAR,2'd0}) / P_QUANT;
-localparam        signed [9:0] P_QBETAHALF = (P_QBETA+$signed(10'd1)) / $signed(10'd2);
-wire                     [3:0] P_QBPP      = P_QBPPS[NEAR];
-wire                     [4:0] P_LIMIT     = 5'd31 - {1'b0, P_QBPP};
-localparam              [12:0] P_AINIT     = (NEAR == 3'd0) ? 13'd4 : 13'd2;
+localparam                      P_LOSSY     = (NEAR != 3'd0);
+localparam        signed [PW:0] P_NEAR      = NEAR;
+localparam        signed [PW:0] P_T1        = TFAC * 1  + 2 + 3 * NEAR;
+localparam        signed [PW:0] P_T2        = TFAC * 4  + 3 + 5 * NEAR;
+localparam        signed [PW:0] P_T3        = TFAC * 17 + 4 + 7 * NEAR;
+localparam        signed [9:0]  P_QUANT     = 2 * NEAR + 1;
+localparam        signed [EW-1:0] P_QBETA   = (MAXVAL + 2 * NEAR) / (2 * NEAR + 1) + 1;   // RANGE
+localparam        signed [EW-1:0] P_QBETAHALF = (P_QBETA + 1) / 2;
+localparam        signed [EW-1:0] P_MAXVAL  = MAXVAL;
+wire                      [4:0] P_QBPP      = P_QBPPS[NEAR];
+wire                      [5:0] P_LIMIT     = LIMIT - 1 - P_QBPP;
+localparam            [AW-1:0]  P_AINIT     = (((P_QBETA + 32) >> 6) > 2) ? ((P_QBETA + 32) >> 6) : 2;
 
 wire [3:0] J [0:31];
 assign J[ 0] = 4'd0;
@@ -98,8 +117,8 @@ assign J[31] = 4'd15;
 // function: is_near
 //---------------------------------------------------------------------------------------------------------------------------
 function       [0:0] func_is_near;
-    input      [7:0] x1, x2;
-    reg signed [8:0] ex1, ex2;
+    input      [PW-1:0] x1, x2;
+    reg signed [PW:0] ex1, ex2;
 begin
     ex1 = $signed({1'b0,x1});
     ex2 = $signed({1'b0,x2});
@@ -111,8 +130,8 @@ endfunction
 //---------------------------------------------------------------------------------------------------------------------------
 // function: predictor (get_px)
 //---------------------------------------------------------------------------------------------------------------------------
-function  [7:0] func_predictor;
-    input [7:0] a, b, c;
+function  [PW-1:0] func_predictor;
+    input [PW-1:0] a, b, c;
 begin
     if( c>=a && c>=b )
         func_predictor = (a>b) ? b : a;
@@ -128,8 +147,8 @@ endfunction
 // function: q_quantize
 //---------------------------------------------------------------------------------------------------------------------------
 function signed [3:0] func_q_quantize;
-    input       [7:0] x1, x2;
-    reg signed  [8:0] delta;
+    input       [PW-1:0] x1, x2;
+    reg signed  [PW:0] delta;
 begin
     delta = $signed({1'b0,x1}) - $signed({1'b0,x2});
     if     (delta <= -P_T3 )
@@ -158,7 +177,7 @@ endfunction
 // function: get_q (part 1), qp1 = 81*Q(d-b) + 9*Q(b-c)
 //---------------------------------------------------------------------------------------------------------------------------
 function signed [9:0] func_get_qp1;
-    input       [7:0] c, b, d;
+    input       [PW-1:0] c, b, d;
 begin
     func_get_qp1 = $signed(10'd81) * func_q_quantize(d,b) + $signed(10'd9) * func_q_quantize(b,c);
 end
@@ -170,7 +189,7 @@ endfunction
 //---------------------------------------------------------------------------------------------------------------------------
 function         [9:0] func_get_q;
     input signed [9:0] qp1;
-    input        [7:0] c, a;
+    input        [PW-1:0] c, a;
     reg   signed [9:0] qs;
     reg                s;
     reg          [8:0] q;
@@ -186,15 +205,15 @@ endfunction
 //---------------------------------------------------------------------------------------------------------------------------
 // function: clip
 //---------------------------------------------------------------------------------------------------------------------------
-function         [7:0] func_clip;
-    input signed [9:0] val;
+function         [PW-1:0] func_clip;
+    input signed [EW-1:0] val;
 begin
-    if( val > $signed(10'd255) )
-        func_clip = 8'd255;
-    else if( val < $signed(10'd0) )
-        func_clip = 8'd0;
+    if( val > P_MAXVAL )
+        func_clip = MAXVAL;
+    else if( val < $signed({EW{1'b0}}) )
+        func_clip = {PW{1'b0}};
     else
-        func_clip = val[7:0];
+        func_clip = val[PW-1:0];
 end
 endfunction
 
@@ -202,10 +221,12 @@ endfunction
 //---------------------------------------------------------------------------------------------------------------------------
 // function: errval_quantize
 //---------------------------------------------------------------------------------------------------------------------------
-function  signed [9:0] func_errval_quantize;
-    input signed [9:0] err;
+function  signed [EW-1:0] func_errval_quantize;
+    input signed [EW-1:0] err;
 begin
-    if(err[9])
+    if(NEAR == 0 && BPP > 8)          // lossless: quantizer is the identity (keeps it off
+        func_errval_quantize = err;   // the stage-e critical loop for wide samples)
+    else if(err[EW-1])
         func_errval_quantize = -( (P_NEAR - err) / P_QUANT );
     else
         func_errval_quantize =    (P_NEAR + err) / P_QUANT;
@@ -216,14 +237,20 @@ endfunction
 //---------------------------------------------------------------------------------------------------------------------------
 // function: modrange
 //---------------------------------------------------------------------------------------------------------------------------
-function  signed [9:0] func_modrange;
-    input signed [9:0] val;
+function  signed [EW-1:0] func_modrange;
+    input signed [EW-1:0] val;
 begin
     func_modrange = val;
-    if( func_modrange[9] )
+    if(NEAR == 0 && BPP > 8) begin
+        // lossless, RANGE = 2^BPP: reduction mod RANGE into [-RANGE/2, RANGE/2-1] is a
+        // sign extension of the low BPP bits (no add/compare on the stage-e loop)
+        func_modrange = {{2{val[BPP-1]}}, val[BPP-1:0]};
+    end else begin
+    if( func_modrange[EW-1] )
         func_modrange = func_modrange + P_QBETA;
     if( func_modrange >= P_QBETAHALF )
         func_modrange = func_modrange - P_QBETA;
+    end
 end
 endfunction
 
@@ -231,21 +258,21 @@ endfunction
 //---------------------------------------------------------------------------------------------------------------------------
 // function: get k
 //---------------------------------------------------------------------------------------------------------------------------
-function  [ 3:0] func_get_k;
-    input [12:0] A;
+function  [KW-1:0] func_get_k;
+    input [AW-1:0] A;
     input [ 6:0] N;
     input        rt;
-    reg   [18:0] Nt, At;
-    reg   [ 3:0] ii;
+    reg   [AW+5:0] Nt, At;
+    integer      ii;
 begin
-    Nt = {12'h0, N};
-    At = { 6'h0, A};
-    func_get_k = 4'd0;
+    Nt = N;
+    At = A;
+    func_get_k = {KW{1'b0}};
     if (rt)
-        At = At + {13'd0, N[6:1]};
-    for (ii=4'd0; ii<4'd13; ii=ii+4'd1)
+        At = At + N[6:1];
+    for (ii=0; ii<AW; ii=ii+1)
         if((Nt<<ii) < At)
-            func_get_k = func_get_k + 4'd1;
+            func_get_k = func_get_k + 1'b1;
 end
 endfunction
 
@@ -275,25 +302,27 @@ function        [14:0] C_B_update;
     input        [6:0] N;
     input signed [7:0] C;
     input signed [6:0] B;
-    input signed [9:0] err;
-    reg   signed [9:0] Bt;
+    input signed [EW-1:0] err;
+    reg   signed [EW-1:0] Bt;
+    reg   signed [EW-1:0] Nx;
     reg   signed [7:0] Ct;
 begin
+    Nx = $signed({{(EW-7){1'b0}},N});
     Bt = B;
     Ct = C;
     Bt = Bt + (err * P_QUANT);
     if(reset)
         Bt = Bt >>> 1;
-    if( Bt <= -$signed({3'd0,N}) ) begin
-        Bt = Bt + $signed({3'd0,N});
-        if( Bt <= -$signed({3'd0,N}) )
-            Bt = -$signed({3'd0,N}-10'd1);
+    if( Bt <= -Nx ) begin
+        Bt = Bt + Nx;
+        if( Bt <= -Nx )
+            Bt = -(Nx - 1);
         if( Ct != $signed(8'd128) )
             Ct = Ct - 8'd1;
-    end else if( Bt > $signed(10'd0) ) begin
-        Bt = Bt - $signed({3'd0,N});
-        if( Bt > $signed(10'd0) )
-            Bt = $signed(10'd0);
+    end else if( Bt > $signed({EW{1'b0}}) ) begin
+        Bt = Bt - Nx;
+        if( Bt > $signed({EW{1'b0}}) )
+            Bt = $signed({EW{1'b0}});
         if( Ct != $signed(8'd127) )
             Ct = Ct + 8'd1;
     end
@@ -305,12 +334,12 @@ endfunction
 //---------------------------------------------------------------------------------------------------------------------------
 // function: A update
 //---------------------------------------------------------------------------------------------------------------------------
-function  [12:0] A_update;
+function  [AW-1:0] A_update;
     input        reset;
-    input [12:0] A;
-    input [ 9:0] inc;
+    input [AW-1:0] A;
+    input [EW-1:0] inc;
 begin
-    A_update = A + {3'd0, inc};
+    A_update = A + inc;
     if(reset)
         A_update = A_update >>> 1;
 end
@@ -321,7 +350,7 @@ endfunction
 // context memorys
 //-------------------------------------------------------------------------------------------------------------------
 reg        [ 5:0] Nram [0:365];
-reg        [12:0] Aram [0:365];
+reg      [AW-1:0] Aram [0:365];
 reg signed [ 6:0] Bram [0:365];
 reg signed [ 7:0] Cram [1:364];
 
@@ -343,7 +372,7 @@ end
 //-------------------------------------------------------------------------------------------------------------------
 reg        a_sof;
 reg        a_e;
-reg [ 7:0] a_x;
+reg [PW-1:0] a_x;
 //reg [13:0] a_w;
 //reg [13:0] a_h;
 reg [13:0] a_wl;
@@ -787,7 +816,7 @@ reg        b_lc;
 reg        b_fr;
 reg        b_eof;
 reg [13:0] b_ii;
-reg [ 7:0] b_x;
+reg [PW-1:0] b_x;
 wire last_pixel_block;
 //assign last_pixel_block = (a_ii == a_wl) && (a_jj == a_hl);
 wire eof_cond;
@@ -820,7 +849,7 @@ always @(posedge clk) begin
             b_lc <= 1'b0;
             b_fr <= 1'b0;
             b_ii <= 14'd0;
-            b_x  <= 8'd0;
+            b_x  <= {PW{1'b0}};
         end else begin
             // Active pixel
             b_e  <= a_e & (a_jj <= {1'b0,a_hl});
@@ -846,11 +875,11 @@ reg        c_lc;
 reg        c_fr;
 reg        c_eof;
 reg [13:0] c_ii;
-reg [ 7:0] c_x;
-reg [ 7:0] c_b;
-reg [ 7:0] c_bt;
-reg [ 7:0] c_c;
-reg [ 7:0] c_d;
+reg [PW-1:0] c_x;
+reg [PW-1:0] c_b;
+reg [PW-1:0] c_bt;
+reg [PW-1:0] c_c;
+reg [PW-1:0] c_d;
 
 always @ (posedge clk) begin
     c_sof <= b_sof & rstn;
@@ -865,10 +894,10 @@ always @ (posedge clk) begin
         c_ii <= b_ii;
         if(b_e) begin
             c_x <= b_x;
-            c_b <= b_fr ? 8'd0 : c_d;
+            c_b <= b_fr ? {PW{1'b0}} : c_d;
             if(b_fr) begin
-                c_bt <= 8'd0;
-                c_c <= 8'd0;
+                c_bt <= {PW{1'b0}};
+                c_c <= {PW{1'b0}};
             end else if(b_fc) begin
                 c_bt <= c_d;
                 c_c <= c_bt;
@@ -888,12 +917,12 @@ reg        d_fc;
 reg        d_lc;
 reg        d_eof;
 reg [13:0] d_ii;
-reg [ 7:0] d_x;
-reg [ 7:0] d_b;
-reg [ 7:0] d_c;
+reg [PW-1:0] d_x;
+reg [PW-1:0] d_b;
+reg [PW-1:0] d_c;
 reg signed [9:0] d_qp1;
 
-wire [7:0] c_w_d = c_fr ? 8'd0 : (c_lc ? c_b : c_d);
+wire [PW-1:0] c_w_d = c_fr ? {PW{1'b0}} : (c_lc ? c_b : c_d);
 
 always @ (posedge clk) begin
     d_sof <= c_sof & rstn;
@@ -925,17 +954,17 @@ reg       [13:0] e_ii;
 reg              e_runi;
 reg              e_rune;
 reg              e_2BleN;
-reg        [7:0] e_x;
+reg     [PW-1:0] e_x;
 reg        [8:0] e_q;
 reg              e_rt;
-reg signed [9:0] e_err;
+reg signed [EW-1:0] e_err;
 reg        [6:0] e_No;
 reg              e_write_C, e_write_en;
 reg        [5:0] e_Nn;
 reg signed [7:0] e_Cn;
 reg signed [6:0] e_Bn;
 
-wire       [7:0] d_w_a = d_fc ? d_b : e_x;
+wire    [PW-1:0] d_w_a = d_fc ? d_b : e_x;
 
 reg              s;           // not real register
 reg        [8:0] q;           // not real register
@@ -945,8 +974,9 @@ reg              rune;        // not real register
 reg signed [7:0] Co;          // not real register
 reg        [6:0] No, Nn;      // not real register
 reg signed [6:0] Bo;          // not real register
-reg signed [9:0] px;          // not real register
-reg signed [9:0] err;         // not real register
+reg signed [EW-1:0] px;       // not real register
+reg signed [EW-1:0] err;      // not real register
+reg signed [EW-1:0] Co_x;     // not real register (sign-extended Co)
 
 always @ (posedge clk) begin
     e_sof <= d_sof & rstn;
@@ -961,6 +991,7 @@ always @ (posedge clk) begin
         err = 0;
         {s, q} = func_get_q(d_qp1, d_c, d_w_a);
         Co = (e_write_C & e_q==q) ? e_Cn : Cram[q];
+        Co_x = {{(EW-8){Co[7]}}, Co};
         runi = ~d_fc & e_runi | (q == 9'd0);
         if(runi) begin
             runi = func_is_near(d_x, d_w_a);
@@ -972,12 +1003,11 @@ always @ (posedge clk) begin
             end else begin
                 if(rune) begin
                     rt = func_is_near(d_b, d_w_a);
-                    s = {1'b0,d_w_a} > ({1'b0,d_b} + {6'd0,NEAR}) ? 1'b1 : 1'b0;
+                    s = {1'b0,d_w_a} > ({1'b0,d_b} + NEAR) ? 1'b1 : 1'b0;
                     q = rt ? 9'd365 : 9'd0;
                     px = rt ? d_w_a : d_b;
                 end else begin
-                    px[9:8] = 2'b00;
-                    px[7:0] = func_clip( $signed({2'h0, func_predictor(d_w_a, d_b, d_c)}) + ( s ? -$signed({Co[7],Co[7],Co}) : $signed({Co[7],Co[7],Co}) ) );
+                    px = $signed({2'b00, func_clip( $signed({2'h0, func_predictor(d_w_a, d_b, d_c)}) + ( s ? -Co_x : Co_x ) )});
                 end
                 err = s ? px - $signed({2'd0, d_x}) : $signed({2'd0, d_x}) - px;
                 err = func_errval_quantize(err);
@@ -990,7 +1020,7 @@ always @ (posedge clk) begin
                 Bo = (e_write_en & e_q==q) ? e_Bn : Bram[q];
                 e_write_en <= 1'b1;
                 if(rune) begin
-                    e_Bn <= B_update(No[6], Bo, err<$signed(10'd0));
+                    e_Bn <= B_update(No[6], Bo, err<$signed({EW{1'b0}}));
                     e_2BleN <= $signed({Bo,1'b0}) < $signed({1'b0,No});
                 end else begin
                     e_write_C <= 1'b1;
@@ -1049,9 +1079,9 @@ reg              ef_rune;
 reg              ef_2BleN;
 reg        [8:0] ef_q;
 reg              ef_rt;
-reg signed [9:0] ef_err;
+reg signed [EW-1:0] ef_err;
 reg        [6:0] ef_No;
-reg       [12:0] ef_Ao;
+reg     [AW-1:0] ef_Ao;
 reg              ef_write_en;
 
 always @ (posedge clk) begin
@@ -1087,21 +1117,21 @@ reg               f_e;
 reg               f_eof;
 reg               f_runi;
 reg               f_rune;
-reg        [ 9:0] f_merr;
-reg        [ 3:0] f_k;
+reg        [EW-1:0] f_merr;
+reg        [KW-1:0] f_k;
 reg        [15:0] f_rc;
 reg        [ 4:0] f_ri;
 reg        [ 1:0] f_on;
 reg        [15:0] f_cb;
 reg        [ 4:0] f_cn;    // in range of 0~16
-reg        [ 4:0] f_limit;
+reg        [ 5:0] f_limit;
 reg  [8:0] f_q;
 reg        f_write_en;
-reg [12:0] f_An;
+reg [AW-1:0] f_An;
 
 reg  [8:0] g_q;
 reg        g_write_en;
-reg [12:0] g_An;
+reg [AW-1:0] g_An;
 always @ (posedge clk)
     if(~rstn | f_sof)
         {g_q, g_write_en, g_An} <= 0;
@@ -1111,10 +1141,10 @@ always @ (posedge clk)
 reg [ 1:0] on;         // not real register
 reg [15:0] rc;         // not real register
 reg [ 4:0] ri;         // not real register
-reg [12:0] Ao;         // not real register
-reg [ 3:0] k;          // not real register
-reg [ 9:0] abserr;     // not real register
-reg [ 9:0] merr, Ainc; // not real register
+reg [AW-1:0] Ao;       // not real register
+reg [KW-1:0] k;        // not real register
+reg [EW-1:0] abserr;   // not real register
+reg [EW-1:0] merr, Ainc; // not real register
 reg        map;        // not real register
 
 always @ (posedge clk) begin
@@ -1128,9 +1158,9 @@ always @ (posedge clk) begin
         rc = (ef_fc|~ef_runi) ? 16'd0 : f_rc;
         ri = f_ri;
         Ao = (f_write_en & f_q==ef_q) ? f_An : (g_write_en & g_q==ef_q) ? g_An : ef_Ao;
-        abserr = ef_err<$signed(10'd0) ? $unsigned(-ef_err) : $unsigned(ef_err);
-        merr = 10'd0;
-        Ainc = 10'd0;
+        abserr = ef_err<$signed({EW{1'b0}}) ? $unsigned(-ef_err) : $unsigned(ef_err);
+        merr = {EW{1'b0}};
+        Ainc = {EW{1'b0}};
         f_write_en <= ef_write_en;
         k = func_get_k(Ao, ef_No, ef_rt);
         f_cb <= ef_fc ? 16'd0 : f_rc;
@@ -1145,18 +1175,18 @@ always @ (posedge clk) begin
             if(ef_lc & (rc > 16'd0))
                 on = on + 2'd1;
         end else if(ef_rune) begin
-            f_limit <= P_LIMIT - 5'd1 - {1'b0,J[ri]};
+            f_limit <= P_LIMIT - 6'd1 - {2'b0,J[ri]};
             if (ri > 5'd0) ri = ri - 5'd1;
-            map = ~( (ef_err==10'd0) | ( (ef_err>$signed(10'd0)) ^ (k==4'd0 & ef_2BleN) ) );
-            merr = (abserr<<1) - {9'd0,ef_rt} - {9'd0,map};
-            Ainc = ((merr + {9'd0,~ef_rt}) >> 1);
+            map = ~( (ef_err=={EW{1'b0}}) | ( (ef_err>$signed({EW{1'b0}})) ^ (k=={KW{1'b0}} & ef_2BleN) ) );
+            merr = (abserr<<1) - ef_rt - map;
+            Ainc = ((merr + {{(EW-1){1'b0}},~ef_rt}) >> 1);
         end else begin
-            map = (~P_LOSSY) & (k==4'd0) & ef_2BleN;
-            if(ef_err < $signed(10'd0))
-                merr = (abserr<<1) - 10'd1 - {9'd0,map};
+            map = (~P_LOSSY) & (k=={KW{1'b0}}) & ef_2BleN;
+            if(ef_err < $signed({EW{1'b0}}))
+                merr = (abserr<<1) - 1'b1 - map;
             else
-                merr = (abserr<<1) + {9'd0,map};
-            Ainc = (ef_err < $signed(10'd0)) ? $unsigned(-ef_err) : $unsigned(ef_err);
+                merr = (abserr<<1) + map;
+            Ainc = (ef_err < $signed({EW{1'b0}})) ? $unsigned(-ef_err) : $unsigned(ef_err);
         end
         if(ef_e) begin
             f_rc <= rc;
@@ -1197,11 +1227,11 @@ reg         g_runi;
 reg  [ 1:0] g_on;   // in range of 0~2
 reg  [15:0] g_cb;   
 reg  [ 4:0] g_cn;   // in range of 0~16
-reg  [ 4:0] g_zn;   // in range of 0~27
-reg  [ 9:0] g_db;
-reg  [ 3:0] g_dn;   // in range of 0~13
+reg  [ZW-1:0] g_zn; // in range of 0~27 (8-bit), 0~47 (16-bit)
+reg  [EW-1:0] g_db;
+reg  [KW-1:0] g_dn; // in range of 0~13 (8-bit), 0~AW (wide)
 
-wire [ 9:0] f_w_merr_sk = (f_merr >> f_k);
+wire [EW-1:0] f_w_merr_sk = (f_merr >> f_k);
 
 always @ (posedge clk) begin
     g_sof <= f_sof & rstn;
@@ -1215,12 +1245,12 @@ always @ (posedge clk) begin
         g_cb <= f_rune ? f_cb : 16'd0;
         g_cn <= f_rune ? f_cn : 5'd0;
         if(f_w_merr_sk < f_limit) begin 
-            g_zn <= f_w_merr_sk[4:0];
-            g_db <= f_merr & ~(10'h3ff<<f_k);
+            g_zn <= f_w_merr_sk[ZW-1:0];
+            g_db <= f_merr & ~({EW{1'b1}}<<f_k);
             g_dn <= f_k;
         end else begin
-            g_zn <= f_limit[4:0];
-            g_db <= (f_merr-10'd1) & ~(10'h3ff<<P_QBPP);
+            g_zn <= f_limit[ZW-1:0];
+            g_db <= (f_merr-1'b1) & ~({EW{1'b1}}<<P_QBPP);
             g_dn <= P_QBPP;
         end
     end
@@ -1232,13 +1262,15 @@ end
 //-------------------------------------------------------------------------------------------------------------------
 reg        h_sof;
 reg        h_eof;
-reg [56:0] h_bb;  // max 57 bits
-reg [ 5:0] h_bn;  // in range of 0~57
+reg [HB-1:0] h_bb;  // max 57 bits (8-bit), HB bits (wide)
+reg [HNW-1:0] h_bn; // in range of 0~HB
+localparam [HNW-1:0] P_HB = HB;
+wire [HNW-1:0] g_cn_x = g_cn, g_zn_x = g_zn, g_dn_x = g_dn;
 
 always @ (posedge clk) begin
     h_sof <= g_sof & rstn;
-    h_bb <= 57'd0;
-    h_bn <= 6'd0;
+    h_bb <= {HB{1'b0}};
+    h_bn <= {HNW{1'b0}};
     if(~rstn | g_sof) begin
         h_eof <= 1'b0;
     end else begin
@@ -1246,13 +1278,13 @@ always @ (posedge clk) begin
         if(g_e) begin
             if(g_runi) begin
                 if(g_on==2'd1)
-                    h_bb[56] <= 1'b1;
+                    h_bb[HB-1] <= 1'b1;
                 else if(g_on==2'd2)
-                    h_bb[56:55] <= 2'b11;
-                h_bn <= {4'h0, g_on};
+                    h_bb[HB-1:HB-2] <= 2'b11;
+                h_bn <= g_on;
             end else begin
-                h_bb <= ( {41'h0,g_cb} << (6'd57-g_cn) ) | ( 57'd1 << (6'd56-g_cn-g_zn) ) | ( {47'h0,g_db} << (6'd56-g_cn-g_zn-g_dn) );
-                h_bn <= {1'b0,g_cn} + {1'b0,g_zn} + 6'd1 + {2'b0,g_dn};
+                h_bb <= ( {{(HB-16){1'b0}},g_cb} << (P_HB-g_cn_x) ) | ( {{(HB-1){1'b0}},1'b1} << (P_HB-1'b1-g_cn_x-g_zn_x) ) | ( {{(HB-EW){1'b0}},g_db} << (P_HB-1'b1-g_cn_x-g_zn_x-g_dn_x) );
+                h_bn <= g_cn_x + g_zn_x + 1'b1 + g_dn_x;
             end
         end
     end
@@ -1265,104 +1297,24 @@ end
 reg        j_sof;
 reg        j_e;
 reg        j_last;
-reg [15:0] j_data;
+reg [OW-1:0] j_data;
+wire[15:0] jls_footer = 16'hFFD9;
+
+generate if (OB == 2) begin : g_j_narrow
+// 8-bit: 2 bytes/word, 248-bit byte buffer (original, unchanged behaviour)
 reg[247:0] j_bbuf;
 reg [ 7:0] j_bcnt;
 
 reg [ 1:0] state_footer;
-wire[15:0] jls_footer = 16'hFFD9;
 
 reg [247:0] bbuf;         // not real register
 reg [  7:0] bcnt;         // not real register
-
-reg eof_pending;
-
-//always @(posedge clk) begin
-//    j_sof  <= h_sof & rstn;
-//    j_e    <= 1'b0;
-//    j_last <= 1'b0;
-//    j_data <= 16'h0;
-
-//    if (!rstn) begin
-//        j_bbuf        <= 248'd0;
-//        j_bcnt        <= 8'd8;
-//        state_footer  <= 2'd0;
-//        eof_pending   <= 1'b0;
-//    end else begin
-//        // latch EOF request so footer can take multiple cycles
-//        if (h_eof)
-//            eof_pending <= 1'b1;
-//        if (j_last)
-//            eof_pending <= 1'b0;
-
-//        // IMPORTANT: don't let SOF wipe footer while EOF is pending
-//        if (h_sof && !eof_pending && (state_footer == 2'd0)) begin
-//            j_bbuf       <= 248'd0;
-//            j_bcnt       <= 8'd8;
-//            state_footer <= 2'd0;
-//        end else begin
-//            bbuf = j_bbuf | ({h_bb,191'h0} >> j_bcnt);
-//            bcnt = j_bcnt + {2'd0,h_bn};
-
-//            if (bcnt >= 8'd16) begin
-//                j_e <= 1'b1;
-
-//                j_data[15:8] <= bbuf[247:240];
-//                if (bbuf[247:240] == 8'hFF) begin
-//                    bbuf = {1'h0, bbuf[239:0], 7'h0};
-//                    bcnt = bcnt - 8'd7;
-//                end else begin
-//                    bbuf = {bbuf[239:0], 8'h0};
-//                    bcnt = bcnt - 8'd8;
-//                end
-
-//                j_data[7:0] <= bbuf[247:240];
-//                if (bbuf[247:240] == 8'hFF) begin
-//                    bbuf = {1'h0, bbuf[239:0], 7'h0};
-//                    bcnt = bcnt - 8'd7;
-//                end else begin
-//                    bbuf = {bbuf[239:0], 8'h0};
-//                    bcnt = bcnt - 8'd8;
-//                end
-
-//            end else if (h_eof || eof_pending) begin
-//                // footer/drain phase can span multiple cycles now
-//                if (bcnt > 8'd0) begin
-//                    j_e <= 1'b1;
-//                    j_data[15:8] <= bbuf[247:240];
-
-//                    if (bbuf[247:240] == 8'hFF) begin
-//                        j_data[7:0] <= {1'b0, bbuf[239:233]};
-//                    end else if (bcnt > 8'd8) begin
-//                        j_data[7:0] <= bbuf[239:232];
-//                    end else begin
-//                        j_data[7:0] <= jls_footer[15:8];
-//                        state_footer <= 2'd1;
-//                    end
-
-//                end else if (state_footer < 2'd2) begin
-//                    j_e    <= 1'b1;
-//                    j_last <= 1'b1;
-//                    j_data <= (state_footer==2'd0) ? jls_footer
-//                                                   : {jls_footer[7:0], 8'd0};
-//                    state_footer <= 2'd2;
-//                end
-
-//                bbuf = 248'd0;
-//                bcnt = 8'd0;
-//            end
-
-//            j_bbuf <= bbuf;
-//            j_bcnt <= bcnt;
-//        end
-//    end
-//end
 
 always @ (posedge clk) begin
     j_sof <= h_sof & rstn;
     j_e    <= 1'b0;
     j_last <= 1'b0;
-    j_data <= 16'h0;
+    j_data <= {OW{1'b0}};
     if(~rstn | h_sof) begin
         j_bbuf <= 248'd0;
         j_bcnt <= 8'd8;
@@ -1413,17 +1365,93 @@ always @ (posedge clk) begin
         j_bcnt <= bcnt;
     end
 end
+end else begin : g_j_wide
+// BPP>8: OB bytes/word so the output port (8*OB bits/clk) stays above the worst realistic
+// code rate of one BPP-bit pixel per clock. Same 0xFF bit-stuffing rule (a 0 bit is inserted
+// after every 0xFF byte); the end-of-scan drain may span several words, then FF D9 + 00 pad.
+localparam integer BCW = 9;
+reg [BBW-1:0] j_bbuf;
+reg [BCW-1:0] j_bcnt;
+reg [1:0]     j_ft;       // footer phase: 0 = data, 1 = FF sent (D9 next), 2 = done
+reg [BBW-1:0] bbuf;       // not real register
+reg [BCW-1:0] bcnt;       // not real register
+reg [1:0]     ft;         // not real register
+reg [OW-1:0]  wd;         // not real register
+reg           wl;         // not real register
+reg [7:0]     by;         // not real register
+integer       bi;
+
+always @ (posedge clk) begin
+    j_sof  <= h_sof & rstn;
+    j_e    <= 1'b0;
+    j_last <= 1'b0;
+    j_data <= {OW{1'b0}};
+    if(~rstn | h_sof) begin
+        j_bbuf <= {BBW{1'b0}};
+        j_bcnt <= 8;              // leading 0x00 = SOS point-transform byte
+        j_ft   <= 2'd0;
+    end else begin
+        bbuf = j_bbuf | ({h_bb, {(BBW-HB){1'b0}}} >> j_bcnt);
+        bcnt = j_bcnt + h_bn;
+        ft   = j_ft;
+        wd   = {OW{1'b0}};
+        wl   = 1'b0;
+        if(bcnt >= OW) begin
+            for (bi = 0; bi < OB; bi = bi + 1) begin
+                by = bbuf[BBW-1 -: 8];
+                wd = {wd[OW-9:0], by};
+                if(by == 8'hFF) begin
+                    bbuf = {1'h0, bbuf[BBW-9:0], 7'h0};
+                    bcnt = bcnt - 7;
+                end else begin
+                    bbuf = {      bbuf[BBW-9:0], 8'h0};
+                    bcnt = bcnt - 8;
+                end
+            end
+            j_e    <= 1'b1;
+            j_data <= wd;
+        end else if(h_eof && ft != 2'd2) begin
+            for (bi = 0; bi < OB; bi = bi + 1) begin
+                if (bcnt != 0) begin
+                    by = bbuf[BBW-1 -: 8];
+                    if(by == 8'hFF) begin
+                        bbuf = {1'h0, bbuf[BBW-9:0], 7'h0};
+                        bcnt = (bcnt > 7) ? bcnt - 7 : 0;
+                    end else begin
+                        bbuf = {      bbuf[BBW-9:0], 8'h0};
+                        bcnt = (bcnt > 8) ? bcnt - 8 : 0;
+                    end
+                end else if (ft == 2'd0) begin
+                    by = jls_footer[15:8]; ft = 2'd1;
+                end else if (ft == 2'd1) begin
+                    by = jls_footer[7:0];  ft = 2'd2; wl = 1'b1;
+                end else
+                    by = 8'h00;
+                wd = {wd[OW-9:0], by};
+            end
+            j_e    <= 1'b1;
+            j_last <= wl;
+            j_data <= wd;
+        end
+        j_bbuf <= bbuf;
+        j_bcnt <= bcnt;
+        j_ft   <= ft;
+    end
+end
+end endgenerate
 
 
 //-------------------------------------------------------------------------------------------------------------------
 // make .jls file header and footer
 //-------------------------------------------------------------------------------------------------------------------
+localparam [7:0] P_BPP8 = BPP;
+localparam integer HWORDS = 24 / OB;   // 24 header bytes (+ the 0x00 PT byte from j_bcnt=8)
 reg [15:0] jls_wl, jls_hl;
 wire[15:0] jls_header [0:11];
 assign jls_header[0] = 16'hFFD8;
 assign jls_header[1] = 16'hFFF7;
 assign jls_header[2] = 16'h000B;
-assign jls_header[3] = {8'h08      , jls_hl[15:8]};
+assign jls_header[3] = {P_BPP8     , jls_hl[15:8]};
 assign jls_header[4] = {jls_hl[7:0], jls_wl[15:8]};
 assign jls_header[5] = {jls_wl[7:0], 8'h01};
 assign jls_header[6] = 16'h0111;
@@ -1433,13 +1461,23 @@ assign jls_header[9] = 16'h0801;
 assign jls_header[10]= 16'h0100;
 assign jls_header[11]= {5'b0,NEAR, 8'h0};
 
+wire [OW-1:0] jls_hdr_w [0:HWORDS-1];
+genvar hwi;
+generate for (hwi = 0; hwi < HWORDS; hwi = hwi + 1) begin : g_hdr
+    if (OB == 2) begin : g_h2
+        assign jls_hdr_w[hwi] = jls_header[hwi];
+    end else begin : g_h4
+        assign jls_hdr_w[hwi] = {jls_header[2*hwi], jls_header[2*hwi+1]};
+    end
+end endgenerate
+
 always @ (posedge clk)
     if(~rstn) begin
         jls_wl <= 16'd0;
         jls_hl <= 16'd0;
     end else begin
-        jls_wl <= {2'd0,a_wl+1}; //+16'd1};
-        jls_hl <= {2'd0,a_hl+1 } ;//+1};//+ 16'd1};
+        jls_wl <= {2'd0,a_wl+1};
+        jls_hl <= {2'd0,a_hl+1};
     end
 
 
@@ -1449,16 +1487,16 @@ always @ (posedge clk)
 reg  [3:0] k_header_i;
 reg        k_e;
 reg        k_last;
-reg [15:0] k_data;
+reg [OW-1:0] k_data;
 
 always @ (posedge clk) begin
     k_e <= 1'b0;
     k_last <= 1'b0;
-    k_data <= 16'd0;
+    k_data <= {OW{1'b0}};
     if(j_sof) begin
-        if(k_header_i < 4'd12) begin
+        if(k_header_i < HWORDS) begin
             k_e <= 1'b1;
-            k_data <= jls_header[k_header_i];
+            k_data <= jls_hdr_w[k_header_i];
             k_header_i <= k_header_i + 4'd1;
         end
     end else if(j_e) begin
@@ -1475,7 +1513,7 @@ end
 //-------------------------------------------------------------------------------------------------------------------
 // linebuffer for context pixels
 //-------------------------------------------------------------------------------------------------------------------
-    reg [7:0] linebuffer [0:LB_DEPTH-1];
+    reg [PW-1:0] linebuffer [0:LB_DEPTH-1];
 always @ (posedge clk)  // line buffer read
     c_d <= linebuffer[a_ii];
 always @ (posedge clk)  // line buffer write
@@ -1487,7 +1525,7 @@ always @ (posedge clk)  // line buffer write
 //-------------------------------------------------------------------------------------------------------------------
 assign o_e    = k_e;
 assign o_last = k_last;
-assign o_data = {k_data[15:8],k_data[7:0]};
+assign o_data = k_data;
 
 assign my_last = o_last;
 

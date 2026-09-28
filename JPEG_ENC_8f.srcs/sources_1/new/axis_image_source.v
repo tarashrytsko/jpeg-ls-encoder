@@ -8,6 +8,7 @@ module axis_image_source #(
     parameter integer N_E   = 16,
     parameter integer IMG_W = 256,
     parameter integer IMG_H = 256,
+    parameter integer PW    = 8,       // pixel lane width (8, or 16 for BPP>8)
     parameter         HEXFILE = "D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/sources_1/new/rom_wide.hex"
 )(
     input  wire              clk,
@@ -15,14 +16,14 @@ module axis_image_source #(
     output reg  [15:0]       i_w,
     output reg  [13:0]       i_h,
     output reg               i_sof,
-    output wire [N_E*8-1:0]  s_axis_tdata,
+    output wire [N_E*PW-1:0] s_axis_tdata,
     output wire              s_axis_tvalid,
     input  wire              s_axis_tready,
     output wire              s_axis_tlast
 );
     localparam integer SW = IMG_W / N_E;          // strip width
     localparam integer N  = SW * IMG_H;           // strided words
-    (* rom_style = "block" *) reg [N_E*8-1:0] rom [0:N-1];
+    (* rom_style = "block" *) reg [N_E*PW-1:0] rom [0:N-1];
     initial $readmemh(HEXFILE, rom);
 
     localparam S_IDLE = 2'd0, S_RUN = 2'd1, S_DONE = 2'd2;

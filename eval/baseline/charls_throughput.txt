@@ -1,0 +1,3 @@
+CharLS single-thread encode, 4992x4992 8-bit, best of 3
+host: Intel64 Family 6 Model 141 Stepping 1, GenuineIntel | Windows-11-10.0.26200-SP0
+throughput: 84.2 Mpixel/s = 84.2 MB/s

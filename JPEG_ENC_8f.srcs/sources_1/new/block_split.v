@@ -3,20 +3,21 @@
 module splitter_block #(
     parameter integer N_H = 3,
     parameter integer N_V = 3,
-    parameter integer N_E = 3
+    parameter integer N_E = 3,
+    parameter integer PW  = 8      // pixel lane width (8, or 16 for BPP>8)
 )(
     input  wire                 sys_rdy,
     input  wire                 clk,
     input  wire                 i_sof,       // SOF pulse
     input  wire [N_E-1:0]      i_sof_st,    // <<< FROM IMAGE GENERATOR
     input  wire                 i_e,
-    input  wire [N_E*8-1:0]    i_x,
+    input  wire [N_E*PW-1:0]   i_x,
     input  wire [15:0]          i_w,
     input  wire [13:0]          i_h,
 
     output reg  [N_E-1:0]       o_last_enc,
     output reg  [N_E-1:0]       o_e,
-    output reg  [N_E*8-1:0]     o_x,
+    output reg  [N_E*PW-1:0]    o_x,
     output reg  [N_E*16-1:0]    o_w,
     output reg  [N_E*14-1:0]    o_h,
 
@@ -95,7 +96,7 @@ module splitter_block #(
             if (i_e && frame_active) begin
                 for (k=0; k<N_E; k=k+1) begin
                     o_e[k] <= 1'b1;
-                    o_x[k*8 +:8] <= i_x[k*8 +:8];     // lane k <- strip k's pixel
+                    o_x[k*PW +:PW] <= i_x[k*PW +:PW]; // lane k <- strip k's pixel
                     if (xs == stripW-1 && ys == swathH-1)
                         o_last_enc[k] <= 1'b1;
                 end

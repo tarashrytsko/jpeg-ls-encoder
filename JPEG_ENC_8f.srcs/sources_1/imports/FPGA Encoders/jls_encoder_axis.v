@@ -7,8 +7,12 @@ module jls_encoder_axis #(
     parameter [2:0]   nr  = 3'd0, // NEAR fixed 0 (lossless)
     parameter integer EXT_CLK = 0,// 1 => take clk/rd_clk from ext_clk (skip clk_wiz_0);
                                   //      for tops that own the MMCM (e.g. serial demo)
-    parameter integer LB_DEPTH = 1024 // line-buffer depth = max strip width (i_w/N_H);
+    parameter integer LB_DEPTH = 1024,// line-buffer depth = max strip width (i_w/N_H);
                                   //      horizontal (N_H=1) needs LB_DEPTH >= image width
+    parameter integer BPP = 8,    // sample precision 8..16 (lossless). BPP>8: 16-bit pixel
+                                  //      lanes in, 32-bit compressed words out.
+    parameter integer PW  = (BPP > 8) ? 16 : 8,   // pixel lane width  (s_axis_tdata = N_E*PW)
+    parameter integer OW  = (BPP > 8) ? 32 : 16   // output word width (m_axis_tdata = N_E*OW)
 )(
     input  wire        rstn,
     output wire        clk,         // wr_clk (also s_axis_aclk / m_axis_aclk)
@@ -24,13 +28,13 @@ module jls_encoder_axis #(
     input  wire [13:0] i_h,
 
     // AXI4-Stream slave (pixels in), clocked by clk
-    input  wire [N_E*8-1:0] s_axis_tdata,
+    input  wire [N_E*PW-1:0] s_axis_tdata,
     input  wire        s_axis_tvalid,
     output wire        s_axis_tready,
     input  wire        s_axis_tlast,
 
     // AXI4-Stream masters (compressed out, N_E channels), clocked by clk
-    output wire [N_E*16-1:0] m_axis_tdata,
+    output wire [N_E*OW-1:0] m_axis_tdata,
     output wire [N_E-1:0]    m_axis_tvalid,
     input  wire [N_E-1:0]    m_axis_tready,
     output wire [N_E-1:0]    m_axis_tlast
@@ -38,7 +42,7 @@ module jls_encoder_axis #(
 
 wire [N_E-1:0] o_sof_st;
     wire [N_E-1:0]     s_e;
-    wire [N_E*8-1:0]   s_x;
+    wire [N_E*PW-1:0]  s_x;
     wire [N_E*16-1:0]  s_w;
     wire [N_E*14-1:0]  s_h;
     wire [N_E-1:0]     o_last_enc;
@@ -47,7 +51,7 @@ wire [N_E-1:0] o_sof_st;
     wire [N_E-1:0]     e_e;
     wire               fifo_full_cur;
     wire [N_E-1:0]     fifo_overflow_masked;
-    wire [N_E*16-1:0]  e_data;
+    wire [N_E*OW-1:0]  e_data;
     wire [15:0]        x_cnt, y_cnt;
     wire               rd_clk;
 
@@ -94,12 +98,12 @@ wire [N_E-1:0] o_sof_st;
     // =================================================================
     // AXIS slave pixel adapter (replaces sim-only image_generator)
     // =================================================================
-    wire [N_E*8-1:0] gen_x;
+    wire [N_E*PW-1:0] gen_x;
     wire        gen_e;
     wire [15:0] gen_w;
     wire [13:0] gen_h;
 
-    axis_pixel_in #(.N_E(N_E)) u_axis_pixel_in (
+    axis_pixel_in #(.N_E(N_E), .PW(PW)) u_axis_pixel_in (
         .clk           (clk),
         .rstn          (sys_rdy),
         .i_sof         (i_sof),
@@ -123,7 +127,8 @@ wire [N_E-1:0] o_sof_st;
     splitter_block #(
         .N_H(N_H),
         .N_V(N_V),
-        .N_E(N_E)
+        .N_E(N_E),
+        .PW(PW)
     ) u_splitter_block (
         .sys_rdy     (rstn),
         .clk         (clk),
@@ -146,8 +151,8 @@ wire [N_E-1:0] o_sof_st;
     // =================================================================
     // Input FIFO wrapper
     // =================================================================
-    wire [8*N_E-1:0]  din_flat = s_x;
-    wire [8*N_E-1:0]  dout_flat;
+    wire [PW*N_E-1:0] din_flat = s_x;
+    wire [PW*N_E-1:0] dout_flat;
     wire [N_E-1:0]    valid, fifo_rd_en, empty, overflow, fifo_wr_en, almost_empty;
     wire [N_E-1:0]    fifo_full;
     wire [N_E*18-1:0] fifo_count_flat;
@@ -155,7 +160,7 @@ wire [N_E-1:0] o_sof_st;
     assign fifo_full_cur = |fifo_full;                       // stall all lanes if ANY FIFO full (wide lockstep)
     assign fifo_overflow_masked = {N_E{fifo_full_cur}};
 
-    fifo_wrapper_input #(.N_E(N_E)) u_fifo_wrapper_input (
+    fifo_wrapper_input #(.N_E(N_E), .DATA_WIDTH(PW)) u_fifo_wrapper_input (
         .rst(fifo_rst),
         .wr_clk(clk),
         .rd_clk(rd_clk),
@@ -228,7 +233,8 @@ wire [N_E-1:0] o_sof_st;
         .N_V(N_V),
         .nr(nr),
         .L(L),
-        .LB_DEPTH(LB_DEPTH)
+        .LB_DEPTH(LB_DEPTH),
+        .BPP(BPP)
     ) u_encoder_wrapper (
         .rd_clk(rd_clk),
         .sys_rdy(sys_rdy),
@@ -248,7 +254,8 @@ wire [N_E-1:0] o_sof_st;
     // Output FIFO wrapper
     // =================================================================
     fifo_wrapper_output #(
-        .N_E(N_E)
+        .N_E(N_E),
+        .DW(OW)
     ) u_fifo_wrapper_output (
         .rst         (fifo_rst),
         .wr_clk      (rd_clk),
