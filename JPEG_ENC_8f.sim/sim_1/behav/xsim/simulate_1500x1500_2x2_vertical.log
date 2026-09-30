@@ -1,0 +1,77 @@
+#-----------------------------------------------------------
+# xsim v2024.2 (64-bit)
+# SW Build 5239630 on Fri Nov 08 22:35:27 MST 2024
+# IP Build 5239520 on Sun Nov 10 16:12:51 MST 2024
+# SharedData Build 5239561 on Fri Nov 08 14:39:27 MST 2024
+# Start of session at: Fri Jun 26 19:44:36 2026
+# Process ID         : 7580
+# Current directory  : D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.sim/sim_1/behav/xsim
+# Command line       : xsim.exe -log simulate_1500x1500_2x2_vertical.log -mode tcl -source {xsim.dir/tb_jls_encoder_axis_behav/xsim_script.tcl}
+# Log file           : D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.sim/sim_1/behav/xsim/simulate_1500x1500_2x2_vertical.log
+# Journal file       : D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.sim/sim_1/behav/xsim\xsim.jou
+# Running On         : DESKTOP-PHB4K70
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 26200
+# Processor Detail   : 11th Gen Intel(R) Core(TM) i5-11400H @ 2.70GHz
+# CPU Frequency      : 2688 MHz
+# CPU Physical cores : 6
+# CPU Logical cores  : 12
+# Host memory        : 16840 MB
+# Swap memory        : 4160 MB
+# Total Virtual      : 21001 MB
+# Available Virtual  : 12817 MB
+#-----------------------------------------------------------
+source xsim.dir/tb_jls_encoder_axis_behav/xsim_script.tcl
+# xsim {tb_jls_encoder_axis_behav} -autoloadwcfg -tclbatch {run_quit.tcl}
+Time resolution is 1 ps
+source run_quit.tcl
+## run all
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+[0] Output capture ready (in-memory buffers)
+[3367500] FIRST SOF enc0: iw=0 swath_h=0 col0=0
+[3734166] FIRST e_e[0]: rd_cnt=0 a_ii=0 j_sof=1 j_e=0 a_wl=374
+[1668000832] DBG rd=24375/24243 st=1 e_e=0000 wr=24375/24375 full=0000 pix=96878
+[3334667499] DBG rd=49305/49125 st=1 e_e=0000 wr=49500/49126 full=0000 pix=196878
+[5001334165] DBG rd=74250/74250 st=1 e_e=0000 wr=74250/74250 full=0000 pix=296878
+[6668000832] DBG rd=99375/99243 st=1 e_e=0000 wr=99375/99375 full=0000 pix=396878
+[8334667499] DBG rd=124305/124125 st=1 e_e=0000 wr=124500/124126 full=0000 pix=496878
+[10001334165] DBG rd=149250/149250 st=1 e_e=0000 wr=149250/149250 full=0000 pix=596878
+[11668000832] DBG rd=174375/174243 st=1 e_e=0000 wr=174375/174375 full=0000 pix=696878
+[13334667499] DBG rd=199305/199125 st=1 e_e=1000 wr=199500/199126 full=0000 pix=796878
+[15001334165] DBG rd=224250/224250 st=1 e_e=0000 wr=224250/224250 full=0000 pix=896878
+[16668000832] DBG rd=249375/249243 st=1 e_e=0000 wr=249375/249375 full=0000 pix=996878
+[18334667499] DBG rd=274305/274125 st=1 e_e=0000 wr=274500/274126 full=0000 pix=1096878
+[20001334165] DBG rd=299250/299250 st=1 e_e=0000 wr=299250/299250 full=0000 pix=1196878
+[21668000832] DBG rd=324375/324243 st=1 e_e=0000 wr=324375/324375 full=0000 pix=1296878
+[23334667499] DBG rd=349305/349125 st=1 e_e=0000 wr=349500/349126 full=0000 pix=1396878
+[25001334165] DBG rd=374250/374250 st=1 e_e=0000 wr=374250/374250 full=0000 pix=1496878
+[26668000832] DBG rd=399375/399243 st=1 e_e=0010 wr=399375/399375 full=0000 pix=1596878
+[28334667499] DBG rd=424305/424125 st=1 e_e=1000 wr=424500/424126 full=0000 pix=1696878
+[30001334165] DBG rd=449250/449250 st=1 e_e=1000 wr=449250/449250 full=0000 pix=1796878
+[31668000832] DBG rd=474375/474243 st=1 e_e=0010 wr=474375/474375 full=0000 pix=1896878
+[33334667499] DBG rd=499305/499125 st=1 e_e=0000 wr=499500/499126 full=0000 pix=1996878
+[35001334165] DBG rd=524250/524250 st=1 e_e=0000 wr=524250/524250 full=0000 pix=2096878
+[36668000832] DBG rd=549375/549243 st=1 e_e=0000 wr=549375/549375 full=0000 pix=2196878
+[37541717499] SLICE enc0[0] done: words=72893 bytes=145785
+[37541717499] DONE enc0 total_bytes=145785
+[37547950832] SLICE enc1[0] done: words=57220 bytes=114439
+[37547950832] DONE enc1 total_bytes=114439
+[37554217499] SLICE enc2[0] done: words=64914 bytes=129827
+[37554217499] DONE enc2 total_bytes=129827
+[37560450832] SLICE enc3[0] done: words=74455 bytes=148909
+[37560450832] DONE enc3 total_bytes=148909
+[37561284165] D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.sim/output_block/output_h4v1_1500x1500.jls written: 538960 bytes (4 slices, swath-major enc-minor order)
+=== All 4 encoder slices complete ===
+BENCHMARK_RESULT N_H=4 N_V=1 W=1500 H=1500 N_E=4 NUM_SLICES=1 OUT_BYTES=538960
+$finish called at time : 37561284165 ps : File "D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/sim_1/imports/FPGA Encoders/tb_jls_encoder_axis.v" Line 218
+run: Time (s): cpu = 00:00:00 ; elapsed = 00:04:51 . Memory (MB): peak = 202.926 ; gain = 0.000
+## quit
+INFO: xsimkernel Simulation Memory Usage: 257400 KB (Peak: 257400 KB), Simulation CPU Usage: 291249 ms
+INFO: [Common 17-206] Exiting xsim at Fri Jun 26 19:49:29 2026...

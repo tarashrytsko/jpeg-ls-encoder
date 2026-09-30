@@ -1,0 +1,844 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2024.2 (win64) Build 5239630 Fri Nov 08 22:35:27 MST 2024
+| Date         : Mon Sep 28 12:24:32 2026
+| Host         : DESKTOP-PHB4K70 running 64-bit major release  (build 9200)
+| Command      : report_timing -max_paths 5 -nworst 1 -unique_pins -file D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/eval/power/b12_45_critpaths.rpt
+| Design       : jls_demo_top
+| Device       : 7a200t-fbg676
+| Speed File   : -2  PRODUCTION 1.23 2018-06-13
+| Design State : Routed
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Timing Report
+
+Slack (VIOLATED) :        -0.408ns  (required time - arrival time)
+  Source:                 u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/d_fc_reg/C
+                            (rising edge-triggered cell FDRE clocked by clk_out2_clk_wiz_0_1  {rise@0.000ns fall@11.111ns period=22.222ns})
+  Destination:            u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_Bn_reg[4]/D
+                            (rising edge-triggered cell FDRE clocked by clk_out2_clk_wiz_0_1  {rise@0.000ns fall@11.111ns period=22.222ns})
+  Path Group:             clk_out2_clk_wiz_0_1
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            22.222ns  (clk_out2_clk_wiz_0_1 rise@22.222ns - clk_out2_clk_wiz_0_1 rise@0.000ns)
+  Data Path Delay:        22.527ns  (logic 10.202ns (45.288%)  route 12.325ns (54.712%))
+  Logic Levels:           42  (CARRY4=23 LUT1=2 LUT2=2 LUT3=4 LUT4=3 LUT5=1 LUT6=6 RAMD64E=1)
+  Clock Path Skew:        -0.033ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    -1.559ns = ( 20.663 - 22.222 ) 
+    Source Clock Delay      (SCD):    -1.149ns
+    Clock Pessimism Removal (CPR):    0.376ns
+  Clock Uncertainty:      0.103ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.193ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_out2_clk_wiz_0_1 rise edge)
+                                                      0.000     0.000 r  
+    R3                                                0.000     0.000 r  clk_in1_p (IN)
+                         net (fo=0)                   0.000     0.000    u_ip/g_clkwiz.clk_wiz_0/inst/clk_in1_p
+    R3                   IBUFDS (Prop_ibufds_I_O)     0.890     0.890 r  u_ip/g_clkwiz.clk_wiz_0/inst/clkin1_ibufgds/O
+                         net (fo=1, routed)           1.065     1.955    u_ip/g_clkwiz.clk_wiz_0/inst/clk_in1_clk_wiz_0
+    MMCME2_ADV_X1Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT1)
+                                                     -6.273    -4.317 r  u_ip/g_clkwiz.clk_wiz_0/inst/mmcm_adv_inst/CLKOUT1
+                         net (fo=1, routed)           1.524    -2.793    u_ip/g_clkwiz.clk_wiz_0/inst/clk_out2_clk_wiz_0
+    BUFGCTRL_X0Y1        BUFG (Prop_bufg_I_O)         0.081    -2.712 r  u_ip/g_clkwiz.clk_wiz_0/inst/clkout2_buf/O
+                         net (fo=21994, routed)       1.563    -1.149    u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/clk_out2
+    SLICE_X131Y82        FDRE                                         r  u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/d_fc_reg/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X131Y82        FDRE (Prop_fdre_C_Q)         0.379    -0.770 r  u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/d_fc_reg/Q
+                         net (fo=179, routed)         0.837     0.066    u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/d_fc
+    SLICE_X130Y82        LUT4 (Prop_lut4_I3_O)        0.105     0.171 r  u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_128/O
+                         net (fo=1, routed)           0.000     0.171    u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_128_n_0
+    SLICE_X130Y82        CARRY4 (Prop_carry4_S[2]_CO[3])
+                                                      0.332     0.503 r  u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_122/CO[3]
+                         net (fo=1, routed)           0.000     0.503    u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_122_n_0
+    SLICE_X130Y83        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.098     0.601 r  u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_69/CO[3]
+                         net (fo=1, routed)           0.000     0.601    u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_69_n_0
+    SLICE_X130Y84        CARRY4 (Prop_carry4_CI_O[0])
+                                                      0.180     0.781 r  u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_38/O[0]
+                         net (fo=10, routed)          0.890     1.672    u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/func_q_quantize2[8]
+    SLICE_X127Y88        LUT2 (Prop_lut2_I0_O)        0.249     1.921 r  u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_112/O
+                         net (fo=1, routed)           0.000     1.921    u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_112_n_0
+    SLICE_X127Y88        CARRY4 (Prop_carry4_S[3]_CO[3])
+                                                      0.332     2.253 r  u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_62/CO[3]
+                         net (fo=1, routed)           0.000     2.253    u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_62_n_0
+    SLICE_X127Y89        CARRY4 (Prop_carry4_CI_CO[1])
+                                                      0.132     2.385 r  u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_33/CO[1]
+                         net (fo=3, routed)           0.701     3.086    u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_33_n_2
+    SLICE_X129Y89        LUT6 (Prop_lut6_I1_O)        0.275     3.361 r  u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_37/O
+                         net (fo=1, routed)           0.485     3.845    u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_37_n_0
+    SLICE_X129Y90        LUT4 (Prop_lut4_I3_O)        0.105     3.950 r  u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_21/O
+                         net (fo=1, routed)           0.000     3.950    u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_21_n_0
+    SLICE_X129Y90        CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.440     4.390 r  u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_7/CO[3]
+                         net (fo=1, routed)           0.000     4.390    u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_7_n_0
+    SLICE_X129Y91        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.098     4.488 r  u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_16/CO[3]
+                         net (fo=1, routed)           0.000     4.488    u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_16_n_0
+    SLICE_X129Y92        CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.265     4.753 r  u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/Nram_reg_0_63_0_2_i_18/O[1]
+                         net (fo=27, routed)          0.886     5.640    u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/p_0_in
+    SLICE_X131Y87        LUT4 (Prop_lut4_I3_O)        0.250     5.890 r  u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_5/O
+                         net (fo=58, routed)          0.990     6.879    u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/Cram_reg_64_127_0_2/ADDRB2
+    SLICE_X132Y84        RAMD64E (Prop_ramd64e_RADR2_O)
+                                                      0.105     6.984 r  u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/Cram_reg_64_127_0_2/RAMB/O
+                         net (fo=1, routed)           0.622     7.606    u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/Cram_reg_64_127_0_2_n_1
+    SLICE_X135Y86        LUT6 (Prop_lut6_I3_O)        0.105     7.711 r  u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_Cn[3]_i_8/O
+                         net (fo=1, routed)           0.534     8.245    u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_Cn[3]_i_8_n_0
+    SLICE_X137Y86        LUT6 (Prop_lut6_I5_O)        0.105     8.350 r  u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_Cn[3]_i_3/O
+                         net (fo=7, routed)           0.482     8.832    u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_Cn[3]_i_3_n_0
+    SLICE_X134Y86        LUT3 (Prop_lut3_I1_O)        0.105     8.937 r  u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_err[3]_i_22/O
+                         net (fo=1, routed)           0.000     8.937    u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_err[3]_i_22_n_0
+    SLICE_X134Y86        CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.457     9.394 r  u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_err_reg[3]_i_11/CO[3]
+                         net (fo=1, routed)           0.000     9.394    u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_err_reg[3]_i_11_n_0
+    SLICE_X134Y87        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.098     9.492 r  u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_err_reg[7]_i_11/CO[3]
+                         net (fo=1, routed)           0.000     9.492    u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_err_reg[7]_i_11_n_0
+    SLICE_X134Y88        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.098     9.590 r  u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_err_reg[11]_i_12/CO[3]
+                         net (fo=1, routed)           0.000     9.590    u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_err_reg[11]_i_12_n_0
+    SLICE_X134Y89        CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.265     9.855 r  u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_err_reg[11]_i_13/O[1]
+                         net (fo=12, routed)          0.633    10.488    u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_err_reg[11]_i_13_n_6
+    SLICE_X131Y87        LUT6 (Prop_lut6_I2_O)        0.250    10.738 r  u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_err[7]_i_5/O
+                         net (fo=2, routed)           0.471    11.210    u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_err[7]_i_5_n_0
+    SLICE_X131Y89        LUT3 (Prop_lut3_I0_O)        0.105    11.315 r  u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_err[7]_i_9/O
+                         net (fo=1, routed)           0.000    11.315    u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_err[7]_i_9_n_0
+    SLICE_X131Y89        CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.457    11.772 r  u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_err_reg[7]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    11.772    u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_err_reg[7]_i_2_n_0
+    SLICE_X131Y90        CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.265    12.037 f  u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_err_reg[11]_i_2/O[1]
+                         net (fo=7, routed)           0.629    12.665    u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_err_reg[11]_i_2_n_6
+    SLICE_X130Y93        LUT1 (Prop_lut1_I0_O)        0.250    12.915 r  u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_err[13]_i_34/O
+                         net (fo=1, routed)           0.000    12.915    u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_err[13]_i_34_n_0
+    SLICE_X130Y93        CARRY4 (Prop_carry4_S[1]_O[3])
+                                                      0.530    13.445 f  u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_err_reg[13]_i_31/O[3]
+                         net (fo=1, routed)           0.465    13.910    u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/func_errval_quantize1[11]
+    SLICE_X132Y94        LUT1 (Prop_lut1_I0_O)        0.257    14.167 r  u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_err[13]_i_19/O
+                         net (fo=1, routed)           0.000    14.167    u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_err[13]_i_19_n_0
+    SLICE_X132Y94        CARRY4 (Prop_carry4_S[2]_CO[3])
+                                                      0.316    14.483 r  u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_err_reg[13]_i_6/CO[3]
+                         net (fo=1, routed)           0.000    14.483    u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_err_reg[13]_i_6_n_0
+    SLICE_X132Y95        CARRY4 (Prop_carry4_CI_CO[0])
+                                                      0.207    14.690 r  u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_err_reg[13]_i_5/CO[0]
+                         net (fo=9, routed)           0.617    15.307    u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_err_reg[13]_i_5_n_3
+    SLICE_X133Y92        LUT3 (Prop_lut3_I1_O)        0.320    15.627 r  u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_err[13]_i_12/O
+                         net (fo=1, routed)           0.000    15.627    u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_err[13]_i_12_n_0
+    SLICE_X133Y92        CARRY4 (Prop_carry4_DI[2]_CO[2])
+                                                      0.263    15.890 r  u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_err_reg[13]_i_3/CO[2]
+                         net (fo=7, routed)           0.660    16.550    u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/func_modrange1
+    SLICE_X135Y93        LUT6 (Prop_lut6_I4_O)        0.261    16.811 r  u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_Cn[7]_i_38/O
+                         net (fo=1, routed)           0.000    16.811    u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_Cn[7]_i_38_n_0
+    SLICE_X135Y93        CARRY4 (Prop_carry4_S[3]_CO[3])
+                                                      0.332    17.143 r  u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_Cn_reg[7]_i_32/CO[3]
+                         net (fo=1, routed)           0.000    17.143    u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_Cn_reg[7]_i_32_n_0
+    SLICE_X135Y94        CARRY4 (Prop_carry4_CI_O[0])
+                                                      0.180    17.323 f  u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_Cn_reg[7]_i_31/O[0]
+                         net (fo=14, routed)          0.514    17.837    u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/Bt1[12]
+    SLICE_X136Y93        LUT3 (Prop_lut3_I2_O)        0.249    18.086 r  u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_Bn[6]_i_83/O
+                         net (fo=1, routed)           0.000    18.086    u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_Bn[6]_i_83_n_0
+    SLICE_X136Y93        CARRY4 (Prop_carry4_S[3]_CO[3])
+                                                      0.314    18.400 r  u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_Bn_reg[6]_i_70/CO[3]
+                         net (fo=1, routed)           0.000    18.400    u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_Bn_reg[6]_i_70_n_0
+    SLICE_X136Y94        CARRY4 (Prop_carry4_CI_O[0])
+                                                      0.178    18.578 r  u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_Bn_reg[6]_i_69/O[0]
+                         net (fo=2, routed)           0.696    19.273    u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_Bn_reg[6]_i_69_n_7
+    SLICE_X137Y91        LUT2 (Prop_lut2_I0_O)        0.261    19.534 r  u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_Bn[6]_i_39/O
+                         net (fo=1, routed)           0.000    19.534    u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_Bn[6]_i_39_n_0
+    SLICE_X137Y91        CARRY4 (Prop_carry4_DI[2]_CO[2])
+                                                      0.263    19.797 f  u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_Bn_reg[6]_i_12/CO[2]
+                         net (fo=7, routed)           0.740    20.537    u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_Bn_reg[6]_i_12_n_1
+    SLICE_X137Y95        LUT6 (Prop_lut6_I3_O)        0.261    20.798 r  u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_Bn[4]_i_4/O
+                         net (fo=1, routed)           0.474    21.273    u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_Bn[4]_i_4_n_0
+    SLICE_X135Y95        LUT5 (Prop_lut5_I4_O)        0.105    21.378 r  u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_Bn[4]_i_1/O
+                         net (fo=1, routed)           0.000    21.378    u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_Bn[4]_i_1_n_0
+    SLICE_X135Y95        FDRE                                         r  u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_Bn_reg[4]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_out2_clk_wiz_0_1 rise edge)
+                                                     22.222    22.222 r  
+    R3                                                0.000    22.222 r  clk_in1_p (IN)
+                         net (fo=0)                   0.000    22.222    u_ip/g_clkwiz.clk_wiz_0/inst/clk_in1_p
+    R3                   IBUFDS (Prop_ibufds_I_O)     0.850    23.073 r  u_ip/g_clkwiz.clk_wiz_0/inst/clkin1_ibufgds/O
+                         net (fo=1, routed)           1.004    24.076    u_ip/g_clkwiz.clk_wiz_0/inst/clk_in1_clk_wiz_0
+    MMCME2_ADV_X1Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT1)
+                                                     -6.399    17.677 r  u_ip/g_clkwiz.clk_wiz_0/inst/mmcm_adv_inst/CLKOUT1
+                         net (fo=1, routed)           1.452    19.129    u_ip/g_clkwiz.clk_wiz_0/inst/clk_out2_clk_wiz_0
+    BUFGCTRL_X0Y1        BUFG (Prop_bufg_I_O)         0.077    19.206 r  u_ip/g_clkwiz.clk_wiz_0/inst/clkout2_buf/O
+                         net (fo=21994, routed)       1.457    20.663    u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/clk_out2
+    SLICE_X135Y95        FDRE                                         r  u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_Bn_reg[4]/C
+                         clock pessimism              0.376    21.040    
+                         clock uncertainty           -0.103    20.937    
+    SLICE_X135Y95        FDRE (Setup_fdre_C_D)        0.033    20.970    u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_Bn_reg[4]
+  -------------------------------------------------------------------
+                         required time                         20.970    
+                         arrival time                         -21.378    
+  -------------------------------------------------------------------
+                         slack                                 -0.408    
+
+Slack (VIOLATED) :        -0.151ns  (required time - arrival time)
+  Source:                 u_ip/u_encoder_wrapper/ENC_INST[2].g_rtl.u_encoder/d_b_reg[1]/C
+                            (rising edge-triggered cell FDRE clocked by clk_out2_clk_wiz_0_1  {rise@0.000ns fall@11.111ns period=22.222ns})
+  Destination:            u_ip/u_encoder_wrapper/ENC_INST[2].g_rtl.u_encoder/e_Bn_reg[2]/D
+                            (rising edge-triggered cell FDRE clocked by clk_out2_clk_wiz_0_1  {rise@0.000ns fall@11.111ns period=22.222ns})
+  Path Group:             clk_out2_clk_wiz_0_1
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            22.222ns  (clk_out2_clk_wiz_0_1 rise@22.222ns - clk_out2_clk_wiz_0_1 rise@0.000ns)
+  Data Path Delay:        22.049ns  (logic 10.345ns (46.918%)  route 11.704ns (53.082%))
+  Logic Levels:           40  (CARRY4=20 LUT1=2 LUT2=3 LUT3=4 LUT4=2 LUT5=3 LUT6=5 RAMD64E=1)
+  Clock Path Skew:        -0.251ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    -1.701ns = ( 20.521 - 22.222 ) 
+    Source Clock Delay      (SCD):    -1.140ns
+    Clock Pessimism Removal (CPR):    0.309ns
+  Clock Uncertainty:      0.103ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.193ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_out2_clk_wiz_0_1 rise edge)
+                                                      0.000     0.000 r  
+    R3                                                0.000     0.000 r  clk_in1_p (IN)
+                         net (fo=0)                   0.000     0.000    u_ip/g_clkwiz.clk_wiz_0/inst/clk_in1_p
+    R3                   IBUFDS (Prop_ibufds_I_O)     0.890     0.890 r  u_ip/g_clkwiz.clk_wiz_0/inst/clkin1_ibufgds/O
+                         net (fo=1, routed)           1.065     1.955    u_ip/g_clkwiz.clk_wiz_0/inst/clk_in1_clk_wiz_0
+    MMCME2_ADV_X1Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT1)
+                                                     -6.273    -4.317 r  u_ip/g_clkwiz.clk_wiz_0/inst/mmcm_adv_inst/CLKOUT1
+                         net (fo=1, routed)           1.524    -2.793    u_ip/g_clkwiz.clk_wiz_0/inst/clk_out2_clk_wiz_0
+    BUFGCTRL_X0Y1        BUFG (Prop_bufg_I_O)         0.081    -2.712 r  u_ip/g_clkwiz.clk_wiz_0/inst/clkout2_buf/O
+                         net (fo=21994, routed)       1.572    -1.140    u_ip/u_encoder_wrapper/ENC_INST[2].g_rtl.u_encoder/clk_out2
+    SLICE_X120Y94        FDRE                                         r  u_ip/u_encoder_wrapper/ENC_INST[2].g_rtl.u_encoder/d_b_reg[1]/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X120Y94        FDRE (Prop_fdre_C_Q)         0.433    -0.707 r  u_ip/u_encoder_wrapper/ENC_INST[2].g_rtl.u_encoder/d_b_reg[1]/Q
+                         net (fo=25, routed)          0.843     0.135    u_ip/u_encoder_wrapper/ENC_INST[2].g_rtl.u_encoder/d_b[1]
+    SLICE_X120Y94        LUT4 (Prop_lut4_I1_O)        0.105     0.240 r  u_ip/u_encoder_wrapper/ENC_INST[2].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_129__1/O
+                         net (fo=1, routed)           0.000     0.240    u_ip/u_encoder_wrapper/ENC_INST[2].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_129__1_n_0
+    SLICE_X120Y94        CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.444     0.684 r  u_ip/u_encoder_wrapper/ENC_INST[2].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_122__1/CO[3]
+                         net (fo=1, routed)           0.000     0.684    u_ip/u_encoder_wrapper/ENC_INST[2].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_122__1_n_0
+    SLICE_X120Y95        CARRY4 (Prop_carry4_CI_O[0])
+                                                      0.178     0.862 f  u_ip/u_encoder_wrapper/ENC_INST[2].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_69__1/O[0]
+                         net (fo=10, routed)          0.703     1.565    u_ip/u_encoder_wrapper/ENC_INST[2].g_rtl.u_encoder/func_q_quantize2[4]
+    SLICE_X122Y97        LUT2 (Prop_lut2_I0_O)        0.238     1.803 r  u_ip/u_encoder_wrapper/ENC_INST[2].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_101__1/O
+                         net (fo=1, routed)           0.000     1.803    u_ip/u_encoder_wrapper/ENC_INST[2].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_101__1_n_0
+    SLICE_X122Y97        CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.457     2.260 r  u_ip/u_encoder_wrapper/ENC_INST[2].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_55__1/CO[3]
+                         net (fo=1, routed)           0.000     2.260    u_ip/u_encoder_wrapper/ENC_INST[2].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_55__1_n_0
+    SLICE_X122Y98        CARRY4 (Prop_carry4_CI_CO[1])
+                                                      0.132     2.392 f  u_ip/u_encoder_wrapper/ENC_INST[2].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_31__1/CO[1]
+                         net (fo=3, routed)           0.804     3.196    u_ip/u_encoder_wrapper/ENC_INST[2].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_31__1_n_2
+    SLICE_X121Y100       LUT6 (Prop_lut6_I4_O)        0.275     3.471 r  u_ip/u_encoder_wrapper/ENC_INST[2].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_37__1/O
+                         net (fo=1, routed)           0.429     3.900    u_ip/u_encoder_wrapper/ENC_INST[2].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_37__1_n_0
+    SLICE_X123Y100       LUT4 (Prop_lut4_I3_O)        0.105     4.005 r  u_ip/u_encoder_wrapper/ENC_INST[2].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_21__1/O
+                         net (fo=1, routed)           0.000     4.005    u_ip/u_encoder_wrapper/ENC_INST[2].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_21__1_n_0
+    SLICE_X123Y100       CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.440     4.445 r  u_ip/u_encoder_wrapper/ENC_INST[2].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_7__1/CO[3]
+                         net (fo=1, routed)           0.000     4.445    u_ip/u_encoder_wrapper/ENC_INST[2].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_7__1_n_0
+    SLICE_X123Y101       CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.098     4.543 r  u_ip/u_encoder_wrapper/ENC_INST[2].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_16__1/CO[3]
+                         net (fo=1, routed)           0.000     4.543    u_ip/u_encoder_wrapper/ENC_INST[2].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_16__1_n_0
+    SLICE_X123Y102       CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.265     4.808 r  u_ip/u_encoder_wrapper/ENC_INST[2].g_rtl.u_encoder/Nram_reg_0_63_0_2_i_18__1/O[1]
+                         net (fo=27, routed)          0.563     5.371    u_ip/u_encoder_wrapper/ENC_INST[2].g_rtl.u_encoder/p_0_in
+    SLICE_X125Y102       LUT3 (Prop_lut3_I1_O)        0.250     5.621 r  u_ip/u_encoder_wrapper/ENC_INST[2].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_6__1/O
+                         net (fo=55, routed)          1.066     6.688    u_ip/u_encoder_wrapper/ENC_INST[2].g_rtl.u_encoder/Cram_reg_0_63_0_2/ADDRA1
+    SLICE_X124Y99        RAMD64E (Prop_ramd64e_RADR1_O)
+                                                      0.105     6.793 r  u_ip/u_encoder_wrapper/ENC_INST[2].g_rtl.u_encoder/Cram_reg_0_63_0_2/RAMA/O
+                         net (fo=1, routed)           0.649     7.441    u_ip/u_encoder_wrapper/ENC_INST[2].g_rtl.u_encoder/Cram_reg_0_63_0_2_n_0
+    SLICE_X121Y100       LUT6 (Prop_lut6_I5_O)        0.105     7.546 r  u_ip/u_encoder_wrapper/ENC_INST[2].g_rtl.u_encoder/e_Cn[3]_i_6__1/O
+                         net (fo=1, routed)           0.455     8.001    u_ip/u_encoder_wrapper/ENC_INST[2].g_rtl.u_encoder/e_Cn[3]_i_6__1_n_0
+    SLICE_X121Y101       LUT6 (Prop_lut6_I5_O)        0.105     8.106 r  u_ip/u_encoder_wrapper/ENC_INST[2].g_rtl.u_encoder/e_Cn[3]_i_2__1/O
+                         net (fo=8, routed)           0.322     8.428    u_ip/u_encoder_wrapper/ENC_INST[2].g_rtl.u_encoder/e_Cn[3]_i_2__1_n_0
+    SLICE_X121Y101       LUT2 (Prop_lut2_I1_O)        0.105     8.533 r  u_ip/u_encoder_wrapper/ENC_INST[2].g_rtl.u_encoder/e_err[3]_i_16__1/O
+                         net (fo=1, routed)           0.255     8.788    u_ip/u_encoder_wrapper/ENC_INST[2].g_rtl.u_encoder/e_err[3]_i_16__1_n_0
+    SLICE_X120Y101       CARRY4 (Prop_carry4_CYINIT_CO[3])
+                                                      0.494     9.282 r  u_ip/u_encoder_wrapper/ENC_INST[2].g_rtl.u_encoder/e_err_reg[3]_i_11__1/CO[3]
+                         net (fo=1, routed)           0.000     9.282    u_ip/u_encoder_wrapper/ENC_INST[2].g_rtl.u_encoder/e_err_reg[3]_i_11__1_n_0
+    SLICE_X120Y102       CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.382 r  u_ip/u_encoder_wrapper/ENC_INST[2].g_rtl.u_encoder/e_err_reg[7]_i_11__1/CO[3]
+                         net (fo=1, routed)           0.000     9.382    u_ip/u_encoder_wrapper/ENC_INST[2].g_rtl.u_encoder/e_err_reg[7]_i_11__1_n_0
+    SLICE_X120Y103       CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.100     9.482 r  u_ip/u_encoder_wrapper/ENC_INST[2].g_rtl.u_encoder/e_err_reg[11]_i_12__1/CO[3]
+                         net (fo=1, routed)           0.000     9.482    u_ip/u_encoder_wrapper/ENC_INST[2].g_rtl.u_encoder/e_err_reg[11]_i_12__1_n_0
+    SLICE_X120Y104       CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.257     9.739 r  u_ip/u_encoder_wrapper/ENC_INST[2].g_rtl.u_encoder/e_err_reg[11]_i_13__1/O[1]
+                         net (fo=12, routed)          0.389    10.128    u_ip/u_encoder_wrapper/ENC_INST[2].g_rtl.u_encoder/e_err_reg[11]_i_13__1_n_6
+    SLICE_X121Y102       LUT6 (Prop_lut6_I2_O)        0.245    10.373 r  u_ip/u_encoder_wrapper/ENC_INST[2].g_rtl.u_encoder/e_err[3]_i_5__1/O
+                         net (fo=2, routed)           0.382    10.756    u_ip/u_encoder_wrapper/ENC_INST[2].g_rtl.u_encoder/e_err[3]_i_5__1_n_0
+    SLICE_X119Y102       LUT3 (Prop_lut3_I0_O)        0.105    10.861 r  u_ip/u_encoder_wrapper/ENC_INST[2].g_rtl.u_encoder/e_err[3]_i_9__1/O
+                         net (fo=1, routed)           0.000    10.861    u_ip/u_encoder_wrapper/ENC_INST[2].g_rtl.u_encoder/e_err[3]_i_9__1_n_0
+    SLICE_X119Y102       CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.457    11.318 r  u_ip/u_encoder_wrapper/ENC_INST[2].g_rtl.u_encoder/e_err_reg[3]_i_2__1/CO[3]
+                         net (fo=1, routed)           0.000    11.318    u_ip/u_encoder_wrapper/ENC_INST[2].g_rtl.u_encoder/e_err_reg[3]_i_2__1_n_0
+    SLICE_X119Y103       CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.265    11.583 f  u_ip/u_encoder_wrapper/ENC_INST[2].g_rtl.u_encoder/e_err_reg[7]_i_2__1/O[1]
+                         net (fo=5, routed)           0.388    11.971    u_ip/u_encoder_wrapper/ENC_INST[2].g_rtl.u_encoder/e_err_reg[7]_i_2__1_n_6
+    SLICE_X121Y105       LUT1 (Prop_lut1_I0_O)        0.250    12.221 r  u_ip/u_encoder_wrapper/ENC_INST[2].g_rtl.u_encoder/e_err[8]_i_10__1/O
+                         net (fo=1, routed)           0.000    12.221    u_ip/u_encoder_wrapper/ENC_INST[2].g_rtl.u_encoder/e_err[8]_i_10__1_n_0
+    SLICE_X121Y105       CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.457    12.678 r  u_ip/u_encoder_wrapper/ENC_INST[2].g_rtl.u_encoder/e_err_reg[8]_i_7__1/CO[3]
+                         net (fo=1, routed)           0.000    12.678    u_ip/u_encoder_wrapper/ENC_INST[2].g_rtl.u_encoder/e_err_reg[8]_i_7__1_n_0
+    SLICE_X121Y106       CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.265    12.943 f  u_ip/u_encoder_wrapper/ENC_INST[2].g_rtl.u_encoder/e_err_reg[13]_i_31__1/O[1]
+                         net (fo=1, routed)           0.471    13.413    u_ip/u_encoder_wrapper/ENC_INST[2].g_rtl.u_encoder/func_errval_quantize1[9]
+    SLICE_X120Y107       LUT1 (Prop_lut1_I0_O)        0.250    13.663 r  u_ip/u_encoder_wrapper/ENC_INST[2].g_rtl.u_encoder/e_err[13]_i_21__1/O
+                         net (fo=1, routed)           0.000    13.663    u_ip/u_encoder_wrapper/ENC_INST[2].g_rtl.u_encoder/e_err[13]_i_21__1_n_0
+    SLICE_X120Y107       CARRY4 (Prop_carry4_S[0]_O[1])
+                                                      0.345    14.008 f  u_ip/u_encoder_wrapper/ENC_INST[2].g_rtl.u_encoder/e_err_reg[13]_i_6__1/O[1]
+                         net (fo=4, routed)           0.691    14.699    u_ip/u_encoder_wrapper/ENC_INST[2].g_rtl.u_encoder/func_errval_quantize0[10]
+    SLICE_X119Y107       LUT5 (Prop_lut5_I2_O)        0.245    14.944 r  u_ip/u_encoder_wrapper/ENC_INST[2].g_rtl.u_encoder/e_err[13]_i_16__1/O
+                         net (fo=1, routed)           0.000    14.944    u_ip/u_encoder_wrapper/ENC_INST[2].g_rtl.u_encoder/e_err[13]_i_16__1_n_0
+    SLICE_X119Y107       CARRY4 (Prop_carry4_S[1]_CO[2])
+                                                      0.475    15.419 r  u_ip/u_encoder_wrapper/ENC_INST[2].g_rtl.u_encoder/e_err_reg[13]_i_3__1/CO[2]
+                         net (fo=7, routed)           0.568    15.987    u_ip/u_encoder_wrapper/ENC_INST[2].g_rtl.u_encoder/func_modrange1
+    SLICE_X119Y109       LUT5 (Prop_lut5_I1_O)        0.261    16.248 r  u_ip/u_encoder_wrapper/ENC_INST[2].g_rtl.u_encoder/e_err[12]_i_1__1/O
+                         net (fo=2, routed)           0.366    16.614    u_ip/u_encoder_wrapper/ENC_INST[2].g_rtl.u_encoder/err[12]
+    SLICE_X118Y109       LUT6 (Prop_lut6_I5_O)        0.105    16.719 r  u_ip/u_encoder_wrapper/ENC_INST[2].g_rtl.u_encoder/e_Cn[7]_i_34__1/O
+                         net (fo=1, routed)           0.000    16.719    u_ip/u_encoder_wrapper/ENC_INST[2].g_rtl.u_encoder/e_Cn[7]_i_34__1_n_0
+    SLICE_X118Y109       CARRY4 (Prop_carry4_S[0]_O[1])
+                                                      0.343    17.062 r  u_ip/u_encoder_wrapper/ENC_INST[2].g_rtl.u_encoder/e_Cn_reg[7]_i_31__1/O[1]
+                         net (fo=9, routed)           0.641    17.704    u_ip/u_encoder_wrapper/ENC_INST[2].g_rtl.u_encoder/Bt1[13]
+    SLICE_X113Y110       LUT3 (Prop_lut3_I0_O)        0.250    17.954 r  u_ip/u_encoder_wrapper/ENC_INST[2].g_rtl.u_encoder/e_Bn[6]_i_71__1/O
+                         net (fo=1, routed)           0.000    17.954    u_ip/u_encoder_wrapper/ENC_INST[2].g_rtl.u_encoder/e_Bn[6]_i_71__1_n_0
+    SLICE_X113Y110       CARRY4 (Prop_carry4_S[0]_O[1])
+                                                      0.343    18.297 r  u_ip/u_encoder_wrapper/ENC_INST[2].g_rtl.u_encoder/e_Bn_reg[6]_i_59__1/O[1]
+                         net (fo=2, routed)           0.526    18.823    u_ip/u_encoder_wrapper/ENC_INST[2].g_rtl.u_encoder/Bt20_in[13]
+    SLICE_X112Y109       LUT2 (Prop_lut2_I0_O)        0.273    19.096 r  u_ip/u_encoder_wrapper/ENC_INST[2].g_rtl.u_encoder/e_Bn[6]_i_26__1/O
+                         net (fo=1, routed)           0.000    19.096    u_ip/u_encoder_wrapper/ENC_INST[2].g_rtl.u_encoder/e_Bn[6]_i_26__1_n_0
+    SLICE_X112Y109       CARRY4 (Prop_carry4_DI[2]_CO[2])
+                                                      0.263    19.359 r  u_ip/u_encoder_wrapper/ENC_INST[2].g_rtl.u_encoder/e_Bn_reg[6]_i_10__1/CO[2]
+                         net (fo=7, routed)           0.562    19.920    u_ip/u_encoder_wrapper/ENC_INST[2].g_rtl.u_encoder/Bt12_in
+    SLICE_X110Y106       LUT3 (Prop_lut3_I1_O)        0.252    20.172 r  u_ip/u_encoder_wrapper/ENC_INST[2].g_rtl.u_encoder/e_Bn[2]_i_3__1/O
+                         net (fo=1, routed)           0.631    20.804    u_ip/u_encoder_wrapper/ENC_INST[2].g_rtl.u_encoder/e_Bn[2]_i_3__1_n_0
+    SLICE_X113Y106       LUT5 (Prop_lut5_I2_O)        0.105    20.909 r  u_ip/u_encoder_wrapper/ENC_INST[2].g_rtl.u_encoder/e_Bn[2]_i_1__1/O
+                         net (fo=1, routed)           0.000    20.909    u_ip/u_encoder_wrapper/ENC_INST[2].g_rtl.u_encoder/e_Bn[2]_i_1__1_n_0
+    SLICE_X113Y106       FDRE                                         r  u_ip/u_encoder_wrapper/ENC_INST[2].g_rtl.u_encoder/e_Bn_reg[2]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_out2_clk_wiz_0_1 rise edge)
+                                                     22.222    22.222 r  
+    R3                                                0.000    22.222 r  clk_in1_p (IN)
+                         net (fo=0)                   0.000    22.222    u_ip/g_clkwiz.clk_wiz_0/inst/clk_in1_p
+    R3                   IBUFDS (Prop_ibufds_I_O)     0.850    23.073 r  u_ip/g_clkwiz.clk_wiz_0/inst/clkin1_ibufgds/O
+                         net (fo=1, routed)           1.004    24.076    u_ip/g_clkwiz.clk_wiz_0/inst/clk_in1_clk_wiz_0
+    MMCME2_ADV_X1Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT1)
+                                                     -6.399    17.677 r  u_ip/g_clkwiz.clk_wiz_0/inst/mmcm_adv_inst/CLKOUT1
+                         net (fo=1, routed)           1.452    19.129    u_ip/g_clkwiz.clk_wiz_0/inst/clk_out2_clk_wiz_0
+    BUFGCTRL_X0Y1        BUFG (Prop_bufg_I_O)         0.077    19.206 r  u_ip/g_clkwiz.clk_wiz_0/inst/clkout2_buf/O
+                         net (fo=21994, routed)       1.315    20.521    u_ip/u_encoder_wrapper/ENC_INST[2].g_rtl.u_encoder/clk_out2
+    SLICE_X113Y106       FDRE                                         r  u_ip/u_encoder_wrapper/ENC_INST[2].g_rtl.u_encoder/e_Bn_reg[2]/C
+                         clock pessimism              0.309    20.831    
+                         clock uncertainty           -0.103    20.728    
+    SLICE_X113Y106       FDRE (Setup_fdre_C_D)        0.030    20.758    u_ip/u_encoder_wrapper/ENC_INST[2].g_rtl.u_encoder/e_Bn_reg[2]
+  -------------------------------------------------------------------
+                         required time                         20.758    
+                         arrival time                         -20.909    
+  -------------------------------------------------------------------
+                         slack                                 -0.151    
+
+Slack (VIOLATED) :        -0.150ns  (required time - arrival time)
+  Source:                 u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/d_fc_reg/C
+                            (rising edge-triggered cell FDRE clocked by clk_out2_clk_wiz_0_1  {rise@0.000ns fall@11.111ns period=22.222ns})
+  Destination:            u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_Bn_reg[0]/D
+                            (rising edge-triggered cell FDRE clocked by clk_out2_clk_wiz_0_1  {rise@0.000ns fall@11.111ns period=22.222ns})
+  Path Group:             clk_out2_clk_wiz_0_1
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            22.222ns  (clk_out2_clk_wiz_0_1 rise@22.222ns - clk_out2_clk_wiz_0_1 rise@0.000ns)
+  Data Path Delay:        22.086ns  (logic 10.955ns (49.600%)  route 11.131ns (50.399%))
+  Logic Levels:           41  (CARRY4=23 LUT1=2 LUT2=3 LUT3=2 LUT4=2 LUT5=4 LUT6=5)
+  Clock Path Skew:        -0.257ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    -1.733ns = ( 20.489 - 22.222 ) 
+    Source Clock Delay      (SCD):    -1.166ns
+    Clock Pessimism Removal (CPR):    0.309ns
+  Clock Uncertainty:      0.103ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.193ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_out2_clk_wiz_0_1 rise edge)
+                                                      0.000     0.000 r  
+    R3                                                0.000     0.000 r  clk_in1_p (IN)
+                         net (fo=0)                   0.000     0.000    u_ip/g_clkwiz.clk_wiz_0/inst/clk_in1_p
+    R3                   IBUFDS (Prop_ibufds_I_O)     0.890     0.890 r  u_ip/g_clkwiz.clk_wiz_0/inst/clkin1_ibufgds/O
+                         net (fo=1, routed)           1.065     1.955    u_ip/g_clkwiz.clk_wiz_0/inst/clk_in1_clk_wiz_0
+    MMCME2_ADV_X1Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT1)
+                                                     -6.273    -4.317 r  u_ip/g_clkwiz.clk_wiz_0/inst/mmcm_adv_inst/CLKOUT1
+                         net (fo=1, routed)           1.524    -2.793    u_ip/g_clkwiz.clk_wiz_0/inst/clk_out2_clk_wiz_0
+    BUFGCTRL_X0Y1        BUFG (Prop_bufg_I_O)         0.081    -2.712 r  u_ip/g_clkwiz.clk_wiz_0/inst/clkout2_buf/O
+                         net (fo=21994, routed)       1.546    -1.166    u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/clk_out2
+    SLICE_X68Y94         FDRE                                         r  u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/d_fc_reg/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X68Y94         FDRE (Prop_fdre_C_Q)         0.433    -0.733 r  u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/d_fc_reg/Q
+                         net (fo=179, routed)         0.780     0.047    u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/d_fc
+    SLICE_X69Y93         LUT4 (Prop_lut4_I2_O)        0.105     0.152 r  u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_130__9/O
+                         net (fo=1, routed)           0.000     0.152    u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_130__9_n_0
+    SLICE_X69Y93         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.440     0.592 r  u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_122__9/CO[3]
+                         net (fo=1, routed)           0.000     0.592    u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_122__9_n_0
+    SLICE_X69Y94         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.098     0.690 r  u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_69__9/CO[3]
+                         net (fo=1, routed)           0.000     0.690    u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_69__9_n_0
+    SLICE_X69Y95         CARRY4 (Prop_carry4_CI_O[0])
+                                                      0.180     0.870 f  u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_38__9/O[0]
+                         net (fo=10, routed)          0.693     1.563    u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/func_q_quantize2[8]
+    SLICE_X68Y94         LUT2 (Prop_lut2_I1_O)        0.249     1.812 r  u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_68__9/O
+                         net (fo=1, routed)           0.000     1.812    u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_68__9_n_0
+    SLICE_X68Y94         CARRY4 (Prop_carry4_S[0]_CO[2])
+                                                      0.447     2.259 f  u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_34__9/CO[2]
+                         net (fo=3, routed)           0.794     3.053    u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_34__9_n_1
+    SLICE_X66Y96         LUT6 (Prop_lut6_I2_O)        0.252     3.305 r  u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_37__9/O
+                         net (fo=1, routed)           0.314     3.619    u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_37__9_n_0
+    SLICE_X67Y97         LUT4 (Prop_lut4_I3_O)        0.105     3.724 r  u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_21__9/O
+                         net (fo=1, routed)           0.000     3.724    u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_21__9_n_0
+    SLICE_X67Y97         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.440     4.164 r  u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_7__9/CO[3]
+                         net (fo=1, routed)           0.000     4.164    u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_7__9_n_0
+    SLICE_X67Y98         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.098     4.262 r  u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_16__9/CO[3]
+                         net (fo=1, routed)           0.000     4.262    u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_16__9_n_0
+    SLICE_X67Y99         CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.265     4.527 r  u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/Nram_reg_0_63_0_2_i_18__9/O[1]
+                         net (fo=27, routed)          0.706     5.233    u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/p_0_in
+    SLICE_X67Y100        LUT5 (Prop_lut5_I4_O)        0.250     5.483 r  u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_4__9/O
+                         net (fo=58, routed)          0.817     6.300    u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_4__9_n_0
+    SLICE_X71Y102        LUT6 (Prop_lut6_I3_O)        0.105     6.405 r  u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_Cn[7]_i_21__9/O
+                         net (fo=1, routed)           0.000     6.405    u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_Cn[7]_i_21__9_n_0
+    SLICE_X71Y102        CARRY4 (Prop_carry4_S[1]_CO[2])
+                                                      0.475     6.880 r  u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_Cn_reg[7]_i_8__9/CO[2]
+                         net (fo=8, routed)           0.801     7.682    u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/C2
+    SLICE_X72Y97         LUT6 (Prop_lut6_I2_O)        0.261     7.943 r  u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_Cn[3]_i_2__9/O
+                         net (fo=8, routed)           0.481     8.424    u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_Cn[3]_i_2__9_n_0
+    SLICE_X74Y95         LUT2 (Prop_lut2_I1_O)        0.105     8.529 r  u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_err[3]_i_16__9/O
+                         net (fo=1, routed)           0.144     8.673    u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_err[3]_i_16__9_n_0
+    SLICE_X75Y95         CARRY4 (Prop_carry4_CYINIT_CO[3])
+                                                      0.480     9.153 r  u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_err_reg[3]_i_11__9/CO[3]
+                         net (fo=1, routed)           0.000     9.153    u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_err_reg[3]_i_11__9_n_0
+    SLICE_X75Y96         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.098     9.251 r  u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_err_reg[7]_i_11__9/CO[3]
+                         net (fo=1, routed)           0.000     9.251    u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_err_reg[7]_i_11__9_n_0
+    SLICE_X75Y97         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.098     9.349 r  u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_err_reg[11]_i_12__9/CO[3]
+                         net (fo=1, routed)           0.000     9.349    u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_err_reg[11]_i_12__9_n_0
+    SLICE_X75Y98         CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.265     9.614 r  u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_err_reg[11]_i_13__9/O[1]
+                         net (fo=12, routed)          0.544    10.158    u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_err_reg[11]_i_13__9_n_6
+    SLICE_X74Y96         LUT6 (Prop_lut6_I2_O)        0.250    10.408 r  u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_err[3]_i_6__9/O
+                         net (fo=2, routed)           0.404    10.812    u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_err[3]_i_6__9_n_0
+    SLICE_X74Y97         CARRY4 (Prop_carry4_DI[0]_CO[3])
+                                                      0.457    11.269 r  u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_err_reg[3]_i_2__9/CO[3]
+                         net (fo=1, routed)           0.000    11.269    u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_err_reg[3]_i_2__9_n_0
+    SLICE_X74Y98         CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.257    11.526 f  u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_err_reg[7]_i_2__9/O[1]
+                         net (fo=5, routed)           0.413    11.939    u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_err_reg[7]_i_2__9_n_6
+    SLICE_X75Y100        LUT1 (Prop_lut1_I0_O)        0.245    12.184 r  u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_err[8]_i_10__9/O
+                         net (fo=1, routed)           0.000    12.184    u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_err[8]_i_10__9_n_0
+    SLICE_X75Y100        CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.457    12.641 r  u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_err_reg[8]_i_7__9/CO[3]
+                         net (fo=1, routed)           0.000    12.641    u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_err_reg[8]_i_7__9_n_0
+    SLICE_X75Y101        CARRY4 (Prop_carry4_CI_O[0])
+                                                      0.180    12.821 f  u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_err_reg[13]_i_31__9/O[0]
+                         net (fo=1, routed)           0.367    13.189    u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/func_errval_quantize1[8]
+    SLICE_X76Y100        LUT1 (Prop_lut1_I0_O)        0.249    13.438 r  u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_err[8]_i_3__9/O
+                         net (fo=1, routed)           0.000    13.438    u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_err[8]_i_3__9_n_0
+    SLICE_X76Y100        CARRY4 (Prop_carry4_S[3]_CO[3])
+                                                      0.314    13.752 r  u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_err_reg[8]_i_2__9/CO[3]
+                         net (fo=1, routed)           0.000    13.752    u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_err_reg[8]_i_2__9_n_0
+    SLICE_X76Y101        CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.257    14.009 f  u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_err_reg[13]_i_6__9/O[1]
+                         net (fo=4, routed)           0.607    14.616    u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/func_errval_quantize0[10]
+    SLICE_X77Y99         LUT5 (Prop_lut5_I2_O)        0.245    14.861 r  u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_err[13]_i_16__9/O
+                         net (fo=1, routed)           0.000    14.861    u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_err[13]_i_16__9_n_0
+    SLICE_X77Y99         CARRY4 (Prop_carry4_S[1]_CO[2])
+                                                      0.475    15.336 r  u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_err_reg[13]_i_3__9/CO[2]
+                         net (fo=7, routed)           0.836    16.171    u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/func_modrange1
+    SLICE_X74Y102        LUT5 (Prop_lut5_I1_O)        0.261    16.432 r  u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_err[12]_i_1__9/O
+                         net (fo=2, routed)           0.266    16.699    u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/err[12]
+    SLICE_X77Y103        LUT6 (Prop_lut6_I5_O)        0.105    16.804 r  u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_Cn[7]_i_34__9/O
+                         net (fo=1, routed)           0.000    16.804    u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_Cn[7]_i_34__9_n_0
+    SLICE_X77Y103        CARRY4 (Prop_carry4_S[0]_O[0])
+                                                      0.207    17.011 r  u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_Cn_reg[7]_i_31__6/O[0]
+                         net (fo=14, routed)          0.600    17.611    u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/Bt1[12]
+    SLICE_X78Y106        LUT3 (Prop_lut3_I0_O)        0.249    17.860 r  u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_Bn[6]_i_72__9/O
+                         net (fo=1, routed)           0.000    17.860    u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_Bn[6]_i_72__9_n_0
+    SLICE_X78Y106        CARRY4 (Prop_carry4_S[3]_CO[3])
+                                                      0.332    18.192 r  u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_Bn_reg[6]_i_60__6/CO[3]
+                         net (fo=1, routed)           0.000    18.192    u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_Bn_reg[6]_i_60__6_n_0
+    SLICE_X78Y107        CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.265    18.457 r  u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_Bn_reg[6]_i_59__6/O[1]
+                         net (fo=2, routed)           0.604    19.061    u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/Bt20_in[13]
+    SLICE_X77Y107        LUT2 (Prop_lut2_I0_O)        0.272    19.333 r  u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_Bn[6]_i_26__9/O
+                         net (fo=1, routed)           0.000    19.333    u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_Bn[6]_i_26__9_n_0
+    SLICE_X77Y107        CARRY4 (Prop_carry4_DI[2]_CO[2])
+                                                      0.263    19.596 r  u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_Bn_reg[6]_i_10__9/CO[2]
+                         net (fo=7, routed)           0.416    20.012    u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/Bt12_in
+    SLICE_X77Y108        LUT3 (Prop_lut3_I1_O)        0.261    20.273 r  u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_Bn[0]_i_3__9/O
+                         net (fo=1, routed)           0.542    20.815    u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_Bn[0]_i_3__9_n_0
+    SLICE_X76Y108        LUT5 (Prop_lut5_I2_O)        0.105    20.920 r  u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_Bn[0]_i_1__9/O
+                         net (fo=1, routed)           0.000    20.920    u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_Bn[0]_i_1__9_n_0
+    SLICE_X76Y108        FDRE                                         r  u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_Bn_reg[0]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_out2_clk_wiz_0_1 rise edge)
+                                                     22.222    22.222 r  
+    R3                                                0.000    22.222 r  clk_in1_p (IN)
+                         net (fo=0)                   0.000    22.222    u_ip/g_clkwiz.clk_wiz_0/inst/clk_in1_p
+    R3                   IBUFDS (Prop_ibufds_I_O)     0.850    23.073 r  u_ip/g_clkwiz.clk_wiz_0/inst/clkin1_ibufgds/O
+                         net (fo=1, routed)           1.004    24.076    u_ip/g_clkwiz.clk_wiz_0/inst/clk_in1_clk_wiz_0
+    MMCME2_ADV_X1Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT1)
+                                                     -6.399    17.677 r  u_ip/g_clkwiz.clk_wiz_0/inst/mmcm_adv_inst/CLKOUT1
+                         net (fo=1, routed)           1.452    19.129    u_ip/g_clkwiz.clk_wiz_0/inst/clk_out2_clk_wiz_0
+    BUFGCTRL_X0Y1        BUFG (Prop_bufg_I_O)         0.077    19.206 r  u_ip/g_clkwiz.clk_wiz_0/inst/clkout2_buf/O
+                         net (fo=21994, routed)       1.283    20.489    u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/clk_out2
+    SLICE_X76Y108        FDRE                                         r  u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_Bn_reg[0]/C
+                         clock pessimism              0.309    20.799    
+                         clock uncertainty           -0.103    20.696    
+    SLICE_X76Y108        FDRE (Setup_fdre_C_D)        0.074    20.770    u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_Bn_reg[0]
+  -------------------------------------------------------------------
+                         required time                         20.770    
+                         arrival time                         -20.920    
+  -------------------------------------------------------------------
+                         slack                                 -0.150    
+
+Slack (VIOLATED) :        -0.141ns  (required time - arrival time)
+  Source:                 u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/d_fc_reg/C
+                            (rising edge-triggered cell FDRE clocked by clk_out2_clk_wiz_0_1  {rise@0.000ns fall@11.111ns period=22.222ns})
+  Destination:            u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_Bn_reg[3]/D
+                            (rising edge-triggered cell FDRE clocked by clk_out2_clk_wiz_0_1  {rise@0.000ns fall@11.111ns period=22.222ns})
+  Path Group:             clk_out2_clk_wiz_0_1
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            22.222ns  (clk_out2_clk_wiz_0_1 rise@22.222ns - clk_out2_clk_wiz_0_1 rise@0.000ns)
+  Data Path Delay:        22.075ns  (logic 10.955ns (49.626%)  route 11.120ns (50.374%))
+  Logic Levels:           41  (CARRY4=23 LUT1=2 LUT2=3 LUT3=2 LUT4=2 LUT5=4 LUT6=5)
+  Clock Path Skew:        -0.257ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    -1.733ns = ( 20.489 - 22.222 ) 
+    Source Clock Delay      (SCD):    -1.166ns
+    Clock Pessimism Removal (CPR):    0.309ns
+  Clock Uncertainty:      0.103ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.193ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_out2_clk_wiz_0_1 rise edge)
+                                                      0.000     0.000 r  
+    R3                                                0.000     0.000 r  clk_in1_p (IN)
+                         net (fo=0)                   0.000     0.000    u_ip/g_clkwiz.clk_wiz_0/inst/clk_in1_p
+    R3                   IBUFDS (Prop_ibufds_I_O)     0.890     0.890 r  u_ip/g_clkwiz.clk_wiz_0/inst/clkin1_ibufgds/O
+                         net (fo=1, routed)           1.065     1.955    u_ip/g_clkwiz.clk_wiz_0/inst/clk_in1_clk_wiz_0
+    MMCME2_ADV_X1Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT1)
+                                                     -6.273    -4.317 r  u_ip/g_clkwiz.clk_wiz_0/inst/mmcm_adv_inst/CLKOUT1
+                         net (fo=1, routed)           1.524    -2.793    u_ip/g_clkwiz.clk_wiz_0/inst/clk_out2_clk_wiz_0
+    BUFGCTRL_X0Y1        BUFG (Prop_bufg_I_O)         0.081    -2.712 r  u_ip/g_clkwiz.clk_wiz_0/inst/clkout2_buf/O
+                         net (fo=21994, routed)       1.546    -1.166    u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/clk_out2
+    SLICE_X68Y94         FDRE                                         r  u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/d_fc_reg/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X68Y94         FDRE (Prop_fdre_C_Q)         0.433    -0.733 r  u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/d_fc_reg/Q
+                         net (fo=179, routed)         0.780     0.047    u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/d_fc
+    SLICE_X69Y93         LUT4 (Prop_lut4_I2_O)        0.105     0.152 r  u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_130__9/O
+                         net (fo=1, routed)           0.000     0.152    u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_130__9_n_0
+    SLICE_X69Y93         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.440     0.592 r  u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_122__9/CO[3]
+                         net (fo=1, routed)           0.000     0.592    u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_122__9_n_0
+    SLICE_X69Y94         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.098     0.690 r  u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_69__9/CO[3]
+                         net (fo=1, routed)           0.000     0.690    u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_69__9_n_0
+    SLICE_X69Y95         CARRY4 (Prop_carry4_CI_O[0])
+                                                      0.180     0.870 f  u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_38__9/O[0]
+                         net (fo=10, routed)          0.693     1.563    u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/func_q_quantize2[8]
+    SLICE_X68Y94         LUT2 (Prop_lut2_I1_O)        0.249     1.812 r  u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_68__9/O
+                         net (fo=1, routed)           0.000     1.812    u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_68__9_n_0
+    SLICE_X68Y94         CARRY4 (Prop_carry4_S[0]_CO[2])
+                                                      0.447     2.259 f  u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_34__9/CO[2]
+                         net (fo=3, routed)           0.794     3.053    u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_34__9_n_1
+    SLICE_X66Y96         LUT6 (Prop_lut6_I2_O)        0.252     3.305 r  u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_37__9/O
+                         net (fo=1, routed)           0.314     3.619    u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_37__9_n_0
+    SLICE_X67Y97         LUT4 (Prop_lut4_I3_O)        0.105     3.724 r  u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_21__9/O
+                         net (fo=1, routed)           0.000     3.724    u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_21__9_n_0
+    SLICE_X67Y97         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.440     4.164 r  u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_7__9/CO[3]
+                         net (fo=1, routed)           0.000     4.164    u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_7__9_n_0
+    SLICE_X67Y98         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.098     4.262 r  u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_16__9/CO[3]
+                         net (fo=1, routed)           0.000     4.262    u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_16__9_n_0
+    SLICE_X67Y99         CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.265     4.527 r  u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/Nram_reg_0_63_0_2_i_18__9/O[1]
+                         net (fo=27, routed)          0.706     5.233    u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/p_0_in
+    SLICE_X67Y100        LUT5 (Prop_lut5_I4_O)        0.250     5.483 r  u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_4__9/O
+                         net (fo=58, routed)          0.817     6.300    u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_4__9_n_0
+    SLICE_X71Y102        LUT6 (Prop_lut6_I3_O)        0.105     6.405 r  u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_Cn[7]_i_21__9/O
+                         net (fo=1, routed)           0.000     6.405    u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_Cn[7]_i_21__9_n_0
+    SLICE_X71Y102        CARRY4 (Prop_carry4_S[1]_CO[2])
+                                                      0.475     6.880 r  u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_Cn_reg[7]_i_8__9/CO[2]
+                         net (fo=8, routed)           0.801     7.682    u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/C2
+    SLICE_X72Y97         LUT6 (Prop_lut6_I2_O)        0.261     7.943 r  u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_Cn[3]_i_2__9/O
+                         net (fo=8, routed)           0.481     8.424    u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_Cn[3]_i_2__9_n_0
+    SLICE_X74Y95         LUT2 (Prop_lut2_I1_O)        0.105     8.529 r  u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_err[3]_i_16__9/O
+                         net (fo=1, routed)           0.144     8.673    u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_err[3]_i_16__9_n_0
+    SLICE_X75Y95         CARRY4 (Prop_carry4_CYINIT_CO[3])
+                                                      0.480     9.153 r  u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_err_reg[3]_i_11__9/CO[3]
+                         net (fo=1, routed)           0.000     9.153    u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_err_reg[3]_i_11__9_n_0
+    SLICE_X75Y96         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.098     9.251 r  u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_err_reg[7]_i_11__9/CO[3]
+                         net (fo=1, routed)           0.000     9.251    u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_err_reg[7]_i_11__9_n_0
+    SLICE_X75Y97         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.098     9.349 r  u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_err_reg[11]_i_12__9/CO[3]
+                         net (fo=1, routed)           0.000     9.349    u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_err_reg[11]_i_12__9_n_0
+    SLICE_X75Y98         CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.265     9.614 r  u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_err_reg[11]_i_13__9/O[1]
+                         net (fo=12, routed)          0.544    10.158    u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_err_reg[11]_i_13__9_n_6
+    SLICE_X74Y96         LUT6 (Prop_lut6_I2_O)        0.250    10.408 r  u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_err[3]_i_6__9/O
+                         net (fo=2, routed)           0.404    10.812    u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_err[3]_i_6__9_n_0
+    SLICE_X74Y97         CARRY4 (Prop_carry4_DI[0]_CO[3])
+                                                      0.457    11.269 r  u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_err_reg[3]_i_2__9/CO[3]
+                         net (fo=1, routed)           0.000    11.269    u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_err_reg[3]_i_2__9_n_0
+    SLICE_X74Y98         CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.257    11.526 f  u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_err_reg[7]_i_2__9/O[1]
+                         net (fo=5, routed)           0.413    11.939    u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_err_reg[7]_i_2__9_n_6
+    SLICE_X75Y100        LUT1 (Prop_lut1_I0_O)        0.245    12.184 r  u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_err[8]_i_10__9/O
+                         net (fo=1, routed)           0.000    12.184    u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_err[8]_i_10__9_n_0
+    SLICE_X75Y100        CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.457    12.641 r  u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_err_reg[8]_i_7__9/CO[3]
+                         net (fo=1, routed)           0.000    12.641    u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_err_reg[8]_i_7__9_n_0
+    SLICE_X75Y101        CARRY4 (Prop_carry4_CI_O[0])
+                                                      0.180    12.821 f  u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_err_reg[13]_i_31__9/O[0]
+                         net (fo=1, routed)           0.367    13.189    u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/func_errval_quantize1[8]
+    SLICE_X76Y100        LUT1 (Prop_lut1_I0_O)        0.249    13.438 r  u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_err[8]_i_3__9/O
+                         net (fo=1, routed)           0.000    13.438    u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_err[8]_i_3__9_n_0
+    SLICE_X76Y100        CARRY4 (Prop_carry4_S[3]_CO[3])
+                                                      0.314    13.752 r  u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_err_reg[8]_i_2__9/CO[3]
+                         net (fo=1, routed)           0.000    13.752    u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_err_reg[8]_i_2__9_n_0
+    SLICE_X76Y101        CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.257    14.009 f  u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_err_reg[13]_i_6__9/O[1]
+                         net (fo=4, routed)           0.607    14.616    u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/func_errval_quantize0[10]
+    SLICE_X77Y99         LUT5 (Prop_lut5_I2_O)        0.245    14.861 r  u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_err[13]_i_16__9/O
+                         net (fo=1, routed)           0.000    14.861    u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_err[13]_i_16__9_n_0
+    SLICE_X77Y99         CARRY4 (Prop_carry4_S[1]_CO[2])
+                                                      0.475    15.336 r  u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_err_reg[13]_i_3__9/CO[2]
+                         net (fo=7, routed)           0.836    16.171    u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/func_modrange1
+    SLICE_X74Y102        LUT5 (Prop_lut5_I1_O)        0.261    16.432 r  u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_err[12]_i_1__9/O
+                         net (fo=2, routed)           0.266    16.699    u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/err[12]
+    SLICE_X77Y103        LUT6 (Prop_lut6_I5_O)        0.105    16.804 r  u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_Cn[7]_i_34__9/O
+                         net (fo=1, routed)           0.000    16.804    u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_Cn[7]_i_34__9_n_0
+    SLICE_X77Y103        CARRY4 (Prop_carry4_S[0]_O[0])
+                                                      0.207    17.011 r  u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_Cn_reg[7]_i_31__6/O[0]
+                         net (fo=14, routed)          0.600    17.611    u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/Bt1[12]
+    SLICE_X78Y106        LUT3 (Prop_lut3_I0_O)        0.249    17.860 r  u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_Bn[6]_i_72__9/O
+                         net (fo=1, routed)           0.000    17.860    u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_Bn[6]_i_72__9_n_0
+    SLICE_X78Y106        CARRY4 (Prop_carry4_S[3]_CO[3])
+                                                      0.332    18.192 r  u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_Bn_reg[6]_i_60__6/CO[3]
+                         net (fo=1, routed)           0.000    18.192    u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_Bn_reg[6]_i_60__6_n_0
+    SLICE_X78Y107        CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.265    18.457 r  u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_Bn_reg[6]_i_59__6/O[1]
+                         net (fo=2, routed)           0.604    19.061    u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/Bt20_in[13]
+    SLICE_X77Y107        LUT2 (Prop_lut2_I0_O)        0.272    19.333 r  u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_Bn[6]_i_26__9/O
+                         net (fo=1, routed)           0.000    19.333    u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_Bn[6]_i_26__9_n_0
+    SLICE_X77Y107        CARRY4 (Prop_carry4_DI[2]_CO[2])
+                                                      0.263    19.596 r  u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_Bn_reg[6]_i_10__9/CO[2]
+                         net (fo=7, routed)           0.420    20.016    u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/Bt12_in
+    SLICE_X77Y108        LUT3 (Prop_lut3_I1_O)        0.261    20.277 r  u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_Bn[3]_i_3__9/O
+                         net (fo=1, routed)           0.526    20.804    u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_Bn[3]_i_3__9_n_0
+    SLICE_X76Y108        LUT5 (Prop_lut5_I2_O)        0.105    20.909 r  u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_Bn[3]_i_1__9/O
+                         net (fo=1, routed)           0.000    20.909    u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_Bn[3]_i_1__9_n_0
+    SLICE_X76Y108        FDRE                                         r  u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_Bn_reg[3]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_out2_clk_wiz_0_1 rise edge)
+                                                     22.222    22.222 r  
+    R3                                                0.000    22.222 r  clk_in1_p (IN)
+                         net (fo=0)                   0.000    22.222    u_ip/g_clkwiz.clk_wiz_0/inst/clk_in1_p
+    R3                   IBUFDS (Prop_ibufds_I_O)     0.850    23.073 r  u_ip/g_clkwiz.clk_wiz_0/inst/clkin1_ibufgds/O
+                         net (fo=1, routed)           1.004    24.076    u_ip/g_clkwiz.clk_wiz_0/inst/clk_in1_clk_wiz_0
+    MMCME2_ADV_X1Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT1)
+                                                     -6.399    17.677 r  u_ip/g_clkwiz.clk_wiz_0/inst/mmcm_adv_inst/CLKOUT1
+                         net (fo=1, routed)           1.452    19.129    u_ip/g_clkwiz.clk_wiz_0/inst/clk_out2_clk_wiz_0
+    BUFGCTRL_X0Y1        BUFG (Prop_bufg_I_O)         0.077    19.206 r  u_ip/g_clkwiz.clk_wiz_0/inst/clkout2_buf/O
+                         net (fo=21994, routed)       1.283    20.489    u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/clk_out2
+    SLICE_X76Y108        FDRE                                         r  u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_Bn_reg[3]/C
+                         clock pessimism              0.309    20.799    
+                         clock uncertainty           -0.103    20.696    
+    SLICE_X76Y108        FDRE (Setup_fdre_C_D)        0.072    20.768    u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/e_Bn_reg[3]
+  -------------------------------------------------------------------
+                         required time                         20.768    
+                         arrival time                         -20.909    
+  -------------------------------------------------------------------
+                         slack                                 -0.141    
+
+Slack (VIOLATED) :        -0.137ns  (required time - arrival time)
+  Source:                 u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/d_fc_reg/C
+                            (rising edge-triggered cell FDRE clocked by clk_out2_clk_wiz_0_1  {rise@0.000ns fall@11.111ns period=22.222ns})
+  Destination:            u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_Bn_reg[2]/D
+                            (rising edge-triggered cell FDRE clocked by clk_out2_clk_wiz_0_1  {rise@0.000ns fall@11.111ns period=22.222ns})
+  Path Group:             clk_out2_clk_wiz_0_1
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            22.222ns  (clk_out2_clk_wiz_0_1 rise@22.222ns - clk_out2_clk_wiz_0_1 rise@0.000ns)
+  Data Path Delay:        22.254ns  (logic 10.202ns (45.843%)  route 12.052ns (54.157%))
+  Logic Levels:           42  (CARRY4=23 LUT1=2 LUT2=2 LUT3=4 LUT4=3 LUT5=1 LUT6=6 RAMD64E=1)
+  Clock Path Skew:        -0.032ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    -1.558ns = ( 20.664 - 22.222 ) 
+    Source Clock Delay      (SCD):    -1.149ns
+    Clock Pessimism Removal (CPR):    0.376ns
+  Clock Uncertainty:      0.103ns  ((TSJ^2 + DJ^2)^1/2) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Discrete Jitter          (DJ):    0.193ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock clk_out2_clk_wiz_0_1 rise edge)
+                                                      0.000     0.000 r  
+    R3                                                0.000     0.000 r  clk_in1_p (IN)
+                         net (fo=0)                   0.000     0.000    u_ip/g_clkwiz.clk_wiz_0/inst/clk_in1_p
+    R3                   IBUFDS (Prop_ibufds_I_O)     0.890     0.890 r  u_ip/g_clkwiz.clk_wiz_0/inst/clkin1_ibufgds/O
+                         net (fo=1, routed)           1.065     1.955    u_ip/g_clkwiz.clk_wiz_0/inst/clk_in1_clk_wiz_0
+    MMCME2_ADV_X1Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT1)
+                                                     -6.273    -4.317 r  u_ip/g_clkwiz.clk_wiz_0/inst/mmcm_adv_inst/CLKOUT1
+                         net (fo=1, routed)           1.524    -2.793    u_ip/g_clkwiz.clk_wiz_0/inst/clk_out2_clk_wiz_0
+    BUFGCTRL_X0Y1        BUFG (Prop_bufg_I_O)         0.081    -2.712 r  u_ip/g_clkwiz.clk_wiz_0/inst/clkout2_buf/O
+                         net (fo=21994, routed)       1.563    -1.149    u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/clk_out2
+    SLICE_X131Y82        FDRE                                         r  u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/d_fc_reg/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X131Y82        FDRE (Prop_fdre_C_Q)         0.379    -0.770 r  u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/d_fc_reg/Q
+                         net (fo=179, routed)         0.837     0.066    u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/d_fc
+    SLICE_X130Y82        LUT4 (Prop_lut4_I3_O)        0.105     0.171 r  u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_128/O
+                         net (fo=1, routed)           0.000     0.171    u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_128_n_0
+    SLICE_X130Y82        CARRY4 (Prop_carry4_S[2]_CO[3])
+                                                      0.332     0.503 r  u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_122/CO[3]
+                         net (fo=1, routed)           0.000     0.503    u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_122_n_0
+    SLICE_X130Y83        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.098     0.601 r  u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_69/CO[3]
+                         net (fo=1, routed)           0.000     0.601    u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_69_n_0
+    SLICE_X130Y84        CARRY4 (Prop_carry4_CI_O[0])
+                                                      0.180     0.781 r  u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_38/O[0]
+                         net (fo=10, routed)          0.890     1.672    u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/func_q_quantize2[8]
+    SLICE_X127Y88        LUT2 (Prop_lut2_I0_O)        0.249     1.921 r  u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_112/O
+                         net (fo=1, routed)           0.000     1.921    u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_112_n_0
+    SLICE_X127Y88        CARRY4 (Prop_carry4_S[3]_CO[3])
+                                                      0.332     2.253 r  u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_62/CO[3]
+                         net (fo=1, routed)           0.000     2.253    u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_62_n_0
+    SLICE_X127Y89        CARRY4 (Prop_carry4_CI_CO[1])
+                                                      0.132     2.385 r  u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_33/CO[1]
+                         net (fo=3, routed)           0.701     3.086    u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_33_n_2
+    SLICE_X129Y89        LUT6 (Prop_lut6_I1_O)        0.275     3.361 r  u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_37/O
+                         net (fo=1, routed)           0.485     3.845    u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_37_n_0
+    SLICE_X129Y90        LUT4 (Prop_lut4_I3_O)        0.105     3.950 r  u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_21/O
+                         net (fo=1, routed)           0.000     3.950    u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_21_n_0
+    SLICE_X129Y90        CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.440     4.390 r  u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_7/CO[3]
+                         net (fo=1, routed)           0.000     4.390    u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_7_n_0
+    SLICE_X129Y91        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.098     4.488 r  u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_16/CO[3]
+                         net (fo=1, routed)           0.000     4.488    u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_16_n_0
+    SLICE_X129Y92        CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.265     4.753 r  u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/Nram_reg_0_63_0_2_i_18/O[1]
+                         net (fo=27, routed)          0.886     5.640    u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/p_0_in
+    SLICE_X131Y87        LUT4 (Prop_lut4_I3_O)        0.250     5.890 r  u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/Cram_reg_0_63_0_2_i_5/O
+                         net (fo=58, routed)          0.990     6.879    u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/Cram_reg_64_127_0_2/ADDRB2
+    SLICE_X132Y84        RAMD64E (Prop_ramd64e_RADR2_O)
+                                                      0.105     6.984 r  u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/Cram_reg_64_127_0_2/RAMB/O
+                         net (fo=1, routed)           0.622     7.606    u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/Cram_reg_64_127_0_2_n_1
+    SLICE_X135Y86        LUT6 (Prop_lut6_I3_O)        0.105     7.711 r  u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_Cn[3]_i_8/O
+                         net (fo=1, routed)           0.534     8.245    u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_Cn[3]_i_8_n_0
+    SLICE_X137Y86        LUT6 (Prop_lut6_I5_O)        0.105     8.350 r  u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_Cn[3]_i_3/O
+                         net (fo=7, routed)           0.482     8.832    u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_Cn[3]_i_3_n_0
+    SLICE_X134Y86        LUT3 (Prop_lut3_I1_O)        0.105     8.937 r  u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_err[3]_i_22/O
+                         net (fo=1, routed)           0.000     8.937    u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_err[3]_i_22_n_0
+    SLICE_X134Y86        CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.457     9.394 r  u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_err_reg[3]_i_11/CO[3]
+                         net (fo=1, routed)           0.000     9.394    u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_err_reg[3]_i_11_n_0
+    SLICE_X134Y87        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.098     9.492 r  u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_err_reg[7]_i_11/CO[3]
+                         net (fo=1, routed)           0.000     9.492    u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_err_reg[7]_i_11_n_0
+    SLICE_X134Y88        CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.098     9.590 r  u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_err_reg[11]_i_12/CO[3]
+                         net (fo=1, routed)           0.000     9.590    u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_err_reg[11]_i_12_n_0
+    SLICE_X134Y89        CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.265     9.855 r  u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_err_reg[11]_i_13/O[1]
+                         net (fo=12, routed)          0.633    10.488    u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_err_reg[11]_i_13_n_6
+    SLICE_X131Y87        LUT6 (Prop_lut6_I2_O)        0.250    10.738 r  u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_err[7]_i_5/O
+                         net (fo=2, routed)           0.471    11.210    u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_err[7]_i_5_n_0
+    SLICE_X131Y89        LUT3 (Prop_lut3_I0_O)        0.105    11.315 r  u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_err[7]_i_9/O
+                         net (fo=1, routed)           0.000    11.315    u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_err[7]_i_9_n_0
+    SLICE_X131Y89        CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.457    11.772 r  u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_err_reg[7]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    11.772    u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_err_reg[7]_i_2_n_0
+    SLICE_X131Y90        CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.265    12.037 f  u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_err_reg[11]_i_2/O[1]
+                         net (fo=7, routed)           0.629    12.665    u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_err_reg[11]_i_2_n_6
+    SLICE_X130Y93        LUT1 (Prop_lut1_I0_O)        0.250    12.915 r  u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_err[13]_i_34/O
+                         net (fo=1, routed)           0.000    12.915    u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_err[13]_i_34_n_0
+    SLICE_X130Y93        CARRY4 (Prop_carry4_S[1]_O[3])
+                                                      0.530    13.445 f  u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_err_reg[13]_i_31/O[3]
+                         net (fo=1, routed)           0.465    13.910    u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/func_errval_quantize1[11]
+    SLICE_X132Y94        LUT1 (Prop_lut1_I0_O)        0.257    14.167 r  u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_err[13]_i_19/O
+                         net (fo=1, routed)           0.000    14.167    u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_err[13]_i_19_n_0
+    SLICE_X132Y94        CARRY4 (Prop_carry4_S[2]_CO[3])
+                                                      0.316    14.483 r  u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_err_reg[13]_i_6/CO[3]
+                         net (fo=1, routed)           0.000    14.483    u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_err_reg[13]_i_6_n_0
+    SLICE_X132Y95        CARRY4 (Prop_carry4_CI_CO[0])
+                                                      0.207    14.690 r  u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_err_reg[13]_i_5/CO[0]
+                         net (fo=9, routed)           0.617    15.307    u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_err_reg[13]_i_5_n_3
+    SLICE_X133Y92        LUT3 (Prop_lut3_I1_O)        0.320    15.627 r  u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_err[13]_i_12/O
+                         net (fo=1, routed)           0.000    15.627    u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_err[13]_i_12_n_0
+    SLICE_X133Y92        CARRY4 (Prop_carry4_DI[2]_CO[2])
+                                                      0.263    15.890 r  u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_err_reg[13]_i_3/CO[2]
+                         net (fo=7, routed)           0.660    16.550    u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/func_modrange1
+    SLICE_X135Y93        LUT6 (Prop_lut6_I4_O)        0.261    16.811 r  u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_Cn[7]_i_38/O
+                         net (fo=1, routed)           0.000    16.811    u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_Cn[7]_i_38_n_0
+    SLICE_X135Y93        CARRY4 (Prop_carry4_S[3]_CO[3])
+                                                      0.332    17.143 r  u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_Cn_reg[7]_i_32/CO[3]
+                         net (fo=1, routed)           0.000    17.143    u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_Cn_reg[7]_i_32_n_0
+    SLICE_X135Y94        CARRY4 (Prop_carry4_CI_O[0])
+                                                      0.180    17.323 f  u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_Cn_reg[7]_i_31/O[0]
+                         net (fo=14, routed)          0.514    17.837    u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/Bt1[12]
+    SLICE_X136Y93        LUT3 (Prop_lut3_I2_O)        0.249    18.086 r  u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_Bn[6]_i_83/O
+                         net (fo=1, routed)           0.000    18.086    u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_Bn[6]_i_83_n_0
+    SLICE_X136Y93        CARRY4 (Prop_carry4_S[3]_CO[3])
+                                                      0.314    18.400 r  u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_Bn_reg[6]_i_70/CO[3]
+                         net (fo=1, routed)           0.000    18.400    u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_Bn_reg[6]_i_70_n_0
+    SLICE_X136Y94        CARRY4 (Prop_carry4_CI_O[0])
+                                                      0.178    18.578 r  u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_Bn_reg[6]_i_69/O[0]
+                         net (fo=2, routed)           0.696    19.273    u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_Bn_reg[6]_i_69_n_7
+    SLICE_X137Y91        LUT2 (Prop_lut2_I0_O)        0.261    19.534 r  u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_Bn[6]_i_39/O
+                         net (fo=1, routed)           0.000    19.534    u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_Bn[6]_i_39_n_0
+    SLICE_X137Y91        CARRY4 (Prop_carry4_DI[2]_CO[2])
+                                                      0.263    19.797 f  u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_Bn_reg[6]_i_12/CO[2]
+                         net (fo=7, routed)           0.500    20.297    u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_Bn_reg[6]_i_12_n_1
+    SLICE_X138Y92        LUT6 (Prop_lut6_I3_O)        0.261    20.558 r  u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_Bn[2]_i_4/O
+                         net (fo=1, routed)           0.442    21.000    u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_Bn[2]_i_4_n_0
+    SLICE_X137Y95        LUT5 (Prop_lut5_I4_O)        0.105    21.105 r  u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_Bn[2]_i_1/O
+                         net (fo=1, routed)           0.000    21.105    u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_Bn[2]_i_1_n_0
+    SLICE_X137Y95        FDRE                                         r  u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_Bn_reg[2]/D
+  -------------------------------------------------------------------    -------------------
+
+                         (clock clk_out2_clk_wiz_0_1 rise edge)
+                                                     22.222    22.222 r  
+    R3                                                0.000    22.222 r  clk_in1_p (IN)
+                         net (fo=0)                   0.000    22.222    u_ip/g_clkwiz.clk_wiz_0/inst/clk_in1_p
+    R3                   IBUFDS (Prop_ibufds_I_O)     0.850    23.073 r  u_ip/g_clkwiz.clk_wiz_0/inst/clkin1_ibufgds/O
+                         net (fo=1, routed)           1.004    24.076    u_ip/g_clkwiz.clk_wiz_0/inst/clk_in1_clk_wiz_0
+    MMCME2_ADV_X1Y2      MMCME2_ADV (Prop_mmcme2_adv_CLKIN1_CLKOUT1)
+                                                     -6.399    17.677 r  u_ip/g_clkwiz.clk_wiz_0/inst/mmcm_adv_inst/CLKOUT1
+                         net (fo=1, routed)           1.452    19.129    u_ip/g_clkwiz.clk_wiz_0/inst/clk_out2_clk_wiz_0
+    BUFGCTRL_X0Y1        BUFG (Prop_bufg_I_O)         0.077    19.206 r  u_ip/g_clkwiz.clk_wiz_0/inst/clkout2_buf/O
+                         net (fo=21994, routed)       1.458    20.664    u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/clk_out2
+    SLICE_X137Y95        FDRE                                         r  u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_Bn_reg[2]/C
+                         clock pessimism              0.376    21.041    
+                         clock uncertainty           -0.103    20.938    
+    SLICE_X137Y95        FDRE (Setup_fdre_C_D)        0.030    20.968    u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/e_Bn_reg[2]
+  -------------------------------------------------------------------
+                         required time                         20.968    
+                         arrival time                         -21.105    
+  -------------------------------------------------------------------
+                         slack                                 -0.137    
+
+
+
+

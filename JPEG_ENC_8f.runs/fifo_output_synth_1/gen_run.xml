@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="fifo_output_synth_1" LaunchPart="xc7a200tfbg676-2" LaunchTime="1761839628">
+<GenRun Id="fifo_output_synth_1" LaunchPart="xc7a200tfbg676-2" LaunchTime="1782508223">
   <File Type="REPORTS-TCL" Name="fifo_output_reports.tcl"/>
   <File Type="RDS-UTIL" Name="fifo_output_utilization_synth.rpt"/>
   <File Type="RDS-UTIL-PB" Name="fifo_output_utilization_synth.pb"/>
@@ -38,6 +38,14 @@
   </FileSet>
   <FileSet Name="utils" Type="Utils" RelSrcDir="$PSRCDIR/utils_1" RelGenDir="$PGENDIR/utils_1">
     <Filter Type="Utils"/>
+    <File Path="$PSRCDIR/utils_1/imports/synth_1/top_jls_vertical.dcp">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedInSteps" Val="synth_1"/>
+        <Attr Name="AutoDcp" Val="1"/>
+      </FileInfo>
+    </File>
     <Config>
       <Option Name="TopAutoSet" Val="TRUE"/>
     </Config>

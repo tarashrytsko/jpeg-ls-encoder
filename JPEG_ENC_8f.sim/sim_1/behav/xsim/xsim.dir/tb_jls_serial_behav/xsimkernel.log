@@ -1,0 +1,7 @@
+Running: xsim.dir/tb_jls_serial_behav/xsimk.exe -simmode gui -wdb tb_jls_serial_behav.wdb -simrunnum 0 -socket 57065
+Design successfully loaded
+Design Loading Memory Usage: 67108 KB (Peak: 67108 KB)
+Design Loading CPU Usage: 764 ms
+Simulation completed
+Simulation Memory Usage: 70388 KB (Peak: 70388 KB)
+Simulation CPU Usage: 5093 ms

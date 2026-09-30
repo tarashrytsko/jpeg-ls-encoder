@@ -1,0 +1,7 @@
+Running: xsim.dir/tb_horiz1x12_300/xsimk.exe -simmode gui -wdb tb_horiz1x12_300.wdb -simrunnum 0 -socket 53365
+Design successfully loaded
+Design Loading Memory Usage: 67220 KB (Peak: 67220 KB)
+Design Loading CPU Usage: 2078 ms
+Simulation completed
+Simulation Memory Usage: 70544 KB (Peak: 70544 KB)
+Simulation CPU Usage: 12843 ms

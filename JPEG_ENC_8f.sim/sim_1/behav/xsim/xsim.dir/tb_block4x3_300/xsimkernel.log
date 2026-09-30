@@ -1,0 +1,7 @@
+Running: xsim.dir/tb_block4x3_300/xsimk.exe -simmode gui -wdb tb_block4x3_300.wdb -simrunnum 0 -socket 53366
+Design successfully loaded
+Design Loading Memory Usage: 67236 KB (Peak: 67236 KB)
+Design Loading CPU Usage: 1936 ms
+Simulation completed
+Simulation Memory Usage: 70480 KB (Peak: 70480 KB)
+Simulation CPU Usage: 12765 ms

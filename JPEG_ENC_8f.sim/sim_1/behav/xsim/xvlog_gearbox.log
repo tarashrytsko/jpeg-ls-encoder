@@ -1,0 +1,6 @@
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/sources_1/new/byte_gearbox_12.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module byte_gearbox_12
+INFO: [VRFC 10-311] analyzing module gearbox_afifo
+WARNING: [VRFC 10-3380] identifier 'rgray' is used before its declaration [D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/sources_1/new/byte_gearbox_12.v:130]
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/sim_1/imports/FPGA Encoders/tb_byte_gearbox.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module tb_byte_gearbox

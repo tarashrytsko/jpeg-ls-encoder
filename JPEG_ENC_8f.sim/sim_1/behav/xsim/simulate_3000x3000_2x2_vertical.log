@@ -1,0 +1,145 @@
+#-----------------------------------------------------------
+# xsim v2024.2 (64-bit)
+# SW Build 5239630 on Fri Nov 08 22:35:27 MST 2024
+# IP Build 5239520 on Sun Nov 10 16:12:51 MST 2024
+# SharedData Build 5239561 on Fri Nov 08 14:39:27 MST 2024
+# Start of session at: Fri Jun 26 20:20:56 2026
+# Process ID         : 31536
+# Current directory  : D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.sim/sim_1/behav/xsim
+# Command line       : xsim.exe -log simulate_3000x3000_2x2_vertical.log -mode tcl -source {xsim.dir/tb_jls_encoder_axis_behav/xsim_script.tcl}
+# Log file           : D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.sim/sim_1/behav/xsim/simulate_3000x3000_2x2_vertical.log
+# Journal file       : D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.sim/sim_1/behav/xsim\xsim.jou
+# Running On         : DESKTOP-PHB4K70
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 26200
+# Processor Detail   : 11th Gen Intel(R) Core(TM) i5-11400H @ 2.70GHz
+# CPU Frequency      : 2688 MHz
+# CPU Physical cores : 6
+# CPU Logical cores  : 12
+# Host memory        : 16840 MB
+# Swap memory        : 4160 MB
+# Total Virtual      : 21001 MB
+# Available Virtual  : 12753 MB
+#-----------------------------------------------------------
+source xsim.dir/tb_jls_encoder_axis_behav/xsim_script.tcl
+# xsim {tb_jls_encoder_axis_behav} -autoloadwcfg -tclbatch {run_quit.tcl}
+Time resolution is 1 ps
+source run_quit.tcl
+## run all
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+[0] Output capture ready (in-memory buffers)
+[3367500] FIRST SOF enc0: iw=0 swath_h=0 col0=0
+[3734166] FIRST e_e[0]: rd_cnt=0 a_ii=0 j_sof=1 j_e=0 a_wl=749
+[1668000832] DBG rd=24430/24055 st=1 e_e=0000 wr=24750/24126 full=0000 pix=96878
+[3334667499] DBG rd=49500/49305 st=1 e_e=0000 wr=49500/49500 full=0000 pix=196878
+[5001334165] DBG rd=74250/74250 st=1 e_e=0000 wr=74250/74250 full=0000 pix=296878
+[6668000832] DBG rd=99430/99055 st=1 e_e=0000 wr=99750/99126 full=0000 pix=396878
+[8334667499] DBG rd=124500/124305 st=1 e_e=0000 wr=124500/124500 full=0000 pix=496878
+[10001334165] DBG rd=149250/149250 st=1 e_e=0000 wr=149250/149250 full=0000 pix=596878
+[11668000832] DBG rd=174430/174055 st=1 e_e=0000 wr=174750/174126 full=0000 pix=696878
+[13334667499] DBG rd=199500/199305 st=1 e_e=0000 wr=199500/199500 full=0000 pix=796878
+[15001334165] DBG rd=224250/224250 st=1 e_e=0000 wr=224250/224250 full=0000 pix=896878
+[16668000832] DBG rd=249430/249055 st=1 e_e=0000 wr=249750/249126 full=0000 pix=996878
+[18334667499] DBG rd=274500/274305 st=1 e_e=0000 wr=274500/274500 full=0000 pix=1096878
+[20001334165] DBG rd=299250/299250 st=1 e_e=0000 wr=299250/299250 full=0000 pix=1196878
+[21668000832] DBG rd=324430/324055 st=1 e_e=0000 wr=324750/324126 full=0000 pix=1296878
+[23334667499] DBG rd=349500/349305 st=1 e_e=0010 wr=349500/349500 full=0000 pix=1396878
+[25001334165] DBG rd=374250/374250 st=1 e_e=1000 wr=374250/374250 full=0000 pix=1496878
+[26668000832] DBG rd=399430/399055 st=1 e_e=0000 wr=399750/399126 full=0000 pix=1596878
+[28334667499] DBG rd=424500/424305 st=1 e_e=0000 wr=424500/424500 full=0000 pix=1696878
+[30001334165] DBG rd=449250/449250 st=1 e_e=0000 wr=449250/449250 full=0000 pix=1796878
+[31668000832] DBG rd=474430/474055 st=1 e_e=0000 wr=474750/474126 full=0000 pix=1896878
+[33334667499] DBG rd=499500/499305 st=1 e_e=0000 wr=499500/499500 full=0000 pix=1996878
+[35001334165] DBG rd=524250/524250 st=1 e_e=0000 wr=524250/524250 full=0000 pix=2096878
+[36668000832] DBG rd=549430/549055 st=1 e_e=0000 wr=549750/549126 full=0000 pix=2196878
+[38334667499] DBG rd=574500/574305 st=1 e_e=0000 wr=574500/574500 full=0000 pix=2296878
+[40001334165] DBG rd=599250/599250 st=1 e_e=0000 wr=599250/599250 full=0000 pix=2396878
+[41668000832] DBG rd=624430/624055 st=1 e_e=0000 wr=624750/624126 full=0000 pix=2496878
+[43334667499] DBG rd=649500/649305 st=1 e_e=0000 wr=649500/649500 full=0000 pix=2596878
+[45001334165] DBG rd=674250/674250 st=1 e_e=0000 wr=674250/674250 full=0000 pix=2696878
+[46668000832] DBG rd=699430/699055 st=1 e_e=0000 wr=699750/699126 full=0000 pix=2796878
+[48334667499] DBG rd=724500/724305 st=1 e_e=0000 wr=724500/724500 full=0000 pix=2896878
+[50001334165] DBG rd=749250/749250 st=1 e_e=0000 wr=749250/749250 full=0000 pix=2996878
+[51668000832] DBG rd=774430/774055 st=1 e_e=0001 wr=774750/774126 full=0000 pix=3096878
+[53334667499] DBG rd=799500/799305 st=1 e_e=0000 wr=799500/799500 full=0000 pix=3196878
+[55001334165] DBG rd=824250/824250 st=1 e_e=0100 wr=824250/824250 full=0000 pix=3296878
+[56668000832] DBG rd=849430/849055 st=1 e_e=0001 wr=849750/849126 full=0000 pix=3396878
+[58334667499] DBG rd=874500/874305 st=1 e_e=0010 wr=874500/874500 full=0000 pix=3496878
+[60001334165] DBG rd=899250/899250 st=1 e_e=0000 wr=899250/899250 full=0000 pix=3596878
+[61668000832] DBG rd=924430/924055 st=1 e_e=0000 wr=924750/924126 full=0000 pix=3696878
+[63334667499] DBG rd=949500/949305 st=1 e_e=0000 wr=949500/949500 full=0000 pix=3796878
+[65001334165] DBG rd=974250/974250 st=1 e_e=0000 wr=974250/974250 full=0000 pix=3896878
+[66668000832] DBG rd=999430/999055 st=1 e_e=0001 wr=999750/999126 full=0000 pix=3996878
+[68334667499] DBG rd=1024500/1024305 st=1 e_e=0100 wr=1024500/1024500 full=0000 pix=4096878
+[70001334165] DBG rd=1049250/1049250 st=1 e_e=0100 wr=1049250/1049250 full=0000 pix=4196878
+[71668000832] DBG rd=1074430/1074055 st=1 e_e=0011 wr=1074750/1074126 full=0000 pix=4296878
+[73334667499] DBG rd=1099500/1099305 st=1 e_e=0010 wr=1099500/1099500 full=0000 pix=4396878
+[75001334165] DBG rd=1124250/1124250 st=1 e_e=1000 wr=1124250/1124250 full=0000 pix=4496878
+[76668000832] DBG rd=1149430/1149055 st=1 e_e=0001 wr=1149750/1149126 full=0000 pix=4596878
+[78334667499] DBG rd=1174500/1174305 st=1 e_e=0000 wr=1174500/1174500 full=0000 pix=4696878
+[80001334165] DBG rd=1199250/1199250 st=1 e_e=0100 wr=1199250/1199250 full=0000 pix=4796878
+[81668000832] DBG rd=1224430/1224055 st=1 e_e=0000 wr=1224750/1224126 full=0000 pix=4896878
+[83334667499] DBG rd=1249500/1249305 st=1 e_e=0100 wr=1249500/1249500 full=0000 pix=4996878
+[85001334165] DBG rd=1274250/1274250 st=1 e_e=1100 wr=1274250/1274250 full=0000 pix=5096878
+[86668000832] DBG rd=1299430/1299055 st=1 e_e=0001 wr=1299750/1299126 full=0000 pix=5196878
+[88334667499] DBG rd=1324500/1324305 st=1 e_e=0000 wr=1324500/1324500 full=0000 pix=5296878
+[90001334165] DBG rd=1349250/1349250 st=1 e_e=1100 wr=1349250/1349250 full=0000 pix=5396878
+[91668000832] DBG rd=1374430/1374055 st=1 e_e=0000 wr=1374750/1374126 full=0000 pix=5496878
+[93334667499] DBG rd=1399500/1399305 st=1 e_e=0000 wr=1399500/1399500 full=0000 pix=5596878
+[95001334165] DBG rd=1424250/1424250 st=1 e_e=0000 wr=1424250/1424250 full=0000 pix=5696878
+[96668000832] DBG rd=1449430/1449055 st=1 e_e=0000 wr=1449750/1449126 full=0000 pix=5796878
+[98334667499] DBG rd=1474500/1474305 st=1 e_e=0000 wr=1474500/1474500 full=0000 pix=5896878
+[100001334165] DBG rd=1499250/1499250 st=1 e_e=0000 wr=1499250/1499250 full=0000 pix=5996878
+[101668000832] DBG rd=1524430/1524055 st=1 e_e=0001 wr=1524750/1524126 full=0000 pix=6096878
+[103334667499] DBG rd=1549500/1549305 st=1 e_e=0000 wr=1549500/1549500 full=0000 pix=6196878
+[105001334165] DBG rd=1574250/1574250 st=1 e_e=0000 wr=1574250/1574250 full=0000 pix=6296878
+[106668000832] DBG rd=1599430/1599055 st=1 e_e=0000 wr=1599750/1599126 full=0000 pix=6396878
+[108334667499] DBG rd=1624500/1624305 st=1 e_e=0000 wr=1624500/1624500 full=0000 pix=6496878
+[110001334165] DBG rd=1649250/1649250 st=1 e_e=0000 wr=1649250/1649250 full=0000 pix=6596878
+[111668000832] DBG rd=1674430/1674055 st=1 e_e=0001 wr=1674750/1674126 full=0000 pix=6696878
+[113334667499] DBG rd=1699500/1699305 st=1 e_e=0000 wr=1699500/1699500 full=0000 pix=6796878
+[115001334165] DBG rd=1724250/1724250 st=1 e_e=0000 wr=1724250/1724250 full=0000 pix=6896878
+[116668000832] DBG rd=1749430/1749055 st=1 e_e=0000 wr=1749750/1749126 full=0000 pix=6996878
+[118334667499] DBG rd=1774500/1774305 st=1 e_e=0000 wr=1774500/1774500 full=0000 pix=7096878
+[120001334165] DBG rd=1799250/1799250 st=1 e_e=0000 wr=1799250/1799250 full=0000 pix=7196878
+[121668000832] DBG rd=1824430/1824055 st=1 e_e=0000 wr=1824750/1824126 full=0000 pix=7296878
+[123334667499] DBG rd=1849500/1849305 st=1 e_e=0000 wr=1849500/1849500 full=0000 pix=7396878
+[125001334165] DBG rd=1874250/1874250 st=1 e_e=0000 wr=1874250/1874250 full=0000 pix=7496878
+[126668000832] DBG rd=1899430/1899055 st=1 e_e=0000 wr=1899750/1899126 full=0000 pix=7596878
+[128334667499] DBG rd=1924500/1924305 st=1 e_e=0000 wr=1924500/1924500 full=0000 pix=7696878
+[130001334165] DBG rd=1949250/1949250 st=1 e_e=0000 wr=1949250/1949250 full=0000 pix=7796878
+[131668000832] DBG rd=1974430/1974055 st=1 e_e=0000 wr=1974750/1974126 full=0000 pix=7896878
+[133334667499] DBG rd=1999500/1999305 st=1 e_e=0000 wr=1999500/1999500 full=0000 pix=7996878
+[135001334165] DBG rd=2024250/2024250 st=1 e_e=0000 wr=2024250/2024250 full=0000 pix=8096878
+[136668000832] DBG rd=2049430/2049055 st=1 e_e=0000 wr=2049750/2049126 full=0000 pix=8196878
+[138334667499] DBG rd=2074500/2074305 st=1 e_e=0000 wr=2074500/2074500 full=0000 pix=8296878
+[140001334165] DBG rd=2099250/2099250 st=1 e_e=0000 wr=2099250/2099250 full=0000 pix=8396878
+[141668000832] DBG rd=2124430/2124055 st=1 e_e=0000 wr=2124750/2124126 full=0000 pix=8496878
+[143334667499] DBG rd=2149500/2149305 st=1 e_e=0000 wr=2149500/2149500 full=0000 pix=8596878
+[145001334165] DBG rd=2174250/2174250 st=1 e_e=0000 wr=2174250/2174250 full=0000 pix=8696878
+[146668000832] DBG rd=2199430/2199055 st=1 e_e=0000 wr=2199750/2199126 full=0000 pix=8796878
+[148334667499] DBG rd=2224500/2224305 st=1 e_e=0000 wr=2224500/2224500 full=0000 pix=8896878
+[150001334165] DBG rd=2249250/2249250 st=1 e_e=0000 wr=2249250/2249250 full=0000 pix=8996878
+[150029217499] SLICE enc0[0] done: words=182959 bytes=365918
+[150029217499] DONE enc0 total_bytes=365918
+[150041717499] SLICE enc1[0] done: words=245964 bytes=491928
+[150041717499] DONE enc1 total_bytes=491928
+[150054217499] SLICE enc2[0] done: words=243923 bytes=487846
+[150054217499] DONE enc2 total_bytes=487846
+[150066717499] SLICE enc3[0] done: words=267986 bytes=535971
+[150066717499] DONE enc3 total_bytes=535971
+[150067550832] D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.sim/output_block/output_h4v1_3000x3000.jls written: 1881663 bytes (4 slices, swath-major enc-minor order)
+=== All 4 encoder slices complete ===
+BENCHMARK_RESULT N_H=4 N_V=1 W=3000 H=3000 N_E=4 NUM_SLICES=1 OUT_BYTES=1881663
+$finish called at time : 150067550832 ps : File "D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/sim_1/imports/FPGA Encoders/tb_jls_encoder_axis.v" Line 218
+run: Time (s): cpu = 00:00:01 ; elapsed = 00:19:27 . Memory (MB): peak = 202.777 ; gain = 0.000
+## quit
+INFO: xsimkernel Simulation Memory Usage: 916920 KB (Peak: 916920 KB), Simulation CPU Usage: 1164593 ms
+INFO: [Common 17-206] Exiting xsim at Fri Jun 26 20:40:25 2026...

@@ -3,10 +3,10 @@
 # SW Build 5239630 on Fri Nov 08 22:35:27 MST 2024
 # IP Build 5239520 on Sun Nov 10 16:12:51 MST 2024
 # SharedData Build 5239561 on Fri Nov 08 14:39:27 MST 2024
-# Start of session at: Sun May 24 19:46:32 2026
-# Process ID         : 13632
+# Start of session at: Tue Sep 29 09:54:22 2026
+# Process ID         : 11596
 # Current directory  : D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.sim/sim_1/behav/xsim
-# Command line       : xsim.exe -mode tcl -source {xsim.dir/tb_top_jls_vertical_behav/xsim_script.tcl}
+# Command line       : xsim.exe -mode tcl -source {xsim.dir/sn_lat16_300__h12v1/xsim_script.tcl}
 # Log file           : D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.sim/sim_1/behav/xsim/xsim.log
 # Journal file       : D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.sim/sim_1/behav/xsim\xsim.jou
 # Running On         : DESKTOP-PHB4K70
@@ -17,16 +17,53 @@
 # CPU Physical cores : 6
 # CPU Logical cores  : 12
 # Host memory        : 16840 MB
-# Swap memory        : 9126 MB
-# Total Virtual      : 25967 MB
-# Available Virtual  : 11956 MB
-#-----------------------------------------------------------
-source xsim.dir/tb_top_jls_vertical_behav/xsim_script.tcl
-# xsim {tb_top_jls_vertical_behav} -autoloadwcfg -tclbatch {C:/Users/admin/AppData/Local/Temp/t.tcl}
-Time resolution is 1 ps
-source C:/Users/admin/AppData/Local/Temp/t.tcl
-## run 800us
-image_generator: opened D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.sim/images/world_gray_300x300.pgm  300x300 depth=255  streaming 300x300
+# Swap memory        : 2281 MB
+# Total Virtual      : 19122 MB
+# Available Virtual  : 6355 MB
+#-----------------------------------------------------------ssource xsim.dir/sn_lat16_300__h12v1/xsim_script.tc# # xsim {sn_lat8_1500__h12v1} -autoloadwcfg -runaTimTime resolution is 1 runrun -aWARWARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more informatioWARWARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more informatioWARWARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more informatioWARWARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more informatioWARWARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more informatioWARWARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more informatioWARWARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more informatioWARWARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more informatioWARWARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more informatioWARWARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more informatioWARWARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more informatioWARWARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more informatioWARWARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more informatioWARWARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more informatio[0][0] Output capture ready (in-memory buffer[23[4237189722] SLICE enc8[0] done: words=24948 bytes=49896
+[4237189722] DONE enc8 total_bytes=49896
+[4237211944] SLICE enc0[0] done: words=26144 bytes=52287
+[4237211944] DONE enc0 total_bytes=52287
+[4237211944] SLICE enc2[0] done: words=22483 bytes=44966
+[4237211944] DONE enc2 total_bytes=44966
+[4237211944] SLICE enc3[0] done: words=20045 bytes=40089
+[4237211944] DONE enc3 total_bytes=40089
+[4237211944] SLICE enc4[0] done: words=19587 bytes=39173
+[4237211944] DONE enc4 total_bytes=39173
+[4237211944] SLICE enc5[0] done: words=18008 bytes=36015
+[4237211944] DONE enc5 total_bytes=36015
+[4237211944] SLICE enc6[0] done: words=19326 bytes=38652
+[4237211944] DONE enc6 total_bytes=38652
+[4237211944] SLICE enc7[0] done: words=20976 bytes=41952
+[4237211944] DONE enc7 total_bytes=41952
+[4237211944] SLICE enc9[0] done: words=25449 bytes=50898
+[4237211944] DONE enc9 total_bytes=50898
+[4237211944] SLICE enc10[0] done: words=24826 bytes=49651
+[4237211944] DONE enc10 total_bytes=49651
+[4237211944] SLICE enc11[0] done: words=24800 bytes=49599
+[4237211944] DONE enc11 total_bytes=49599
+[4237234166] SLICE enc1[0] done: words=24725 bytes=49450
+[4237234166] DONE enc1 total_bytes=49450
+[4238345277] D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/eval/hw/lat8_1500__h12v1.jls written: 542628 bytes (12 slices, swath-major enc-minor order)
+=== All 12 encoder slices complete ===
+LATENCY_CYCLES sof_to_first_in=3002 first_in_to_enc0_first_px=11 enc0_first_px_to_first_data_word=11 first_in_to_first_axis_out=-2983 input_beats_span=187499 last_in_to_all_lanes_done=36
+BENCHMARK_RESULT N_H=12 N_V=1 W=1500 H=1500 N_E=12 NUM_SLICES=1 BPP=8 OUT_BYTES=542628
+$finish called at time : 4238345277 ps : File "D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/sim_1/imports/FPGA Encoders/tb_jls_wide.v" Line 273
+run: Time (s): cpu = 00:00:00 ; elapsed = 00:01:14 . Memory (MB): peak = 195.645 ; gain = 0.000
+exit
+INFO: xsimkernel Simulation Memory Usage: 50216 KB (Peak: 50216 KB), Simulation CPU Usage: 74296 ms
+INFO: [Common 17-206] Exiting xsim at Tue Sep 29 09:55:40 2026...
+G: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
 WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
 WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
 WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
@@ -39,9 +76,39 @@ WARNING: Behavioral models for independent clock FIFO configurations do not mode
 WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
 WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
 WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
-[0] OPEN all encoder files (enc0a..enc5a)
-image_generator: done streaming 90000 pixels
-run: Time (s): cpu = 00:00:00 ; elapsed = 00:00:10 . Memory (MB): peak = 203.047 ; gain = 0.000
-xsim: Time (s): cpu = 00:00:00 ; elapsed = 00:00:11 . Memory (MB): peak = 203.047 ; gain = 33.008
-xsim% INFO: xsimkernel Simulation Memory Usage: 42032 KB (Peak: 42032 KB), Simulation CPU Usage: 10577 ms
-INFO: [Common 17-206] Exiting xsim at Sun May 24 19:46:43 2026...
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+[0] Output capture ready (in-memory buffers)
+[237189722] SLICE enc0[0] done: words=2118 bytes=8472
+[237189722] DONE enc0 total_bytes=8472
+[237189722] SLICE enc1[0] done: words=2102 bytes=8407
+[237189722] DONE enc1 total_bytes=8407
+[237189722] SLICE enc7[0] done: words=2186 bytes=8743
+[237189722] DONE enc7 total_bytes=8743
+[237189722] SLICE enc8[0] done: words=2179 bytes=8714
+[237189722] DONE enc8 total_bytes=8714
+[237189722] SLICE enc10[0] done: words=2217 bytes=8868
+[237189722] DONE enc10 total_bytes=8868
+[237211944] SLICE enc2[0] done: words=2117 bytes=8465
+[237211944] DONE enc2 total_bytes=8465
+[237211944] SLICE enc3[0] done: words=2125 bytes=8498
+[237211944] DONE enc3 total_bytes=8498
+[237211944] SLICE enc4[0] done: words=2158 bytes=8629
+[237211944] DONE enc4 total_bytes=8629
+[237211944] SLICE enc5[0] done: words=2172 bytes=8685
+[237211944] DONE enc5 total_bytes=8685
+[237211944] SLICE enc6[0] done: words=2179 bytes=8713
+[237211944] DONE enc6 total_bytes=8713
+[237211944] SLICE enc9[0] done: words=2193 bytes=8770
+[237211944] DONE enc9 total_bytes=8770
+[237211944] SLICE enc11[0] done: words=2228 bytes=8910
+[237211944] DONE enc11 total_bytes=8910
+[238323055] D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/eval/hw/lat16_300__h12v1.jls written: 103874 bytes (12 slices, swath-major enc-minor order)
+=== All 12 encoder slices complete ===
+LATENCY_CYCLES sof_to_first_in=3002 first_in_to_enc0_first_px=11 enc0_first_px_to_first_data_word=12 first_in_to_first_axis_out=-2983 input_beats_span=7499 last_in_to_all_lanes_done=35
+BENCHMARK_RESULT N_H=12 N_V=1 W=300 H=300 N_E=12 NUM_SLICES=1 BPP=16 OUT_BYTES=103874
+$finish called at time : 238323055 ps : File "D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/sim_1/imports/FPGA Encoders/tb_jls_wide.v" Line 273
+run: Time (s): cpu = 00:00:00 ; elapsed = 00:00:07 . Memory (MB): peak = 195.766 ; gain = 0.000
+exit
+INFO: [Common 17-206] Exiting xsim at Tue Sep 29 09:54:33 2026...

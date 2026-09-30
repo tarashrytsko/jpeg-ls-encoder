@@ -1,0 +1,55 @@
+#-----------------------------------------------------------
+# xsim v2024.2 (64-bit)
+# SW Build 5239630 on Fri Nov 08 22:35:27 MST 2024
+# IP Build 5239520 on Sun Nov 10 16:12:51 MST 2024
+# SharedData Build 5239561 on Fri Nov 08 14:39:27 MST 2024
+# Start of session at: Fri Jun 26 19:38:39 2026
+# Process ID         : 7128
+# Current directory  : D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.sim/sim_1/behav/xsim
+# Command line       : xsim.exe -log simulate_300x300_2x2_vertical.log -mode tcl -source {xsim.dir/tb_jls_encoder_axis_behav/xsim_script.tcl}
+# Log file           : D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.sim/sim_1/behav/xsim/simulate_300x300_2x2_vertical.log
+# Journal file       : D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.sim/sim_1/behav/xsim\xsim.jou
+# Running On         : DESKTOP-PHB4K70
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 26200
+# Processor Detail   : 11th Gen Intel(R) Core(TM) i5-11400H @ 2.70GHz
+# CPU Frequency      : 2688 MHz
+# CPU Physical cores : 6
+# CPU Logical cores  : 12
+# Host memory        : 16840 MB
+# Swap memory        : 4160 MB
+# Total Virtual      : 21001 MB
+# Available Virtual  : 12805 MB
+#-----------------------------------------------------------
+source xsim.dir/tb_jls_encoder_axis_behav/xsim_script.tcl
+# xsim {tb_jls_encoder_axis_behav} -autoloadwcfg -tclbatch {run_quit.tcl}
+Time resolution is 1 ps
+source run_quit.tcl
+## run all
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+[0] Output capture ready (in-memory buffers)
+[3367500] FIRST SOF enc0: iw=0 swath_h=0 col0=0
+[3734166] FIRST e_e[0]: rd_cnt=0 a_ii=0 j_sof=1 j_e=0 a_wl=74
+[1551717499] SLICE enc0[0] done: words=2026 bytes=4052
+[1551717499] DONE enc0 total_bytes=4052
+[1552950832] SLICE enc1[0] done: words=1276 bytes=2551
+[1552950832] DONE enc1 total_bytes=2551
+[1554217499] SLICE enc2[0] done: words=1326 bytes=2651
+[1554217499] DONE enc2 total_bytes=2651
+[1555450833] SLICE enc3[0] done: words=1330 bytes=2660
+[1555450833] DONE enc3 total_bytes=2660
+[1556284166] D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.sim/output_block/output_h4v1_300x300.jls written: 11914 bytes (4 slices, swath-major enc-minor order)
+=== All 4 encoder slices complete ===
+BENCHMARK_RESULT N_H=4 N_V=1 W=300 H=300 N_E=4 NUM_SLICES=1 OUT_BYTES=11914
+$finish called at time : 1556284166 ps : File "D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/sim_1/imports/FPGA Encoders/tb_jls_encoder_axis.v" Line 218
+run: Time (s): cpu = 00:00:00 ; elapsed = 00:00:11 . Memory (MB): peak = 202.508 ; gain = 0.000
+## quit
+INFO: xsimkernel Simulation Memory Usage: 46724 KB (Peak: 46724 KB), Simulation CPU Usage: 11656 ms
+INFO: [Common 17-206] Exiting xsim at Fri Jun 26 19:38:51 2026...

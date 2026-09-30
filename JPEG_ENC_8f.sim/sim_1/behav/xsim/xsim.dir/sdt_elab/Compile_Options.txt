@@ -1,0 +1,1 @@
+--debug "typical" --relax --mt "2" -L "xil_defaultlib" -L "fifo_generator_v13_2_11" -L "unisims_ver" -L "unimacro_ver" -L "secureip" -L "xpm" --snapshot "sdt_elab" "xil_defaultlib.jls_serial_demo_top" "xil_defaultlib.glbl" -log "elab_sdt.log" 

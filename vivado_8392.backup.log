@@ -1,0 +1,52 @@
+#-----------------------------------------------------------
+# Vivado v2024.2 (64-bit)
+# SW Build 5239630 on Fri Nov 08 22:35:27 MST 2024
+# IP Build 5239520 on Sun Nov 10 16:12:51 MST 2024
+# SharedData Build 5239561 on Fri Nov 08 14:39:27 MST 2024
+# Start of session at: Mon Jul 13 21:52:06 2026
+# Process ID         : 8392
+# Current directory  : D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f
+# Command line       : vivado.exe -mode batch -notrace -source C:/Users/admin/AppData/Local/Temp/repkg_encoder.tcl
+# Log file           : D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/vivado.log
+# Journal file       : D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f\vivado.jou
+# Running On         : DESKTOP-PHB4K70
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 26200
+# Processor Detail   : 11th Gen Intel(R) Core(TM) i5-11400H @ 2.70GHz
+# CPU Frequency      : 2688 MHz
+# CPU Physical cores : 6
+# CPU Logical cores  : 12
+# Host memory        : 16840 MB
+# Swap memory        : 2333 MB
+# Total Virtual      : 19174 MB
+# Available Virtual  : 7982 MB
+#-----------------------------------------------------------
+source C:/Users/admin/AppData/Local/Temp/repkg_encoder.tcl -notrace
+create_project: Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 641.609 ; gain = 202.238
+INFO: [IP_Flow 19-1976] HDL Parser: Replacing 'N_H' by 1 for port or parameter 'blk_x0'
+INFO: [IP_Flow 19-1976] HDL Parser: Replacing 'N_V' by 1 for port or parameter 'blk_x0'
+INFO: [IP_Flow 19-1976] HDL Parser: Replacing 'N_H' by 1 for port or parameter 'blk_x1'
+INFO: [IP_Flow 19-1976] HDL Parser: Replacing 'N_V' by 1 for port or parameter 'blk_x1'
+INFO: [IP_Flow 19-1976] HDL Parser: Replacing 'N_H' by 1 for port or parameter 'blk_y0'
+INFO: [IP_Flow 19-1976] HDL Parser: Replacing 'N_V' by 1 for port or parameter 'blk_y0'
+INFO: [IP_Flow 19-1976] HDL Parser: Replacing 'N_H' by 1 for port or parameter 'blk_y1'
+INFO: [IP_Flow 19-1976] HDL Parser: Replacing 'N_V' by 1 for port or parameter 'blk_y1'
+INFO: [IP_Flow 19-1976] HDL Parser: Replacing 'N_H' by 1 for port or parameter 'blk_w'
+INFO: [IP_Flow 19-1976] HDL Parser: Replacing 'N_V' by 1 for port or parameter 'blk_w'
+INFO: [IP_Flow 19-1976] HDL Parser: Replacing 'N_H' by 1 for port or parameter 'blk_h'
+INFO: [IP_Flow 19-1976] HDL Parser: Replacing 'N_V' by 1 for port or parameter 'blk_h'
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2024.2/data/ip'.
+INFO: [IP_Flow 19-5107] Inferred bus interface 'rstn' of definition 'xilinx.com:signal:reset:1.0' (from Xilinx Repository).
+INFO: [IP_Flow 19-5107] Inferred bus interface 'clk' of definition 'xilinx.com:signal:clock:1.0' (from Xilinx Repository).
+INFO: [IP_Flow 19-4728] Bus Interface 'rstn': Added interface parameter 'POLARITY' with value 'ACTIVE_LOW'.
+INFO: [IP_Flow 19-4728] Bus Interface 'clk': Added interface parameter 'ASSOCIATED_RESET' with value 'rstn'.
+WARNING: [IP_Flow 19-11888] Component Definition 'user.org:user:jls_encoder:1.0 (jls_encoder_v1_0)': IP description "jls_encoder_v1_0" is not meaningful: same as name or display name
+WARNING: [IP_Flow 19-5661] Bus Interface 'clk' does not have any bus interfaces associated with it.
+WARNING: [IP_Flow 19-11770] Clock interface 'clk' has no FREQ_HZ parameter.
+INFO: [IP_Flow 19-2181] Payment is not required for this core.
+WARNING: [IP_Flow 19-2187] The Product Guide file is missing.
+REPACKAGED vlnv=user.org:user:jls_encoder:1.0
+DONE_REPKG
+INFO: [Common 17-206] Exiting Vivado at Mon Jul 13 21:52:17 2026...

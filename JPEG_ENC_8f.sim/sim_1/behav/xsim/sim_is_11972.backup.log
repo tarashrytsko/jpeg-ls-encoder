@@ -1,0 +1,50 @@
+#-----------------------------------------------------------
+# xsim v2024.2 (64-bit)
+# SW Build 5239630 on Fri Nov 08 22:35:27 MST 2024
+# IP Build 5239520 on Sun Nov 10 16:12:51 MST 2024
+# SharedData Build 5239561 on Fri Nov 08 14:39:27 MST 2024
+# Start of session at: Fri Jul 10 22:31:57 2026
+# Process ID         : 11972
+# Current directory  : D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.sim/sim_1/behav/xsim
+# Command line       : xsim.exe -log sim_is.log -mode tcl -source {xsim.dir/tb_iserdes_behav/xsim_script.tcl}
+# Log file           : D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.sim/sim_1/behav/xsim/sim_is.log
+# Journal file       : D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.sim/sim_1/behav/xsim\xsim.jou
+# Running On         : DESKTOP-PHB4K70
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 26200
+# Processor Detail   : 11th Gen Intel(R) Core(TM) i5-11400H @ 2.70GHz
+# CPU Frequency      : 2688 MHz
+# CPU Physical cores : 6
+# CPU Logical cores  : 12
+# Host memory        : 16840 MB
+# Swap memory        : 2333 MB
+# Total Virtual      : 19174 MB
+# Available Virtual  : 8143 MB
+#-----------------------------------------------------------
+source xsim.dir/tb_iserdes_behav/xsim_script.tcl
+# xsim {tb_iserdes_behav} -autoloadwcfg -tclbatch {run_quit.tcl}
+Time resolution is 1 ps
+source run_quit.tcl
+## run all
+REF word0: l0=05 l1=08 l2=0b l11=26
+REF word1: l0=16 l1=19 l2=1c l11=37
+OUTWORD cw=0  l0=e2 l1=ca l2=fa l11=13
+OUTWORD cw=1  l0=d1 l1=e9 l2=c5 l11=30
+OUTWORD cw=2  l0=33 l1=1b l2=27 l11=0a
+OUTWORD cw=3  l0=08 l1=38 l2=14 l11=29
+OUTWORD cw=4  l0=2a l1=06 l2=36 l11=9b
+OUTWORD cw=5  l0=19 l1=25 l2=0d l11=b8
+OUTWORD cw=6  l0=bb l1=97 l2=af l11=86
+OUTWORD cw=7  l0=84 l1=b4 l2=9c l11=a5
+OUTWORD cw=8  l0=a6 l1=8e l2=be l11=57
+OUTWORD cw=9  l0=95 l1=ad l2=43 l11=74
+OUTWORD cw=10  l0=77 l1=5f l2=60 l11=4e
+OUTWORD cw=11  l0=4c l1=7c l2=52 l11=6d
+OUTWORD cw=12  l0=6e l1=41 l2=71 l11=df
+OUTWORD cw=13  l0=5d l1=e3 l2=cb l11=fc
+OUTWORD cw=14  l0=ff l1=d0 l2=e8 l11=c1
+OUTWORD cw=15  l0=c2 l1=f2 l2=da l11=23
+ISERDES_TB_DONE
+$finish called at time : 1465395 ps : File "D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/sim_1/imports/FPGA Encoders/tb_iserdes_byte_in.v" Line 57
+## quit
+INFO: [Common 17-206] Exiting xsim at Fri Jul 10 22:31:59 2026...

@@ -202,6 +202,28 @@ module tb_jls_wide #(
     end
 
     // ------------------------------------------------------------
+    // Latency probes (cycles of clk; wr_clk = rd_clk 1:1). Lane 0 encoder
+    // first pixel -> first entropy-coded word (header words are emitted during
+    // the SOF stretch, before any pixel), and last accepted input beat -> all
+    // lanes closed at the AXIS output.
+    // ------------------------------------------------------------
+    integer lat_cyc = 0;
+    integer c_sof = -1, c_in0 = -1, c_in_last = -1, c_enc_in0 = -1, c_enc_data0 = -1;
+    integer c_axis_out0 = -1, c_done = -1;
+    always @(posedge clk) begin
+        lat_cyc <= lat_cyc + 1;
+        if (i_sof && c_sof < 0) c_sof = lat_cyc;
+        if (s_axis_tvalid && s_axis_tready) begin
+            if (c_in0 < 0) c_in0 = lat_cyc;
+            c_in_last = lat_cyc;
+        end
+        if (dut.u_encoder_wrapper.rd_en_gated[0] && c_enc_in0 < 0) c_enc_in0 = lat_cyc;
+        if (c_enc_in0 >= 0 && c_enc_data0 < 0 && dut.u_encoder_wrapper.e_e[0]) c_enc_data0 = lat_cyc;
+        if (|m_axis_tvalid && c_axis_out0 < 0) c_axis_out0 = lat_cyc;
+        if (all_done && c_done < 0) c_done = lat_cyc;
+    end
+
+    // ------------------------------------------------------------
     // Watchdog: simple local cycle counter (no probes into dut internals)
     // ------------------------------------------------------------
     integer wd;
@@ -243,6 +265,9 @@ module tb_jls_wide #(
                  $time, outpath, total_out, N_E * NUM_SLICES);
         $display("=== All %0d encoder slices complete ===", N_E * NUM_SLICES);
         // Single machine-parseable line for the benchmark sweep script:
+        $display("LATENCY_CYCLES sof_to_first_in=%0d first_in_to_enc0_first_px=%0d enc0_first_px_to_first_data_word=%0d first_in_to_first_axis_out=%0d input_beats_span=%0d last_in_to_all_lanes_done=%0d",
+                 c_in0 - c_sof, c_enc_in0 - c_in0, c_enc_data0 - c_enc_in0, c_axis_out0 - c_in0,
+                 c_in_last - c_in0 + 1, c_done - c_in_last);
         $display("BENCHMARK_RESULT N_H=%0d N_V=%0d W=%0d H=%0d N_E=%0d NUM_SLICES=%0d BPP=%0d OUT_BYTES=%0d",
                  N_H, N_V, IMG_W, IMG_H, N_E, NUM_SLICES, BPP, total_out);
         $finish;

@@ -1,0 +1,145 @@
+#-----------------------------------------------------------
+# xsim v2024.2 (64-bit)
+# SW Build 5239630 on Fri Nov 08 22:35:27 MST 2024
+# IP Build 5239520 on Sun Nov 10 16:12:51 MST 2024
+# SharedData Build 5239561 on Fri Nov 08 14:39:27 MST 2024
+# Start of session at: Fri Jun 26 19:59:44 2026
+# Process ID         : 28636
+# Current directory  : D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.sim/sim_1/behav/xsim
+# Command line       : xsim.exe -log simulate_3000x3000_2x2_block.log -mode tcl -source {xsim.dir/tb_jls_encoder_axis_behav/xsim_script.tcl}
+# Log file           : D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.sim/sim_1/behav/xsim/simulate_3000x3000_2x2_block.log
+# Journal file       : D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.sim/sim_1/behav/xsim\xsim.jou
+# Running On         : DESKTOP-PHB4K70
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 26200
+# Processor Detail   : 11th Gen Intel(R) Core(TM) i5-11400H @ 2.70GHz
+# CPU Frequency      : 2688 MHz
+# CPU Physical cores : 6
+# CPU Logical cores  : 12
+# Host memory        : 16840 MB
+# Swap memory        : 4160 MB
+# Total Virtual      : 21001 MB
+# Available Virtual  : 12755 MB
+#-----------------------------------------------------------
+source xsim.dir/tb_jls_encoder_axis_behav/xsim_script.tcl
+# xsim {tb_jls_encoder_axis_behav} -autoloadwcfg -tclbatch {run_quit.tcl}
+Time resolution is 1 ps
+source run_quit.tcl
+## run all
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+[0] Output capture ready (in-memory buffers)
+[3367500] FIRST SOF enc0: iw=0 swath_h=0 col0=0
+[3734166] FIRST e_e[0]: rd_cnt=0 a_ii=0 j_sof=1 j_e=0 a_wl=1499
+[1668000832] DBG rd=46936/46936 st=1 e_e=0010 wr=48876/48000 full=0000 pix=96878
+[3334667499] DBG rd=96936/96936 st=1 e_e=0011 wr=99000/97876 full=0000 pix=196878
+[5001334165] DBG rd=146936/146936 st=1 e_e=0000 wr=148500/148376 full=0000 pix=296878
+[6668000832] DBG rd=196936/196936 st=1 e_e=0000 wr=198876/198000 full=0000 pix=396878
+[8334667499] DBG rd=246936/246936 st=1 e_e=0000 wr=249000/247876 full=0000 pix=496878
+[10001334165] DBG rd=296936/296936 st=1 e_e=0000 wr=298500/298376 full=0000 pix=596878
+[11668000832] DBG rd=346936/346936 st=1 e_e=0000 wr=348876/348000 full=0000 pix=696878
+[13334667499] DBG rd=396936/396936 st=1 e_e=0000 wr=399000/397876 full=0000 pix=796878
+[15001334165] DBG rd=446936/446936 st=1 e_e=0000 wr=448500/448376 full=0000 pix=896878
+[16668000832] DBG rd=496936/496936 st=1 e_e=0000 wr=498876/498000 full=0000 pix=996878
+[18334667499] DBG rd=546936/546936 st=1 e_e=0000 wr=549000/547876 full=0000 pix=1096878
+[20001334165] DBG rd=596936/596936 st=1 e_e=0000 wr=598500/598376 full=0000 pix=1196878
+[21668000832] DBG rd=646936/646936 st=1 e_e=0000 wr=648876/648000 full=0000 pix=1296878
+[23334667499] DBG rd=696936/696936 st=1 e_e=0000 wr=699000/697876 full=0000 pix=1396878
+[25001334165] DBG rd=746936/746936 st=1 e_e=0000 wr=748500/748376 full=0000 pix=1496878
+[26668000832] DBG rd=796936/796936 st=1 e_e=0000 wr=798876/798000 full=0000 pix=1596878
+[28334667499] DBG rd=846936/846936 st=1 e_e=0000 wr=849000/847876 full=0000 pix=1696878
+[30001334165] DBG rd=896936/896936 st=1 e_e=0000 wr=898500/898376 full=0000 pix=1796878
+[31668000832] DBG rd=946936/946936 st=1 e_e=0000 wr=948876/948000 full=0000 pix=1896878
+[33334667499] DBG rd=996936/996936 st=1 e_e=0000 wr=999000/997876 full=0000 pix=1996878
+[35001334165] DBG rd=1046936/1046936 st=1 e_e=0000 wr=1048500/1048376 full=0000 pix=2096878
+[36668000832] DBG rd=1096936/1096936 st=1 e_e=0000 wr=1098876/1098000 full=0000 pix=2196878
+[38334667499] DBG rd=1146936/1146936 st=1 e_e=0000 wr=1149000/1147876 full=0000 pix=2296878
+[40001334165] DBG rd=1196936/1196936 st=1 e_e=0000 wr=1198500/1198376 full=0000 pix=2396878
+[41668000832] DBG rd=1246936/1246936 st=1 e_e=0000 wr=1248876/1248000 full=0000 pix=2496878
+[43334667499] DBG rd=1296936/1296936 st=1 e_e=0000 wr=1299000/1297876 full=0000 pix=2596878
+[45001334165] DBG rd=1346936/1346936 st=1 e_e=0000 wr=1348500/1348376 full=0000 pix=2696878
+[46668000832] DBG rd=1396936/1396936 st=1 e_e=0000 wr=1398876/1398000 full=0000 pix=2796878
+[48334667499] DBG rd=1446936/1446936 st=1 e_e=0000 wr=1449000/1447876 full=0000 pix=2896878
+[50001334165] DBG rd=1496936/1496936 st=1 e_e=0000 wr=1498500/1498376 full=0000 pix=2996878
+[51668000832] DBG rd=1546936/1546936 st=1 e_e=0000 wr=1548876/1548000 full=0000 pix=3096878
+[53334667499] DBG rd=1596936/1596936 st=1 e_e=0000 wr=1599000/1597876 full=0000 pix=3196878
+[55001334165] DBG rd=1646936/1646936 st=1 e_e=0000 wr=1648500/1648376 full=0000 pix=3296878
+[56668000832] DBG rd=1696936/1696936 st=1 e_e=0000 wr=1698876/1698000 full=0000 pix=3396878
+[58334667499] DBG rd=1746936/1746936 st=1 e_e=0000 wr=1749000/1747876 full=0000 pix=3496878
+[60001334165] DBG rd=1796936/1796936 st=1 e_e=0001 wr=1798500/1798376 full=0000 pix=3596878
+[61668000832] DBG rd=1846936/1846936 st=1 e_e=0000 wr=1848876/1848000 full=0000 pix=3696878
+[63334667499] DBG rd=1896936/1896936 st=1 e_e=0001 wr=1899000/1897876 full=0000 pix=3796878
+[65001334165] DBG rd=1946936/1946936 st=1 e_e=0011 wr=1948500/1948376 full=0000 pix=3896878
+[66668000832] DBG rd=1996936/1996936 st=1 e_e=0000 wr=1998876/1998000 full=0000 pix=3996878
+[68334667499] DBG rd=2046936/2046936 st=1 e_e=0000 wr=2049000/2047876 full=0000 pix=4096878
+[70001334165] DBG rd=2096936/2096936 st=1 e_e=0010 wr=2098500/2098376 full=0000 pix=4196878
+[71668000832] DBG rd=2146936/2146936 st=1 e_e=0000 wr=2148876/2148000 full=0000 pix=4296878
+[73334667499] DBG rd=2196936/2196936 st=1 e_e=0010 wr=2199000/2197876 full=0000 pix=4396878
+[75001334165] DBG rd=2246936/2246936 st=1 e_e=0011 wr=2248500/2248376 full=0000 pix=4496878
+[75104017499] SLICE enc0[0] done: words=269928 bytes=539855
+[75104017499] DONE enc0 total_bytes=539855
+[75104017499] SLICE enc1[0] done: words=225603 bytes=451205
+[75104017499] DONE enc1 total_bytes=451205
+[76668000832] DBG rd=0/0 st=1 e_e=1100 wr=2250000/2250000 full=0000 pix=4596878
+[78334667499] DBG rd=0/0 st=1 e_e=0000 wr=2250000/2250000 full=0000 pix=4696878
+[80001334165] DBG rd=0/0 st=1 e_e=1000 wr=2250000/2250000 full=0000 pix=4796878
+[81668000832] DBG rd=0/0 st=1 e_e=1000 wr=2250000/2250000 full=0000 pix=4896878
+[83334667499] DBG rd=0/0 st=1 e_e=1000 wr=2250000/2250000 full=0000 pix=4996878
+[85001334165] DBG rd=0/0 st=1 e_e=0000 wr=2250000/2250000 full=0000 pix=5096878
+[86668000832] DBG rd=0/0 st=1 e_e=0000 wr=2250000/2250000 full=0000 pix=5196878
+[88334667499] DBG rd=0/0 st=1 e_e=1000 wr=2250000/2250000 full=0000 pix=5296878
+[90001334165] DBG rd=0/0 st=1 e_e=1000 wr=2250000/2250000 full=0000 pix=5396878
+[91668000832] DBG rd=0/0 st=1 e_e=0000 wr=2250000/2250000 full=0000 pix=5496878
+[93334667499] DBG rd=0/0 st=1 e_e=0000 wr=2250000/2250000 full=0000 pix=5596878
+[95001334165] DBG rd=0/0 st=1 e_e=1000 wr=2250000/2250000 full=0000 pix=5696878
+[96668000832] DBG rd=0/0 st=1 e_e=0000 wr=2250000/2250000 full=0000 pix=5796878
+[98334667499] DBG rd=0/0 st=1 e_e=0000 wr=2250000/2250000 full=0000 pix=5896878
+[100001334165] DBG rd=0/0 st=1 e_e=0000 wr=2250000/2250000 full=0000 pix=5996878
+[101668000832] DBG rd=0/0 st=1 e_e=0000 wr=2250000/2250000 full=0000 pix=6096878
+[103334667499] DBG rd=0/0 st=1 e_e=0000 wr=2250000/2250000 full=0000 pix=6196878
+[105001334165] DBG rd=0/0 st=1 e_e=1000 wr=2250000/2250000 full=0000 pix=6296878
+[106668000832] DBG rd=0/0 st=1 e_e=0000 wr=2250000/2250000 full=0000 pix=6396878
+[108334667499] DBG rd=0/0 st=1 e_e=0000 wr=2250000/2250000 full=0000 pix=6496878
+[110001334165] DBG rd=0/0 st=1 e_e=0000 wr=2250000/2250000 full=0000 pix=6596878
+[111668000832] DBG rd=0/0 st=1 e_e=0000 wr=2250000/2250000 full=0000 pix=6696878
+[113334667499] DBG rd=0/0 st=1 e_e=0000 wr=2250000/2250000 full=0000 pix=6796878
+[115001334165] DBG rd=0/0 st=1 e_e=0000 wr=2250000/2250000 full=0000 pix=6896878
+[116668000832] DBG rd=0/0 st=1 e_e=0000 wr=2250000/2250000 full=0000 pix=6996878
+[118334667499] DBG rd=0/0 st=1 e_e=0000 wr=2250000/2250000 full=0000 pix=7096878
+[120001334165] DBG rd=0/0 st=1 e_e=0000 wr=2250000/2250000 full=0000 pix=7196878
+[121668000832] DBG rd=0/0 st=1 e_e=0000 wr=2250000/2250000 full=0000 pix=7296878
+[123334667499] DBG rd=0/0 st=1 e_e=0000 wr=2250000/2250000 full=0000 pix=7396878
+[125001334165] DBG rd=0/0 st=1 e_e=0000 wr=2250000/2250000 full=0000 pix=7496878
+[126668000832] DBG rd=0/0 st=1 e_e=0000 wr=2250000/2250000 full=0000 pix=7596878
+[128334667499] DBG rd=0/0 st=1 e_e=0000 wr=2250000/2250000 full=0000 pix=7696878
+[130001334165] DBG rd=0/0 st=1 e_e=0000 wr=2250000/2250000 full=0000 pix=7796878
+[131668000832] DBG rd=0/0 st=1 e_e=0000 wr=2250000/2250000 full=0000 pix=7896878
+[133334667499] DBG rd=0/0 st=1 e_e=0000 wr=2250000/2250000 full=0000 pix=7996878
+[135001334165] DBG rd=0/0 st=1 e_e=0100 wr=2250000/2250000 full=0000 pix=8096878
+[136668000832] DBG rd=0/0 st=1 e_e=0000 wr=2250000/2250000 full=0000 pix=8196878
+[138334667499] DBG rd=0/0 st=1 e_e=0000 wr=2250000/2250000 full=0000 pix=8296878
+[140001334165] DBG rd=0/0 st=1 e_e=0000 wr=2250000/2250000 full=0000 pix=8396878
+[141668000832] DBG rd=0/0 st=1 e_e=0000 wr=2250000/2250000 full=0000 pix=8496878
+[143334667499] DBG rd=0/0 st=1 e_e=0000 wr=2250000/2250000 full=0000 pix=8596878
+[145001334165] DBG rd=0/0 st=1 e_e=0000 wr=2250000/2250000 full=0000 pix=8696878
+[146668000832] DBG rd=0/0 st=1 e_e=0000 wr=2250000/2250000 full=0000 pix=8796878
+[148334667499] DBG rd=0/0 st=1 e_e=0000 wr=2250000/2250000 full=0000 pix=8896878
+[150001334165] DBG rd=0/0 st=1 e_e=0000 wr=2250000/2250000 full=0000 pix=8996878
+[150204284166] SLICE enc2[0] done: words=160576 bytes=321152
+[150204284166] DONE enc2 total_bytes=321152
+[150204284166] SLICE enc3[0] done: words=287192 bytes=574383
+[150204284166] DONE enc3 total_bytes=574383
+[150205117499] D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.sim/output_block/output_h2v2_3000x3000.jls written: 1886595 bytes (4 slices, swath-major enc-minor order)
+=== All 4 encoder slices complete ===
+BENCHMARK_RESULT N_H=2 N_V=2 W=3000 H=3000 N_E=4 NUM_SLICES=1 OUT_BYTES=1886595
+$finish called at time : 150205117499 ps : File "D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/sim_1/imports/FPGA Encoders/tb_jls_encoder_axis.v" Line 218
+run: Time (s): cpu = 00:00:03 ; elapsed = 00:21:00 . Memory (MB): peak = 202.613 ; gain = 0.000
+## quit
+INFO: xsimkernel Simulation Memory Usage: 916812 KB (Peak: 916812 KB), Simulation CPU Usage: 1256780 ms
+INFO: [Common 17-206] Exiting xsim at Fri Jun 26 20:20:46 2026...

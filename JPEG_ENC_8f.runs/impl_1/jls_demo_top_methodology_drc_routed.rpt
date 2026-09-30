@@ -1,0 +1,445 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2024.2 (win64) Build 5239630 Fri Nov 08 22:35:27 MST 2024
+| Date         : Mon Sep 28 13:35:00 2026
+| Host         : DESKTOP-PHB4K70 running 64-bit major release  (build 9200)
+| Command      : report_methodology -file jls_demo_top_methodology_drc_routed.rpt -pb jls_demo_top_methodology_drc_routed.pb -rpx jls_demo_top_methodology_drc_routed.rpx
+| Design       : jls_demo_top
+| Device       : xc7a200tfbg676-2
+| Speed File   : -2
+| Design State : Fully Routed
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Report Methodology
+
+Table of Contents
+-----------------
+1. REPORT SUMMARY
+2. REPORT DETAILS
+
+1. REPORT SUMMARY
+-----------------
+            Netlist: netlist
+          Floorplan: design_1
+      Design limits: <entire design considered>
+             Max checks: <unlimited>
+             Checks found: 81
++----------+----------+--------------------------------------------------------+--------+
+| Rule     | Severity | Description                                            | Checks |
++----------+----------+--------------------------------------------------------+--------+
+| DPIR-1   | Warning  | Asynchronous driver check                              | 8      |
+| PDRC-190 | Warning  | Suboptimally placed synchronized register chain        | 48     |
+| SYNTH-6  | Warning  | Timing of a RAM block might be sub-optimal             | 24     |
+| XDCC-7   | Warning  | Scoped Clock constraint overwritten on the same source | 1      |
++----------+----------+--------------------------------------------------------+--------+
+
+2. REPORT DETAILS
+-----------------
+DPIR-1#1 Warning
+Asynchronous driver check  
+DSP u_ip/u_axis_pixel_in/total_pixels0 input pin u_ip/u_axis_pixel_in/total_pixels0/A[2] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#2 Warning
+Asynchronous driver check  
+DSP u_ip/u_axis_pixel_in/total_pixels0 input pin u_ip/u_axis_pixel_in/total_pixels0/A[3] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#3 Warning
+Asynchronous driver check  
+DSP u_ip/u_axis_pixel_in/total_pixels0 input pin u_ip/u_axis_pixel_in/total_pixels0/A[5] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#4 Warning
+Asynchronous driver check  
+DSP u_ip/u_axis_pixel_in/total_pixels0 input pin u_ip/u_axis_pixel_in/total_pixels0/A[8] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#5 Warning
+Asynchronous driver check  
+DSP u_ip/u_axis_pixel_in/total_pixels0 input pin u_ip/u_axis_pixel_in/total_pixels0/B[2] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#6 Warning
+Asynchronous driver check  
+DSP u_ip/u_axis_pixel_in/total_pixels0 input pin u_ip/u_axis_pixel_in/total_pixels0/B[3] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#7 Warning
+Asynchronous driver check  
+DSP u_ip/u_axis_pixel_in/total_pixels0 input pin u_ip/u_axis_pixel_in/total_pixels0/B[5] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#8 Warning
+Asynchronous driver check  
+DSP u_ip/u_axis_pixel_in/total_pixels0 input pin u_ip/u_axis_pixel_in/total_pixels0/B[8] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+PDRC-190#1 Warning
+Suboptimally placed synchronized register chain  
+The FDRE cell u_ip/u_fifo_wrapper_input/GEN_FIFO[0].g_multi.GEN_SLICE[0].u_fifo_inst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d2_reg in site SLICE_X135Y61 is part of a synchronized register chain that is suboptimally placed as the load FDSE cell u_ip/u_fifo_wrapper_input/GEN_FIFO[0].g_multi.GEN_SLICE[0].u_fifo_inst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d3_reg is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#2 Warning
+Suboptimally placed synchronized register chain  
+The FDRE cell u_ip/u_fifo_wrapper_input/GEN_FIFO[0].g_multi.GEN_SLICE[1].u_fifo_inst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d2_reg in site SLICE_X117Y76 is part of a synchronized register chain that is suboptimally placed as the load FDSE cell u_ip/u_fifo_wrapper_input/GEN_FIFO[0].g_multi.GEN_SLICE[1].u_fifo_inst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d3_reg is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#3 Warning
+Suboptimally placed synchronized register chain  
+The FDRE cell u_ip/u_fifo_wrapper_input/GEN_FIFO[10].g_multi.GEN_SLICE[0].u_fifo_inst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d2_reg in site SLICE_X100Y66 is part of a synchronized register chain that is suboptimally placed as the load FDSE cell u_ip/u_fifo_wrapper_input/GEN_FIFO[10].g_multi.GEN_SLICE[0].u_fifo_inst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d3_reg is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#4 Warning
+Suboptimally placed synchronized register chain  
+The FDRE cell u_ip/u_fifo_wrapper_input/GEN_FIFO[10].g_multi.GEN_SLICE[1].u_fifo_inst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d2_reg in site SLICE_X110Y87 is part of a synchronized register chain that is suboptimally placed as the load FDSE cell u_ip/u_fifo_wrapper_input/GEN_FIFO[10].g_multi.GEN_SLICE[1].u_fifo_inst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d3_reg is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#5 Warning
+Suboptimally placed synchronized register chain  
+The FDRE cell u_ip/u_fifo_wrapper_input/GEN_FIFO[11].g_multi.GEN_SLICE[0].u_fifo_inst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d2_reg in site SLICE_X46Y68 is part of a synchronized register chain that is suboptimally placed as the load FDSE cell u_ip/u_fifo_wrapper_input/GEN_FIFO[11].g_multi.GEN_SLICE[0].u_fifo_inst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d3_reg is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#6 Warning
+Suboptimally placed synchronized register chain  
+The FDRE cell u_ip/u_fifo_wrapper_input/GEN_FIFO[11].g_multi.GEN_SLICE[1].u_fifo_inst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d2_reg in site SLICE_X40Y76 is part of a synchronized register chain that is suboptimally placed as the load FDSE cell u_ip/u_fifo_wrapper_input/GEN_FIFO[11].g_multi.GEN_SLICE[1].u_fifo_inst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d3_reg is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#7 Warning
+Suboptimally placed synchronized register chain  
+The FDRE cell u_ip/u_fifo_wrapper_input/GEN_FIFO[1].g_multi.GEN_SLICE[0].u_fifo_inst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d2_reg in site SLICE_X132Y55 is part of a synchronized register chain that is suboptimally placed as the load FDSE cell u_ip/u_fifo_wrapper_input/GEN_FIFO[1].g_multi.GEN_SLICE[0].u_fifo_inst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d3_reg is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#8 Warning
+Suboptimally placed synchronized register chain  
+The FDRE cell u_ip/u_fifo_wrapper_input/GEN_FIFO[1].g_multi.GEN_SLICE[1].u_fifo_inst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d2_reg in site SLICE_X116Y61 is part of a synchronized register chain that is suboptimally placed as the load FDSE cell u_ip/u_fifo_wrapper_input/GEN_FIFO[1].g_multi.GEN_SLICE[1].u_fifo_inst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d3_reg is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#9 Warning
+Suboptimally placed synchronized register chain  
+The FDRE cell u_ip/u_fifo_wrapper_input/GEN_FIFO[2].g_multi.GEN_SLICE[0].u_fifo_inst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d2_reg in site SLICE_X153Y49 is part of a synchronized register chain that is suboptimally placed as the load FDSE cell u_ip/u_fifo_wrapper_input/GEN_FIFO[2].g_multi.GEN_SLICE[0].u_fifo_inst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d3_reg is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#10 Warning
+Suboptimally placed synchronized register chain  
+The FDRE cell u_ip/u_fifo_wrapper_input/GEN_FIFO[2].g_multi.GEN_SLICE[1].u_fifo_inst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d2_reg in site SLICE_X151Y53 is part of a synchronized register chain that is suboptimally placed as the load FDSE cell u_ip/u_fifo_wrapper_input/GEN_FIFO[2].g_multi.GEN_SLICE[1].u_fifo_inst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d3_reg is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#11 Warning
+Suboptimally placed synchronized register chain  
+The FDRE cell u_ip/u_fifo_wrapper_input/GEN_FIFO[3].g_multi.GEN_SLICE[0].u_fifo_inst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d2_reg in site SLICE_X134Y20 is part of a synchronized register chain that is suboptimally placed as the load FDSE cell u_ip/u_fifo_wrapper_input/GEN_FIFO[3].g_multi.GEN_SLICE[0].u_fifo_inst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d3_reg is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#12 Warning
+Suboptimally placed synchronized register chain  
+The FDRE cell u_ip/u_fifo_wrapper_input/GEN_FIFO[3].g_multi.GEN_SLICE[1].u_fifo_inst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d2_reg in site SLICE_X140Y40 is part of a synchronized register chain that is suboptimally placed as the load FDSE cell u_ip/u_fifo_wrapper_input/GEN_FIFO[3].g_multi.GEN_SLICE[1].u_fifo_inst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d3_reg is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#13 Warning
+Suboptimally placed synchronized register chain  
+The FDRE cell u_ip/u_fifo_wrapper_input/GEN_FIFO[4].g_multi.GEN_SLICE[0].u_fifo_inst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d2_reg in site SLICE_X44Y27 is part of a synchronized register chain that is suboptimally placed as the load FDSE cell u_ip/u_fifo_wrapper_input/GEN_FIFO[4].g_multi.GEN_SLICE[0].u_fifo_inst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d3_reg is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#14 Warning
+Suboptimally placed synchronized register chain  
+The FDRE cell u_ip/u_fifo_wrapper_input/GEN_FIFO[4].g_multi.GEN_SLICE[1].u_fifo_inst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d2_reg in site SLICE_X73Y61 is part of a synchronized register chain that is suboptimally placed as the load FDSE cell u_ip/u_fifo_wrapper_input/GEN_FIFO[4].g_multi.GEN_SLICE[1].u_fifo_inst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d3_reg is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#15 Warning
+Suboptimally placed synchronized register chain  
+The FDRE cell u_ip/u_fifo_wrapper_input/GEN_FIFO[5].g_multi.GEN_SLICE[0].u_fifo_inst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d2_reg in site SLICE_X33Y27 is part of a synchronized register chain that is suboptimally placed as the load FDSE cell u_ip/u_fifo_wrapper_input/GEN_FIFO[5].g_multi.GEN_SLICE[0].u_fifo_inst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d3_reg is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#16 Warning
+Suboptimally placed synchronized register chain  
+The FDRE cell u_ip/u_fifo_wrapper_input/GEN_FIFO[5].g_multi.GEN_SLICE[1].u_fifo_inst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d2_reg in site SLICE_X45Y75 is part of a synchronized register chain that is suboptimally placed as the load FDSE cell u_ip/u_fifo_wrapper_input/GEN_FIFO[5].g_multi.GEN_SLICE[1].u_fifo_inst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d3_reg is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#17 Warning
+Suboptimally placed synchronized register chain  
+The FDRE cell u_ip/u_fifo_wrapper_input/GEN_FIFO[6].g_multi.GEN_SLICE[0].u_fifo_inst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d2_reg in site SLICE_X47Y45 is part of a synchronized register chain that is suboptimally placed as the load FDSE cell u_ip/u_fifo_wrapper_input/GEN_FIFO[6].g_multi.GEN_SLICE[0].u_fifo_inst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d3_reg is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#18 Warning
+Suboptimally placed synchronized register chain  
+The FDRE cell u_ip/u_fifo_wrapper_input/GEN_FIFO[6].g_multi.GEN_SLICE[1].u_fifo_inst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d2_reg in site SLICE_X50Y60 is part of a synchronized register chain that is suboptimally placed as the load FDSE cell u_ip/u_fifo_wrapper_input/GEN_FIFO[6].g_multi.GEN_SLICE[1].u_fifo_inst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d3_reg is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#19 Warning
+Suboptimally placed synchronized register chain  
+The FDRE cell u_ip/u_fifo_wrapper_input/GEN_FIFO[7].g_multi.GEN_SLICE[0].u_fifo_inst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d2_reg in site SLICE_X15Y38 is part of a synchronized register chain that is suboptimally placed as the load FDSE cell u_ip/u_fifo_wrapper_input/GEN_FIFO[7].g_multi.GEN_SLICE[0].u_fifo_inst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d3_reg is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#20 Warning
+Suboptimally placed synchronized register chain  
+The FDRE cell u_ip/u_fifo_wrapper_input/GEN_FIFO[7].g_multi.GEN_SLICE[1].u_fifo_inst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d2_reg in site SLICE_X24Y51 is part of a synchronized register chain that is suboptimally placed as the load FDSE cell u_ip/u_fifo_wrapper_input/GEN_FIFO[7].g_multi.GEN_SLICE[1].u_fifo_inst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d3_reg is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#21 Warning
+Suboptimally placed synchronized register chain  
+The FDRE cell u_ip/u_fifo_wrapper_input/GEN_FIFO[8].g_multi.GEN_SLICE[0].u_fifo_inst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d2_reg in site SLICE_X9Y15 is part of a synchronized register chain that is suboptimally placed as the load FDSE cell u_ip/u_fifo_wrapper_input/GEN_FIFO[8].g_multi.GEN_SLICE[0].u_fifo_inst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d3_reg is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#22 Warning
+Suboptimally placed synchronized register chain  
+The FDRE cell u_ip/u_fifo_wrapper_input/GEN_FIFO[8].g_multi.GEN_SLICE[1].u_fifo_inst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d2_reg in site SLICE_X8Y64 is part of a synchronized register chain that is suboptimally placed as the load FDSE cell u_ip/u_fifo_wrapper_input/GEN_FIFO[8].g_multi.GEN_SLICE[1].u_fifo_inst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d3_reg is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#23 Warning
+Suboptimally placed synchronized register chain  
+The FDRE cell u_ip/u_fifo_wrapper_input/GEN_FIFO[9].g_multi.GEN_SLICE[0].u_fifo_inst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d2_reg in site SLICE_X70Y77 is part of a synchronized register chain that is suboptimally placed as the load FDSE cell u_ip/u_fifo_wrapper_input/GEN_FIFO[9].g_multi.GEN_SLICE[0].u_fifo_inst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d3_reg is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#24 Warning
+Suboptimally placed synchronized register chain  
+The FDRE cell u_ip/u_fifo_wrapper_input/GEN_FIFO[9].g_multi.GEN_SLICE[1].u_fifo_inst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d2_reg in site SLICE_X81Y93 is part of a synchronized register chain that is suboptimally placed as the load FDSE cell u_ip/u_fifo_wrapper_input/GEN_FIFO[9].g_multi.GEN_SLICE[1].u_fifo_inst/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d3_reg is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#25 Warning
+Suboptimally placed synchronized register chain  
+The FDRE cell u_ip/u_fifo_wrapper_output/GEN_FIFO[0].GEN_SLICE[0].u_fifo/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d2_reg in site SLICE_X85Y120 is part of a synchronized register chain that is suboptimally placed as the load FDSE cell u_ip/u_fifo_wrapper_output/GEN_FIFO[0].GEN_SLICE[0].u_fifo/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d3_reg is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#26 Warning
+Suboptimally placed synchronized register chain  
+The FDRE cell u_ip/u_fifo_wrapper_output/GEN_FIFO[0].GEN_SLICE[1].u_fifo/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d2_reg in site SLICE_X102Y106 is part of a synchronized register chain that is suboptimally placed as the load FDSE cell u_ip/u_fifo_wrapper_output/GEN_FIFO[0].GEN_SLICE[1].u_fifo/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d3_reg is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#27 Warning
+Suboptimally placed synchronized register chain  
+The FDRE cell u_ip/u_fifo_wrapper_output/GEN_FIFO[10].GEN_SLICE[0].u_fifo/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d2_reg in site SLICE_X89Y157 is part of a synchronized register chain that is suboptimally placed as the load FDSE cell u_ip/u_fifo_wrapper_output/GEN_FIFO[10].GEN_SLICE[0].u_fifo/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d3_reg is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#28 Warning
+Suboptimally placed synchronized register chain  
+The FDRE cell u_ip/u_fifo_wrapper_output/GEN_FIFO[10].GEN_SLICE[1].u_fifo/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d2_reg in site SLICE_X87Y159 is part of a synchronized register chain that is suboptimally placed as the load FDSE cell u_ip/u_fifo_wrapper_output/GEN_FIFO[10].GEN_SLICE[1].u_fifo/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d3_reg is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#29 Warning
+Suboptimally placed synchronized register chain  
+The FDRE cell u_ip/u_fifo_wrapper_output/GEN_FIFO[11].GEN_SLICE[0].u_fifo/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d2_reg in site SLICE_X62Y169 is part of a synchronized register chain that is suboptimally placed as the load FDSE cell u_ip/u_fifo_wrapper_output/GEN_FIFO[11].GEN_SLICE[0].u_fifo/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d3_reg is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#30 Warning
+Suboptimally placed synchronized register chain  
+The FDRE cell u_ip/u_fifo_wrapper_output/GEN_FIFO[11].GEN_SLICE[1].u_fifo/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d2_reg in site SLICE_X20Y162 is part of a synchronized register chain that is suboptimally placed as the load FDSE cell u_ip/u_fifo_wrapper_output/GEN_FIFO[11].GEN_SLICE[1].u_fifo/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d3_reg is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#31 Warning
+Suboptimally placed synchronized register chain  
+The FDRE cell u_ip/u_fifo_wrapper_output/GEN_FIFO[1].GEN_SLICE[0].u_fifo/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d2_reg in site SLICE_X108Y121 is part of a synchronized register chain that is suboptimally placed as the load FDSE cell u_ip/u_fifo_wrapper_output/GEN_FIFO[1].GEN_SLICE[0].u_fifo/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d3_reg is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#32 Warning
+Suboptimally placed synchronized register chain  
+The FDRE cell u_ip/u_fifo_wrapper_output/GEN_FIFO[1].GEN_SLICE[1].u_fifo/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d2_reg in site SLICE_X80Y134 is part of a synchronized register chain that is suboptimally placed as the load FDSE cell u_ip/u_fifo_wrapper_output/GEN_FIFO[1].GEN_SLICE[1].u_fifo/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d3_reg is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#33 Warning
+Suboptimally placed synchronized register chain  
+The FDRE cell u_ip/u_fifo_wrapper_output/GEN_FIFO[2].GEN_SLICE[0].u_fifo/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d2_reg in site SLICE_X110Y118 is part of a synchronized register chain that is suboptimally placed as the load FDSE cell u_ip/u_fifo_wrapper_output/GEN_FIFO[2].GEN_SLICE[0].u_fifo/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d3_reg is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#34 Warning
+Suboptimally placed synchronized register chain  
+The FDRE cell u_ip/u_fifo_wrapper_output/GEN_FIFO[2].GEN_SLICE[1].u_fifo/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d2_reg in site SLICE_X117Y128 is part of a synchronized register chain that is suboptimally placed as the load FDSE cell u_ip/u_fifo_wrapper_output/GEN_FIFO[2].GEN_SLICE[1].u_fifo/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d3_reg is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#35 Warning
+Suboptimally placed synchronized register chain  
+The FDRE cell u_ip/u_fifo_wrapper_output/GEN_FIFO[3].GEN_SLICE[0].u_fifo/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d2_reg in site SLICE_X153Y84 is part of a synchronized register chain that is suboptimally placed as the load FDSE cell u_ip/u_fifo_wrapper_output/GEN_FIFO[3].GEN_SLICE[0].u_fifo/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d3_reg is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#36 Warning
+Suboptimally placed synchronized register chain  
+The FDRE cell u_ip/u_fifo_wrapper_output/GEN_FIFO[3].GEN_SLICE[1].u_fifo/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d2_reg in site SLICE_X149Y72 is part of a synchronized register chain that is suboptimally placed as the load FDSE cell u_ip/u_fifo_wrapper_output/GEN_FIFO[3].GEN_SLICE[1].u_fifo/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d3_reg is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#37 Warning
+Suboptimally placed synchronized register chain  
+The FDRE cell u_ip/u_fifo_wrapper_output/GEN_FIFO[4].GEN_SLICE[0].u_fifo/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d2_reg in site SLICE_X157Y93 is part of a synchronized register chain that is suboptimally placed as the load FDSE cell u_ip/u_fifo_wrapper_output/GEN_FIFO[4].GEN_SLICE[0].u_fifo/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d3_reg is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#38 Warning
+Suboptimally placed synchronized register chain  
+The FDRE cell u_ip/u_fifo_wrapper_output/GEN_FIFO[4].GEN_SLICE[1].u_fifo/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d2_reg in site SLICE_X135Y84 is part of a synchronized register chain that is suboptimally placed as the load FDSE cell u_ip/u_fifo_wrapper_output/GEN_FIFO[4].GEN_SLICE[1].u_fifo/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d3_reg is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#39 Warning
+Suboptimally placed synchronized register chain  
+The FDRE cell u_ip/u_fifo_wrapper_output/GEN_FIFO[5].GEN_SLICE[0].u_fifo/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d2_reg in site SLICE_X85Y102 is part of a synchronized register chain that is suboptimally placed as the load FDSE cell u_ip/u_fifo_wrapper_output/GEN_FIFO[5].GEN_SLICE[0].u_fifo/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d3_reg is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#40 Warning
+Suboptimally placed synchronized register chain  
+The FDRE cell u_ip/u_fifo_wrapper_output/GEN_FIFO[5].GEN_SLICE[1].u_fifo/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d2_reg in site SLICE_X87Y99 is part of a synchronized register chain that is suboptimally placed as the load FDSE cell u_ip/u_fifo_wrapper_output/GEN_FIFO[5].GEN_SLICE[1].u_fifo/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d3_reg is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#41 Warning
+Suboptimally placed synchronized register chain  
+The FDRE cell u_ip/u_fifo_wrapper_output/GEN_FIFO[6].GEN_SLICE[0].u_fifo/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d2_reg in site SLICE_X48Y126 is part of a synchronized register chain that is suboptimally placed as the load FDSE cell u_ip/u_fifo_wrapper_output/GEN_FIFO[6].GEN_SLICE[0].u_fifo/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d3_reg is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#42 Warning
+Suboptimally placed synchronized register chain  
+The FDRE cell u_ip/u_fifo_wrapper_output/GEN_FIFO[6].GEN_SLICE[1].u_fifo/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d2_reg in site SLICE_X46Y117 is part of a synchronized register chain that is suboptimally placed as the load FDSE cell u_ip/u_fifo_wrapper_output/GEN_FIFO[6].GEN_SLICE[1].u_fifo/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d3_reg is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#43 Warning
+Suboptimally placed synchronized register chain  
+The FDRE cell u_ip/u_fifo_wrapper_output/GEN_FIFO[7].GEN_SLICE[0].u_fifo/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d2_reg in site SLICE_X48Y112 is part of a synchronized register chain that is suboptimally placed as the load FDSE cell u_ip/u_fifo_wrapper_output/GEN_FIFO[7].GEN_SLICE[0].u_fifo/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d3_reg is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#44 Warning
+Suboptimally placed synchronized register chain  
+The FDRE cell u_ip/u_fifo_wrapper_output/GEN_FIFO[7].GEN_SLICE[1].u_fifo/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d2_reg in site SLICE_X47Y104 is part of a synchronized register chain that is suboptimally placed as the load FDSE cell u_ip/u_fifo_wrapper_output/GEN_FIFO[7].GEN_SLICE[1].u_fifo/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d3_reg is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#45 Warning
+Suboptimally placed synchronized register chain  
+The FDRE cell u_ip/u_fifo_wrapper_output/GEN_FIFO[8].GEN_SLICE[0].u_fifo/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d2_reg in site SLICE_X62Y81 is part of a synchronized register chain that is suboptimally placed as the load FDSE cell u_ip/u_fifo_wrapper_output/GEN_FIFO[8].GEN_SLICE[0].u_fifo/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d3_reg is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#46 Warning
+Suboptimally placed synchronized register chain  
+The FDRE cell u_ip/u_fifo_wrapper_output/GEN_FIFO[8].GEN_SLICE[1].u_fifo/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d2_reg in site SLICE_X65Y84 is part of a synchronized register chain that is suboptimally placed as the load FDSE cell u_ip/u_fifo_wrapper_output/GEN_FIFO[8].GEN_SLICE[1].u_fifo/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d3_reg is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#47 Warning
+Suboptimally placed synchronized register chain  
+The FDRE cell u_ip/u_fifo_wrapper_output/GEN_FIFO[9].GEN_SLICE[0].u_fifo/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d2_reg in site SLICE_X73Y151 is part of a synchronized register chain that is suboptimally placed as the load FDSE cell u_ip/u_fifo_wrapper_output/GEN_FIFO[9].GEN_SLICE[0].u_fifo/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d3_reg is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#48 Warning
+Suboptimally placed synchronized register chain  
+The FDRE cell u_ip/u_fifo_wrapper_output/GEN_FIFO[9].GEN_SLICE[1].u_fifo/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d2_reg in site SLICE_X74Y155 is part of a synchronized register chain that is suboptimally placed as the load FDSE cell u_ip/u_fifo_wrapper_output/GEN_FIFO[9].GEN_SLICE[1].u_fifo/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d3_reg is not placed in the same (SLICE) site.
+Related violations: <none>
+
+SYNTH-6#1 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/Aram_reg, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#2 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_ip/u_encoder_wrapper/ENC_INST[0].g_rtl.u_encoder/linebuffer_reg, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#3 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/Aram_reg, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#4 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_ip/u_encoder_wrapper/ENC_INST[10].g_rtl.u_encoder/linebuffer_reg, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#5 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_ip/u_encoder_wrapper/ENC_INST[11].g_rtl.u_encoder/Aram_reg, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#6 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_ip/u_encoder_wrapper/ENC_INST[11].g_rtl.u_encoder/linebuffer_reg, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#7 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_ip/u_encoder_wrapper/ENC_INST[1].g_rtl.u_encoder/Aram_reg, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#8 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_ip/u_encoder_wrapper/ENC_INST[1].g_rtl.u_encoder/linebuffer_reg, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#9 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_ip/u_encoder_wrapper/ENC_INST[2].g_rtl.u_encoder/Aram_reg, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#10 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_ip/u_encoder_wrapper/ENC_INST[2].g_rtl.u_encoder/linebuffer_reg, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#11 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_ip/u_encoder_wrapper/ENC_INST[3].g_rtl.u_encoder/Aram_reg, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#12 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_ip/u_encoder_wrapper/ENC_INST[3].g_rtl.u_encoder/linebuffer_reg, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#13 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_ip/u_encoder_wrapper/ENC_INST[4].g_rtl.u_encoder/Aram_reg, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#14 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_ip/u_encoder_wrapper/ENC_INST[4].g_rtl.u_encoder/linebuffer_reg, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#15 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_ip/u_encoder_wrapper/ENC_INST[5].g_rtl.u_encoder/Aram_reg, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#16 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_ip/u_encoder_wrapper/ENC_INST[5].g_rtl.u_encoder/linebuffer_reg, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#17 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_ip/u_encoder_wrapper/ENC_INST[6].g_rtl.u_encoder/Aram_reg, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#18 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_ip/u_encoder_wrapper/ENC_INST[6].g_rtl.u_encoder/linebuffer_reg, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#19 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_ip/u_encoder_wrapper/ENC_INST[7].g_rtl.u_encoder/Aram_reg, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#20 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_ip/u_encoder_wrapper/ENC_INST[7].g_rtl.u_encoder/linebuffer_reg, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#21 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_ip/u_encoder_wrapper/ENC_INST[8].g_rtl.u_encoder/Aram_reg, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#22 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_ip/u_encoder_wrapper/ENC_INST[8].g_rtl.u_encoder/linebuffer_reg, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#23 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_ip/u_encoder_wrapper/ENC_INST[9].g_rtl.u_encoder/Aram_reg, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+SYNTH-6#24 Warning
+Timing of a RAM block might be sub-optimal  
+The timing for the instance u_ip/u_encoder_wrapper/ENC_INST[9].g_rtl.u_encoder/linebuffer_reg, implemented as a RAM block, might be sub-optimal as no output register was merged into the block.
+Related violations: <none>
+
+XDCC-7#1 Warning
+Scoped Clock constraint overwritten on the same source  
+A new clock constraint create_clock overrides a previous scoped clock constraint defined on the same source. It is not recommended to override a scoped (typically an IP) clock constraint and could result in unexpected behaviors.
+New: create_clock -period 5.000 -name sys_clk_pin [get_ports clk_in1_p] (Source: D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/constrs_1/imports/new/jls_demo_top_wide.xdc (Line: 32))
+Previous: create_clock -period 5.000 [get_ports clk_in1_p] (Source: d:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.gen/sources_1/ip/clk_wiz_0/clk_wiz_0.xdc (Line: 53))
+Related violations: <none>
+
+

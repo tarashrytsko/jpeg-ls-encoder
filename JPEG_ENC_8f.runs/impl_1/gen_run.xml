@@ -1,91 +1,98 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="impl_1" LaunchPart="xc7a200tfbg676-2" LaunchTime="1779012332">
-  <File Type="PA-TCL" Name="top_jls_vertical.tcl"/>
-  <File Type="REPORTS-TCL" Name="top_jls_vertical_reports.tcl"/>
-  <File Type="INIT-TIMING" Name="top_jls_vertical_timing_summary_init.rpt"/>
-  <File Type="OPT-DCP" Name="top_jls_vertical_opt.dcp"/>
-  <File Type="OPT-DRC" Name="top_jls_vertical_drc_opted.rpt"/>
-  <File Type="OPT-METHODOLOGY-DRC" Name="top_jls_vertical_methodology_drc_opted.rpt"/>
-  <File Type="OPT-HWDEF" Name="top_jls_vertical.hwdef"/>
-  <File Type="OPT-TIMING" Name="top_jls_vertical_timing_summary_opted.rpt"/>
-  <File Type="OPT-RQA-PB" Name="top_jls_vertical_rqa_opted.pb"/>
-  <File Type="PWROPT-DCP" Name="top_jls_vertical_pwropt.dcp"/>
-  <File Type="PWROPT-DRC" Name="top_jls_vertical_drc_pwropted.rpt"/>
-  <File Type="PWROPT-TIMING" Name="top_jls_vertical_timing_summary_pwropted.rpt"/>
-  <File Type="PLACE-DCP" Name="top_jls_vertical_placed.dcp"/>
-  <File Type="PLACE-IO" Name="top_jls_vertical_io_placed.rpt"/>
-  <File Type="PLACE-CLK" Name="top_jls_vertical_clock_utilization_placed.rpt"/>
-  <File Type="PLACE-UTIL" Name="top_jls_vertical_utilization_placed.rpt"/>
-  <File Type="PLACE-UTIL-PB" Name="top_jls_vertical_utilization_placed.pb"/>
-  <File Type="PLACE-CTRL" Name="top_jls_vertical_control_sets_placed.rpt"/>
-  <File Type="PLACE-SIMILARITY" Name="top_jls_vertical_incremental_reuse_placed.rpt"/>
-  <File Type="PLACE-PRE-SIMILARITY" Name="top_jls_vertical_incremental_reuse_pre_placed.rpt"/>
-  <File Type="PLACE-TIMING" Name="top_jls_vertical_timing_summary_placed.rpt"/>
-  <File Type="PLACE-RQA-PB" Name="top_jls_vertical_rqa_placed.pb"/>
-  <File Type="POSTPLACE-PWROPT-DCP" Name="top_jls_vertical_postplace_pwropt.dcp"/>
-  <File Type="POSTPLACE-PWROPT-TIMING" Name="top_jls_vertical_timing_summary_postplace_pwropted.rpt"/>
-  <File Type="PHYSOPT-DCP" Name="top_jls_vertical_physopt.dcp"/>
-  <File Type="PHYSOPT-DRC" Name="top_jls_vertical_drc_physopted.rpt"/>
-  <File Type="PHYSOPT-TIMING" Name="top_jls_vertical_timing_summary_physopted.rpt"/>
-  <File Type="ROUTE-ERROR-DCP" Name="top_jls_vertical_routed_error.dcp"/>
-  <File Type="ROUTE-DCP" Name="top_jls_vertical_routed.dcp"/>
-  <File Type="ROUTE-BLACKBOX-DCP" Name="top_jls_vertical_routed_bb.dcp"/>
-  <File Type="ROUTE-DRC" Name="top_jls_vertical_drc_routed.rpt"/>
-  <File Type="ROUTE-DRC-PB" Name="top_jls_vertical_drc_routed.pb"/>
-  <File Type="ROUTE-DRC-RPX" Name="top_jls_vertical_drc_routed.rpx"/>
-  <File Type="ROUTE-METHODOLOGY-DRC" Name="top_jls_vertical_methodology_drc_routed.rpt"/>
-  <File Type="ROUTE-METHODOLOGY-DRC-RPX" Name="top_jls_vertical_methodology_drc_routed.rpx"/>
-  <File Type="ROUTE-METHODOLOGY-DRC-PB" Name="top_jls_vertical_methodology_drc_routed.pb"/>
-  <File Type="ROUTE-PWR" Name="top_jls_vertical_power_routed.rpt"/>
-  <File Type="ROUTE-PWR-SUM" Name="top_jls_vertical_power_summary_routed.pb"/>
-  <File Type="ROUTE-PWR-RPX" Name="top_jls_vertical_power_routed.rpx"/>
-  <File Type="ROUTE-STATUS" Name="top_jls_vertical_route_status.rpt"/>
-  <File Type="ROUTE-STATUS-PB" Name="top_jls_vertical_route_status.pb"/>
-  <File Type="ROUTE-TIMINGSUMMARY" Name="top_jls_vertical_timing_summary_routed.rpt"/>
-  <File Type="ROUTE-TIMING-PB" Name="top_jls_vertical_timing_summary_routed.pb"/>
-  <File Type="ROUTE-TIMING-RPX" Name="top_jls_vertical_timing_summary_routed.rpx"/>
-  <File Type="ROUTE-SIMILARITY" Name="top_jls_vertical_incremental_reuse_routed.rpt"/>
-  <File Type="ROUTE-CLK" Name="top_jls_vertical_clock_utilization_routed.rpt"/>
-  <File Type="ROUTE-BUS-SKEW" Name="top_jls_vertical_bus_skew_routed.rpt"/>
-  <File Type="ROUTE-BUS-SKEW-PB" Name="top_jls_vertical_bus_skew_routed.pb"/>
-  <File Type="ROUTE-BUS-SKEW-RPX" Name="top_jls_vertical_bus_skew_routed.rpx"/>
-  <File Type="ROUTE-RQS-PB" Name="top_jls_vertical_rqs_routed.pb"/>
-  <File Type="POSTROUTE-PHYSOPT-DCP" Name="top_jls_vertical_postroute_physopt.dcp"/>
-  <File Type="POSTROUTE-PHYSOPT-BLACKBOX-DCP" Name="top_jls_vertical_postroute_physopt_bb.dcp"/>
-  <File Type="POSTROUTE-PHYSOPT-TIMING" Name="top_jls_vertical_timing_summary_postroute_physopted.rpt"/>
-  <File Type="POSTROUTE-PHYSOPT-TIMING-PB" Name="top_jls_vertical_timing_summary_postroute_physopted.pb"/>
-  <File Type="POSTROUTE-PHYSOPT-TIMING-RPX" Name="top_jls_vertical_timing_summary_postroute_physopted.rpx"/>
-  <File Type="POSTROUTE-PHYSOPT-BUS-SKEW" Name="top_jls_vertical_bus_skew_postroute_physopted.rpt"/>
-  <File Type="POSTROUTE-PHYSOPT-BUS-SKEW-PB" Name="top_jls_vertical_bus_skew_postroute_physopted.pb"/>
-  <File Type="POSTROUTE-PHYSOPT-BUS-SKEW-RPX" Name="top_jls_vertical_bus_skew_postroute_physopted.rpx"/>
-  <File Type="BG-BIT" Name="top_jls_vertical.bit"/>
-  <File Type="BG-BIN" Name="top_jls_vertical.bin"/>
-  <File Type="BITSTR-MSK" Name="top_jls_vertical.msk"/>
-  <File Type="BITSTR-RBT" Name="top_jls_vertical.rbt"/>
-  <File Type="BITSTR-NKY" Name="top_jls_vertical.nky"/>
-  <File Type="BITSTR-BMM" Name="top_jls_vertical_bd.bmm"/>
-  <File Type="BITSTR-MMI" Name="top_jls_vertical.mmi"/>
-  <File Type="PDI-FILE" Name="top_jls_vertical.pdi"/>
-  <File Type="BOOT-PDI-FILE" Name="top_jls_vertical_boot.pdi"/>
-  <File Type="PL-PDI-FILE" Name="top_jls_vertical_pld.pdi"/>
-  <File Type="RCFI_FILE" Name="top_jls_vertical.rcfi"/>
-  <File Type="CFI_FILE" Name="top_jls_vertical.cfi"/>
-  <File Type="RNPI_FILE" Name="top_jls_vertical.rnpi"/>
-  <File Type="NPI_FILE" Name="top_jls_vertical.npi"/>
-  <File Type="RBD_FILE" Name="top_jls_vertical.rbd"/>
+<GenRun Id="impl_1" LaunchPart="xc7a200tfbg676-2" LaunchTime="1790590529">
+  <File Type="REPORTS-TCL" Name="jls_demo_top_reports.tcl"/>
+  <File Type="ROUTE-PWR-SUM" Name="jls_demo_top_power_summary_routed.pb"/>
+  <File Type="BITSTR-MMI" Name="jls_demo_top.mmi"/>
+  <File Type="OPT-DRC" Name="jls_demo_top_drc_opted.rpt"/>
+  <File Type="BG-DRC" Name="jls_demo_top.drc"/>
+  <File Type="ROUTE-STATUS-PB" Name="jls_demo_top_route_status.pb"/>
+  <File Type="BG-BGN" Name="jls_demo_top.bgn"/>
+  <File Type="PLACE-UTIL" Name="jls_demo_top_utilization_placed.rpt"/>
+  <File Type="PLACE-UTIL-PB" Name="jls_demo_top_utilization_placed.pb"/>
+  <File Type="PLACE-IO" Name="jls_demo_top_io_placed.rpt"/>
+  <File Type="BG-BIN" Name="jls_demo_top.bin"/>
+  <File Type="PLACE-CTRL" Name="jls_demo_top_control_sets_placed.rpt"/>
+  <File Type="ROUTE-PWR-RPX" Name="jls_demo_top_power_routed.rpx"/>
+  <File Type="ROUTE-DCP" Name="jls_demo_top_routed.dcp"/>
+  <File Type="BITSTR-MSK" Name="jls_demo_top.msk"/>
+  <File Type="BITSTR-RBT" Name="jls_demo_top.rbt"/>
+  <File Type="ROUTE-TIMINGSUMMARY" Name="jls_demo_top_timing_summary_routed.rpt"/>
+  <File Type="ROUTE-TIMING-RPX" Name="jls_demo_top_timing_summary_routed.rpx"/>
+  <File Type="ROUTE-STATUS" Name="jls_demo_top_route_status.rpt"/>
+  <File Type="PA-TCL" Name="jls_demo_top.tcl"/>
+  <File Type="ROUTE-PWR" Name="jls_demo_top_power_routed.rpt"/>
+  <File Type="ROUTE-DRC" Name="jls_demo_top_drc_routed.rpt"/>
+  <File Type="ROUTE-DRC-RPX" Name="jls_demo_top_drc_routed.rpx"/>
+  <File Type="ROUTE-DRC-PB" Name="jls_demo_top_drc_routed.pb"/>
+  <File Type="BITSTR-SYSDEF" Name="jls_demo_top.sysdef"/>
+  <File Type="ROUTE-METHODOLOGY-DRC" Name="jls_demo_top_methodology_drc_routed.rpt"/>
+  <File Type="ROUTE-METHODOLOGY-DRC-RPX" Name="jls_demo_top_methodology_drc_routed.rpx"/>
   <File Type="BITSTR-LTX" Name="debug_nets.ltx"/>
-  <File Type="BITSTR-LTX" Name="top_jls_vertical.ltx"/>
-  <File Type="BITSTR-SYSDEF" Name="top_jls_vertical.sysdef"/>
-  <File Type="BG-BGN" Name="top_jls_vertical.bgn"/>
-  <File Type="BG-DRC" Name="top_jls_vertical.drc"/>
-  <File Type="RDI-RDI" Name="top_jls_vertical.vdi"/>
+  <File Type="BITSTR-LTX" Name="jls_demo_top.ltx"/>
+  <File Type="ROUTE-METHODOLOGY-DRC-PB" Name="jls_demo_top_methodology_drc_routed.pb"/>
+  <File Type="ROUTE-SIMILARITY" Name="jls_demo_top_incremental_reuse_routed.rpt"/>
+  <File Type="RDI-RDI" Name="jls_demo_top.vdi"/>
+  <File Type="ROUTE-CLK" Name="jls_demo_top_clock_utilization_routed.rpt"/>
+  <File Type="ROUTE-BUS-SKEW" Name="jls_demo_top_bus_skew_routed.rpt"/>
+  <File Type="ROUTE-BUS-SKEW-RPX" Name="jls_demo_top_bus_skew_routed.rpx"/>
+  <File Type="ROUTE-BUS-SKEW-PB" Name="jls_demo_top_bus_skew_routed.pb"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING" Name="jls_demo_top_timing_summary_postroute_physopted.rpt"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING-RPX" Name="jls_demo_top_timing_summary_postroute_physopted.rpx"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING-PB" Name="jls_demo_top_timing_summary_postroute_physopted.pb"/>
+  <File Type="POSTROUTE-PHYSOPT-BUS-SKEW" Name="jls_demo_top_bus_skew_postroute_physopted.rpt"/>
+  <File Type="POSTROUTE-PHYSOPT-BUS-SKEW-RPX" Name="jls_demo_top_bus_skew_postroute_physopted.rpx"/>
+  <File Type="BG-BIT" Name="jls_demo_top.bit"/>
+  <File Type="POSTROUTE-PHYSOPT-BUS-SKEW-PB" Name="jls_demo_top_bus_skew_postroute_physopted.pb"/>
+  <File Type="BITSTR-NKY" Name="jls_demo_top.nky"/>
+  <File Type="BITSTR-BMM" Name="jls_demo_top_bd.bmm"/>
   <File Type="WBT-USG" Name="usage_statistics_webtalk.html"/>
-  <File Type="ROUTE-RQS" Name="top_jls_vertical_routed.rqs"/>
-  <File Type="POSTROUTE-PHYSOPT-RQS" Name="top_jls_vertical_postroute_physopted.rqs"/>
+  <File Type="OPT-HWDEF" Name="jls_demo_top.hwdef"/>
+  <File Type="PLACE-PRE-SIMILARITY" Name="jls_demo_top_incremental_reuse_pre_placed.rpt"/>
+  <File Type="ROUTE-ERROR-DCP" Name="jls_demo_top_routed_error.dcp"/>
+  <File Type="ROUTE-BLACKBOX-DCP" Name="jls_demo_top_routed_bb.dcp"/>
+  <File Type="ROUTE-TIMING-PB" Name="jls_demo_top_timing_summary_routed.pb"/>
+  <File Type="OPT-DCP" Name="jls_demo_top_opt.dcp"/>
+  <File Type="PLACE-DCP" Name="jls_demo_top_placed.dcp"/>
+  <File Type="PWROPT-DCP" Name="jls_demo_top_pwropt.dcp"/>
+  <File Type="POSTPLACE-PWROPT-DCP" Name="jls_demo_top_postplace_pwropt.dcp"/>
+  <File Type="PHYSOPT-DCP" Name="jls_demo_top_physopt.dcp"/>
+  <File Type="POSTROUTE-PHYSOPT-DCP" Name="jls_demo_top_postroute_physopt.dcp"/>
+  <File Type="POSTROUTE-PHYSOPT-BLACKBOX-DCP" Name="jls_demo_top_postroute_physopt_bb.dcp"/>
+  <File Type="PDI-FILE" Name="jls_demo_top.pdi"/>
+  <File Type="BOOT-PDI-FILE" Name="jls_demo_top_boot.pdi"/>
+  <File Type="PL-PDI-FILE" Name="jls_demo_top_pld.pdi"/>
+  <File Type="RCFI_FILE" Name="jls_demo_top.rcfi"/>
+  <File Type="CFI_FILE" Name="jls_demo_top.cfi"/>
+  <File Type="RNPI_FILE" Name="jls_demo_top.rnpi"/>
+  <File Type="NPI_FILE" Name="jls_demo_top.npi"/>
+  <File Type="RBD_FILE" Name="jls_demo_top.rbd"/>
+  <File Type="ROUTE-RQS" Name="jls_demo_top_routed.rqs"/>
+  <File Type="POSTROUTE-PHYSOPT-RQS" Name="jls_demo_top_postroute_physopted.rqs"/>
   <File Type="ROUTE-RQS-RPT" Name="route_report_qor_suggestions_0.rpt"/>
   <File Type="POSTROUTE-PHYSOPT-RQS-RPT" Name="postroute_physopt_report_qor_suggestions_0.rpt"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1" RelGenDir="$PGENDIR/sources_1">
     <Filter Type="Srcs"/>
+    <File Path="$PSRCDIR/sources_1/new/axis_image_source.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/axis_pixel_in.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/axis_sink.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
     <File Path="$PSRCDIR/sources_1/new/block_split.v">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
@@ -135,13 +142,6 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="$PSRCDIR/sources_1/new/image_generator.v">
-      <FileInfo>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="implementation"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
     <File Path="$PSRCDIR/sources_1/imports/FPGA Encoders/jls_encoder.v">
       <FileInfo>
         <Attr Name="ImportPath" Val="$PPRDIR/../FPGA Encoders/FPGA Encoders/jls_encoder.v"/>
@@ -151,26 +151,21 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="$PSRCDIR/sources_1/imports/FPGA Encoders/top_jls_vertical.v">
+    <File Path="$PSRCDIR/sources_1/imports/FPGA Encoders/jls_encoder_axis.v">
       <FileInfo>
-        <Attr Name="ImportPath" Val="$PPRDIR/../JPEG_ENC_v5/JPEG_ENC_v5.srcs/sources_1/imports/FPGA Encoders/top_jls_vertical.v"/>
-        <Attr Name="ImportTime" Val="1761756364"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="$PSRCDIR/sources_1/ip/blk_mem_gen_0_1/blk_mem_gen_0.xci">
+    <File Path="$PSRCDIR/sources_1/new/jls_demo_top.v">
       <FileInfo>
-        <Attr Name="AutoDisabled" Val="1"/>
-        <Attr Name="ImportPath" Val="$PPRDIR/../JPEG_ENC_v8b/JPEG_ENC_v8b.srcs/sources_1/ip/blk_mem_gen_0_1/blk_mem_gen_0.xci"/>
-        <Attr Name="ImportTime" Val="1764264115"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="$PSRCDIR/sources_1/new/jls_encoder2.v">
+    <File Path="$PSRCDIR/sources_1/new/byte_gearbox_12.v">
       <FileInfo>
         <Attr Name="AutoDisabled" Val="1"/>
         <Attr Name="UsedIn" Val="synthesis"/>
@@ -178,11 +173,17 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="$PSRCDIR/sources_1/imports/FPGA Encoders/splitter_vertical.v">
+    <File Path="$PSRCDIR/sources_1/new/iserdes_byte_in.v">
       <FileInfo>
         <Attr Name="AutoDisabled" Val="1"/>
-        <Attr Name="ImportPath" Val="$PPRDIR/../FPGA Encoders/FPGA Encoders/splitter_vertical.v"/>
-        <Attr Name="ImportTime" Val="1756986714"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/jls_serial_demo_top.v">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
         <Attr Name="UsedIn" Val="simulation"/>
@@ -192,26 +193,6 @@
       <FileInfo>
         <Attr Name="AutoDisabled" Val="1"/>
         <Attr Name="ImportPath" Val="$PPRDIR/../FPGA Encoders/FPGA Encoders/merger.v"/>
-        <Attr Name="ImportTime" Val="1756986714"/>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="implementation"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
-    <File Path="$PSRCDIR/sources_1/imports/FPGA Encoders/splitter_horizontal.v">
-      <FileInfo>
-        <Attr Name="AutoDisabled" Val="1"/>
-        <Attr Name="ImportPath" Val="$PPRDIR/../FPGA Encoders/FPGA Encoders/splitter_horizontal.v"/>
-        <Attr Name="ImportTime" Val="1756986714"/>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="implementation"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
-    <File Path="$PSRCDIR/sources_1/imports/FPGA Encoders/top_jls_horizontal.v">
-      <FileInfo>
-        <Attr Name="AutoDisabled" Val="1"/>
-        <Attr Name="ImportPath" Val="$PPRDIR/../FPGA Encoders/FPGA Encoders/top_jls_horizontal.v"/>
         <Attr Name="ImportTime" Val="1756986714"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
@@ -248,17 +229,40 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
+    <File Path="$PSRCDIR/sources_1/new/rom_image.hex"/>
+    <File Path="$PSRCDIR/sources_1/new/rom_wide.hex"/>
     <Config>
       <Option Name="DesignMode" Val="RTL"/>
-      <Option Name="TopModule" Val="top_jls_vertical"/>
+      <Option Name="TopModule" Val="jls_demo_top"/>
     </Config>
   </FileSet>
   <FileSet Name="constrs_in" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1" RelGenDir="$PGENDIR/constrs_1">
     <Filter Type="Constrs"/>
     <File Path="$PSRCDIR/constrs_1/imports/new/top_jls_vertical.xdc">
       <FileInfo>
+        <Attr Name="UserDisabled" Val="1"/>
         <Attr Name="ImportPath" Val="$PPRDIR/../JPEG_ENC_v5/JPEG_ENC_v5.srcs/constrs_1/new/top_jls_vertical.xdc"/>
         <Attr Name="ImportTime" Val="1761755651"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/constrs_1/imports/new/jls_demo_top.xdc">
+      <FileInfo>
+        <Attr Name="UserDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/constrs_1/imports/new/jls_demo_top_wide.xdc">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/constrs_1/imports/new/jls_serial_demo_top.xdc">
+      <FileInfo>
+        <Attr Name="UserDisabled" Val="1"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
       </FileInfo>
@@ -292,8 +296,10 @@
     <Step Id="route_design"/>
     <Step Id="post_route_phys_opt_design"/>
     <Step Id="write_bitstream"/>
+    <Step Id="write_device_image"/>
   </Strategy>
-  <BlockFileSet Type="BlockSrcs" Name="clk_wiz_0"/>
   <BlockFileSet Type="BlockSrcs" Name="fifo_output"/>
+  <BlockFileSet Type="BlockSrcs" Name="clk_wiz_0"/>
   <BlockFileSet Type="BlockSrcs" Name="fifo_generator_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="jls_encoder_ip"/>
 </GenRun>

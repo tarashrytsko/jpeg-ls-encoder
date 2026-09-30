@@ -1,0 +1,4 @@
+CharLS charls-2.4.3 via imagecodecs 2026.5.10, 4992x4992 8-bit Blue Marble, 12 vertical strips, best of 3
+host: Intel64 Family 6 Model 141 Stepping 1, GenuineIntel, 12 logical CPUs, Windows-11-10.0.26200-SP0
+1 process : 101.8 Mpixel/s
+6 processes: 348.4 Mpixel/s

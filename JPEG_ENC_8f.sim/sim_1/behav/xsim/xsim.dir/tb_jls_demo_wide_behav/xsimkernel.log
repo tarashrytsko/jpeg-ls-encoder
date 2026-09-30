@@ -1,0 +1,7 @@
+Running: xsim.dir/tb_jls_demo_wide_behav/xsimk.exe -simmode gui -wdb tb_jls_demo_wide_behav.wdb -simrunnum 0 -socket 64111
+Design successfully loaded
+Design Loading Memory Usage: 52608 KB (Peak: 52608 KB)
+Design Loading CPU Usage: 733 ms
+Simulation completed
+Simulation Memory Usage: 55888 KB (Peak: 55888 KB)
+Simulation CPU Usage: 3921 ms

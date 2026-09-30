@@ -1,0 +1,53 @@
+#-----------------------------------------------------------
+# Vivado v2024.2 (64-bit)
+# SW Build 5239630 on Fri Nov 08 22:35:27 MST 2024
+# IP Build 5239520 on Sun Nov 10 16:12:51 MST 2024
+# SharedData Build 5239561 on Fri Nov 08 14:39:27 MST 2024
+# Start of session at: Fri Jun 26 18:46:58 2026
+# Process ID         : 15988
+# Current directory  : D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f
+# Command line       : vivado.exe -mode batch -source JPEG_ENC_8f.sim\sim_1\behav\xsim\build_synth.tcl -log build_synth.vlog -nojournal
+# Log file           : D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/build_synth.vlog
+# Journal file       : 
+# Running On         : DESKTOP-PHB4K70
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 26200
+# Processor Detail   : 11th Gen Intel(R) Core(TM) i5-11400H @ 2.70GHz
+# CPU Frequency      : 2688 MHz
+# CPU Physical cores : 6
+# CPU Logical cores  : 12
+# Host memory        : 16840 MB
+# Swap memory        : 4160 MB
+# Total Virtual      : 21001 MB
+# Available Virtual  : 12827 MB
+#-----------------------------------------------------------
+source {JPEG_ENC_8f.sim\sim_1\behav\xsim\build_synth.tcl}
+# set root "D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f"
+# open_project $root/JPEG_ENC_8f.xpr
+CRITICAL WARNING: [Project 1-19] Could not find the file 'D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/sources_1/imports/FPGA Encoders/top_jls_vertical.v'.
+CRITICAL WARNING: [Project 1-19] Could not find the file 'D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/sources_1/new/jls_encoder2.v'.
+CRITICAL WARNING: [Project 1-19] Could not find the file 'D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/sources_1/imports/FPGA Encoders/splitter_vertical.v'.
+CRITICAL WARNING: [Project 1-19] Could not find the file 'D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/sources_1/imports/FPGA Encoders/splitter_horizontal.v'.
+CRITICAL WARNING: [Project 1-19] Could not find the file 'D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/sources_1/imports/FPGA Encoders/top_jls_horizontal.v'.
+CRITICAL WARNING: [Project 1-19] Could not find the file 'D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/sim_1/imports/FPGA Encoders/tb_top_jls_vertical.v'.
+Scanning sources...
+Finished scanning sources
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2024.2/data/ip'.
+open_project: Time (s): cpu = 00:00:07 ; elapsed = 00:00:10 . Memory (MB): peak = 653.613 ; gain = 212.402
+# catch { remove_files [get_files -quiet "*top_jls_vertical.v"] }
+# catch { remove_files [get_files -quiet "*image_generator.v"] }
+# foreach f {
+#     "JPEG_ENC_8f.srcs/sources_1/imports/FPGA Encoders/jls_encoder_axis.v"
+#     "JPEG_ENC_8f.srcs/sources_1/new/axis_pixel_in.v"
+#     "JPEG_ENC_8f.srcs/sources_1/new/axis_image_source.v"
+#     "JPEG_ENC_8f.srcs/sources_1/new/jls_demo_top.v"
+#     "JPEG_ENC_8f.srcs/sources_1/new/rom_image.hex"
+# } {
+#     if {[llength [get_files -quiet $root/$f]] == 0} {
+#         add_files -norecurse $root/$f
+#     }
+# }
+ERROR: [Vivado 12-172] File or Directory 'D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/sources_1/imports/FPGA' does not exist
+INFO: [Common 17-206] Exiting Vivado at Fri Jun 26 18:47:19 2026...

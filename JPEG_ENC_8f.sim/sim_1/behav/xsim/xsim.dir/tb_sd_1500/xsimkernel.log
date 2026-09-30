@@ -1,0 +1,7 @@
+Running: xsim.dir/tb_sd_1500/xsimk.exe -runall -simmode gui -wdb tb_sd_1500.wdb -simrunnum 0 -socket 56018
+Design successfully loaded
+Design Loading Memory Usage: 67200 KB (Peak: 67200 KB)
+Design Loading CPU Usage: 906 ms
+Simulation completed
+Simulation Memory Usage: 70816 KB (Peak: 70816 KB)
+Simulation CPU Usage: 464780 ms

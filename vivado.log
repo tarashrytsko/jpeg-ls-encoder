@@ -3,10 +3,10 @@
 # SW Build 5239630 on Fri Nov 08 22:35:27 MST 2024
 # IP Build 5239520 on Sun Nov 10 16:12:51 MST 2024
 # SharedData Build 5239561 on Fri Nov 08 14:39:27 MST 2024
-# Start of session at: Sun May 17 14:03:23 2026
-# Process ID         : 11912
+# Start of session at: Mon Jul 13 21:58:32 2026
+# Process ID         : 24616
 # Current directory  : D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f
-# Command line       : vivado.exe -gui_launcher_event rodinguilauncherevent20872 D:\techbistro\upwork\JPEG_Encoder_Project\JPEG_ENC_8f\JPEG_ENC_8f.xpr
+# Command line       : vivado.exe -mode batch -notrace -source C:/Users/admin/AppData/Local/Temp/gen_ip_inst.tcl
 # Log file           : D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/vivado.log
 # Journal file       : D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f\vivado.jou
 # Running On         : DESKTOP-PHB4K70
@@ -17,25 +17,25 @@
 # CPU Physical cores : 6
 # CPU Logical cores  : 12
 # Host memory        : 16840 MB
-# Swap memory        : 9126 MB
-# Total Virtual      : 25967 MB
-# Available Virtual  : 13067 MB
+# Swap memory        : 2333 MB
+# Total Virtual      : 19174 MB
+# Available Virtual  : 7970 MB
 #-----------------------------------------------------------
-start_gui
-open_project D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.xpr
-WARNING: [Board 49-26] cannot add Board Part xilinx.com:vek280_es:part0:1.0 available at C:/Xilinx/Vivado/2024.2/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vek280/es/rev_a/1.0/board.xml as part xcve2802-vsvh1760-2lp-e-s-es1 specified in board_part file is either invalid or not available
-WARNING: [Board 49-26] cannot add Board Part xilinx.com:vek280_es:part0:1.1 available at C:/Xilinx/Vivado/2024.2/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vek280/es/rev_a/1.1/board.xml as part xcve2802-vsvh1760-2lp-e-s-es1 specified in board_part file is either invalid or not available
-WARNING: [Board 49-26] cannot add Board Part xilinx.com:vek280_es_revb:part0:1.0 available at C:/Xilinx/Vivado/2024.2/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vek280/es/rev_b/1.0/board.xml as part xcve2802-vsvh1760-2mp-e-s-es1 specified in board_part file is either invalid or not available
-WARNING: [Board 49-26] cannot add Board Part xilinx.com:vek280_es_revb:part0:1.1 available at C:/Xilinx/Vivado/2024.2/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vek280/es/rev_b/1.1/board.xml as part xcve2802-vsvh1760-2mp-e-s-es1 specified in board_part file is either invalid or not available
-WARNING: [Board 49-26] cannot add Board Part xilinx.com:zcu208ld:part0:2.0 available at C:/Xilinx/Vivado/2024.2/data/xhub/boards/XilinxBoardStore/boards/Xilinx/zcu208ld/production/2.0/board.xml as part xczu58dr-fsvg1517-2-i specified in board_part file is either invalid or not available
-WARNING: [Board 49-26] cannot add Board Part xilinx.com:zcu216ld:part0:2.0 available at C:/Xilinx/Vivado/2024.2/data/xhub/boards/XilinxBoardStore/boards/Xilinx/zcu216ld/production/2.0/board.xml as part xczu59dr-ffvf1760-2-i specified in board_part file is either invalid or not available
-WARNING: [Board 49-26] cannot add Board Part xilinx.com:zcu670ld:part0:1.0 available at C:/Xilinx/Vivado/2024.2/data/xhub/boards/XilinxBoardStore/boards/Xilinx/zcu670ld/1.0/board.xml as part xczu57dr-fsve1156-2-i specified in board_part file is either invalid or not available
+source C:/Users/admin/AppData/Local/Temp/gen_ip_inst.tcl -notrace
 Scanning sources...
 Finished scanning sources
 INFO: [IP_Flow 19-234] Refreshing IP repositories
-INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-1700] Loaded user IP repository 'd:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/ip_repo'.
 INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2024.2/data/ip'.
-open_project: Time (s): cpu = 00:00:29 ; elapsed = 00:00:13 . Memory (MB): peak = 1669.660 ; gain = 422.504
-update_compile_order -fileset sources_1
-exit
-INFO: [Common 17-206] Exiting Vivado at Sun May 17 14:12:26 2026...
+open_project: Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 654.266 ; gain = 213.504
+INFO: [IP_Flow 19-1839] IP Catalog is up to date.
+INFO: [IP_Flow 19-1686] Generating 'Instantiation Template' target for IP 'jls_encoder_ip'...
+INFO: [IP_Flow 19-1686] Generating 'Synthesis' target for IP 'jls_encoder_ip'...
+INFO: [IP_Flow 19-1686] Generating 'Simulation' target for IP 'jls_encoder_ip'...
+IP_CONFIG: N_E=1 NEAR=000 LB_DEPTH=1024
+IP_SYNTH_FILES:
+  d:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.gen/sources_1/ip/jls_encoder_ip/jls_encoder_ip_bmstub.v
+  d:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.gen/sources_1/ip/jls_encoder_ip/src/jls_encoder.v
+  d:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.gen/sources_1/ip/jls_encoder_ip/synth/jls_encoder_ip.v
+DONE_GEN
+INFO: [Common 17-206] Exiting Vivado at Mon Jul 13 21:58:43 2026...

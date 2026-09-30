@@ -1,185 +1,35 @@
-#-----------------------------------------------------------
-# xsim v2024.2 (64-bit)
-# SW Build 5239630 on Fri Nov 08 22:35:27 MST 2024
-# IP Build 5239520 on Sun Nov 10 16:12:51 MST 2024
-# SharedData Build 5239561 on Fri Nov 08 14:39:27 MST 2024
-# Start of session at: Mon Jun  1 23:24:40 2026
-# Process ID         : 27548
-# Current directory  : D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.sim/sim_1/behav/xsim
-# Command line       : xsim.exe -log simulate.log -mode tcl -source {xsim.dir/tb_top_jls_vertical_behav/xsim_script.tcl}
-# Log file           : D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.sim/sim_1/behav/xsim/simulate.log
-# Journal file       : D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.sim/sim_1/behav/xsim\xsim.jou
-# Running On         : DESKTOP-PHB4K70
-# Platform           : Windows Server 2016 or Windows 10
-# Operating System   : 26200
-# Processor Detail   : 11th Gen Intel(R) Core(TM) i5-11400H @ 2.70GHz
-# CPU Frequency      : 2688 MHz
-# CPU Physical cores : 6
-# CPU Logical cores  : 12
-# Host memory        : 16840 MB
-# Swap memory        : 7247 MB
-# Total Virtual      : 24088 MB
-# Available Virtual  : 11497 MB
-#-----------------------------------------------------------
-source xsim.dir/tb_top_jls_vertical_behav/xsim_script.tcl
-# xsim {tb_top_jls_vertical_behav} -wdb {NUL} -autoloadwcfg -tclbatch {tb_top_jls_vertical.tcl}
 Time resolution is 1 ps
-source tb_top_jls_vertical.tcl
-## run all
-image_generator: opened D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.sim/images/world_gray_3000x3000.pgm  3000x3000 depth=255  streaming 3000x3000
+WARNING: Too many words specified in data file D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/sources_1/new/rom_wide.hex
 WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
 WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
 WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
 WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
-[0] Output capture ready (in-memory buffers)
-[600833] FIRST SOF enc0: iw=3000 swath_h=1500 col0=1500
-[674166] FIRST e_e[0]: rd_cnt=0 a_ii=0 j_sof=1 j_e=0 a_wl=1499
-[222585277] DBG rd=30298/30298 st=1 e_e=00 wr=48892/48000 full=00 pix=96894
-[444807500] DBG rd=63631/63631 st=1 e_e=00 wr=99000/97892 full=00 pix=196894
-[667029722] DBG rd=96965/96965 st=1 e_e=00 wr=148500/148392 full=00 pix=296894
-[889251944] DBG rd=130298/130298 st=1 e_e=00 wr=198892/198000 full=00 pix=396894
-[1111474166] DBG rd=163631/163631 st=1 e_e=00 wr=249000/247892 full=00 pix=496894
-[1333696388] DBG rd=196965/196965 st=1 e_e=00 wr=298500/298392 full=00 pix=596894
-[1555918611] DBG rd=230298/230298 st=1 e_e=00 wr=348892/348000 full=00 pix=696894
-[1778140833] DBG rd=263631/263631 st=1 e_e=00 wr=399000/397892 full=00 pix=796894
-[2000363055] DBG rd=296965/296965 st=1 e_e=00 wr=448500/448392 full=00 pix=896894
-[2222585277] DBG rd=330298/330298 st=1 e_e=01 wr=498892/498000 full=00 pix=996894
-[2444807500] DBG rd=363631/363631 st=1 e_e=10 wr=549000/547892 full=00 pix=1096894
-[2667029722] DBG rd=396965/396965 st=1 e_e=00 wr=598500/598392 full=00 pix=1196894
-[2889251944] DBG rd=430298/430298 st=1 e_e=00 wr=648892/648000 full=00 pix=1296894
-[3111474166] DBG rd=463631/463631 st=1 e_e=00 wr=699000/697892 full=00 pix=1396894
-[3333696388] DBG rd=496965/496965 st=1 e_e=10 wr=748500/748392 full=00 pix=1496894
-[3555918611] DBG rd=530298/530298 st=1 e_e=00 wr=798892/798000 full=00 pix=1596894
-[3778140833] DBG rd=563631/563631 st=1 e_e=00 wr=849000/847892 full=00 pix=1696894
-[4000363055] DBG rd=596965/596965 st=1 e_e=00 wr=898500/898392 full=00 pix=1796894
-[4222585277] DBG rd=630298/630298 st=1 e_e=00 wr=948892/948000 full=00 pix=1896894
-[4444807500] DBG rd=663631/663631 st=1 e_e=00 wr=999000/997892 full=00 pix=1996894
-[4667029722] DBG rd=696965/696965 st=1 e_e=00 wr=1048500/1048392 full=00 pix=2096894
-[4889251944] DBG rd=730298/730298 st=1 e_e=00 wr=1098892/1098000 full=00 pix=2196894
-[5111474166] DBG rd=763631/763631 st=1 e_e=10 wr=1149000/1147892 full=00 pix=2296894
-[5333696388] DBG rd=796965/796965 st=1 e_e=00 wr=1198500/1198392 full=00 pix=2396894
-[5555918611] DBG rd=830298/830298 st=1 e_e=00 wr=1248892/1248000 full=00 pix=2496894
-[5778140833] DBG rd=863631/863631 st=1 e_e=00 wr=1299000/1297892 full=00 pix=2596894
-[6000363055] DBG rd=896965/896965 st=1 e_e=00 wr=1348500/1348392 full=00 pix=2696894
-[6222585277] DBG rd=930298/930298 st=1 e_e=00 wr=1398892/1398000 full=00 pix=2796894
-[6444807500] DBG rd=963631/963631 st=1 e_e=00 wr=1449000/1447892 full=00 pix=2896894
-[6667029722] DBG rd=996965/996965 st=1 e_e=00 wr=1498500/1498392 full=00 pix=2996894
-[6889251944] DBG rd=1030298/1030298 st=1 e_e=00 wr=1548892/1548000 full=00 pix=3096894
-[7111474166] DBG rd=1063631/1063631 st=1 e_e=00 wr=1599000/1597892 full=00 pix=3196894
-[7333696388] DBG rd=1096965/1096965 st=1 e_e=00 wr=1648500/1648392 full=00 pix=3296894
-[7555918611] DBG rd=1130298/1130298 st=1 e_e=00 wr=1698892/1698000 full=00 pix=3396894
-[7778140833] DBG rd=1163631/1163631 st=1 e_e=00 wr=1749000/1747892 full=00 pix=3496894
-[8000363055] DBG rd=1196965/1196965 st=1 e_e=00 wr=1798500/1798392 full=00 pix=3596894
-[8222585277] DBG rd=1230298/1230298 st=1 e_e=00 wr=1848892/1848000 full=00 pix=3696894
-[8444807500] DBG rd=1263631/1263631 st=1 e_e=00 wr=1899000/1897892 full=00 pix=3796894
-[8667029722] DBG rd=1296965/1296965 st=1 e_e=01 wr=1948500/1948392 full=00 pix=3896894
-[8889251944] DBG rd=1330298/1330298 st=1 e_e=00 wr=1998892/1998000 full=00 pix=3996894
-[9111474166] DBG rd=1363631/1363631 st=1 e_e=00 wr=2049000/2047892 full=00 pix=4096894
-[9333696388] DBG rd=1396965/1396965 st=1 e_e=00 wr=2098500/2098392 full=00 pix=4196894
-[9555918611] DBG rd=1430298/1430298 st=1 e_e=00 wr=2148892/2148000 full=00 pix=4296894
-[9778140833] DBG rd=1463631/1463631 st=1 e_e=00 wr=2199000/2197892 full=00 pix=4396894
-[10000363055] DBG rd=1496965/1496965 st=1 e_e=10 wr=2248500/2248392 full=00 pix=4496894
-[10222585277] DBG rd=1530298/1530298 st=1 e_e=01 wr=2298892/2298000 full=00 pix=4596894
-[10444807500] DBG rd=1563631/1563631 st=1 e_e=00 wr=2349000/2347892 full=00 pix=4696894
-[10667029722] DBG rd=1596965/1596965 st=1 e_e=00 wr=2398500/2398392 full=00 pix=4796894
-[10889251944] DBG rd=1630298/1630298 st=1 e_e=01 wr=2448892/2448000 full=00 pix=4896894
-[11111474166] DBG rd=1663631/1663631 st=1 e_e=00 wr=2499000/2497892 full=00 pix=4996894
-[11333696388] DBG rd=1696965/1696965 st=1 e_e=00 wr=2548500/2548392 full=00 pix=5096894
-[11555918611] DBG rd=1730298/1730298 st=1 e_e=00 wr=2598892/2598000 full=00 pix=5196894
-[11778140833] DBG rd=1763631/1763631 st=1 e_e=00 wr=2649000/2647892 full=00 pix=5296894
-[12000363055] DBG rd=1796965/1796965 st=1 e_e=00 wr=2698500/2698392 full=00 pix=5396894
-[12222585277] DBG rd=1830298/1830298 st=1 e_e=00 wr=2748892/2748000 full=00 pix=5496894
-[12444807500] DBG rd=1863631/1863631 st=1 e_e=00 wr=2799000/2797892 full=00 pix=5596894
-[12667029722] DBG rd=1896965/1896965 st=1 e_e=01 wr=2848500/2848392 full=00 pix=5696894
-[12889251944] DBG rd=1930298/1930298 st=1 e_e=00 wr=2898892/2898000 full=00 pix=5796894
-[13111474166] DBG rd=1963631/1963631 st=1 e_e=10 wr=2949000/2947892 full=00 pix=5896894
-[13333696388] DBG rd=1996965/1996965 st=1 e_e=00 wr=2998500/2998392 full=00 pix=5996894
-[13555918611] DBG rd=2030298/2030298 st=1 e_e=00 wr=3048892/3048000 full=00 pix=6096894
-[13778140833] DBG rd=2063631/2063631 st=1 e_e=00 wr=3099000/3097892 full=00 pix=6196894
-[14000363055] DBG rd=2096965/2096965 st=1 e_e=10 wr=3148500/3148392 full=00 pix=6296894
-[14222585277] DBG rd=2130298/2130298 st=1 e_e=01 wr=3198892/3198000 full=00 pix=6396894
-[14444807500] DBG rd=2163631/2163631 st=1 e_e=00 wr=3249000/3247892 full=00 pix=6496894
-[14667029722] DBG rd=2196965/2196965 st=1 e_e=10 wr=3298500/3298392 full=00 pix=6596894
-[14889251944] DBG rd=2230298/2230298 st=1 e_e=00 wr=3348892/3348000 full=00 pix=6696894
-[15020718611] SLICE enc0[0] done: words=269928 bytes=539855
-[15020718611] SLICE enc1[0] done: words=225603 bytes=451205
-[15111474166] DBG rd=10625/10625 st=1 e_e=00 wr=3399000/3397892 full=00 pix=6796894
-[15333696388] DBG rd=43959/43959 st=1 e_e=10 wr=3448500/3448392 full=00 pix=6896894
-[15555918611] DBG rd=77292/77292 st=1 e_e=00 wr=3498892/3498000 full=00 pix=6996894
-[15778140833] DBG rd=110625/110625 st=1 e_e=00 wr=3549000/3547892 full=00 pix=7096894
-[16000363055] DBG rd=143959/143959 st=1 e_e=00 wr=3598500/3598392 full=00 pix=7196894
-[16222585277] DBG rd=177292/177292 st=1 e_e=10 wr=3648892/3648000 full=00 pix=7296894
-[16444807500] DBG rd=210625/210625 st=1 e_e=10 wr=3699000/3697892 full=00 pix=7396894
-[16667029722] DBG rd=243959/243959 st=1 e_e=10 wr=3748500/3748392 full=00 pix=7496894
-[16889251944] DBG rd=277292/277292 st=1 e_e=10 wr=3798892/3798000 full=00 pix=7596894
-[17111474166] DBG rd=310625/310625 st=1 e_e=00 wr=3849000/3847892 full=00 pix=7696894
-[17333696388] DBG rd=343959/343959 st=1 e_e=00 wr=3898500/3898392 full=00 pix=7796894
-[17555918611] DBG rd=377292/377292 st=1 e_e=01 wr=3948892/3948000 full=00 pix=7896894
-[17778140833] DBG rd=410625/410625 st=1 e_e=00 wr=3999000/3997892 full=00 pix=7996894
-[18000363055] DBG rd=443959/443959 st=1 e_e=00 wr=4048500/4048392 full=00 pix=8096894
-[18222585277] DBG rd=477292/477292 st=1 e_e=10 wr=4098892/4098000 full=00 pix=8196894
-[18444807500] DBG rd=510625/510625 st=1 e_e=10 wr=4149000/4147892 full=00 pix=8296894
-[18667029722] DBG rd=543959/543959 st=1 e_e=10 wr=4198500/4198392 full=00 pix=8396894
-[18889251944] DBG rd=577292/577292 st=1 e_e=10 wr=4248892/4248000 full=00 pix=8496894
-[19111474166] DBG rd=610625/610625 st=1 e_e=10 wr=4299000/4297892 full=00 pix=8596894
-[19333696388] DBG rd=643959/643959 st=1 e_e=00 wr=4348500/4348392 full=00 pix=8696894
-[19555918611] DBG rd=677292/677292 st=1 e_e=00 wr=4398892/4398000 full=00 pix=8796894
-[19778140833] DBG rd=710625/710625 st=1 e_e=00 wr=4449000/4447892 full=00 pix=8896894
-[20000363055] DBG rd=743959/743959 st=1 e_e=00 wr=4498500/4498392 full=00 pix=8996894
-image_generator: done streaming 9000000 pixels
-[20222585277] DBG rd=777292/777292 st=1 e_e=00 wr=4500000/4500000 full=00 pix=9000000
-[20444807500] DBG rd=810625/810625 st=1 e_e=00 wr=4500000/4500000 full=00 pix=9000000
-[20667029722] DBG rd=843959/843959 st=1 e_e=00 wr=4500000/4500000 full=00 pix=9000000
-[20889251944] DBG rd=877292/877292 st=1 e_e=00 wr=4500000/4500000 full=00 pix=9000000
-[21111474166] DBG rd=910625/910625 st=1 e_e=00 wr=4500000/4500000 full=00 pix=9000000
-[21333696388] DBG rd=943959/943959 st=1 e_e=10 wr=4500000/4500000 full=00 pix=9000000
-[21555918611] DBG rd=977292/977292 st=1 e_e=00 wr=4500000/4500000 full=00 pix=9000000
-[21778140833] DBG rd=1010625/1010625 st=1 e_e=00 wr=4500000/4500000 full=00 pix=9000000
-[22000363055] DBG rd=1043959/1043959 st=1 e_e=00 wr=4500000/4500000 full=00 pix=9000000
-[22222585277] DBG rd=1077292/1077292 st=1 e_e=00 wr=4500000/4500000 full=00 pix=9000000
-[22444807500] DBG rd=1110625/1110625 st=1 e_e=00 wr=4500000/4500000 full=00 pix=9000000
-[22667029722] DBG rd=1143959/1143959 st=1 e_e=00 wr=4500000/4500000 full=00 pix=9000000
-[22889251944] DBG rd=1177292/1177292 st=1 e_e=00 wr=4500000/4500000 full=00 pix=9000000
-[23111474166] DBG rd=1210625/1210625 st=1 e_e=00 wr=4500000/4500000 full=00 pix=9000000
-[23333696388] DBG rd=1243959/1243959 st=1 e_e=00 wr=4500000/4500000 full=00 pix=9000000
-[23555918611] DBG rd=1277292/1277292 st=1 e_e=00 wr=4500000/4500000 full=00 pix=9000000
-[23778140833] DBG rd=1310625/1310625 st=1 e_e=00 wr=4500000/4500000 full=00 pix=9000000
-[24000363055] DBG rd=1343959/1343959 st=1 e_e=00 wr=4500000/4500000 full=00 pix=9000000
-[24222585277] DBG rd=1377292/1377292 st=1 e_e=00 wr=4500000/4500000 full=00 pix=9000000
-[24444807500] DBG rd=1410625/1410625 st=1 e_e=00 wr=4500000/4500000 full=00 pix=9000000
-[24667029722] DBG rd=1443959/1443959 st=1 e_e=00 wr=4500000/4500000 full=00 pix=9000000
-[24889251944] DBG rd=1477292/1477292 st=1 e_e=00 wr=4500000/4500000 full=00 pix=9000000
-[25111474166] DBG rd=1510625/1510625 st=1 e_e=00 wr=4500000/4500000 full=00 pix=9000000
-[25333696388] DBG rd=1543959/1543959 st=1 e_e=00 wr=4500000/4500000 full=00 pix=9000000
-[25555918611] DBG rd=1577292/1577292 st=1 e_e=00 wr=4500000/4500000 full=00 pix=9000000
-[25778140833] DBG rd=1610625/1610625 st=1 e_e=00 wr=4500000/4500000 full=00 pix=9000000
-[26000363055] DBG rd=1643959/1643959 st=1 e_e=00 wr=4500000/4500000 full=00 pix=9000000
-[26222585277] DBG rd=1677292/1677292 st=1 e_e=00 wr=4500000/4500000 full=00 pix=9000000
-[26444807500] DBG rd=1710625/1710625 st=1 e_e=00 wr=4500000/4500000 full=00 pix=9000000
-[26667029722] DBG rd=1743959/1743959 st=1 e_e=00 wr=4500000/4500000 full=00 pix=9000000
-[26889251944] DBG rd=1777292/1777292 st=1 e_e=00 wr=4500000/4500000 full=00 pix=9000000
-[27111474166] DBG rd=1810625/1810625 st=1 e_e=00 wr=4500000/4500000 full=00 pix=9000000
-[27333696388] DBG rd=1843959/1843959 st=1 e_e=01 wr=4500000/4500000 full=00 pix=9000000
-[27555918611] DBG rd=1877292/1877292 st=1 e_e=00 wr=4500000/4500000 full=00 pix=9000000
-[27778140833] DBG rd=1910625/1910625 st=1 e_e=00 wr=4500000/4500000 full=00 pix=9000000
-[28000363055] DBG rd=1943959/1943959 st=1 e_e=00 wr=4500000/4500000 full=00 pix=9000000
-[28222585277] DBG rd=1977292/1977292 st=1 e_e=00 wr=4500000/4500000 full=00 pix=9000000
-[28444807500] DBG rd=2010625/2010625 st=1 e_e=00 wr=4500000/4500000 full=00 pix=9000000
-[28667029722] DBG rd=2043959/2043959 st=1 e_e=00 wr=4500000/4500000 full=00 pix=9000000
-[28889251944] DBG rd=2077292/2077292 st=1 e_e=00 wr=4500000/4500000 full=00 pix=9000000
-[29111474166] DBG rd=2110625/2110625 st=1 e_e=00 wr=4500000/4500000 full=00 pix=9000000
-[29333696388] DBG rd=2143959/2143959 st=1 e_e=00 wr=4500000/4500000 full=00 pix=9000000
-[29555918611] DBG rd=2177292/2177292 st=1 e_e=00 wr=4500000/4500000 full=00 pix=9000000
-[29778140833] DBG rd=2210625/2210625 st=1 e_e=00 wr=4500000/4500000 full=00 pix=9000000
-[30000363055] DBG rd=2243959/2243959 st=1 e_e=00 wr=4500000/4500000 full=00 pix=9000000
-[30040758611] SLICE enc0[1] done: words=160564 bytes=321128
-[30040758611] DONE enc0 total_bytes=860983
-[30040758611] SLICE enc1[1] done: words=287180 bytes=574359
-[30040758611] DONE enc1 total_bytes=1025564
-[30040869722] output.jls written: 1886547 bytes (4 slices, swath-major enc-minor order)
-=== All 4 encoder slices complete ===
-$finish called at time : 30040869722 ps : File "D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/sim_1/imports/FPGA Encoders/tb_top_jls_vertical.v" Line 186
-run: Time (s): cpu = 00:00:00 ; elapsed = 00:11:32 . Memory (MB): peak = 202.984 ; gain = 0.000
-xsim: Time (s): cpu = 00:00:00 ; elapsed = 00:11:34 . Memory (MB): peak = 202.984 ; gain = 33.449
-xsim% INFO: xsimkernel Simulation Memory Usage: 1075080 KB (Peak: 1075080 KB), Simulation CPU Usage: 691077 ms
-INFO: [Common 17-206] Exiting xsim at Mon Jun  1 23:36:15 2026...
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+WARNING: Behavioral models for independent clock FIFO configurations do not model synchronization delays. The behavioral models are functionally correct, and will represent the behavior of the configured FIFO. See the FIFO Generator User Guide for more information.
+INFO: xsimkernel Simulation Memory Usage: 45460 KB (Peak: 45460 KB), Simulation CPU Usage: 2478889 ms

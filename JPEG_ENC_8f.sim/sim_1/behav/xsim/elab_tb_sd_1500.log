@@ -1,0 +1,55 @@
+Vivado Simulator v2024.2.0
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
+Running: C:/Xilinx/Vivado/2024.2/bin/unwrapped/win64.o/xelab.exe --debug typical --relax --mt 2 -L xil_defaultlib -L fifo_generator_v13_2_11 -L unisims_ver -L unimacro_ver -L secureip -L xpm --snapshot tb_sd_1500 xil_defaultlib.tb_jls_serial_demo xil_defaultlib.glbl -log elab_tb_sd_1500.log 
+Using 2 slave threads.
+Starting static elaboration
+Pass Through NonSizing Optimizer
+WARNING: [VRFC 10-3091] actual bit length 16 differs from formal bit length 14 for port 'y_cnt_d' [D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/sources_1/imports/FPGA Encoders/jls_encoder_axis.v:140]
+WARNING: [VRFC 10-3091] actual bit length 1 differs from formal bit length 9 for port 'rd_data_count' [D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/sources_1/new/fifo_wrapper_input.v:67]
+WARNING: [VRFC 10-3091] actual bit length 1 differs from formal bit length 9 for port 'wr_data_count' [D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/sources_1/new/fifo_wrapper_input.v:68]
+WARNING: [VRFC 10-3091] actual bit length 16 differs from formal bit length 14 for port 'y_cnt' [D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/sources_1/imports/FPGA Encoders/jls_encoder_axis.v:186]
+WARNING: [VRFC 10-3091] actual bit length 168 differs from formal bit length 14 for port 'total_lines' [D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/sources_1/imports/FPGA Encoders/jls_encoder_axis.v:187]
+WARNING: [VRFC 10-3091] actual bit length 192 differs from formal bit length 16 for port 'image_width' [D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/sources_1/imports/FPGA Encoders/jls_encoder_axis.v:188]
+WARNING: [VRFC 10-3091] actual bit length 192 differs from formal bit length 16 for port 'i_w_r' [D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/sources_1/imports/FPGA Encoders/jls_encoder_axis.v:208]
+WARNING: [VRFC 10-3091] actual bit length 168 differs from formal bit length 14 for port 'i_h_r' [D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/sources_1/imports/FPGA Encoders/jls_encoder_axis.v:209]
+WARNING: [VRFC 10-3091] actual bit length 192 differs from formal bit length 16 for port 'i_w' [D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/sources_1/imports/FPGA Encoders/jls_encoder_axis.v:232]
+WARNING: [VRFC 10-3091] actual bit length 168 differs from formal bit length 14 for port 'i_h' [D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/sources_1/imports/FPGA Encoders/jls_encoder_axis.v:233]
+WARNING: [VRFC 10-3091] actual bit length 16 differs from formal bit length 14 for port 'i_w' [D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/sources_1/new/encoder_wrapper.v:62]
+WARNING: [VRFC 10-3091] actual bit length 1 differs from formal bit length 3 for port 'is_last_encoder' [D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/sources_1/new/encoder_wrapper.v:70]
+WARNING: [VRFC 10-3091] actual bit length 4 differs from formal bit length 2 for port 'cur_enc' [D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/sources_1/new/encoder_wrapper.v:71]
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling module unisims_ver.ISERDESE2(DATA_RATE="SDR",DATA_W...
+Compiling module xil_defaultlib.iserdes_byte_in_default
+Compiling module xil_defaultlib.gearbox_afifo(AW=12)
+Compiling module unisims_ver.IBUFDS
+Compiling module unisims_ver.MMCME2_ADV(CLKFBOUT_MULT_F=24.75...
+Compiling module unisims_ver.BUFG
+Compiling module xil_defaultlib.clk_wiz_0_clk_wiz
+Compiling module xil_defaultlib.clk_wiz_0
+Compiling module xil_defaultlib.fifo_reset_bram_async
+Compiling module xil_defaultlib.axis_pixel_in(N_E=12)
+Compiling module xil_defaultlib.splitter_block(N_H=12,N_V=1,N_E=...
+Compiling module fifo_generator_v13_2_11.fifo_generator_v13_2_11_sync_sta...
+Compiling module fifo_generator_v13_2_11.fifo_generator_v13_2_11_bhv_ver_...
+Compiling module fifo_generator_v13_2_11.fifo_generator_v13_2_11_CONV_VER...
+Compiling module fifo_generator_v13_2_11.fifo_generator_vlog_beh(C_DATA_C...
+Compiling module xil_defaultlib.fifo_generator_0
+Compiling module xil_defaultlib.fifo_wrapper_input(N_E=12)
+Compiling module xil_defaultlib.fifo_write_control(NUM_ENCODERS=...
+Compiling module xil_defaultlib.fifo_read_control(NUM_ENCODERS=1...
+Compiling module xil_defaultlib.jls_encoder(N_E=1)
+Compiling module xil_defaultlib.encoder_wrapper(N_E=12,N_H=12,N_...
+Compiling module fifo_generator_v13_2_11.fifo_generator_v13_2_11_sync_sta...
+Compiling module fifo_generator_v13_2_11.fifo_generator_v13_2_11_bhv_ver_...
+Compiling module fifo_generator_v13_2_11.fifo_generator_v13_2_11_CONV_VER...
+Compiling module fifo_generator_v13_2_11.fifo_generator_vlog_beh(C_DATA_C...
+Compiling module xil_defaultlib.fifo_output
+Compiling module xil_defaultlib.fifo_wrapper_output(N_E=12)
+Compiling module xil_defaultlib.jls_encoder_axis(N_E=12,N_H=12)
+Compiling module xil_defaultlib.tb_jls_serial_demo
+Compiling module xil_defaultlib.glbl
+Built simulation snapshot tb_sd_1500

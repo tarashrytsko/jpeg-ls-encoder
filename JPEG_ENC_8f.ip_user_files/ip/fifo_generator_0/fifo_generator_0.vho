@@ -1,5 +1,5 @@
 -- (c) Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
--- (c) Copyright 2022-2025 Advanced Micro Devices, Inc. All rights reserved.
+-- (c) Copyright 2022-2026 Advanced Micro Devices, Inc. All rights reserved.
 -- 
 -- This file contains confidential and proprietary information
 -- of AMD and is protected under U.S. and international copyright
@@ -68,8 +68,8 @@ COMPONENT fifo_generator_0
     almost_empty : OUT STD_LOGIC;
     valid : OUT STD_LOGIC;
     underflow : OUT STD_LOGIC;
-    rd_data_count : OUT STD_LOGIC_VECTOR(16 DOWNTO 0);
-    wr_data_count : OUT STD_LOGIC_VECTOR(16 DOWNTO 0);
+    rd_data_count : OUT STD_LOGIC_VECTOR(8 DOWNTO 0);
+    wr_data_count : OUT STD_LOGIC_VECTOR(8 DOWNTO 0);
     wr_rst_busy : OUT STD_LOGIC;
     rd_rst_busy : OUT STD_LOGIC 
   );

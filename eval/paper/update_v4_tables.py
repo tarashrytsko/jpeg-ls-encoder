@@ -171,24 +171,17 @@ replace_table(5, [
 
 # ----------------------------------------------------------------- Table VII (index 6): mission power
 cols = ['n12_45', 'n16_32', 'b12_45', 'b16_45']
-comp = lambda k: [P[t]['comp'][k] for t in cols]
-hdr7 = {'n12_45': '12 × 45 MHz 8-bit', 'n16_32': '16 × 32 MHz 8-bit', 'b12_45': '12 × 45 MHz 12-bit', 'b16_45': '12 × 45 MHz 16-bit'}
-t7 = [['Component (W)'] + [hdr7[t] + (' †' if t in STAND_IN else '') for t in cols],
-      ['Clocks (distribution)'] + comp('Clocks'),
-      ['Slice logic (LUT/FF)'] + comp('Slice Logic'),
-      ['Signals (routing)'] + comp('Signals'),
-      ['Block RAM'] + comp('Block RAM'),
-      ['MMCM (clock generation)'] + comp('MMCM'),
-      ['I/O'] + comp('I/O'),
-      ['Dynamic total'] + [P[t]['dyn'] for t in cols],
-      ['Device static'] + [P[t]['stat'] for t in cols],
-      ['Total on-chip (SAIF)'] + [P[t]['total'] for t in cols],
-      ['Total on-chip (vector-less)'] + [PV[t]['total'] for t in cols],
+hdr7 = {'n12_45': '12 lanes, 8-bit, 45 MHz', 'n16_32': '16 lanes, 8-bit, 32 MHz',
+        'b12_45': '12 lanes, 12-bit, 45 MHz', 'b16_45': '12 lanes, 16-bit, 45 MHz'}
+t7 = [['Power (W)'] + [hdr7[t] + (' †' if t in STAND_IN else '') for t in cols],
+      ['Dynamic'] + [P[t]['dyn'] for t in cols],
+      ['Static'] + [P[t]['stat'] for t in cols],
+      ['Total on-chip'] + [P[t]['total'] for t in cols],
       ['Total, worst case (max. process, 70 °C)'] + [PW[t]['total'] for t in cols],
       ['Energy per pixel (nJ)'] + ['%.2f' % (float(P[t]['total']) / RATE[t] * 1e9) for t in cols]]
 if STAND_IN:
     t7.append(['† vector-less values; SAIF run in progress', '', '', '', ''])
-replace_table(6, t7, [1600, 800, 800, 800, 800])
+replace_table(6, t7, [1500, 825, 825, 825, 825])
 set_caption(6, 'ON-CHIP POWER OF THE MISSION BUILDS (POST-ROUTE, SAIF ACTIVITY, TYPICAL CORNER, 25 °C)')
 
 n12, n16, b12, b16 = (P[t] for t in cols)
@@ -196,8 +189,8 @@ set_paragraph('Power was estimated with Vivado',
     "Power was estimated with Vivado's power analyzer on the routed mission bitstreams (typical process "
     "corner, 25 °C), using switching activity (SAIF) recorded from a post-route functional simulation of "
     "the full streaming window of each build; these are tool estimates, not board measurements. Table VII "
-    "gives the breakdown, with the vector-less (default-activity) total and the worst-case corner for "
-    "reference. The 12-lane 45 MHz 8-bit mission build draws %s W on chip (%s W dynamic, %s W static), "
+    "gives the dynamic, static and total on-chip power, the total at the worst-case corner and the energy "
+    "per pixel. The 12-lane 45 MHz 8-bit mission build draws %s W on chip (%s W dynamic, %s W static), "
     "i.e. %.2f nJ per pixel; the 16-lane 32 MHz build draws %s W. Supporting 12- and 16-bit samples "
     "raises the total to %s W and %s, because the wider datapath roughly doubles the logic that "
     "toggles every clock. At the worst-case corner the static term grows to about 0.8 W, so the total "
@@ -296,35 +289,33 @@ rt = list(csv.DictReader(open(os.path.join(E, 'seu', 'rtl_injection.csv'))))
 by = defaultdict(list)
 for r in rt:
     by[r['name']].append(r)
-lab = {'A': 'Context RAM A', 'B': 'Context RAM B', 'C': 'Context RAM C', 'N': 'Context RAM N', 'LB': 'Line buffer'}
-rows10 = [['Upset location', 'Trials', 'No effect', 'Lane lost', 'Mean frame loss', 'Other lanes hit']]
-for k in ['A', 'B', 'C', 'N', 'LB']:
-    rs = by[k]
-    eff = [r for r in rs if r['outcome'] != 'masked']
-    rows10.append([lab[k] + ' (RTL)', str(len(rs)), str(len(rs) - len(eff)), str(len(eff)),
-                   '%.2f %%' % (100 * st.mean(float(r['frame_frac']) for r in rs)),
-                   str(sum(1 for r in rs if r['other_lanes_changed'] == 'True'))])
-for r in csv.DictReader(open(os.path.join(E, 'seu', 'stream_injection.csv'))):
-    if r['image'] != 'bm_1500x1500' or r['config'] not in ('1 lane (single core)', '12 lanes h12v1 (RTL)', '16 lanes h4v4 (RTL)'):
-        continue
-    lost = int(r['trials']) - int(r['masked'])
-    rows10.append(['Stored stream, ' + r['config'].replace(' (RTL)', '').replace('h12v1', '12×1').replace('h4v4', '4×4'),
-                   r['trials'], r['masked'], str(lost), '%.2f %%' % (100 * float(r['mean_frame_frac'])),
-                   'n/a' if r['lanes'] == '1' else '0'])
 tot_rtl = len(rt)
+NE_LANES = 12
 a9, b9 = paragraph_with('Dependability in orbit deserves explicit treatment')
+eff_of = {k: sum(1 for r in by[k] if r['outcome'] != 'masked') for k in ['A', 'B', 'C', 'N', 'LB']}
+n_per = len(by['A'])
+other = sum(1 for r in rt if r['other_lanes_changed'] == 'True')
+n_rej = sum(1 for r in rt if r['outcome'] == 'decode_error')
+sil = [int(r['corrupted_px']) for r in rt if r['outcome'] == 'silent_corruption']
+n_sil, sil_px = len(sil), '–'.join(sorted({str(v) for v in sil}, key=int)) or '0'
+assert n_rej + n_sil == sum(eff_of.values()), 'unclassified non-masked outcome'
+sj = {r['config']: r for r in csv.DictReader(open(os.path.join(E, 'seu', 'stream_injection.csv'))) if r['image'] == 'bm_1500x1500'}
+s1, s12 = sj['1 lane (single core)'], sj['12 lanes h12v1 (RTL)']
 lead9 = body_par(
     "Table IX quantifies the SEU exposure of the routed bitstreams as the number of essential configuration bits "
     "reported by Vivado (bits whose upset can alter the implemented circuit); multiplied by the per-bit upset rate "
-    "of the target orbit it gives the expected configuration upsets per day. Table X reports fault-injection "
-    "campaigns: single bit flips injected into one lane's context memories or line buffer at a random pixel of a "
-    "12-lane RTL simulation (300×300), and single bit flips in the stored compressed stream (1500×1500, decoded "
-    "with CharLS, which rejects a corrupted stream). None of the %d RTL injections affected another lane, so the "
-    "loss from one upset is bounded by one lane (1/12 of the frame), whereas a single-stream encoder loses the "
-    "whole frame." % tot_rtl)
-blk9 = (lead9 + new_table_block('SEU EXPOSURE OF THE ROUTED BITSTREAMS', rows9, [1300, 950, 950, 700, 900])
-        + new_table_block('FAULT-INJECTION RESULTS (SINGLE BIT FLIPS)', rows10,
-                          [1600, 520, 620, 620, 820, 620]))
+    "of the target orbit it gives the expected configuration upsets per day. Fault injection quantifies containment. "
+    "In a 12-lane RTL simulation (300×300), %d single bit flips were injected at random pixels into each of one "
+    "lane's context memories A, B, C and N and its line buffer: the output changed in %d, %d, %d, %d and %d of the "
+    "%d trials, respectively. Every such upset stayed inside the struck lane: the decoder rejected that lane's stream "
+    "in %d cases and decoded it with %s wrong pixels in %d case%s, while the other %d lanes stayed byte-identical "
+    "(%d of %d injections affected another lane). Single bit flips in the stored "
+    "compressed stream (%s flips per configuration, 1500×1500, decoded with CharLS) lost %.0f %% of the frame with a "
+    "single stream but only one lane, %.1f %% of the frame, with 12 lanes." % (
+        n_per, eff_of['A'], eff_of['B'], eff_of['C'], eff_of['N'], eff_of['LB'], n_per, n_rej, sil_px, n_sil,
+        '' if n_sil == 1 else 's', NE_LANES - 1, other, tot_rtl,
+        s1['trials'], 100 * float(s1['mean_frame_frac']), 100 * float(s12['mean_frame_frac'])))
+blk9 = lead9 + new_table_block('SEU EXPOSURE OF THE ROUTED BITSTREAMS', rows9, [1300, 950, 950, 700, 900])
 insert_after(b9, blk9)
 
 open(DOC, 'w', encoding='utf8').write(x)

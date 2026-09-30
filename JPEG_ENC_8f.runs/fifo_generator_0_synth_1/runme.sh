@@ -25,7 +25,7 @@ else
 fi
 export LD_LIBRARY_PATH
 
-HD_PWD='D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_v8b/JPEG_ENC_v8b.runs/fifo_generator_0_synth_1'
+HD_PWD='D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.runs/fifo_generator_0_synth_1'
 cd "$HD_PWD"
 
 HD_LOG=runme.log

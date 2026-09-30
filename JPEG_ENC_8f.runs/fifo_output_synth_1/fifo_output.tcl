@@ -4,7 +4,7 @@
 
 set TIME_start [clock seconds] 
 namespace eval ::optrace {
-  variable script "D:/techbistro/upwork/JPEG Encoder Project/JPEG_ENC_v6/JPEG_ENC_v6.runs/fifo_output_synth_1/fifo_output.tcl"
+  variable script "D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.runs/fifo_output_synth_1/fifo_output.tcl"
   variable category "vivado_synth"
 }
 
@@ -56,9 +56,6 @@ if {$::dispatch::connected} {
 }
 
 OPTRACE "fifo_output_synth_1" START { ROLLUP_AUTO }
-set_param tcl.statsThreshold 360
-set_msg_config  -id {17-179}  -suppress 
-set_msg_config  -id {17-179}  -suppress 
 set_param project.vivado.isBlockSynthRun true
 set_msg_config -msgmgr_mode ooc_run
 OPTRACE "Creating in-memory project" START { }
@@ -68,20 +65,20 @@ set_param project.singleFileAddWarning.threshold 0
 set_param project.compositeFile.enableAutoGeneration 0
 set_param synth.vivado.isSynthRun true
 set_msg_config -source 4 -id {IP_Flow 19-2162} -severity warning -new_severity info
-set_property webtalk.parent_dir {D:/techbistro/upwork/JPEG Encoder Project/JPEG_ENC_v6/JPEG_ENC_v6.cache/wt} [current_project]
-set_property parent.project_path {D:/techbistro/upwork/JPEG Encoder Project/JPEG_ENC_v6/JPEG_ENC_v6.xpr} [current_project]
+set_property webtalk.parent_dir D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.cache/wt [current_project]
+set_property parent.project_path D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.xpr [current_project]
 set_property XPM_LIBRARIES {XPM_CDC XPM_MEMORY} [current_project]
 set_property default_lib xil_defaultlib [current_project]
 set_property target_language Verilog [current_project]
 set_property board_part xilinx.com:ac701:part0:1.4 [current_project]
-set_property ip_output_repo {d:/techbistro/upwork/JPEG Encoder Project/JPEG_ENC_v6/JPEG_ENC_v6.cache/ip} [current_project]
-set_property ip_cache_permissions {read write} [current_project]
+set_property ip_output_repo d:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.cache/ip [current_project]
+set_property ip_cache_permissions disable [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
-read_ip -quiet {{D:/techbistro/upwork/JPEG Encoder Project/JPEG_ENC_v6/JPEG_ENC_v6.srcs/sources_1/ip/fifo_output/fifo_output.xci}}
-set_property used_in_implementation false [get_files -all {{d:/techbistro/upwork/JPEG Encoder Project/JPEG_ENC_v6/JPEG_ENC_v6.gen/sources_1/ip/fifo_output/fifo_output.xdc}}]
-set_property used_in_implementation false [get_files -all {{d:/techbistro/upwork/JPEG Encoder Project/JPEG_ENC_v6/JPEG_ENC_v6.gen/sources_1/ip/fifo_output/fifo_output_clocks.xdc}}]
-set_property used_in_implementation false [get_files -all {{d:/techbistro/upwork/JPEG Encoder Project/JPEG_ENC_v6/JPEG_ENC_v6.gen/sources_1/ip/fifo_output/fifo_output_ooc.xdc}}]
+read_ip -quiet D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.srcs/sources_1/ip/fifo_output/fifo_output.xci
+set_property used_in_implementation false [get_files -all d:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.gen/sources_1/ip/fifo_output/fifo_output.xdc]
+set_property used_in_implementation false [get_files -all d:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.gen/sources_1/ip/fifo_output/fifo_output_clocks.xdc]
+set_property used_in_implementation false [get_files -all d:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.gen/sources_1/ip/fifo_output/fifo_output_ooc.xdc]
 
 OPTRACE "Adding files" END { }
 # Mark all dcp files as not used in implementation to prevent them from being
@@ -95,47 +92,11 @@ foreach dcp [get_files -quiet -all -filter file_type=="Design\ Checkpoint"] {
 read_xdc dont_touch.xdc
 set_property used_in_implementation false [get_files dont_touch.xdc]
 set_param ips.enableIPCacheLiteLoad 1
-OPTRACE "Configure IP Cache" START { }
-
-set cacheID [config_ip_cache -export -no_bom  -dir {D:/techbistro/upwork/JPEG Encoder Project/JPEG_ENC_v6/JPEG_ENC_v6.runs/fifo_output_synth_1} -new_name fifo_output -ip [get_ips fifo_output]]
-
-OPTRACE "Configure IP Cache" END { }
-if { $cacheID == "" } {
 close [open __synthesis_is_running__ w]
 
 OPTRACE "synth_design" START { }
 synth_design -top fifo_output -part xc7a200tfbg676-2 -incremental_mode off -mode out_of_context
 OPTRACE "synth_design" END { }
-OPTRACE "Write IP Cache" START { }
-
-#---------------------------------------------------------
-# Generate Checkpoint/Stub/Simulation Files For IP Cache
-#---------------------------------------------------------
-# disable binary constraint mode for IPCache checkpoints
-set_param constraints.enableBinaryConstraints false
-
-catch {
- write_checkpoint -force -noxdef -rename_prefix fifo_output_ fifo_output.dcp
-
- set ipCachedFiles {}
- write_verilog -force -mode synth_stub -rename_top decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix -prefix decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix_ fifo_output_stub.v
- lappend ipCachedFiles fifo_output_stub.v
-
- write_vhdl -force -mode synth_stub -rename_top decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix -prefix decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix_ fifo_output_stub.vhdl
- lappend ipCachedFiles fifo_output_stub.vhdl
-
- write_verilog -force -mode funcsim -rename_top decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix -prefix decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix_ fifo_output_sim_netlist.v
- lappend ipCachedFiles fifo_output_sim_netlist.v
-
- write_vhdl -force -mode funcsim -rename_top decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix -prefix decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix_ fifo_output_sim_netlist.vhdl
- lappend ipCachedFiles fifo_output_sim_netlist.vhdl
- set TIME_taken [expr [clock seconds] - $TIME_start]
-
- if { [get_msg_config -count -severity {CRITICAL WARNING}] == 0 } {
-  config_ip_cache -add -dcp fifo_output.dcp -move_files $ipCachedFiles   -synth_runtime $TIME_taken  -ip [get_ips fifo_output]
- }
-OPTRACE "Write IP Cache" END { }
-}
 if { [get_msg_config -count -severity {CRITICAL WARNING}] > 0 } {
  send_msg_id runtcl-6 info "Synthesis results are not added to the cache due to CRITICAL_WARNING"
 }
@@ -152,83 +113,45 @@ generate_parallel_reports -reports { "report_utilization -file fifo_output_utili
 OPTRACE "synth reports" END { }
 
 if { [catch {
-  file copy -force {D:/techbistro/upwork/JPEG Encoder Project/JPEG_ENC_v6/JPEG_ENC_v6.runs/fifo_output_synth_1/fifo_output.dcp} {d:/techbistro/upwork/JPEG Encoder Project/JPEG_ENC_v6/JPEG_ENC_v6.gen/sources_1/ip/fifo_output/fifo_output.dcp}
+  file copy -force D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.runs/fifo_output_synth_1/fifo_output.dcp d:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.gen/sources_1/ip/fifo_output/fifo_output.dcp
 } _RESULT ] } { 
   send_msg_id runtcl-3 status "ERROR: Unable to successfully create or copy the sub-design checkpoint file."
   error "ERROR: Unable to successfully create or copy the sub-design checkpoint file."
 }
 
 if { [catch {
-  write_verilog -force -mode synth_stub {d:/techbistro/upwork/JPEG Encoder Project/JPEG_ENC_v6/JPEG_ENC_v6.gen/sources_1/ip/fifo_output/fifo_output_stub.v}
+  write_verilog -force -mode synth_stub d:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.gen/sources_1/ip/fifo_output/fifo_output_stub.v
 } _RESULT ] } { 
   puts "CRITICAL WARNING: Unable to successfully create a Verilog synthesis stub for the sub-design. This may lead to errors in top level synthesis of the design. Error reported: $_RESULT"
 }
 
 if { [catch {
-  write_vhdl -force -mode synth_stub {d:/techbistro/upwork/JPEG Encoder Project/JPEG_ENC_v6/JPEG_ENC_v6.gen/sources_1/ip/fifo_output/fifo_output_stub.vhdl}
+  write_vhdl -force -mode synth_stub d:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.gen/sources_1/ip/fifo_output/fifo_output_stub.vhdl
 } _RESULT ] } { 
   puts "CRITICAL WARNING: Unable to successfully create a VHDL synthesis stub for the sub-design. This may lead to errors in top level synthesis of the design. Error reported: $_RESULT"
 }
 
 if { [catch {
-  write_verilog -force -mode funcsim {d:/techbistro/upwork/JPEG Encoder Project/JPEG_ENC_v6/JPEG_ENC_v6.gen/sources_1/ip/fifo_output/fifo_output_sim_netlist.v}
+  write_verilog -force -mode funcsim d:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.gen/sources_1/ip/fifo_output/fifo_output_sim_netlist.v
 } _RESULT ] } { 
   puts "CRITICAL WARNING: Unable to successfully create the Verilog functional simulation sub-design file. Post-Synthesis Functional Simulation with this file may not be possible or may give incorrect results. Error reported: $_RESULT"
 }
 
 if { [catch {
-  write_vhdl -force -mode funcsim {d:/techbistro/upwork/JPEG Encoder Project/JPEG_ENC_v6/JPEG_ENC_v6.gen/sources_1/ip/fifo_output/fifo_output_sim_netlist.vhdl}
+  write_vhdl -force -mode funcsim d:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.gen/sources_1/ip/fifo_output/fifo_output_sim_netlist.vhdl
 } _RESULT ] } { 
   puts "CRITICAL WARNING: Unable to successfully create the VHDL functional simulation sub-design file. Post-Synthesis Functional Simulation with this file may not be possible or may give incorrect results. Error reported: $_RESULT"
 }
 
-
-} else {
-
-
-if { [catch {
-  file copy -force {D:/techbistro/upwork/JPEG Encoder Project/JPEG_ENC_v6/JPEG_ENC_v6.runs/fifo_output_synth_1/fifo_output.dcp} {d:/techbistro/upwork/JPEG Encoder Project/JPEG_ENC_v6/JPEG_ENC_v6.gen/sources_1/ip/fifo_output/fifo_output.dcp}
-} _RESULT ] } { 
-  send_msg_id runtcl-3 status "ERROR: Unable to successfully create or copy the sub-design checkpoint file."
-  error "ERROR: Unable to successfully create or copy the sub-design checkpoint file."
-}
-
-if { [catch {
-  file rename -force {D:/techbistro/upwork/JPEG Encoder Project/JPEG_ENC_v6/JPEG_ENC_v6.runs/fifo_output_synth_1/fifo_output_stub.v} {d:/techbistro/upwork/JPEG Encoder Project/JPEG_ENC_v6/JPEG_ENC_v6.gen/sources_1/ip/fifo_output/fifo_output_stub.v}
-} _RESULT ] } { 
-  puts "CRITICAL WARNING: Unable to successfully create a Verilog synthesis stub for the sub-design. This may lead to errors in top level synthesis of the design. Error reported: $_RESULT"
-}
-
-if { [catch {
-  file rename -force {D:/techbistro/upwork/JPEG Encoder Project/JPEG_ENC_v6/JPEG_ENC_v6.runs/fifo_output_synth_1/fifo_output_stub.vhdl} {d:/techbistro/upwork/JPEG Encoder Project/JPEG_ENC_v6/JPEG_ENC_v6.gen/sources_1/ip/fifo_output/fifo_output_stub.vhdl}
-} _RESULT ] } { 
-  puts "CRITICAL WARNING: Unable to successfully create a VHDL synthesis stub for the sub-design. This may lead to errors in top level synthesis of the design. Error reported: $_RESULT"
-}
-
-if { [catch {
-  file rename -force {D:/techbistro/upwork/JPEG Encoder Project/JPEG_ENC_v6/JPEG_ENC_v6.runs/fifo_output_synth_1/fifo_output_sim_netlist.v} {d:/techbistro/upwork/JPEG Encoder Project/JPEG_ENC_v6/JPEG_ENC_v6.gen/sources_1/ip/fifo_output/fifo_output_sim_netlist.v}
-} _RESULT ] } { 
-  puts "CRITICAL WARNING: Unable to successfully create the Verilog functional simulation sub-design file. Post-Synthesis Functional Simulation with this file may not be possible or may give incorrect results. Error reported: $_RESULT"
-}
-
-if { [catch {
-  file rename -force {D:/techbistro/upwork/JPEG Encoder Project/JPEG_ENC_v6/JPEG_ENC_v6.runs/fifo_output_synth_1/fifo_output_sim_netlist.vhdl} {d:/techbistro/upwork/JPEG Encoder Project/JPEG_ENC_v6/JPEG_ENC_v6.gen/sources_1/ip/fifo_output/fifo_output_sim_netlist.vhdl}
-} _RESULT ] } { 
-  puts "CRITICAL WARNING: Unable to successfully create the VHDL functional simulation sub-design file. Post-Synthesis Functional Simulation with this file may not be possible or may give incorrect results. Error reported: $_RESULT"
-}
-
-close [open .end.used_ip_cache.rst w]
-}; # end if cacheID 
-
-if {[file isdir {D:/techbistro/upwork/JPEG Encoder Project/JPEG_ENC_v6/JPEG_ENC_v6.ip_user_files/ip/fifo_output}]} {
+if {[file isdir D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.ip_user_files/ip/fifo_output]} {
   catch { 
-    file copy -force {{d:/techbistro/upwork/JPEG Encoder Project/JPEG_ENC_v6/JPEG_ENC_v6.gen/sources_1/ip/fifo_output/fifo_output_stub.v}} {D:/techbistro/upwork/JPEG Encoder Project/JPEG_ENC_v6/JPEG_ENC_v6.ip_user_files/ip/fifo_output}
+    file copy -force d:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.gen/sources_1/ip/fifo_output/fifo_output_stub.v D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.ip_user_files/ip/fifo_output
   }
 }
 
-if {[file isdir {D:/techbistro/upwork/JPEG Encoder Project/JPEG_ENC_v6/JPEG_ENC_v6.ip_user_files/ip/fifo_output}]} {
+if {[file isdir D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.ip_user_files/ip/fifo_output]} {
   catch { 
-    file copy -force {{d:/techbistro/upwork/JPEG Encoder Project/JPEG_ENC_v6/JPEG_ENC_v6.gen/sources_1/ip/fifo_output/fifo_output_stub.vhdl}} {D:/techbistro/upwork/JPEG Encoder Project/JPEG_ENC_v6/JPEG_ENC_v6.ip_user_files/ip/fifo_output}
+    file copy -force d:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.gen/sources_1/ip/fifo_output/fifo_output_stub.vhdl D:/techbistro/upwork/JPEG_Encoder_Project/JPEG_ENC_8f/JPEG_ENC_8f.ip_user_files/ip/fifo_output
   }
 }
 file delete __synthesis_is_running__
