@@ -8,8 +8,8 @@
 # Large 5000-scale test images (cropped from world_gray_10000x10000.pgm) + their .jls outputs
 /JPEG_ENC_8f.sim/images/world_gray_5000x5000.pgm
 /JPEG_ENC_8f.sim/images/world_gray_4992x4992.pgm
-JPEG_ENC_8f.sim/images/world_gray_21600x10800.pgm
-JPEG_ENC_8f.sim/images/world_gray_16000x10800.pgm
+\JPEG_ENC_8f.sim\images\world_gray_21600x10800.pgm
+\JPEG_ENC_8f.sim\images\world_gray_16000x10800.pgm
 /JPEG_ENC_8f.sim/images/world_gray_21600x10800.pgm
 /JPEG_ENC_8f.sim/images/world_gray_16000x10800.pgm
 /JPEG_ENC_8f.sim/output_block/output_h16v1_4992x4992.jls
