@@ -819,12 +819,14 @@ reg [13:0] b_ii;
 reg [PW-1:0] b_x;
 wire last_pixel_block;
 //assign last_pixel_block = (a_ii == a_wl) && (a_jj == a_hl);
-wire eof_cond;
-assign eof_cond =
-   // a_e &&
-    (a_wl != 0) && (a_hl != 0) &&
-    (a_ii == a_wl) &&
-    (a_jj == a_hl) && (b_ii==a_wl);
+// End of frame: set only after the LAST pixel has actually been accepted (a_e) and held
+// until the next SOF. The former coordinate-only condition (no a_e) fired before the last
+// pixel arrived when >= 2 idle cycles (i_e = 0) preceded it, corrupting the last pixel.
+reg eof_seen;
+always @(posedge clk)
+    if (!rstn || a_sof) eof_seen <= 1'b0;
+    else if (a_e && (a_wl != 0) && (a_hl != 0) && (a_ii == a_wl) && (a_jj == a_hl)) eof_seen <= 1'b1;
+wire eof_cond = eof_seen;
 
 // If you truly need b_sof stretched for 2 cycles elsewhere, keep that logic.
 // Here: b_sof follows a_sof (registered) and b_eof is allowed to assert even when b_sof is high.
@@ -1476,8 +1478,8 @@ always @ (posedge clk)
         jls_wl <= 16'd0;
         jls_hl <= 16'd0;
     end else begin
-        jls_wl <= {2'd0,a_wl+1};
-        jls_hl <= {2'd0,a_hl+1};
+        jls_wl <= {2'd0,a_wl+14'd1};
+        jls_hl <= {2'd0,a_hl+14'd1};
     end
 
 
